@@ -63,6 +63,10 @@ A quiet wall sits under the homepage hero and on `/work/` (`src/_includes/logos.
 
 To add one, make a single-color PNG in `src/assets/images/logos/`: flatten on white, alpha = 255 minus the darkest channel (ramp 28 to 110), fill with ink `#151513`, trim to the mark, and resize so its area is about 27,000 px². Remove any stray text from the source (the ANDYs file had "Ad Makers Collective" in a corner). Check the whole mark survived, the first Google pass lost the left of the G. In `site.yml` set width and height to about 0.28 of the PNG's pixel size. The CSS shows them at 38% opacity, 70% on hover, five per row on desktop and wrapped smaller on phones. Logos stay off Leading covers.
 
+## Wordmark and favicon
+
+The R in "Ran Craycraft" is built from three pieces, a stem, a bowl and a leg, with small gaps between them. The pieces come from Inter Tight Bold's R. The header draws it with `src/_includes/brand-name.njk`, which keeps the real letter in the text for search and screen readers. The favicon (`src/assets/favicon.svg`) and the home-screen icons (`apple-touch-icon.png`, `icon-512.png`) use the same R in paper on ink. Keep all of them in step if the mark changes.
+
 ## Read next
 
 Every Leading piece ends with "Read next", up to two others chosen in its front matter:
@@ -93,6 +97,18 @@ The section for the longer pieces about the bigger work is called **Leading**, n
 - Section heads are a 1px ink rule with the label in the rail. Keep new sections on that pattern.
 - Phones (820px and under) get their own treatment, all in the phone block near the end of `site.css`. A sticky header with a Menu button that opens a full-screen menu, full-width buttons, edge-to-edge covers and carousel with a progress line, an even five-across logo grid, and the name set large at the foot of the page. Change phone layouts there, and confirm desktop still matches `main` pixel for pixel.
 - Run an accessibility check (axe) and look at desktop and phone screenshots before handing back design changes.
+
+## Search, sharing and AI tools
+
+These are built automatically. Nothing needs doing per post, but keep them working when templates change.
+
+- `sitemap.xml`, `robots.txt` and the Atom feed at `/feed.xml`.
+- Title tags add " · Ran Craycraft" when the title is 48 characters or shorter. Set `seo_title` in front matter to override the whole tag. Keep `description` under about 160 characters, since search results cut it there.
+- Share images. A page with its own `image` uses it. The homepage and 404 use `src/assets/og-default.png`. Every other page gets a 1200×630 card drawn at build time by `scripts/og/cards.js`, published at `/og/<page address>.png`. Leading cards use the piece's `tone` and `ink` with "Leading · organization" above the title. Section pages show their title and description. The card fonts are static TTF copies of the site fonts in `scripts/og/fonts/`.
+- Markdown versions. Every post, Leading piece and the About page is also published at its address with `.md` on the end (like `/leading/wildebeest.md`), built from the source file by `src/markdown.njk`. Private `<!-- -->` notes are removed. Each page links to its Markdown version in the head.
+- `llms.txt` lists everything, linking to the Markdown versions. `llms-full.txt` holds every piece in one file.
+- Structured data in `src/_includes/schema.njk`, with a Person, BlogPosting for posts, ProfilePage for About, and breadcrumbs.
+- The 404 page and drafts are marked noindex.
 
 ## The repo is public
 
