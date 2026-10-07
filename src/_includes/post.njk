@@ -74,7 +74,7 @@ layout: base.njk
         <span class="media">{% set ratio = "16 / 9" %}{% include "cover.njk" %}</span>
         <span class="eyebrow"><span class="post-nav-dir">{{ item.label }}</span><span class="dot">·</span>{{ p.data.kind | kindLabel }}</span>
         <span class="card-title serif">{{ p.data.title }}</span>
-        <span class="card-meta"><time datetime="{{ p.date | isoDate }}">{{ p.date | readableDate }}</time></span>
+        <span class="card-meta"><time datetime="{{ p.date | isoDate }}" data-relative>{{ p.date | readableDate }}</time></span>
       </a></li>
       {%- else %}<li class="post-nav-{{ item.dir }}" aria-hidden="true"></li>
       {%- endif %}

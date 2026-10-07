@@ -21,7 +21,7 @@ section: writing
     <li><a href="{{ p.url }}" class="entry">
       <span class="entry-title serif">{{ p.data.title }}</span>
       <span class="entry-desc">{{ p.data.description }}</span>
-      <span class="meta"><time datetime="{{ p.date | isoDate }}">{{ p.date | readableDate }}</time></span>
+      <span class="meta"><time datetime="{{ p.date | isoDate }}" data-relative>{{ p.date | readableDate }}</time></span>
     </a></li>
     {%- endfor %}
   </ol>
@@ -38,7 +38,7 @@ section: writing
     <li><a href="{{ e.url }}" class="entry">
       <span class="entry-title serif">{{ e.title }}</span>
       <span class="entry-desc">{{ e.summary }}</span>
-      <span class="meta"><time datetime="{{ e.date | isoDate }}">{{ e.date | readableDate }}</time>{% if e.coauthor %}<span class="dot">·</span>with {{ e.coauthor }}{% endif %}<span class="dot">·</span>{{ e.publication }} <span class="ext" aria-label="opens the original">↗</span></span>
+      <span class="meta"><time datetime="{{ e.date | isoDate }}" data-relative>{{ e.date | readableDate }}</time>{% if e.coauthor %}<span class="dot">·</span>with {{ e.coauthor }}{% endif %}<span class="dot">·</span>{{ e.publication }} <span class="ext" aria-label="opens the original">↗</span></span>
     </a></li>
     {%- endfor %}
   </ol>

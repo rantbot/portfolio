@@ -73,7 +73,7 @@ title: Ran Craycraft
           </span>
           <span class="line-meta">
             <span class="line-kind">{{ "Making" if making else "Writing" }}{% if p.external %} <span class="ext" aria-label="on the thoughtbot blog, opens the original">↗</span>{% endif %}</span>
-            <time datetime="{{ p.date | isoDate }}">{{ p.date | dayMonth }}</time>
+            <time datetime="{{ p.date | isoDate }}" data-relative>{{ p.date | dayMonth }}</time>
           </span>
           {%- if making %}<span class="line-thumb" aria-hidden="true">{% set ratio = "4 / 3" %}{% include "cover.njk" %}</span>{% endif %}
         </a>

@@ -139,3 +139,26 @@ if (postNav.ArrowLeft || postNav.ArrowRight) {
     link.click();
   });
 }
+
+// Recent dates in lists and cards read as "Yesterday" or "3 days ago", worked out in the reader's own time zone
+// so they never go stale. Anything a month or older, or dated ahead, keeps the date. The full date shows on hover.
+(() => {
+  const times = document.querySelectorAll("time[data-relative]");
+  if (!times.length) return;
+  const now = new Date();
+  const today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  times.forEach((t) => {
+    const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(t.getAttribute("datetime") || "");
+    if (!m) return;
+    const days = Math.round((today - Date.UTC(+m[1], m[2] - 1, +m[3])) / 86400000);
+    let label = "";
+    if (days === 0) label = "Today";
+    else if (days === 1) label = "Yesterday";
+    else if (days > 1 && days < 7) label = `${days} days ago`;
+    else if (days >= 7 && days < 14) label = "Last week";
+    else if (days >= 14 && days < 30) label = `${Math.floor(days / 7)} weeks ago`;
+    if (!label) return;
+    t.title = new Date(Date.UTC(+m[1], m[2] - 1, +m[3])).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
+    t.textContent = label;
+  });
+})();

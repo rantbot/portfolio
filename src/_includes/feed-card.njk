@@ -10,7 +10,7 @@
   </span>
   {%- endif %}
   <span class="piece-body">
-    <span class="piece-kind">{{ "Making" if making else "Writing" }}{% if p.external %} <span class="ext">↗</span>{% endif %}<span class="dot">·</span><time datetime="{{ p.date | isoDate }}">{{ p.date | dayMonth }}</time></span>
+    <span class="piece-kind">{{ "Making" if making else "Writing" }}{% if p.external %} <span class="ext">↗</span>{% endif %}<span class="dot">·</span><time datetime="{{ p.date | isoDate }}" data-relative>{{ p.date | dayMonth }}</time></span>
     <span class="piece-title serif">{{ p.data.title }}</span>
     <span class="piece-desc">{{ p.data.description }}</span>
   </span>
