@@ -39,9 +39,9 @@ You can also edit any file directly on github.com or in the GitHub mobile app. P
 - After launch, add the site to [Google Search Console](https://search.google.com/search-console) and [Bing Webmaster Tools](https://www.bing.com/webmasters) and submit the sitemap.
 - Add your LinkedIn address under **My profiles elsewhere**, and link to the site from LinkedIn, GitHub, your thoughtbot author page, and Ruby Central. Those links matter more than anything on the site itself.
 
-## A custom domain later
+## The domain
 
-Buy the domain, then in the repository go to Settings, then Pages, and enter it under Custom domain. Follow GitHub's instructions for the DNS records. The site picks up the new address automatically.
+The site lives at rancraycraft.com, registered at GoDaddy. DNS points the domain at GitHub Pages (four A records for `@` and a `www` CNAME to `rantbot.github.io`), and the custom domain is set in the repository under Settings, then Pages. The build picks up the address automatically.
 
 ## Preview on your computer
 

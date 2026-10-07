@@ -29,7 +29,7 @@ jobs:
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
       # --ignore-scripts stops packages from running code at install time
       - run: npm ci --ignore-scripts
-      # base_path is "" for rantbot.github.io and "/portfolio" for a project repo
+      # base_path is "" on a custom domain like rancraycraft.com, and "/portfolio" without one
       - run: npx @11ty/eleventy --pathprefix="${BASE_PATH}/"
         env:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
