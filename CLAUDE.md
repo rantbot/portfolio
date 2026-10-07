@@ -65,7 +65,7 @@ To add one, make a single-color PNG in `src/assets/images/logos/`: flatten on wh
 
 ## Wordmark and favicon
 
-The wordmark is set in Inter Tight Bold, self-hosted, so it looks the same on every device (Helvetica Neue is only a fallback). The R is Inter Tight's own bold R with its hole filled in. Only the R is built. Filled-in a's were tried and made the name hard to read. The header draws it with `src/_includes/brand-name.njk`, which keeps the real letter in the text for search and screen readers. The favicon (`src/assets/favicon.svg`) and the home-screen icons (`apple-touch-icon.png`, `icon-512.png`) use the same R in paper on ink. Keep all of them in step if the mark changes.
+The wordmark is plain text, "Ran Craycraft" in Inter Tight Bold (self-hosted, so it looks the same everywhere). The favicon (`src/assets/favicon.svg`) and the home-screen icons (`apple-touch-icon.png`, `icon-512.png`) are Inter Tight's bold R in paper on an ink square. Ran tried a filled-in R in the wordmark and favicon and didn't like it, so leave the R as a normal letter.
 
 ## Read next
 

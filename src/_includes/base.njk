@@ -66,7 +66,7 @@
 <a class="skip" href="#main">Skip to content</a>
 <div class="wrap">
 <header class="site-header">
-  <a href="/" class="brand"{% if page.url == "/" %} aria-current="page"{% endif %}>{% include "brand-name.njk" %}</a>
+  <a href="/" class="brand"{% if page.url == "/" %} aria-current="page"{% endif %}>{{ site.name }}</a>
   <nav class="site-nav" aria-label="Main">
     <a href="/leading/"{% if section == "leading" %} aria-current="page"{% endif %}>Leading</a>
     <a href="/writing/"{% if section == "writing" %} aria-current="page"{% endif %}>Writing</a>
@@ -80,7 +80,7 @@
 <div id="menu" class="menu" aria-label="Menu">
   <div class="menu-inner">
     <div class="menu-top">
-      <a href="/" class="brand">{% include "brand-name.njk" %}</a>
+      <a href="/" class="brand">{{ site.name }}</a>
       <a href="#" class="menu-close"><span>Close</span><span class="menu-icon is-x" aria-hidden="true"></span></a>
     </div>
     <nav aria-label="Menu">
@@ -114,6 +114,8 @@
   </nav>
   <nav class="footer-col" aria-label="Elsewhere">
     {%- for p in site.same_as %}{% if "[" not in p.url %}<a href="{{ p.url }}" rel="me">{{ p.label }}</a>{% endif %}{% endfor %}
+    {%- set email_label = "Email" %}{% set email_class = "footer-email" %}{% set email_subject = "Hello from your site" %}{% set email_body = "" %}
+    {% include "email-link.njk" %}
     <a href="/feed.xml">RSS</a>
   </nav>
   <p class="footer-legal">© {{ env.year }} {{ site.name }}. {{ site.location }}.</p>
