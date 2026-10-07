@@ -1,3 +1,12 @@
+# Dependencies and build output
 node_modules/
 _site/
+
+# Never commit secrets or private working notes. This repo is public.
+.env
+.env.*
+private/
+
+# System and editor files
 .DS_Store
+*.log

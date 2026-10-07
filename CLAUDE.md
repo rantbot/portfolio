@@ -48,6 +48,15 @@ Notes for Ran to fill in go in `<!-- -->` comments. They don't show on the site.
 - Prefer several short posts per experience, linked by `series`, over one long one.
 - Use `##` headings that match what people search for. Keep paragraphs short.
 
+## The repo is public
+
+Everything committed here is readable by anyone, including drafts, `<!-- -->` notes and git history.
+
+- Never commit secrets, keys, client names, budgets or internal details. Working notes and source material go in `private/`, which git ignores.
+- `<!-- -->` notes are stripped from the built pages, but they're still visible in the repo.
+- The page sets a Content Security Policy in `base.njk`. Scripts, styles and images load from this site only, plus Google Fonts. Embedding something from another site (a video, an outside image) means updating that policy on purpose.
+- Workflow actions are pinned to commit SHAs and each job gets only the permissions it needs. Keep it that way, and let Dependabot propose updates.
+
 ## Check before handing back
 
 ```

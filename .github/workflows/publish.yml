@@ -3,43 +3,57 @@ name: Publish site
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
+# Nothing by default. Each job asks for only what it needs.
+permissions: {}
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      # Actions are pinned to full commit SHAs. Dependabot keeps them current.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          node-version: 22
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
           cache: npm
       - id: pages
-        uses: actions/configure-pages@v5
-      - run: npm ci
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+      # --ignore-scripts stops packages from running code at install time
+      - run: npm ci --ignore-scripts
       # base_path is "" for rantbot.github.io and "/portfolio" for a project repo
-      - run: npx @11ty/eleventy --pathprefix="${{ steps.pages.outputs.base_path }}/"
+      - run: npx @11ty/eleventy --pathprefix="${BASE_PATH}/"
         env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
           SITE_URL: ${{ steps.pages.outputs.base_url }}
-      - uses: actions/upload-pages-artifact@v3
+      - if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: _site
 
   deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    # Never cancel a deploy halfway through
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

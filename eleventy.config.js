@@ -7,6 +7,11 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addPlugin(HtmlBasePlugin);
 
+  // Keep <!-- notes --> in posts out of the published pages
+  eleventyConfig.addTransform("stripComments", function (content) {
+    return (this.page.outputPath || "").endsWith(".html") ? content.replace(/<!--[\s\S]*?-->\n?/g, "") : content;
+  });
+
   // Every published post, newest first
   eleventyConfig.addCollection("posts", (api) =>
     api
