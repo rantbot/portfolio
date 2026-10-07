@@ -1,5 +1,5 @@
 // Shared settings for every post in this folder.
-// kind is "story" (a milestone, written as a case study), "writing" or "making".
+// kind is "writing" or "making". Stories live in src/stories/.
 const sections = { story: "stories", writing: "writing", making: "making" };
 
 export default {

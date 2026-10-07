@@ -58,7 +58,7 @@ content:
       - { name: date, label: Date, type: date }
       - { name: draft, label: Draft, type: boolean, default: true, description: "Turn off and save to publish" }
       - name: case_study
-        label: Case study details
+        label: Story details
         type: object
         fields:
           - { name: organization, label: Organization, type: string }

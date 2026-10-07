@@ -13,12 +13,12 @@ title: Ran Craycraft
   </div>
 </section>
 
-{%- set stories = collections.posts | milestones %}
+{%- set stories = collections.posts | stories %}
 {%- if stories.length %}
 <section aria-labelledby="stories-h" class="section">
   <div class="section-head">
     <h2 id="stories-h" class="eyebrow strong">Stories</h2>
-    <p class="section-note">Longer stories from the bigger work</p>
+    <p class="section-note">The bigger work, told in full</p>
     <div class="carousel-nav">
       <span class="carousel-count" aria-live="polite" hidden></span>
       <button type="button" class="carousel-btn" data-dir="-1" aria-label="Previous stories" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg></button>
@@ -32,6 +32,7 @@ title: Ran Craycraft
       <span class="media">{% set ratio = "4 / 3" %}{% include "story-cover.njk" %}</span>
       <span class="card-title serif">{{ p.data.title }}</span>
       <span class="card-desc">{{ p.data.description }}</span>
+      {%- if p.data.case_study and p.data.case_study.organization %}<span class="card-meta">{{ p.data.case_study.organization }}</span>{% endif %}
     </a></li>
     {%- endfor %}
   </ul>

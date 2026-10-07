@@ -10,7 +10,7 @@ Ran will say things like "add a post about X", "update my AOL story", "add my ne
 
 | What | File |
 | --- | --- |
-| Stories (case studies) | `src/stories/slug.md`, one plain Markdown file each |
+| Stories | `src/stories/slug.md`, one plain Markdown file each |
 | Writing and Making posts | `src/posts/YYYY-MM-DD-slug.md` |
 | Photos | `src/assets/images/`, referenced as `/assets/images/name.jpg` |
 | Homepage text, the subtitle under the name (`tagline`), profile links | `src/_data/site.yml` |
@@ -30,12 +30,12 @@ Front matter:
 - `description` one or two sentences, shown under the title and in search results
 - `date` publish date, `YYYY-MM-DD`
 - `kind` `story`, `writing` or `making`
-  - **Stories** live in `src/stories/`, not `src/posts/`. Every Markdown file there becomes a case study at `/stories/<file-name>/`, so the folder sets the kind and layout. Ran drafts and finesses them there in a Markdown editor. They take a `case_study` block (`organization`, `role`, `years`, `start` year for ordering, `scope`, `team`, `outcomes`). Each story reads like a chapter in a book. Narrative, engaging, insightful and opinionated, about 2,500 to 3,500 words, a 10 to 15 minute read. Open on a scene, set up the stakes, follow the decisions and turning points, say what changed, and end with what Ran believes now and why. First person, specific moments and real names (with permission), clear opinions. "Chapter" is only the feel, so never label or number stories as chapters. The layout adds a drop cap, and `---` in the text becomes a section break. Headings can be evocative rather than The situation or What I did. Facts, quotes, numbers and opinions must come from Ran. Draft by interviewing him first, then outline, then write, then let him finesse. Never invent facts or results. Leave a `<!-- TO ADD -->` note instead, and keep a heading in the note until its section has content.
+  - **Stories** live in `src/stories/`, not `src/posts/`. Every Markdown file there becomes a story at `/stories/<file-name>/`, so the folder sets the kind and layout. Ran drafts and finesses them there in a Markdown editor. They take a `case_study` block (`organization`, `role`, `years`, `start` year for ordering, `scope`, `team`, `outcomes`). Each story reads like a chapter in a book. Narrative, engaging, insightful and opinionated, about 2,500 to 3,500 words, a 10 to 15 minute read. Open on a scene, set up the stakes, follow the decisions and turning points, say what changed, and end with what Ran believes now and why. First person, specific moments and real names (with permission), clear opinions. "Chapter" is only the feel, so never label or number stories as chapters. The layout adds a drop cap, and `---` in the text becomes a section break. Headings can be evocative rather than The situation or What I did. Facts, quotes, numbers and opinions must come from Ran. Draft by interviewing him first, then outline, then write, then let him finesse. Never invent facts or results. Leave a `<!-- TO ADD -->` note instead, and keep a heading in the note until its section has content.
   - **Writing** and **Making** are lighter, passing ideas, experiments and thoughts. Keep them short.
 - `draft: true` keeps it off the site. Remove it to publish.
 - `tldr` optional plain answer at the top ("In short")
 - `series` same name on related posts links them together
-- The homepage Stories row shows the three most recent milestones. `meta` is an optional card label.
+- The homepage Stories carousel shows every story, most recent first. `meta` is an optional card label.
 - Cover, either `image` plus `image_alt` (and optional `image_caption`), or a typographic cover with `tone`, `ink`, `cover_kicker`, `cover_lines`
 - `updated` optional date for revised posts
 - `try_url` and optional `try_label` add a "Try it" link at the end, only for tools that are public
@@ -50,6 +50,10 @@ Notes for Ran to fill in go in `<!-- -->` comments. They don't show on the site.
 - Present Ran as a leader who builds things, not a job seeker. Fun to read.
 - Prefer several short posts per experience, linked by `series`, over one long one.
 - Use `##` headings that match what people search for. Keep paragraphs short.
+
+## Language
+
+Call them stories everywhere, never case studies or milestones. A story is about the work, not the company, and there can be several from one place. The organization only appears as quiet context (the card's small meta line and the facts panel), never as a story's cover or heading.
 
 ## Agent skills
 

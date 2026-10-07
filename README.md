@@ -25,7 +25,7 @@ A few tips that help readers and search:
 - **Summary.** One or two sentences. It shows under the title, in lists, and in search results.
 - **In short.** An optional plain answer at the top of the post. AI tools tend to quote this part.
 - **Series.** Give related posts the same series name and they link to each other automatically.
-- **Stories** are the milestones, written as long case studies. Set Layout to **Case study** and fill in **Case study details**. The homepage shows the three most recent. Writing and Making are the lighter, shorter posts.
+- **Stories** are longer pieces about the bigger work, under **Stories** in Pages CMS. Fill in **Story details**. The homepage shows the three most recent. Writing and Making are the lighter, shorter posts.
 - **No photo yet?** Set a cover color and a few cover words and the site makes a typographic cover.
 
 **Site and homepage** in Pages CMS holds the homepage text and your profile links. **Essays published elsewhere** holds the thoughtbot posts, which link to the originals.
@@ -57,7 +57,7 @@ To start a post by hand, run `npm run new -- "Post title" making`.
 
 | What | Where |
 | --- | --- |
-| Stories (case studies) | `src/stories/`, one Markdown file each |
+| Stories | `src/stories/`, one Markdown file each |
 | Writing and Making posts | `src/posts/` |
 | Photos | `src/assets/images/` |
 | Homepage text and settings | `src/_data/site.yml` |

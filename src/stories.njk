@@ -1,23 +1,24 @@
 ---
 layout: base.njk
 title: Stories
-description: Case studies of the bigger work Ran Craycraft has led, from launching ventures at AOL to leading thoughtbot’s Americas business and Ruby Central.
+description: Stories about the bigger work Ran Craycraft has led, from launching ventures at AOL to leading thoughtbot’s Americas business and Ruby Central.
 permalink: /stories/
 section: stories
 ---
 <header class="page-head">
   <h1 class="page-title serif">Stories</h1>
   <div class="grid">
-    <p class="span-main lede serif">Longer stories about the bigger work I’ve led. What the situation was, what we did, what changed, and what I believe now because of it.</p>
+    <p class="span-main lede serif">The bigger work I’ve led, told in full. What the situation was, what we did, what changed, and what I believe now because of it.</p>
   </div>
 </header>
 
 <div class="tiles tiles-2">
-  {%- for p in collections.posts | milestones %}
+  {%- for p in collections.posts | stories %}
   <a href="{{ p.url }}" class="card">
     <span class="media">{% set ratio = "3 / 2" %}{% include "story-cover.njk" %}</span>
     <span class="card-title card-title-lg serif">{{ p.data.title }}</span>
     <span class="card-desc">{{ p.data.description }}</span>
+    {%- if p.data.case_study and p.data.case_study.organization %}<span class="card-meta">{{ p.data.case_study.organization }}{% if p.data.case_study.years %}<span class="dot">·</span>{{ p.data.case_study.years }}{% endif %}</span>{% endif %}
   </a>
   {%- endfor %}
 </div>

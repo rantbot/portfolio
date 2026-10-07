@@ -1,10 +1,13 @@
-{#- A story's cover. Uses the photo if there is one, otherwise the organization's name set large, like a wordmark. Expects `p` (a post) and `ratio`. -#}
+{#- A story's cover. Uses the photo if there is one, otherwise the story's themes (cover_lines) set large.
+   Deliberately not the organization's name, since there can be several stories from one place. Expects `p` and `ratio`. -#}
 {%- set d = p.data -%}
 {%- if d.image %}
 <img class="cover-img" src="{{ d.image }}" alt="{{ d.image_alt or '' }}" loading="lazy" style="aspect-ratio: {{ ratio }}">
 {%- else %}
 <div class="cover story-cover" style="aspect-ratio: {{ ratio }}; background: {{ d.tone or '#EFEFEC' }}; color: {{ d.ink or '#1F1F1C' }}" aria-hidden="true">
-  <span class="cover-kicker">Case study</span>
-  <span class="story-cover-name">{{ d.case_study.organization if d.case_study else d.title }}</span>
+  <span class="cover-kicker">{{ d.case_study.years if d.case_study and d.case_study.years else "" }}</span>
+  <span class="cover-lines">
+    {%- for line in (d.cover_lines or [d.title]) %}<span{% if loop.last and loop.length > 1 %} class="i"{% endif %}>{{ line }}</span>{% endfor -%}
+  </span>
 </div>
 {%- endif %}
