@@ -107,13 +107,15 @@ a, button { -webkit-tap-highlight-color: transparent; touch-action: manipulation
 .menu-icon.is-x::after { transform: translateY(-3.75px) rotate(-45deg); }
 
 /* Home hero */
-.hero { padding: clamp(72px, 11vw, 168px) 0 0; }
-.hero-title { font-size: clamp(38px, 6.4vw, 96px); line-height: 1.01; letter-spacing: -0.032em; font-weight: 320; max-width: 13.5em; text-wrap: balance; }
-.hero-body { margin-top: clamp(40px, 5.5vw, 80px); }
+.hero { padding: clamp(32px, min(11vw, 9vh), 168px) 0 0; }
+.hero-title { font-size: clamp(38px, min(6.4vw, 10.5vh), 96px); line-height: 1.01; letter-spacing: -0.032em; font-weight: 320; max-width: 13.5em; text-wrap: balance; }
+.hero-body { margin-top: clamp(24px, min(5.5vw, 5vh), 80px); }
 .hero-body .eyebrow { padding-top: 0.4em; }
-.hero-now { margin-top: 24px; font-size: 17px; color: var(--muted); max-width: 40em; }
-.hero-more { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
+.hero-now { margin-top: clamp(14px, 2.6vh, 24px); font-size: 17px; color: var(--muted); max-width: 40em; }
+.hero-more { margin-top: clamp(18px, 3.6vh, 32px); display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
 .hero-more > .arrow-link, .closing-actions > .arrow-link { margin-left: 0; }
+/* On short laptop screens the whole introduction, buttons included, stays above the fold */
+.hero .lede { font-size: clamp(18px, min(1.55vw, 2.9vh), 23px); }
 
 /* Section heads */
 .section-head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); align-items: center; border-top: 1px solid var(--ink); padding-top: 14px; margin-bottom: clamp(32px, 4vw, 48px); }
@@ -582,15 +584,18 @@ html.search-open { overflow: hidden; }
   .menu-open .menu-foot { transition-delay: 170ms; }
 
   /* Hero. The headline carries the screen. */
-  .hero { padding-top: 48px; }
+  .hero { padding-top: clamp(24px, 5vh, 48px); }
   .hero-title { font-size: clamp(42px, 11.4vw, 60px); line-height: 1; letter-spacing: -0.036em; font-weight: 310; }
   .hero-body { margin-top: 32px; }
-  .hero .lede { font-size: 20px; line-height: 1.45; }
+  .hero .lede { font-size: clamp(18px, 2.7vh, 20px); line-height: 1.45; }
   .hero-now { margin-top: 20px; font-size: 15px; line-height: 1.6; }
-  .hero-more { margin-top: 32px; }
+  .hero-more { margin-top: clamp(20px, 3.5vh, 32px); }
 
   /* Buttons fill the width on phones, an easy target for a thumb. Secondary links sit under them. */
   .hero-more .button, .closing-actions .button, .story-cta .button { flex: 1 1 100%; justify-content: center; min-height: 54px; font-size: 16px; }
+  .hero-more { gap: 12px 16px; }
+  .hero .hero-more .button { flex: 0 1 auto; min-height: 50px; padding: 0 18px; font-size: 15px; }
+  .hero .hero-more .arrow-link { flex: 0 1 auto; min-height: 44px; }
   .hero-more .arrow-link, .closing-actions .arrow-link { flex: 1 1 100%; justify-content: center; min-height: 44px; }
 
   /* Section heads. The rule, the label and a quiet note, set on one line where they fit. */
@@ -695,6 +700,9 @@ html.search-open { overflow: hidden; }
   .footer-legal { order: 4; margin-top: 14px; font-size: 13px; }
 }
 
+@media (min-width: 821px) and (max-height: 640px) {
+  .site-header { padding: 20px 0; }
+}
 @media (prefers-reduced-motion: reduce) {
   .search-dialog[open] { animation: none; }
   *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
