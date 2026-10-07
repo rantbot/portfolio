@@ -95,6 +95,10 @@ a, button { -webkit-tap-highlight-color: transparent; touch-action: manipulation
 .site-nav a { transition: color 200ms var(--ease); }
 .site-nav a:hover { color: var(--ink); }
 .site-nav .nav-cta { color: var(--ink); font-weight: 500; }
+/* Section icons, drawn like the search icon */
+.icon { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.site-nav .nav-sec { display: inline-flex; align-items: center; gap: 7px; }
+.nav-sec .icon { width: 16px; height: 16px; flex: none; }
 .site-nav a[aria-current] { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 7px; }
 
 /* Phone menu, hidden on wider screens */

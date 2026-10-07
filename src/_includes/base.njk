@@ -65,12 +65,13 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="wrap">
+{%- from "icons.njk" import icon %}
 <header class="site-header">
   <a href="/" class="brand"{% if page.url == "/" %} aria-current="page"{% endif %}>{{ site.name }}</a>
   <nav class="site-nav" aria-label="Main">
-    <a href="/leading/"{% if section == "leading" %} aria-current="page"{% endif %}>Leading</a>
-    <a href="/writing/"{% if section == "writing" %} aria-current="page"{% endif %}>Writing</a>
-    <a href="/making/"{% if section == "making" %} aria-current="page"{% endif %}>Making</a>
+    <a href="/leading/" class="nav-sec"{% if section == "leading" %} aria-current="page"{% endif %}>{{ icon("leading") }}Leading</a>
+    <a href="/writing/" class="nav-sec"{% if section == "writing" %} aria-current="page"{% endif %}>{{ icon("writing") }}Writing</a>
+    <a href="/making/" class="nav-sec"{% if section == "making" %} aria-current="page"{% endif %}>{{ icon("making") }}Making</a>
     <a href="/about/"{% if section == "about" %} aria-current="page"{% endif %}>About</a>
     <a href="/search/" class="search-btn" data-search{% if section == "search" %} aria-current="page"{% endif %} aria-label="Search" title="Search  /"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.75"/><path d="m13 13 4.25 4.25"/></svg></a>
     <a href="/work/" class="nav-cta"{% if section == "work" %} aria-current="page"{% endif %}>Work together</a>
