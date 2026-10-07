@@ -1,13 +1,13 @@
 {#- Companies Ran has worked with and awards the work has won, set in one ink color so the wall reads as a single piece. -#}
 <section class="logos-section grid" aria-labelledby="logos-h">
-  <h2 id="logos-h" class="rail eyebrow">{{ logos_label or "Some of the companies I’ve worked with" }}</h2>
+  <h2 id="logos-h" class="rail eyebrow">{{ logos_label or "I've helped elevate" }}</h2>
   <ul class="span-wide logos">
     {%- for l in site.logos %}
     <li><img src="/assets/images/logos/{{ l.file }}" alt="{{ l.name }}" width="{{ l.width }}" height="{{ l.height }}" style="--w:{{ l.width }}px" loading="lazy" decoding="async"></li>
     {%- endfor %}
   </ul>
   {%- if site.awards %}
-  <h3 id="awards-h" class="rail eyebrow awards-label">My work has won</h3>
+  <h3 id="awards-h" class="rail eyebrow awards-label">My teams have won</h3>
   <ul class="span-wide logos awards" aria-labelledby="awards-h">
     {%- for l in site.awards %}
     <li><img src="/assets/images/logos/{{ l.file }}" alt="{{ l.name }}" width="{{ l.width }}" height="{{ l.height }}" style="--w:{{ l.width }}px" loading="lazy" decoding="async"></li>
