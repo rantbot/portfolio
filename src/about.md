@@ -34,7 +34,7 @@ education:
 <div class="grid">
 <div class="span-main prose serif">
 
-I started a window-washing company at sixteen. Since then, I’ve worked across media, technology, consulting, and community organizing, following opportunities to create something useful and make it last.
+I started a window-washing company at sixteen. Since then I’ve worked in media, technology, consulting and my own neighborhood, and the pattern keeps repeating. I find something worth starting, bring good people in, and try to make it last.
 
 At NBC, I went from intern to editor, shooter, and producer, eventually working on new digital ventures and experiences. That included companion platforms for Heroes, fantasy football shows, virtual-world productions, and the skunkworks project that became Hulu.
 
@@ -48,7 +48,14 @@ Today I’m Managing Director and a board member at thoughtbot. My work spans bu
 
 In Ladera Heights, I’ve organized produce pickups, sixteen weeks of drive-in movie nights, and a monthly neighborhood cleanup that continues six years after it began.
 
-<p class="pull">Across these settings, I enjoy finding an opportunity, bringing the right people together, and turning an idea into something people can use, enjoy, or build on.</p>
+## What I believe
+
+- AI should raise a team’s ambition. I don’t think its job is to make teams smaller.
+- As code gets cheaper to write, experienced judgment matters more.
+- The best prototypes get people to agree on what to build.
+- It’s never been easier to build the wrong thing, so start with the problem.
+- Trust what people do over what they say.
+- Be honest when something isn’t working, especially when it was your idea.
 
 </div>
 </div>

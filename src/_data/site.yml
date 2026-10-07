@@ -3,7 +3,7 @@
 
 name: Ran Craycraft
 title: Ran Craycraft
-description: Ran Craycraft helps turn big ideas into exceptional products, experiences, and businesses. Writing on leading through change, and things he makes.
+description: Ran Craycraft starts new products, ventures and community projects with good people, and helps them last. Writing on leading through change, and the things he makes.
 location: Los Angeles
 email: ran.craycraft@gmail.com
 # Not shown on the page. Search engines and AI tools read it as a one-line description of you.
@@ -13,13 +13,13 @@ employer: thoughtbot
 employer_url: https://thoughtbot.com
 
 # Homepage introduction
-headline: I help turn big ideas into exceptional products, experiences, and businesses.
-intro: I’ve launched digital ventures at NBC and AOL, co-founded an award-winning studio, and helped reshape thoughtbot. Along the way, I’ve built a neighborhood network, produced drive-in movie nights, and turned my driveway into a produce pickup point.
-now: Today I’m Managing Director and a board member at thoughtbot, and President of Ruby Central. Based in Los Angeles.
+headline: I like starting new things with good people, and making them last.
+intro: I started at NBC as an intern and ended up on the skunkworks project that became Hulu. Since then I’ve launched things at AOL, co-founded a studio called Wildebeest, and helped reshape thoughtbot. Closer to home, I’ve run drive-in movie nights and turned my driveway into a produce pickup.
+now: Right now I’m Managing Director and a board member at thoughtbot, where I build a small AI tool for my team most weeks to find out what better really looks like. I’m also President of Ruby Central. I live in Los Angeles.
 
 # Closing invitation on the homepage
-invitation: Have an idea you want to launch, or a hard problem you want to solve?
-invitation_note: I help businesses launch new things and work through tough problems, in software and in the real world. Tell me about it.
+invitation: Got an idea, or a problem that won’t budge?
+invitation_note: Usually the first step is working out what the problem really is, and the smallest useful thing that would help. Send me a few sentences and we’ll start there.
 
 # Profiles that are you. Search engines and AI tools use these to connect the dots.
 same_as:
