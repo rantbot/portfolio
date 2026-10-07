@@ -107,7 +107,8 @@ a, button { -webkit-tap-highlight-color: transparent; touch-action: manipulation
 .menu-icon.is-x::after { transform: translateY(-3.75px) rotate(-45deg); }
 
 /* Home hero */
-.hero { padding: clamp(32px, min(11vw, 9vh), 168px) 0 0; }
+/* The introduction fills the first screen and sits just above its middle, the way the eye expects. On tall screens it stops growing so the work below stays close. */
+.hero { display: flex; flex-direction: column; justify-content: center; min-height: min(calc(100svh - 84px), 980px); padding: clamp(24px, 4vh, 56px) 0 clamp(28px, 5vh, 72px); }
 .hero-title { font-size: clamp(38px, min(6.4vw, 10.5vh), 96px); line-height: 1.01; letter-spacing: -0.032em; font-weight: 320; max-width: 13.5em; text-wrap: balance; }
 .hero-body { margin-top: clamp(24px, min(5.5vw, 5vh), 80px); }
 .hero-body .eyebrow { padding-top: 0.4em; }
@@ -584,7 +585,7 @@ html.search-open { overflow: hidden; }
   .menu-open .menu-foot { transition-delay: 170ms; }
 
   /* Hero. The headline carries the screen. */
-  .hero { padding-top: clamp(24px, 5vh, 48px); }
+  .hero { display: block; min-height: 0; padding: clamp(24px, 5vh, 48px) 0 0; }
   .hero-title { font-size: clamp(42px, 11.4vw, 60px); line-height: 1; letter-spacing: -0.036em; font-weight: 310; }
   .hero-body { margin-top: 32px; }
   .hero .lede { font-size: clamp(18px, 2.7vh, 20px); line-height: 1.45; }
