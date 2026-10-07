@@ -30,6 +30,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("milestones", (posts) =>
     posts.filter((p) => p.data.kind === "story").sort((a, b) => (b.data.case_study?.start || 0) - (a.data.case_study?.start || 0))
   );
+  // Everything except stories, newest first
+  eleventyConfig.addFilter("stream", (posts) => posts.filter((p) => p.data.kind !== "story"));
   eleventyConfig.addFilter("kindLabel", (kind) => ({ story: "Story", making: "Making" })[kind] || "Writing");
   eleventyConfig.addFilter("inSeries", (posts, series) =>
     series ? posts.filter((p) => p.data.series === series).sort((a, b) => a.date - b.date) : []

@@ -8,22 +8,22 @@ title: Ran Craycraft
   <p class="small muted">{{ site.now }}</p>
 </section>
 
-{%- set stories = collections.posts | milestones | limit(3) %}
+{%- set stories = collections.posts | milestones %}
 {%- if stories.length %}
 <section aria-labelledby="stories-h" class="block">
   <div class="block-head">
     <h2 id="stories-h" class="label">Stories</h2>
-    <a href="/stories/" class="small muted ul">Milestones, told as case studies</a>
+    <a href="/stories/" class="small muted ul">The highlights, as case studies</a>
   </div>
-  <div class="cards three">
+  <ol class="career">
     {%- for p in stories %}
-    <a href="{{ p.url }}" class="card">
-      {%- set ratio = "4 / 5" %}{% include "cover.njk" %}
-      <span class="small muted">{% if p.data.case_study %}{{ p.data.case_study.organization }}, {{ p.data.case_study.years }}{% else %}{{ p.data.meta or (p.date | readableDate) }}{% endif %}</span>
-      <span class="card-title serif">{{ p.data.title }}</span>
-    </a>
+    <li><a href="{{ p.url }}" class="career-row">
+      <span class="career-years small muted">{{ p.data.case_study.years }}</span>
+      <span class="career-org">{{ p.data.case_study.organization }}</span>
+      <span class="career-title serif">{{ p.data.title }}</span>
+    </a></li>
     {%- endfor %}
-  </div>
+  </ol>
 </section>
 {%- endif %}
 
@@ -37,7 +37,7 @@ title: Ran Craycraft
     </div>
   </div>
   <ol class="feed">
-    {%- for p in collections.posts | limit(12) %}
+    {%- for p in collections.posts | stream %}
     <li data-kind="{{ p.data.kind }}">
       <a href="{{ p.url }}" class="row">
         <span class="row-kind small muted">{{ p.data.kind | kindLabel }}</span>
