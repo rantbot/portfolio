@@ -35,6 +35,8 @@ export default function (eleventyConfig) {
   });
   eleventyConfig.addFilter("json", (v) => JSON.stringify(v, (k, x) => (x === null || x === undefined ? undefined : x)).replace(/</g, "\\u003c"));
   eleventyConfig.addFilter("pluck", (arr, key) => (arr || []).map((x) => x[key]).filter((x) => x && !String(x).includes("[")));
+  // Hides an email address from scrapers. site.js turns it back into a link.
+  eleventyConfig.addFilter("scramble", (s) => Buffer.from(String(s || "").split("").reverse().join("")).toString("base64"));
   eleventyConfig.addFilter("absUrl", (path, base) => new URL(path, base).href);
 
   eleventyConfig.addPlugin(feedPlugin, {

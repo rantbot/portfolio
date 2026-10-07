@@ -13,3 +13,12 @@ document.querySelectorAll(".filter").forEach((group) => {
     });
   });
 });
+
+// Email links: unscramble the address and turn it into a mailto link.
+document.querySelectorAll("a[data-e]").forEach((a) => {
+  try {
+    const address = atob(a.dataset.e).split("").reverse().join("");
+    a.href = "mailto:" + address;
+    a.textContent = address;
+  } catch (e) {}
+});
