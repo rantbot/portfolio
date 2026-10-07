@@ -1,22 +1,3 @@
-// Homepage filter: All, Writing, Making. Without JavaScript, everything shows.
-document.querySelectorAll(".filter").forEach((group) => {
-  const feed = group.closest("section").querySelector(".feed");
-  if (!feed) return;
-  group.hidden = false;
-  group.addEventListener("click", (e) => {
-    const btn = e.target.closest("button[data-filter]");
-    if (!btn) return;
-    const kind = btn.dataset.filter;
-    group.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
-    feed.querySelectorAll("li[data-kind]").forEach((li) => {
-      li.hidden = kind !== "all" && li.dataset.kind !== kind;
-    });
-    feed.querySelectorAll(".month").forEach((m) => {
-      m.hidden = !m.querySelector("li[data-kind]:not([hidden])");
-    });
-  });
-});
-
 // Email links: unscramble the address and turn it into a mailto link.
 document.querySelectorAll("a[data-e]").forEach((a) => {
   try {

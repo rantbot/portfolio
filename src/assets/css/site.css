@@ -57,7 +57,6 @@ a, button { -webkit-tap-highlight-color: transparent; touch-action: manipulation
 :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
 .skip { position: absolute; left: -999px; top: 12px; z-index: 10; background: var(--ink); color: var(--paper); padding: 10px 14px; border-radius: 2px; }
 .skip:focus { left: 12px; }
-.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* Layout */
 .wrap { max-width: 1280px; margin: 0 auto; padding: 0 var(--gutter); }
@@ -310,7 +309,6 @@ a:hover .text-panel-title { transform: translateY(-3px); }
 .case .prose > p:first-of-type::first-letter { float: left; font-size: 3.4em; line-height: 0.82; padding: 0.06em 0.08em 0 0; font-weight: 340; }
 .case .prose hr { border: 0; margin: 2.6em 0; text-align: center; }
 .case .prose hr::after { content: "⁂"; color: var(--muted); font-size: 1.1em; letter-spacing: 0.2em; }
-.case-org { margin-bottom: 18px; font-size: 15px; font-weight: 500; }
 .case-title { font-size: clamp(40px, 5.6vw, 84px); line-height: 1.0; letter-spacing: -0.034em; font-weight: 320; max-width: 14em; text-wrap: balance; }
 .case .article-head .lede { margin-top: 28px; }
 .case-cover { margin: 0 0 clamp(56px, 7vw, 104px); }

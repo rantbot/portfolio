@@ -60,7 +60,6 @@ export default function (eleventyConfig) {
   );
 
   eleventyConfig.addFilter("ofKind", (posts, kind) => posts.filter((p) => p.data.kind === kind));
-  eleventyConfig.addFilter("pinned", (posts) => posts.filter((p) => p.data.pinned));
   // Stories, ordered by when the work began, most recent first. Several can come from one place.
   eleventyConfig.addFilter("stories", (posts) =>
     posts
@@ -95,32 +94,7 @@ export default function (eleventyConfig) {
     }));
     return [...own, ...outside].sort((a, b) => b.date - a.date);
   });
-  // Groups the stream so Writing stands alone and runs of Making sit side by side, up to three at a time
-  // Groups the feed by month, newest first, like a journal's contents page
-  eleventyConfig.addFilter("byMonth", (items) => {
-    const months = [];
-    for (const p of items) {
-      const d = new Date(p.date);
-      const key = `${d.getUTCFullYear()}-${d.getUTCMonth()}`;
-      let m = months[months.length - 1];
-      if (!m || m.key !== key) {
-        m = { key, month: d.toLocaleDateString("en-US", { month: "long", timeZone: "UTC" }), year: d.getUTCFullYear(), items: [] };
-        months.push(m);
-      }
-      m.items.push(p);
-    }
-    return months;
-  });
   eleventyConfig.addFilter("dayMonth", (d) => new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }));
-  eleventyConfig.addFilter("groupStream", (items) => {
-    const groups = [];
-    for (const p of items) {
-      const last = groups[groups.length - 1];
-      if (p.data.kind === "making" && last && last.kind === "making" && last.items.length < 3) last.items.push(p);
-      else groups.push({ kind: p.data.kind === "making" ? "making" : "writing", items: [p] });
-    }
-    return groups;
-  });
   // The Writing and Making posts just before and after this one, by date. Stories have their own Read next.
   eleventyConfig.addFilter("neighbors", (posts, page) => {
     const list = posts.filter((p) => p.data.kind !== "story");
@@ -178,7 +152,6 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("pluck", (arr, key) => (arr || []).map((x) => x[key]).filter((x) => x && !String(x).includes("[")));
   // Hides an email address from scrapers. site.js turns it back into a link.
   eleventyConfig.addFilter("scramble", (s) => Buffer.from(String(s || "").split("").reverse().join("")).toString("base64"));
-  eleventyConfig.addFilter("absUrl", (path, base) => new URL(path, base).href);
 
   eleventyConfig.addPlugin(feedPlugin, {
     type: "atom",
