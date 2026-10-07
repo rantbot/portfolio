@@ -1,9 +1,9 @@
 ---
 title: Pipeline Health, a grade for the sales pipeline that matches how it feels
 description: A bar in our CRM that forecasts what the pipeline you're looking at will deliver against budget, and names the deals to work on.
-date: '2026-10-03'
+date: 2026-10-01
 kind: making
-updated: '2026-10-06'
+updated: 2026-10-06
 series: Tools for my team
 meta: Chrome extension
 tone: '#E6EAF2'

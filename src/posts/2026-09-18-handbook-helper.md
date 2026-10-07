@@ -1,9 +1,9 @@
 ---
 title: Handbook Helper, a better way to read our company handbook
 description: A reading layer over thoughtbot's handbook with a path for new people, handbook-only search, and a clear line between policies and guides.
-date: '2026-09-14'
+date: 2026-09-18
 kind: making
-updated: '2026-10-05'
+updated: 2026-10-05
 series: Tools for my team
 meta: Chrome extension
 image: /assets/images/experiments/handbook-helper.png

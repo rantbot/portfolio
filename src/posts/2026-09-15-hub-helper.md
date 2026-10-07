@@ -1,9 +1,9 @@
 ---
 title: Hub Helper, small fixes for the reports we read every week
 description: Sorting, filters, color bands and a one-click weekly review for the utilization and delivery reports in our internal app.
-date: '2026-09-11'
+date: 2026-09-15
 kind: making
-updated: '2026-10-05'
+updated: 2026-10-05
 series: Tools for my team
 meta: Chrome extension
 image: /assets/images/experiments/hub-helper.png

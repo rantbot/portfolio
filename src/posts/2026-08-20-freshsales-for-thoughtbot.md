@@ -1,9 +1,9 @@
 ---
 title: Freshsales for thoughtbot, our CRM inside the inbox
 description: A sidebar in Gmail that shows who someone is in our CRM, the deal tied to a thread, and the people worth reconnecting with this week.
-date: '2026-09-10'
+date: 2026-08-20
 kind: making
-updated: '2026-10-06'
+updated: 2026-10-06
 series: Tools for my team
 meta: Chrome extension
 image: /assets/images/experiments/freshsales-for-thoughtbot.png

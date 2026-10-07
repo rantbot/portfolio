@@ -1,9 +1,9 @@
 ---
 title: Blog Helper, an editor that knows our style guide
 description: A panel beside our blog editor that reviews drafts against thoughtbot's editorial guidelines, suggests internal links and writes first drafts from notes.
-date: '2026-09-10'
+date: 2026-08-27
 kind: making
-updated: '2026-10-05'
+updated: 2026-10-05
 series: Tools for my team
 meta: Chrome extension
 image: /assets/images/experiments/blog-helper.png

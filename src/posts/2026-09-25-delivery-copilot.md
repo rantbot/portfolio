@@ -1,9 +1,9 @@
 ---
 title: Delivery Copilot, an AI assistant that stays beside the work
 description: A side panel that brings our internal delivery copilot next to the project you're looking at, with suggestions drawn from the record in front of you.
-date: '2026-09-17'
+date: 2026-09-25
 kind: making
-updated: '2026-10-05'
+updated: 2026-10-05
 series: Tools for my team
 meta: Chrome extension
 image: /assets/images/experiments/delivery-copilot.png

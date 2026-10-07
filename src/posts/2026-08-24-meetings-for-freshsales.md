@@ -1,9 +1,9 @@
 ---
 title: Meeting Helper, logging client meetings without thinking about it
 description: An extension that logs finished meetings to our CRM automatically and handles notes and follow-up right on Google Meet's goodbye screen.
-date: '2026-09-10'
+date: 2026-08-24
 kind: making
-updated: '2026-10-05'
+updated: 2026-10-05
 series: Tools for my team
 meta: Chrome extension
 image: /assets/images/experiments/meetings-for-freshsales.png
