@@ -329,14 +329,13 @@ a:hover .text-panel-title { transform: translateY(-3px); }
 .closing-actions { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 0; }
 .closing-small { margin-top: 20px; font-size: 14px; color: var(--muted); }
 
-/* Logo wall */
+/* Logo wall. Quiet on purpose, small and soft, no dividers. */
 .logos-section { padding-top: clamp(72px, 8vw, 120px); align-items: start; }
-.logos-section .rail { padding-top: 14px; max-width: 14em; }
-.logos { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: center; border-top: 1px solid var(--rule); }
-.logos li { display: grid; place-items: center; height: clamp(88px, 8vw, 112px); border-bottom: 1px solid var(--rule); }
-.logos li:not(:nth-child(5n)) { border-right: 1px solid var(--rule); }
-.logos img { max-width: 78%; height: auto; opacity: 0.62; transition: opacity 250ms var(--ease); }
-.logos li:hover img { opacity: 1; }
+.logos-section .rail { padding-top: 6px; max-width: 14em; }
+.logos { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(28px, 3vw, 40px) var(--col-gap); align-items: center; justify-items: start; }
+.logos li { display: flex; align-items: center; height: 48px; }
+.logos img { max-width: 100%; height: auto; opacity: 0.38; transition: opacity 300ms var(--ease); }
+.logos li:hover img { opacity: 0.7; }
 .section > .logos-section { padding-top: 0; }
 
 /* Work with me */
@@ -400,10 +399,8 @@ a:hover .text-panel-title { transform: translateY(-3px); }
   .entries-feed:hover .line-title { color: var(--ink); }
   .tiles, .tiles-2 { grid-template-columns: minmax(0, 1fr); }
   .offers { grid-template-columns: minmax(0, 1fr); gap: 36px; }
-  .logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .logos li:not(:nth-child(5n)) { border-right: 0; }
-  .logos li:nth-child(odd) { border-right: 1px solid var(--rule); }
-  .logos li { height: 84px; }
+  .logos { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 20px; }
+  .logos li { height: 40px; }
   .site-nav { gap: 14px; font-size: 14px; flex-wrap: nowrap; white-space: nowrap; }
   .section-foot .arrow-link { display: flex; margin: 0 0 12px; }
   .entry-row { flex-direction: column; gap: 4px; }
