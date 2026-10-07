@@ -271,7 +271,8 @@ a:hover .text-panel-title { transform: translateY(-3px); }
 .series a { color: var(--ink-2); transition: color 200ms var(--ease); }
 .series a:hover { color: var(--ink); text-decoration: underline; text-decoration-color: var(--rule-2); text-underline-offset: 0.2em; }
 .series .current { font-weight: 600; }
-.author { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule); font-size: 15px; color: var(--muted); max-width: 36em; }
+.author { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule); font-size: 15px; color: var(--muted); max-width: 36em; display: flex; gap: 16px; align-items: flex-start; }
+.author-photo { flex: none; width: 56px; height: 56px; border-radius: 50%; object-fit: cover; filter: grayscale(1); }
 
 /* Agent skill panel */
 .skill { margin-top: 64px; padding: clamp(22px, 2.6vw, 32px); background: var(--paper-2); border-radius: 3px; max-width: 40em; scroll-margin-top: 24px; }
@@ -318,7 +319,7 @@ a:hover .text-panel-title { transform: translateY(-3px); }
 
 /* About */
 .about-head { align-items: end; }
-.portrait img, .portrait-empty { width: 100%; aspect-ratio: 4 / 5; border-radius: 2px; object-fit: cover; }
+.portrait img, .portrait-empty { width: 100%; height: auto; aspect-ratio: 4 / 5; border-radius: 2px; object-fit: cover; }
 .portrait-empty { background: var(--paper-2); display: grid; place-items: center; font-family: var(--serif); font-size: 44px; color: var(--muted); }
 .about-head + .grid { margin-top: clamp(40px, 5vw, 72px); }
 

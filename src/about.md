@@ -4,7 +4,8 @@ title: About
 description: Ran Craycraft is Managing Director and a board member at thoughtbot and President of Ruby Central. Earlier, NBC, AOL, North Kingdom, and Wildebeest.
 permalink: /about/
 section: about
-portrait: ""
+portrait: /assets/images/ran-craycraft.jpg
+image: /assets/images/ran-craycraft.jpg
 roles:
   - role: President, Ruby Central
     years: 2026 to present
@@ -26,7 +27,7 @@ education:
 ---
 <header class="page-head about-head grid">
   <div class="rail portrait">
-    {%- if portrait %}<img src="{{ portrait }}" alt="Ran Craycraft">{% else %}<div class="portrait-empty" aria-hidden="true">RC</div>{% endif %}
+    {%- if portrait %}<img src="{{ portrait }}" alt="Ran Craycraft, smiling, in a black t-shirt" width="960" height="1200">{% else %}<div class="portrait-empty" aria-hidden="true">RC</div>{% endif %}
   </div>
   <h1 class="span-main page-title page-title-md serif">I started by making the work. Then I learned to build the business around it.</h1>
 </header>
