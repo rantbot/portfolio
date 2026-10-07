@@ -14,11 +14,17 @@ Every sales leader has looked at a pipeline and had a feeling about it. I wanted
 
 Pipeline Health puts a bar under the toolbar on any deals view in our CRM. It gives a letter grade, then shows how deal count, fit, value, stage spread, freshness and client signals compare with the team's own history. Click it and you get the reasons, the odds of reaching budget, and an Improve tab that lists specific deals to work on and how much each step would help.
 
-## The D that felt like a B
+## Critical but helpful
 
-The first version averaged five separate grades. It gave my own team's pipeline a D, and it didn't feel like a D. So I checked it against what had actually happened. The pipeline was on track for a fairly typical month. The grade was counting the same shortfall twice and leaning on measures that had never been validated.
+I wanted it to be honest about what it takes to at least hit budget, based on how we've actually performed, without scaring anyone. The point is to show where to focus, so every grade comes with the specific deals that would move it.
 
-I rebuilt it around a forecast. The grade now asks how much revenue this pipeline has historically turned into, compared with the budget for the month it lands in. On budget is an A. An A also needs a healthy pipeline underneath, so weak areas and stale deals pull the grade down even when the forecast looks fine.
+It isn't generous about everything, though. A pipeline full of stale deals is never healthy, however big it looks.
+
+## The first grade was wrong
+
+The first version averaged five separate grades, and it graded my own team's pipeline far lower than it felt. So I checked it against what had actually happened. The pipeline was on track for a fairly typical month. The grade was counting the same shortfall twice and leaning on measures that had never been validated.
+
+I rebuilt it around a forecast. The grade now asks how much revenue this pipeline has historically turned into, compared with the budget for the month it lands in. On budget is an A. An A also needs a healthy pipeline underneath, so weak areas and stale deals pull the grade down even when the forecast looks fine. Today our teams sit at an A- and an A, which matches how the pipeline feels.
 
 ## Honest about its limits
 

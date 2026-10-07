@@ -14,6 +14,8 @@ thoughtbot has published on its blog for a long time, and we have editorial guid
 
 Blog Helper puts them side by side. Open a draft in our internal editor and a panel appears next to it. It scores the piece, works through the guidelines as a checklist, suggests links to older posts with the anchor text already picked, and can write a first draft from rough notes. Titles, teasers and tags each get their own pass.
 
+I use it most for two things. It finds the right older posts to link to, and it helps me take a few snippets of an idea and turn them into a fully thought-out post much faster than I could on my own.
+
 ## Rules people can argue with
 
 The guidelines are plain markdown files inside the extension, rather than a prompt buried in code. That's deliberate. Rules should be readable and arguable by the people they apply to, and changing one should mean editing a sentence.

@@ -10,9 +10,9 @@ image: /assets/images/experiments/thoughtbot-analytics.png
 image_alt: Illustration of thoughtbot analytics in use
 ---
 
-Analytics dashboards are good at telling you what happened and bad at telling you what to do next. I wanted something that sat on the page itself and answered two questions. What is happening here, and what is the single most valuable thing to improve?
+We use TWIPLA for analytics on thoughtbot.com because it respects our visitors' privacy. I'm glad we do. Its interface is also tough to navigate, and our search data lives somewhere else entirely, in Google Search Console. Answering a simple question about one page meant two tools and a lot of clicking.
 
-Open any page on thoughtbot.com and the panel answers both, combining search data, site analytics and a look at the page itself into one verdict and at most three suggestions.
+I wanted the numbers on the page itself. Open any page on thoughtbot.com and a side panel answers two questions. What is happening here, and what is the single most valuable thing to improve? It combines Search Console, TWIPLA and a look at the page itself into one verdict and at most three suggestions.
 
 ## Weighted by who's searching
 

@@ -11,13 +11,13 @@ image: /assets/images/experiments/pocket-cornhole.png
 image_alt: Illustration of Pocket Cornhole in use
 ---
 
-Not everything I build is for work.
+I was sitting in a bar on a Friday night, getting ready to build a real set of cornhole boards the next morning, when I noticed my phone sitting on its kickstand. It looked a lot like a cornhole board. My girlfriend threw a sugar packet onto it, and the rest was history.
 
-Pocket Cornhole turns your phone into a cornhole board. Lay it flat on a table, throw a sugar packet at it, and the screen works out where the packet landed. In the hole is three points, on the board is one, off the edge is nothing. Play on your own or head to head across a table.
+Pocket Cornhole turns your phone into the board. Lay it flat on a table, toss a sugar packet at it, and the screen works out where the packet landed. In the hole is three points, on the board is one, off the edge is nothing. Play on your own or head to head across a table.
 
 ## The trick is foil
 
-The phone reads the landing through its touchscreen, and a bare paper packet is often too light to register. Wrap it in foil and it works. That one line of instructions took more testing than anything else.
+The phone reads the landing through its touchscreen, and a bare paper packet is often too light to register. Wrap it in foil and it works. That one line of instructions took more testing than anything else in the game.
 
 ## Telling a throw from everything else
 

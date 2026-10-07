@@ -22,12 +22,14 @@ It adds a home screen for each project with five suggested actions, and at most 
 2. **Every card shows its evidence.** The numbers behind it and where they came from.
 3. **Nothing happens without a person.** Choosing a task opens Hub's own ticket form, filled in and waiting for someone to click save.
 
+I think every AI assistant at work should follow some version of these.
+
 ## Measuring before guessing
 
 Early on, answers felt slow. Before optimizing anything I measured, and found that Hub writes the whole answer and sends it once at the end. No client can be faster than that. So instead of a single spinner, the panel now says which of four stages it's in, which made the wait feel far shorter.
 
 ## Built to be deleted
 
-This was always scaffolding. I built it outside Hub because that was the fastest way to work out what the panel should be. The finish line is moving the good parts into Hub and deleting the extension.
+This was always scaffolding. I built it outside Hub because that was the fastest way to work out what the panel should be. The finish line is moving the good parts into Hub and deleting the extension, and that work is underway now.
 
 I wrote porting notes for the team that are blunt about the cost. One rule duplicates something Hub already does. Four things that look like moving code across are really new builds. That's how a week becomes a month, and I'd rather say so before anyone commits to the week.

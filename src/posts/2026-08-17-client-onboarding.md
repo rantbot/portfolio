@@ -13,6 +13,8 @@ Most of what makes a consulting engagement go well or badly is style rather than
 
 Client Onboarding asks up front. It's a seven-step wizard written in plain language, covering what made past collaborations work, what didn't, the working style that fits, and what a consultant needs to meet to be a good match.
 
+So far it has delighted clients, mostly because it helps us get the right people on the job the first time.
+
 ## Small design choices that mattered
 
 - **No middle option.** The sliders have four stops instead of five, because nearly everyone picked the middle when there was one.
@@ -21,6 +23,6 @@ Client Onboarding asks up front. It's a seven-step wizard written in plain langu
 
 Answers land in a spreadsheet rather than a database, so the people doing the matching can read, sort and argue with them without logging into anything new. Each response gets a short AI-written summary of what a consultant should do to succeed with that client.
 
-## What I learned
+## A kindness to both sides
 
-Asking about working style turns out to be a kindness to both sides. Clients get to say what they need without it feeling like a complaint, and our team walks in already knowing.
+Asking about working style turns out to be good for everyone. Clients get to say what they need without it feeling like a complaint, and our team walks in already knowing.

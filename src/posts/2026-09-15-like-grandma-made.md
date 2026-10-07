@@ -74,4 +74,6 @@ After that come a few blank pages headed “It’s your turn.” Grandma found r
 
 She didn’t let many people help in her kitchen, and we were the exceptions. She taught us to peel, dice, fry and bake, then to plate, serve, clear the table and make people feel welcome. As she got older, she let us cook for her. This book is how we keep cooking for each other.
 
-<!-- TO ADD: how you made it (who helped remember the recipes, testing them, the illustrations and design, printing), and how the family received it. -->
+Most of the book came from my own memories. I did a lot of cooking with her, and my sister helped with one of them.
+
+<!-- TO ADD: how it was printed, and how the family received it. -->

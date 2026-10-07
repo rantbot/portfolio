@@ -15,7 +15,7 @@ cover_lines:
   - Sugar packet as the bag
 ---
 
-Pocket Cornhole started as a simple idea. Put a phone on the table, toss a sugar packet at it, and let the phone keep score. The phone is the board, and the packet is the bag.
+Pocket Cornhole started in a bar, when I noticed my phone on its kickstand looked a lot like a cornhole board. The idea was simple. Put a phone on the table, toss a sugar packet at it, and let the phone keep score. The phone is the board, and the packet is the bag.
 
 The game is easy to picture. The hard part is getting the phone to notice. It needs to know that a packet landed, where it came to rest, and whether it slid off the edge.
 
@@ -29,7 +29,9 @@ Wrapping the packet in foil. With foil around it, the phone reads the landing th
 
 ## How I tested it
 
-Before building any of the game, I built bare test screens that did nothing except report what they detected. Rough tools made it quick to try one idea after another, and they kept me focused on the one question that mattered.
+Before building any of the game, I built bare test screens that did nothing except report what they detected. No scoring, no sound, no design. Rough tools made it quick to try one idea after another, and they kept me focused on the one question that mattered.
+
+I think that's the right order for most ideas. Prove the riskiest part with the roughest tool you can, then make it nice.
 
 ## Try it
 

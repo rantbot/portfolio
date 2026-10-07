@@ -12,7 +12,7 @@ image_alt: Illustration of Handbook Helper in use
 
 thoughtbot's handbook is one of the best things about working here. It explains how we make decisions, what we expect of each other and why. It was also hard to read inside our internal app, with long lines across the whole screen and no way to tell a policy from a guide.
 
-Handbook Helper adds a reading layer. A path through the introduction for someone new, search that only looks at the handbook, categories, and a comfortable reading column. Turn it off and the handbook is exactly as it was.
+Handbook Helper adds a reading layer. A path through the introduction for someone new, search that only looks at the handbook, categories, and a comfortable reading column. Its icon is an open book with a smiley face, in the spirit of Hamburger Helper, in thoughtbot red. Turn it off and the handbook is exactly as it was.
 
 ## Policies and guides
 
@@ -26,6 +26,6 @@ The index is the handbook's own table of contents, read from the page, so it can
 
 I also took something out. A hand-picked "key pages" section felt helpful, but it was my judgment rather than data, and it buried everything it didn't pick.
 
-## What I learned
+## A reader, not an author
 
 A tool for reading should author nothing. New pages still go to the handbook, where everyone can see and change them.

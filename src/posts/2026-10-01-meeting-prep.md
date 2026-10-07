@@ -17,11 +17,15 @@ Meeting Prep does it for you. Connect your Google Calendar once, and before ever
 
 ## Written for the moment you read it
 
-The brief is written once when the meeting is booked, then again just before the prep block starts, so it's current when you open it and never changes while you're reading.
+I read my brief when the prep block starts, thirty minutes before the call, and almost never earlier. So the brief is written once when the meeting is booked, then again just before the prep block starts. It's current when you open it and never changes while you're reading.
 
 If you already make your own prep blocks, it writes into yours instead of adding a second one. Delete a block and it stays deleted.
 
-There's also an optional Slack reminder for meetings at risk of a no-show, where nobody on the other side has accepted. Each one comes with a ready-to-send email to confirm or reschedule. Nothing goes to anyone until you hit send.
+## Fewer no-shows
+
+Most of my sales meetings come in through Calendly, and too many of them used to be no-shows, even with Calendly's own reminders turned on. So Meeting Prep also sends a Slack reminder the evening before and the morning of any meeting where nobody on the other side has accepted. Each one comes with a ready-to-send email to confirm or reschedule. Nothing goes to anyone until you hit send.
+
+That small addition has greatly reduced our no-shows.
 
 ## Accuracy first
 

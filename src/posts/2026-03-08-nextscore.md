@@ -10,14 +10,18 @@ try_url: https://nextscorehomes.com
 try_label: Try NextScore
 ---
 
-By the time a neighborhood shows up on lists of places on the rise, prices have usually caught up. I wanted to see the change earlier, using signals that most people aren’t tracking, and get specific enough to compare one address with the one down the street.
+Everyone knows the popular neighborhoods. By the time a place makes a list of neighborhoods on the rise, prices have caught up and the opportunity is mostly gone. The question I wanted to answer was harder. How do you find the ones that aren't on anyone's radar yet?
 
-NextScore scores any address in Los Angeles, in the city or unincorporated county. It looks at three kinds of signals.
+The signs are out there, they're just scattered across public records. Someone files for a demolition permit. A new restaurant applies for a liquor license. Metro plans a new station. Each one means little on its own. Together they tell you that money and people are on the way.
 
-- **Development momentum.** Building permits, weighted toward the ones that matter like demolitions and new multifamily construction, plus planning cases for projects that haven’t broken ground yet.
-- **Culture and lifestyle.** New liquor license applications are one of the earliest signs that foot traffic and investment are on the way, along with what’s nearby.
+NextScore pulls those signals together for any address in Los Angeles, in the city or the unincorporated county.
+
+- **Development momentum.** Building permits, weighted toward the ones that matter like demolitions and new multifamily construction, plus planning cases for projects that haven't broken ground yet.
+- **Culture and lifestyle.** New liquor license applications are one of the earliest signs that foot traffic and investment are coming, along with what's already nearby.
 - **Transit.** Planned and current LA Metro projects.
 
-Each address gets a score and a trajectory, so you can see whether an area is rising or cooling. From there you can browse opportunities on a map, follow trends, and compare neighborhoods or listings side by side.
+## Down to the block
 
-<!-- TO ADD: why you built it, and an address or neighborhood where it called something early. -->
+Neighborhood averages hide too much. Two addresses a few blocks apart can be headed in different directions, so every address gets its own score and a trajectory that shows whether it's rising or cooling.
+
+From there you can browse opportunities on a map, follow trends over time, and compare neighborhoods or listings side by side. I built it with Lovable, which let me get from the question to a working tool quickly.

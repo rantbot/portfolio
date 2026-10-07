@@ -9,9 +9,9 @@ image: /assets/images/experiments/rainbow-tabs.png
 image_alt: Illustration of Rainbow Tabs in use
 ---
 
-Some experiments are toys, and that's fine. This one sorts your browser tabs into a rainbow.
+I've been known to have nearly 70 tabs open in a single window. At that point the tab bar stops helping you find anything. So I decided to at least make them look good.
 
-Click the toolbar icon and the tabs in your window reorder red through violet by the main color of each site's icon. Tab groups move as a block, placed by their group color, with the tabs inside sorted too. Pinned tabs stay put. Click again to undo.
+Rainbow Tabs sorts them. Click the toolbar icon and the tabs in your window reorder red through violet by the main color of each site's icon. Tab groups move as a block, placed by their group color, with the tabs inside sorted too. Pinned tabs stay put. Click again to undo.
 
 ## Deciding what color an icon is
 
@@ -21,6 +21,6 @@ Notification badges get ignored, since a red unread dot is usually louder than t
 
 Some cases are still unresolved. Google's multicolor logo measures as a vivid blue, and I'd rather it sat with the whites. I haven't won that argument with the math yet.
 
-## The honest question
+## A toy, and that's fine
 
-It's a toy, so the only question is whether anyone clicks it twice.
+Not every experiment needs to save anyone time. This one is a toy, so the only question is whether anyone clicks it twice. I do. My 70 tabs are a rainbow now, and it's so pretty.

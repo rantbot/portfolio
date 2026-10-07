@@ -14,11 +14,15 @@ Business development happens in email. Our CRM lives in another tab. Every time 
 
 This extension adds a CRM sidebar to Gmail. On a thread it shows who's already in Freshsales, the related deal, a recommended next step and recent activity, with a box to add a note. If there's no deal yet, creating one takes a couple of clicks.
 
-## A short list instead of a feed
+## Five people a week
 
-The inbox view has a Suggestions tab with five people worth reconnecting with each week. It never refills. Five is a list you can finish, and a feed that tops itself up is one you learn to ignore.
+The part that has paid off most is the smallest. The inbox view has a Suggestions tab with five people worth reconnecting with each week. It never refills. Five is a list you can finish, and a feed that tops itself up is one you learn to ignore.
 
-When a thread includes several companies, an AI pass works out which one is actually the client rather than assuming it's the sender's domain. That's the part most likely to be wrong, so it's the part I ask people to report.
+It's been reigniting conversations with past clients, people who spent money with us before and simply hadn't heard from us in a while. That's some of the best business there is, and it was sitting in our CRM the whole time.
+
+## The part most likely to be wrong
+
+When a thread includes several companies, an AI pass works out which one is actually the client rather than assuming it's the sender's domain. That's the guess most likely to miss, so it's the one I ask people to report.
 
 ## What I learned
 

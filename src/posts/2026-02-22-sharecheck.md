@@ -10,12 +10,16 @@ try_url: https://sharecheck.org
 try_label: Try ShareCheck
 ---
 
-Some of the people I love have a harder time telling real news from fake. A story shows up in a feed or a group chat, it looks real enough, and it gets shared. I wanted to give them something simple to check first.
+I made ShareCheck for someone I love who tends to share news that turns out to be fake.
 
-ShareCheck is one box. Paste a link, paste some text, or drop in a screenshot. It looks at how trustworthy the source is, the quality of the reporting, and common signs of manipulation, then checks the main claims and shows other outlets covering the same story. It flags satire and tells you when it couldn’t read enough of a page to be sure.
+A story shows up in a feed or a group chat, it looks real enough, and it gets passed along before anyone checks. I wanted to give people a simple way to check for themselves first.
 
-It doesn’t take sides or decide what anyone meant. It points out warning signs and explains them in plain language, so the person deciding whether to share has more to go on.
+So I built the smallest thing I could think of. One box. Paste a link, paste some text, or drop in a screenshot from a group chat. ShareCheck looks at how trustworthy the source is, the quality of the reporting and common signs of manipulation. Then it checks the main claims and shows other outlets covering the same story. It flags satire, and it tells you when it couldn't read enough of a page to be sure.
 
-There’s also a bookmarklet that checks the page you’re on with one click. Three checks a day are free, with no account needed.
+## It doesn't take sides
 
-<!-- TO ADD: who you made it for and what you’ve seen them use it for. -->
+This was the part I cared about most. ShareCheck doesn't tell anyone what to think or decide what a story meant. It points out warning signs and explains them in plain language. The person deciding whether to share still decides. They just have more to go on.
+
+## Checking with one click
+
+There's also a bookmarklet that checks whatever page you're on with a single click, for anyone who doesn't want to copy and paste. Three checks a day are free, with no account needed.
