@@ -98,6 +98,38 @@ export default function (eleventyConfig) {
     if (i < 0) return {};
     return { newer: list[i - 1], older: list[i + 1] };
   });
+  // Posts worth reading after this one. Same series first, then the same kind, then the closest in time.
+  eleventyConfig.addFilter("related", (posts, page, exclude = [], n = 4) => {
+    const me = posts.find((p) => p.url === page.url);
+    if (!me) return [];
+    const skip = new Set([page.url, ...(exclude || []).filter(Boolean).map((p) => p.url)]);
+    const score = (p) =>
+      (me.data.series && p.data.series === me.data.series ? 4 : 0) +
+      (p.data.kind === me.data.kind ? 1 : 0) -
+      Math.abs(p.date - me.date) / (365 * 86400000);
+    return posts
+      .filter((p) => p.data.kind !== "story" && !skip.has(p.url))
+      .map((p) => ({ p, s: score(p) }))
+      .sort((a, b) => b.s - a.s)
+      .slice(0, n)
+      .map((x) => x.p);
+  });
+  // Drops a "You might also like" card into the middle of a longer post, at a natural break,
+  // just before a heading when there is one near the middle. Short posts are left alone.
+  eleventyConfig.addFilter("insertAside", (html, aside) => {
+    html = String(html || "");
+    if (!aside || !aside.trim() || html.length < 1600) return html;
+    const breaks = [];
+    const re = /<\/(p|ul|ol|blockquote|figure)>\s*\n(?=<(h2|h3|p)[\s>])/g;
+    let m;
+    while ((m = re.exec(html))) breaks.push({ at: m.index + m[0].length, heading: html.startsWith("<h", m.index + m[0].length) });
+    const ok = breaks.filter((b) => b.at > html.length * 0.3 && b.at < html.length * 0.75);
+    if (!ok.length) return html;
+    const target = html.length * 0.5;
+    const pool = ok.some((b) => b.heading) ? ok.filter((b) => b.heading) : ok;
+    const best = pool.reduce((a, b) => (Math.abs(b.at - target) < Math.abs(a.at - target) ? b : a));
+    return html.slice(0, best.at) + aside.trim() + "\n" + html.slice(best.at);
+  });
   eleventyConfig.addFilter("withSkill", (posts, key) => posts.find((p) => p.data.skill === key));
   eleventyConfig.addFilter("kindLabel", (kind) => ({ story: "Story", making: "Making" })[kind] || "Writing");
   eleventyConfig.addFilter("inSeries", (posts, series) =>

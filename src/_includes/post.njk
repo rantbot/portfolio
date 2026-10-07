@@ -35,8 +35,21 @@ layout: base.njk
       </aside>
       {%- endif %}
 
+      {%- set nb = collections.posts | neighbors(page) %}
+      {%- set upNext = nb.newer or nb.older %}
+      {%- set picks = collections.posts | related(page, [upNext], 4) %}
+      {%- set alsoHtml %}{% if picks[0] %}{% set p = picks[0] %}
+<aside class="also" aria-label="You might also like"><a href="{{ p.url }}">
+  <span class="media also-thumb">{% set ratio = "1 / 1" %}{% include "cover.njk" %}</span>
+  <span class="also-body">
+    <span class="eyebrow strong">You might also like</span>
+    <span class="also-title serif">{{ p.data.title }}</span>
+    <span class="also-desc">{{ p.data.description }}</span>
+  </span>
+</a></aside>{% endif %}{% endset %}
+
       <div class="prose serif">
-{{ content | safe }}
+{{ content | insertAside(alsoHtml) | safe }}
       </div>
 
       {%- if skill and skills[skill] %}{% set sk = skills[skill] %}{% include "skill-panel.njk" %}{% endif %}
@@ -58,29 +71,52 @@ layout: base.njk
       {%- endif %}
 
       <aside class="author" aria-label="About the author">
-        <p><a href="/about/" class="strong">{{ site.name }}</a> leads the Americas business at thoughtbot, serves as President of Ruby Central, and writes here about leading through change and the things he makes.</p>
+        <p><a href="/about/" class="strong">{{ site.name }}</a> runs thoughtbot’s Americas team and is President of Ruby Central. He writes here about what he’s building and what he’s learning along the way.</p>
       </aside>
     </div>
   </div>
 
-  {%- set nb = collections.posts | neighbors(page) %}
-  {%- if nb.older or nb.newer %}
-  <nav class="section grid post-nav" aria-labelledby="post-nav-h">
-    <h2 id="post-nav-h" class="rail eyebrow strong">Keep reading</h2>
-    <ul class="span-wide post-nav-list">
-      {%- for item in [{ p: nb.older, dir: "older", label: "Older" }, { p: nb.newer, dir: "newer", label: "Newer" }] %}
-      {%- if item.p %}{% set p = item.p %}
-      <li class="post-nav-{{ item.dir }}"><a href="{{ p.url }}" class="card" rel="{{ 'prev' if item.dir == 'older' else 'next' }}" data-nav="{{ item.dir }}">
-        <span class="media">{% set ratio = "16 / 9" %}{% include "cover.njk" %}</span>
-        <span class="eyebrow"><span class="post-nav-dir">{{ item.label }}</span><span class="dot">·</span>{{ p.data.kind | kindLabel }}</span>
-        <span class="card-title serif">{{ p.data.title }}</span>
-        <span class="card-meta"><time datetime="{{ p.date | isoDate }}" data-relative>{{ p.date | readableDate }}</time></span>
-      </a></li>
-      {%- else %}<li class="post-nav-{{ item.dir }}" aria-hidden="true"></li>
-      {%- endif %}
-      {%- endfor %}
-    </ul>
-    <p class="span-wide section-foot post-nav-foot"><a href="/{{ section }}/" class="arrow-link">All {{ kind | kindLabel }}</a><span class="post-nav-keys meta" hidden>Use the ← and → keys to move between posts.</span></p>
-  </nav>
+  {%- if upNext %}
+  <section class="keep" aria-labelledby="keep-h">
+    <div class="grid">
+      <h2 id="keep-h" class="rail eyebrow strong">Keep reading</h2>
+      <div class="span-wide">
+        {%- set p = upNext %}
+        <a href="{{ p.url }}" class="up-next" data-nav="{{ 'newer' if p == nb.newer else 'older' }}">
+          <span class="media up-next-media">{% set ratio = "3 / 2" %}{% include "cover.njk" %}</span>
+          <span class="up-next-body">
+            <span class="eyebrow"><span class="strong">Up next</span><span class="dot">·</span>{{ p.data.kind | kindLabel }}<span class="dot">·</span><time datetime="{{ p.date | isoDate }}" data-relative>{{ p.date | readableDate }}</time></span>
+            <span class="up-next-title serif">{{ p.data.title }}</span>
+            {%- if p.data.description %}<span class="up-next-desc serif">{{ p.data.description }}</span>{% endif %}
+            <span class="arrow-link up-next-go">Read it</span>
+          </span>
+        </a>
+
+        {%- set more = picks.slice(1, 4) %}
+        {%- if more.length %}
+        {%- set sameSeries = series and (more | inSeries(series)).length == more.length %}
+        <h3 class="eyebrow strong more-h">{{ ("More from " + series) if sameSeries else "More like this" }}</h3>
+        <ul class="more-list">
+          {%- for p in more %}
+          <li><a href="{{ p.url }}" class="card">
+            <span class="media">{% set ratio = "4 / 3" %}{% include "cover.njk" %}</span>
+            <span class="eyebrow">{{ p.data.kind | kindLabel }}<span class="dot">·</span><time datetime="{{ p.date | isoDate }}" data-relative>{{ p.date | dayMonth }}</time></span>
+            <span class="card-title serif">{{ p.data.title }}</span>
+            <span class="card-desc">{{ p.data.description }}</span>
+          </a></li>
+          {%- endfor %}
+        </ul>
+        {%- endif %}
+
+        {%- set other = nb.older if upNext == nb.newer else none %}
+        {%- if other %}
+        <nav class="pager" aria-label="Older post">
+          <a href="{{ other.url }}" class="pager-older" rel="prev" data-nav="older"><span class="eyebrow">← Older</span><span class="pager-title serif">{{ other.data.title }}</span></a>
+        </nav>
+        {%- endif %}
+        <p class="keep-foot"><a href="/{{ section }}/" class="arrow-link">All {{ kind | kindLabel }}</a><span class="post-nav-keys meta" hidden>Use the ← and → keys to move between posts.</span></p>
+      </div>
+    </div>
+  </section>
   {%- endif %}
 </article>
