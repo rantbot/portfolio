@@ -45,6 +45,7 @@ logos:
 
 # Awards Ran's work has won. Same treatment as the logos above.
 awards:
+  - { name: The Emmys, file: emmys.png, width: 82, height: 33 }
   - { name: Cannes Lions, file: cannes-lions.png, width: 70, height: 30 }
   - { name: The Webby Awards, file: webby.png, width: 61, height: 35 }
   - { name: The ANDYs, file: andys.png, width: 64, height: 33 }

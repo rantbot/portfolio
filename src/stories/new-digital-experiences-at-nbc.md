@@ -9,7 +9,7 @@ case_study:
   start: 2005
   scope: Television production, then new digital ventures and experiences
   outcomes:
-    - Companion platforms for Heroes
+    - Companion platforms for Heroes, which won an Emmy
     - Fantasy football shows and virtual-world productions
     - Worked on the skunkworks project that became Hulu
 tone: "#E7E2EA"

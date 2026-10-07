@@ -57,7 +57,7 @@ Ran is available for consulting, helping businesses launch new things and solve 
 
 ## Logos and awards
 
-A quiet wall sits under the homepage hero and on `/work/` (`src/_includes/logos.njk`): companies Ran has worked with, then a row headed "My work has won" (Cannes Lions, The Webby Awards, The ANDYs). Lists, file names and display sizes are `logos` and `awards` in `src/_data/site.yml`.
+A quiet wall sits under the homepage hero and on `/work/` (`src/_includes/logos.njk`): companies Ran has worked with, then a row headed "My work has won" (The Emmys for the Heroes work at NBC, Cannes Lions, The Webby Awards, The ANDYs). Lists, file names and display sizes are `logos` and `awards` in `src/_data/site.yml`.
 
 To add one, make a single-color PNG in `src/assets/images/logos/`: flatten on white, alpha = 255 minus the darkest channel (ramp 28 to 110), fill with ink `#151513`, trim to the mark, and resize so its area is about 27,000 px². Remove any stray text from the source (the ANDYs file had "Ad Makers Collective" in a corner). Check the whole mark survived, the first Google pass lost the left of the G. In `site.yml` set width and height to about 0.28 of the PNG's pixel size. The CSS shows them at 38% opacity, 70% on hover, five per row on desktop and wrapped smaller on phones. Logos stay off story covers.
 
