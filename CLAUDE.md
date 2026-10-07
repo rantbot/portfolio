@@ -55,9 +55,11 @@ Notes for Ran to fill in go in `<!-- -->` comments. They don't show on the site.
 
 Ran is available for consulting, helping businesses launch new things and solve tough problems with software and in physical spaces. `/work/` (`src/work.njk`) explains where he helps, ties each area to his stories, and asks people to tell him about their idea. Every page ends with the same invitation (`contact.njk`), story pages add a "Working on something like this?" prompt, and the nav and hero link to `/work/`. The email button opens a prefilled message (what I'm trying to do, where I'm stuck, timing). When adding stories, link the strongest ones from the matching area on `/work/`.
 
-## Logos
+## Logos and awards
 
-A wall of companies Ran has worked with sits under the homepage hero and on `/work/` (`src/_includes/logos.njk`). The list, file names and display sizes are in `logos` in `src/_data/site.yml`. Each logo is a single-color PNG in `src/assets/images/logos/`, recolored to the site's ink and trimmed, with width and height tuned so every logo carries the same visual weight. Add new ones the same way. Logos stay off story covers.
+A quiet wall sits under the homepage hero and on `/work/` (`src/_includes/logos.njk`): companies Ran has worked with, then a row headed "My work has won" (Cannes Lions, The Webby Awards, The ANDYs). Lists, file names and display sizes are `logos` and `awards` in `src/_data/site.yml`.
+
+To add one, make a single-color PNG in `src/assets/images/logos/`: flatten on white, alpha = 255 minus the darkest channel (ramp 28 to 110), fill with ink `#151513`, trim to the mark, and resize so its area is about 27,000 px². Remove any stray text from the source (the ANDYs file had "Ad Makers Collective" in a corner). Check the whole mark survived, the first Google pass lost the left of the G. In `site.yml` set width and height to about 0.28 of the PNG's pixel size. The CSS shows them at 38% opacity, 70% on hover, five per row on desktop and wrapped smaller on phones. Logos stay off story covers.
 
 ## Language
 
