@@ -4,6 +4,7 @@ description: As President of Ruby Central, I helped rebuild sponsor support and 
 date: 2026-10-05
 case_study:
   organization: Ruby Central
+  org_url: https://rubycentral.org
   role: President of the Board of Directors
   years: 2026 to present
   start: 2026

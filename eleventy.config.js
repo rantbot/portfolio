@@ -167,6 +167,16 @@ export default function (eleventyConfig) {
     ];
     return JSON.stringify(items);
   });
+  // Turns the first mention of each name in a plain sentence into a link, for intros kept as plain text in site.yml.
+  // The links carry data-autolink so the inline editor can still edit the sentence.
+  eleventyConfig.addFilter("orgLinks", (text, links = {}) => {
+    let out = String(text || "").replace(/&/g, "&amp;").replace(/</g, "&lt;");
+    for (const [name, url] of Object.entries(links)) {
+      const re = new RegExp(`(?<![\\w-])${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![\\w-])`);
+      out = out.replace(re, (m) => `<a href="${url}" class="ul" data-autolink>${m}</a>`);
+    }
+    return out;
+  });
   eleventyConfig.addFilter("kindLabel", (kind) => ({ story: "Leading", making: "Making" })[kind] || "Writing");
   eleventyConfig.addFilter("inSeries", (posts, series) =>
     series ? posts.filter((p) => p.data.series === series).sort((a, b) => a.date - b.date) : []

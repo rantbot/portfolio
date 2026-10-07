@@ -45,7 +45,7 @@ At AOL, I helped launch AOL Industry and establish partnerships with trade publi
 
 After helping North Kingdom launch its US operation, I co-founded Wildebeest. For nine years, we built products, platforms, and experimental experiences for clients including Google, YouTube, Disney, and GM.
 
-Today I’m Managing Director and a board member at thoughtbot. My work spans business growth, organizational design, delivery, and new offerings. I also serve as President of Ruby Central, helping strengthen the organization that supports the Ruby ecosystem.
+Today I’m Managing Director and a board member at [thoughtbot](https://thoughtbot.com). My work spans business growth, organizational design, delivery, and new offerings. I also serve as President of [Ruby Central](https://rubycentral.org), helping strengthen the organization that supports the Ruby ecosystem.
 
 In Ladera Heights, I’ve organized produce pickups, sixteen weeks of drive-in movie nights, and a monthly neighborhood cleanup that continues six years after it began.
 

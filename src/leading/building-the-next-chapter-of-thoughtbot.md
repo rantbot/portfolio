@@ -4,6 +4,7 @@ description: An established consultancy needed new ways to grow and deliver valu
 date: 2026-10-07
 case_study:
   organization: thoughtbot
+  org_url: https://thoughtbot.com
   role: Managing Director and board member
   years: 2023 to present
   start: 2023

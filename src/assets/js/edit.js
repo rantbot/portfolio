@@ -139,7 +139,9 @@ function render() {
 }
 
 const SEL = "h1, h2, h3, h4, p, li, figcaption, blockquote, dt, dd, span, a.button, a.arrow-link, strong, em";
-const leaf = (el) => [...el.childNodes].every((n) => n.nodeType === 3 || n.nodeName === "BR") && el.textContent.trim().length > 1;
+// Plain text, or text whose only links were added automatically from site.yml (those come back on their own after publishing)
+const autolink = (n) => n.nodeName === "A" && n.hasAttribute("data-autolink") && [...n.childNodes].every((c) => c.nodeType === 3);
+const leaf = (el) => [...el.childNodes].every((n) => n.nodeType === 3 || n.nodeName === "BR" || autolink(n)) && el.textContent.trim().length > 1;
 const ownText = (el) => [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
 function markEditable() {
   main.querySelectorAll(SEL).forEach((el) => {

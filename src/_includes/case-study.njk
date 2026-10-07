@@ -20,7 +20,7 @@ layout: base.njk
   <div class="grid article-grid">
     <aside class="rail case-facts" aria-label="At a glance">
       <dl>
-        {%- if cs.organization %}<div><dt>Organization</dt><dd>{{ cs.organization }}</dd></div>{% endif %}
+        {%- if cs.organization %}<div><dt>Organization</dt><dd>{% if cs.org_url %}<a href="{{ cs.org_url }}" class="ul">{{ cs.organization }}</a>{% else %}{{ cs.organization }}{% endif %}</dd></div>{% endif %}
         {%- if cs.challenge or cs.scope %}<div><dt>Focus</dt><dd>{{ cs.challenge or cs.scope }}</dd></div>{% endif %}
         {%- if cs.role %}<div><dt>My role</dt><dd>{{ cs.role }}</dd></div>{% endif %}
         {%- if cs.team %}<div><dt>With</dt><dd>{{ cs.team }}</dd></div>{% endif %}
