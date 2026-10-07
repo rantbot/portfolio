@@ -8,7 +8,7 @@ title: Ran Craycraft
     <div class="span-main hero-text">
       <p class="lede serif">{{ site.intro }}</p>
       <p class="hero-now">{{ site.now | orgLinks(site.org_links) | safe }}</p>
-      <p class="hero-more"><a href="/work/" class="button">Let’s work together</a><a href="/about/" class="arrow-link">How I got here</a></p>
+      <p class="hero-more"><a href="/work/" class="button">Let’s work together</a><a href="/about/" class="arrow-link">How did I get here?</a></p>
     </div>
   </div>
 </section>
@@ -40,14 +40,14 @@ title: Ran Craycraft
   </ul>
   </div>
   <div class="carousel-progress" aria-hidden="true"><span></span></div>
-  <p class="section-foot"><a href="/leading/" class="arrow-link">Everything I’ve led</a></p>
+  <p class="section-foot"><a href="/leading/" class="arrow-link">More Leadership examples</a></p>
 </section>
 {%- endif %}
 
 <section aria-labelledby="latest-h" class="section">
   <div class="section-head">
     <h2 id="latest-h" class="eyebrow strong">Latest</h2>
-    <p class="section-note">Ideas, experiments and essays</p>
+    <p class="section-note">Some of my recent ideas, experiments and essays</p>
     <p class="section-links"><a href="/writing/" class="arrow-link">Writing</a><a href="/making/" class="arrow-link">Making</a></p>
   </div>
   {%- set items = collections.posts | stream(elsewhere) | limit(11) %}
