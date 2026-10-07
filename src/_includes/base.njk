@@ -118,7 +118,7 @@
     {% include "email-link.njk" %}
     <a href="/feed.xml">RSS</a>
   </nav>
-  <p class="footer-legal">© {{ env.year }} {{ site.name }}. {{ site.location }}.</p>
+  <p class="footer-legal">© {{ env.year }} {{ site.name }}. {{ site.footer_location or site.location }}.</p>
 </footer>
 </div>
 <script src="/assets/js/site.js" defer></script>

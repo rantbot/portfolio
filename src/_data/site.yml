@@ -5,6 +5,8 @@ name: Ran Craycraft
 title: Ran Craycraft
 description: Ran Craycraft starts new products, ventures and community projects with good people, and helps them last. Writing on leading through change, and the things he makes.
 location: Los Angeles
+# Shown in the footer. location stays in the search-engine data.
+footer_location: California
 email: ran.craycraft@gmail.com
 # Not shown on the page. Search engines and AI tools read it as a one-line description of you.
 tagline: Technology leader turning ideas into products, ventures, and teams
