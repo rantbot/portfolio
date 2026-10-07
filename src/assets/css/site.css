@@ -91,7 +91,9 @@ a, button { -webkit-tap-highlight-color: transparent; touch-action: manipulation
 
 /* Header */
 .site-header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px 32px; flex-wrap: wrap; padding: 28px 0; }
-.brand { font-family: var(--mark); font-size: 24px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+.brand { font-family: var(--mark); font-size: 24px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; white-space: nowrap; }
+/* The built R, sized to the cap height so it sits on the baseline with the rest of the name */
+.brand-r { display: inline-block; height: 0.7275em; width: 0.624em; margin-right: -0.03em; fill: currentColor; vertical-align: baseline; overflow: visible; }
 .site-nav { display: flex; gap: 28px; font-size: 15px; color: var(--muted); }
 .site-nav a { transition: color 200ms var(--ease); }
 .site-nav a:hover { color: var(--ink); }
