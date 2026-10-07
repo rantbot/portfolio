@@ -14,8 +14,9 @@
   /* Color */
   --paper: #FAFAF7;
   --paper-2: #F1F0EB;
-  --ink: #151513;
-  --ink-2: #45453F;
+  --ink: #262624;      /* headlines, labels and UI, a warm dark grey rather than black */
+  --text: #3A3A35;     /* reading text */
+  --ink-2: #4A4A44;
   --muted: #6A6A64;
   --rule: #E3E2DC;
   --rule-2: #C9C8C1;
@@ -83,7 +84,7 @@ button { font: inherit; color: inherit; }
 /* Buttons */
 .button { display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 22px; border-radius: 999px; background: var(--ink); color: var(--paper); font-size: 15px; font-weight: 500; transition: background 200ms var(--ease), transform 200ms var(--ease); }
 .button::after { content: "→"; transition: transform 250ms var(--ease); }
-.button:hover { background: #2B2B27; }
+.button:hover { background: #3A3A36; }
 .button:hover::after { transform: translateX(3px); }
 .button + .arrow-link { margin-left: 24px; }
 
@@ -241,7 +242,7 @@ a:hover .text-panel-title { transform: translateY(-3px); }
 .tldr { margin-bottom: 40px; padding: 20px 24px 22px; background: var(--paper-2); border-radius: 2px; font-size: 16px; line-height: 1.55; color: var(--ink-2); }
 .tldr .eyebrow { margin-bottom: 6px; }
 
-.prose { font-size: clamp(18px, 1.35vw, 20px); line-height: 1.62; font-weight: 380; max-width: 36em; hanging-punctuation: first; text-wrap: pretty; }
+.prose { color: var(--text); font-size: clamp(18px, 1.35vw, 20px); line-height: 1.62; font-weight: 380; max-width: 36em; hanging-punctuation: first; text-wrap: pretty; }
 .prose > * + * { margin-top: 1.05em; }
 .prose h2, .prose h3 { font-family: var(--sans); font-size: 16px; line-height: 1.4; font-weight: 600; letter-spacing: -0.005em; margin-top: 2.4em; }
 .prose h2 + *, .prose h3 + * { margin-top: 0.6em; }
@@ -251,7 +252,7 @@ a:hover .text-panel-title { transform: translateY(-3px); }
 .prose ol { list-style: decimal; padding-left: 1.3em; }
 .prose li + li { margin-top: 0.35em; }
 .prose li::marker { color: var(--muted); }
-.prose strong { font-weight: 560; }
+.prose strong { font-weight: 560; color: var(--ink); }
 .prose img { border-radius: 2px; margin: 2em 0; }
 /* Book spreads and other pages shown in a post. A hairline keeps white pages off the paper. */
 .prose figure { margin: 2.5em 0; }

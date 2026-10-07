@@ -89,7 +89,7 @@ Call them stories everywhere, never case studies or milestones. A story is about
 
 - One 12-column grid (`.grid`). Labels and meta sit in the 3-column rail (`.rail`), reading text in `.span-main` (columns 4 to 10), wide content in `.span-wide`. Phones collapse to one column.
 - Type: Newsreader for reading and headlines, Instrument Sans for labels, meta and UI, Helvetica Neue Bold (Inter Tight fallback) for the name and story covers. Fonts are self-hosted in `src/assets/fonts/`, nothing loads from Google.
-- Color tokens live at the top of `site.css`. Keep text at WCAG AA contrast, so use `--muted` for small text, never lighter.
+- Color tokens live at the top of `site.css`. Type is warm dark grey, never pure black. `--ink` for headlines, labels and UI, `--text` for reading text, `--ink-2` for ledes. Keep text at WCAG AA contrast, so use `--muted` for small text, never lighter.
 - Section heads are a 1px ink rule with the label in the rail. Keep new sections on that pattern.
 - Run an accessibility check (axe) and look at desktop and phone screenshots before handing back design changes.
 
