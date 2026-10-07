@@ -2,6 +2,7 @@
 layout: base.njk
 title: Ran Craycraft
 ---
+{%- from "icons.njk" import icon %}
 <section class="hero">
   <h1 class="hero-title serif">{{ site.headline }}</h1>
   <div class="grid hero-body">
@@ -73,7 +74,7 @@ title: Ran Craycraft
             <span class="line-title serif">{{ p.data.title }}</span>
           </span>
           <span class="line-meta">
-            <span class="line-kind">{{ "Making" if making else "Writing" }}{% if p.external %} <span class="ext" aria-label="on the thoughtbot blog, opens the original">↗</span>{% endif %}</span>
+            <span class="line-kind">{{ icon("making" if making else "writing", "icon kind-icon") }}{{ "Making" if making else "Writing" }}{% if p.external %} <span class="ext" aria-label="on the thoughtbot blog, opens the original">↗</span>{% endif %}</span>
             <time datetime="{{ p.date | isoDate }}" data-relative>{{ p.date | dayMonth }}</time>
           </span>
           {%- if making %}<span class="line-thumb" aria-hidden="true">{% set ratio = "4 / 3" %}{% include "cover.njk" %}</span>{% endif %}

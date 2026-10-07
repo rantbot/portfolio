@@ -248,6 +248,12 @@ if (postNav.ArrowLeft || postNav.ArrowRight) {
     return { terms, hits: hits.slice(0, 12).map((h) => h.it) };
   };
 
+  // The same drawings as src/_includes/icons.njk
+  const KIND_ICONS = {
+    Leading: '<circle cx="10" cy="10" r="7.25"/><path d="M10 5.5 12 10l-2 4.5L8 10z"/>',
+    Writing: '<path d="M3.5 5.5h13M3.5 10h13M3.5 14.5h7.5"/>',
+    Making: '<path d="M10 2.75 16.5 6.5v7L10 17.25 3.5 13.5v-7z"/><path d="M3.5 6.5 10 10l6.5-3.5M10 10v7.25"/>',
+  };
   const ideas = ["AI", "thoughtbot", "Ruby Central", "cookbook", "Slack", "neighborhood"];
   const setup = (root, { onPick } = {}) => {
     const input = root.querySelector(".search-input");
@@ -278,9 +284,10 @@ if (postNav.ArrowLeft || postNav.ArrowRight) {
       if (input.value.trim() !== q) return;
       list.innerHTML = hits.map((it, n) => {
         const meta = [it.k, it.y ? when(it.y) : it.m].filter(Boolean).join(" · ");
+        const glyph = KIND_ICONS[it.k] ? `<svg class="icon kind-icon" viewBox="0 0 20 20" aria-hidden="true">${KIND_ICONS[it.k]}</svg>` : "";
         return `<li><a class="search-hit" id="${list.id}-${n}" role="option" aria-selected="false" href="${esc(it.u)}"${it.o ? ' rel="noopener"' : ""}>
           <span class="search-hit-title">${mark(it.t, terms)}${it.o ? ' <span class="search-out" aria-label="on another site">↗</span>' : ""}</span>
-          <span class="search-hit-meta">${esc(meta)}</span>
+          <span class="search-hit-meta">${glyph}${esc(meta)}</span>
           <span class="search-hit-text">${mark(snippet(it, terms), terms)}</span></a></li>`;
       }).join("");
       input.setAttribute("aria-expanded", String(hits.length > 0));

@@ -97,8 +97,8 @@ a, button { -webkit-tap-highlight-color: transparent; touch-action: manipulation
 .site-nav .nav-cta { color: var(--ink); font-weight: 500; }
 /* Section icons, drawn like the search icon */
 .icon { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.site-nav .nav-sec { display: inline-flex; align-items: center; gap: 7px; }
-.nav-sec .icon { width: 16px; height: 16px; flex: none; }
+/* A small icon before content-type labels, so Leading, Writing and Making are recognizable at a glance */
+.kind-icon { display: inline-block; width: 1.08em; height: 1.08em; margin-right: 0.38em; vertical-align: -0.2em; flex: none; }
 .site-nav a[aria-current] { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 7px; }
 
 /* Phone menu, hidden on wider screens */
@@ -205,11 +205,12 @@ a:hover .text-panel-title { transform: translateY(-3px); }
 .earlier .rail { padding-top: 14px; }
 .entries-feed > li { border-top: 1px solid var(--rule); }
 .entries-feed > li:last-child { border-bottom: 1px solid var(--rule); }
-.line { display: grid; grid-template-columns: minmax(0, 1fr) 150px; column-gap: var(--col-gap); align-items: baseline; padding: 13px 0; }
+.line { display: grid; grid-template-columns: minmax(0, 1fr) 180px; column-gap: var(--col-gap); align-items: baseline; padding: 13px 0; }
 .line-main { min-width: 0; }
 .line-title { font-size: clamp(18px, 1.5vw, 20px); line-height: 1.3; font-weight: 380; text-wrap: balance; transition: color 200ms var(--ease); }
 .line-meta { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
-.line-kind { color: var(--ink-2); }
+.line-kind { color: var(--ink-2); white-space: nowrap; }
+.line-meta time { white-space: nowrap; }
 .line-thumb { display: none; }
 .entries-feed:hover .line-title { color: var(--muted); }
 .entries-feed .line:hover .line-title, .entries-feed .line:focus-visible .line-title { color: var(--ink); }
