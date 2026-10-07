@@ -65,7 +65,7 @@ To add one, make a single-color PNG in `src/assets/images/logos/`: flatten on wh
 
 ## Wordmark and favicon
 
-The R in "Ran Craycraft" is built from three pieces, a stem, a bowl and a leg, with small gaps between them. The pieces come from Inter Tight Bold's R. The header draws it with `src/_includes/brand-name.njk`, which keeps the real letter in the text for search and screen readers. The favicon (`src/assets/favicon.svg`) and the home-screen icons (`apple-touch-icon.png`, `icon-512.png`) use the same R in paper on ink. Keep all of them in step if the mark changes.
+The R in "Ran Craycraft" is built from three plain shapes, a stem, a solid half-circle bowl (no counter) and a diagonal leg, drawn as one path so there are no seams. Both lowercase a's get the same treatment, a solid circle and a stem with no hole. The header draws the name with `src/_includes/brand-name.njk`, which keeps the real letter in the text for search and screen readers. The favicon (`src/assets/favicon.svg`) and the home-screen icons (`apple-touch-icon.png`, `icon-512.png`) use the same R in paper on ink. Keep all of them in step if the mark changes.
 
 ## Read next
 

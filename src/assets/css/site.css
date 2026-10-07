@@ -92,8 +92,10 @@ a, button { -webkit-tap-highlight-color: transparent; touch-action: manipulation
 /* Header */
 .site-header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px 32px; flex-wrap: wrap; padding: 28px 0; }
 .brand { font-family: var(--mark); font-size: 24px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; white-space: nowrap; }
-/* The built R, sized to the cap height so it sits on the baseline with the rest of the name */
-.brand-r { display: inline-block; height: 0.7275em; width: 0.624em; margin-right: -0.03em; fill: currentColor; vertical-align: baseline; overflow: visible; }
+/* The built letters, sized to cap height (R) and x-height (a) so they sit on the baseline with the rest of the name */
+.brand-r, .brand-a { display: inline-block; fill: currentColor; vertical-align: baseline; overflow: visible; }
+.brand-r { height: 0.72em; width: 0.66em; margin-right: -0.01em; }
+.brand-a { height: 0.53em; width: 0.57em; margin-right: -0.03em; }
 .site-nav { display: flex; gap: 28px; font-size: 15px; color: var(--muted); }
 .site-nav a { transition: color 200ms var(--ease); }
 .site-nav a:hover { color: var(--ink); }
