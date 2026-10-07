@@ -2,7 +2,6 @@
 title: What selling thousands of DIY kits taught me about who does the work
 description: John Gist and I started RELIC in my garage during the pandemic. Six years and thousands of kits later, the biggest lesson is that the person who buys a kit is rarely the one who makes it.
 date: 2026-10-07
-draft: true
 case_study:
   organization: RELIC
   role: Co-founder

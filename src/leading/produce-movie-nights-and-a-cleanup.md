@@ -22,8 +22,8 @@ cover_lines:
 read_next:
   - story: why-leave-astoria
     why: Another neighborhood, another community
-  - story: helping-stabilize-ruby-central
-    why: Another community I help look after
+  - story: diy-kits-and-who-does-the-work
+    why: Something else that started in 2020
 ---
 
 ## The situation
