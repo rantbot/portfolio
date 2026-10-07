@@ -91,6 +91,13 @@ export default function (eleventyConfig) {
     }
     return groups;
   });
+  // The Writing and Making posts just before and after this one, by date. Stories have their own Read next.
+  eleventyConfig.addFilter("neighbors", (posts, page) => {
+    const list = posts.filter((p) => p.data.kind !== "story");
+    const i = list.findIndex((p) => p.url === page.url);
+    if (i < 0) return {};
+    return { newer: list[i - 1], older: list[i + 1] };
+  });
   eleventyConfig.addFilter("withSkill", (posts, key) => posts.find((p) => p.data.skill === key));
   eleventyConfig.addFilter("kindLabel", (kind) => ({ story: "Story", making: "Making" })[kind] || "Writing");
   eleventyConfig.addFilter("inSeries", (posts, series) =>

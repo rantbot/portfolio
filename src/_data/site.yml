@@ -24,7 +24,7 @@ invitation_note: I help businesses launch new things and work through tough prob
 # Profiles that are you. Search engines and AI tools use these to connect the dots.
 same_as:
   - label: LinkedIn
-    url: "https://www.linkedin.com/in/[your-handle]"
+    url: https://www.linkedin.com/in/craycraft/
   - label: GitHub
     url: https://github.com/rantbot
   - label: thoughtbot

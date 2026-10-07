@@ -62,4 +62,25 @@ layout: base.njk
       </aside>
     </div>
   </div>
+
+  {%- set nb = collections.posts | neighbors(page) %}
+  {%- if nb.older or nb.newer %}
+  <nav class="section grid post-nav" aria-labelledby="post-nav-h">
+    <h2 id="post-nav-h" class="rail eyebrow strong">Keep reading</h2>
+    <ul class="span-wide post-nav-list">
+      {%- for item in [{ p: nb.older, dir: "older", label: "Older" }, { p: nb.newer, dir: "newer", label: "Newer" }] %}
+      {%- if item.p %}{% set p = item.p %}
+      <li class="post-nav-{{ item.dir }}"><a href="{{ p.url }}" class="card" rel="{{ 'prev' if item.dir == 'older' else 'next' }}" data-nav="{{ item.dir }}">
+        <span class="media">{% set ratio = "16 / 9" %}{% include "cover.njk" %}</span>
+        <span class="eyebrow"><span class="post-nav-dir">{{ item.label }}</span><span class="dot">·</span>{{ p.data.kind | kindLabel }}</span>
+        <span class="card-title serif">{{ p.data.title }}</span>
+        <span class="card-meta"><time datetime="{{ p.date | isoDate }}">{{ p.date | readableDate }}</time></span>
+      </a></li>
+      {%- else %}<li class="post-nav-{{ item.dir }}" aria-hidden="true"></li>
+      {%- endif %}
+      {%- endfor %}
+    </ul>
+    <p class="span-wide section-foot post-nav-foot"><a href="/{{ section }}/" class="arrow-link">All {{ kind | kindLabel }}</a><span class="post-nav-keys meta" hidden>Use the ← and → keys to move between posts.</span></p>
+  </nav>
+  {%- endif %}
 </article>

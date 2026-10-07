@@ -124,3 +124,18 @@ if (window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 821px)
     line.addEventListener("pointerleave", () => peek.classList.remove("on"));
   });
 }
+
+// Posts: the left and right arrow keys move to the older and newer post.
+// Ignored while typing, with a modifier key held, or inside something that scrolls sideways.
+const postNav = { ArrowLeft: document.querySelector('a[data-nav="older"]'), ArrowRight: document.querySelector('a[data-nav="newer"]') };
+if (postNav.ArrowLeft || postNav.ArrowRight) {
+  const tip = document.querySelector(".post-nav-keys");
+  if (tip && window.matchMedia("(hover: hover) and (pointer: fine)").matches) tip.hidden = false;
+  document.addEventListener("keydown", (e) => {
+    const link = postNav[e.key];
+    if (!link || e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    const t = e.target;
+    if (t.isContentEditable || t.closest("input, textarea, select, pre, [role=tablist], .carousel")) return;
+    link.click();
+  });
+}
