@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#FAFAF7">
 {#- Title tags. The name is added after the title when there's room, and seo_title in front matter overrides the whole thing. -#}
@@ -137,13 +137,7 @@
   <p class="footer-legal">© {{ env.year }} {{ site.name }}. {{ site.footer_location or site.location }}.</p>
 </footer>
 </div>
-{#- Hidden edit links. Visit any page with ?edit at the end of the address to show them on this browser, ?edit=off to hide them again.
-   They open the page's source file in GitHub's editor; saving there publishes the change. Only someone signed in to GitHub with access to the repo can save. -#}
-<div class="edit-links" hidden>
-  <a href="https://github.com/rantbot/portfolio/edit/main/{{ page.inputPath | replace('./', '') }}" target="_blank" rel="noopener">Edit this page</a>
-  <a href="https://github.com/rantbot/portfolio/edit/main/src/_data/site.yml" target="_blank" rel="noopener">Edit site text</a>
-  <button type="button" class="edit-links-hide" aria-label="Hide edit links">×</button>
-</div>
+<meta name="edit-source" content="{{ page.inputPath }}">
 <script src="/assets/js/site.js" defer></script>
 </body>
 </html>

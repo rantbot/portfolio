@@ -73,7 +73,11 @@ The homepage leads with executive value. The carousel opens with three featured 
 
 ## Editing copy on the live site
 
-Every page has hidden edit links. Visiting any page with `?edit` at the end of the address (rancraycraft.com/?edit) shows a small bar in the bottom-left corner on that browser, and `?edit=off` or its × hides it again. "Edit this page" opens that page's source file in GitHub's editor, and "Edit site text" opens `src/_data/site.yml`, which holds the homepage headline, intro, closing invitation and footer. Saving ("Commit changes") on GitHub publishes the site in a couple of minutes. Only someone signed in to GitHub with access to the repo can save. To remove the bar later, delete the `.edit-links` block in `base.njk`, its styles in `site.css` and the last section of `site.js`.
+Ran edits words directly on the page. Visiting any page with `?edit` at the end of the address turns on an edit bar for that browser, and `?edit=off` turns it off. Visitors never load the editor, because `site.js` only imports `assets/js/edit.js` once that flag is set.
+
+The first time, the bar asks for a GitHub fine-grained token with Contents read and write on `rantbot/portfolio` only. The token is kept in that browser's localStorage. "Edit this page" makes plain lines of text editable. Lines with links or formatting are marked and left alone. "Publish" finds each changed line's exact text in the source files on GitHub, checking the page's own file, then `src/_data/site.yml`, then the rest of `src`. It replaces the text and commits through the GitHub API, one commit per file, and GitHub Actions republishes the site.
+
+Because those commits land on GitHub, Ran needs to Fetch and Pull in GitHub Desktop before his next local change, and a chat working in the local folder should run `git pull` first. The CSP allows `connect-src https://api.github.com` for this. To remove the editor later, delete `assets/js/edit.js`, the last section of `site.js`, the `edit-source` meta tag in `base.njk` and the GitHub address in the CSP.
 
 ## Site search
 

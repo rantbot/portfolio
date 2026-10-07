@@ -472,13 +472,6 @@ html.search-open { overflow: hidden; }
 .search-page .search-hit:hover, .search-page .search-hit[aria-selected="true"] { background: none; }
 .search-page .search-hit:hover .search-hit-title, .search-page .search-hit[aria-selected="true"] .search-hit-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; text-decoration-color: var(--rule-2); }
 
-/* Hidden edit links, shown only after visiting a page with ?edit */
-.edit-links { position: fixed; left: 16px; bottom: 16px; z-index: 40; display: flex; align-items: center; gap: 4px; padding: 4px; border-radius: 999px; background: var(--ink); box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.4); font-size: 13px; }
-.edit-links[hidden] { display: none; }
-.edit-links a { padding: 7px 12px; border-radius: 999px; color: var(--paper); }
-.edit-links a:hover { background: rgba(255, 255, 255, 0.12); }
-.edit-links-hide { width: 28px; height: 28px; border: 0; border-radius: 50%; background: none; color: #A9A9A2; font-size: 16px; line-height: 1; cursor: pointer; }
-.edit-links-hide:hover { color: var(--paper); }
 
 @media (max-width: 1024px) {
   .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }

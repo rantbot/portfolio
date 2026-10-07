@@ -358,19 +358,16 @@ if (postNav.ArrowLeft || postNav.ArrowRight) {
   }
 })();
 
-// Hidden edit links, for Ran. Add ?edit to any address to show them in this browser, ?edit=off (or ×) to hide them.
+// Inline editing, for Ran. Add ?edit to any address to turn it on in this browser, ?edit=off to turn it off.
+// Only then does the editor load, so visitors never download it.
 (() => {
-  const box = document.querySelector(".edit-links");
-  if (!box) return;
   const KEY = "show-edit-links";
   const param = new URLSearchParams(location.search).get("edit");
+  let on = false;
   try {
     if (param === "off") localStorage.removeItem(KEY);
     else if (param !== null) localStorage.setItem(KEY, "1");
-    box.hidden = localStorage.getItem(KEY) !== "1";
-  } catch { box.hidden = param === null || param === "off"; }
-  box.querySelector(".edit-links-hide").addEventListener("click", () => {
-    try { localStorage.removeItem(KEY); } catch {}
-    box.hidden = true;
-  });
+    on = localStorage.getItem(KEY) === "1";
+  } catch { on = param !== null && param !== "off"; }
+  if (on) import("/assets/js/edit.js");
 })();
