@@ -359,7 +359,7 @@ a:hover .text-panel-title { transform: translateY(-3px); }
 .awards-label, .logos.awards { margin-top: clamp(36px, 4vw, 56px); }
 .awards-label { padding-top: 6px; }
 
-/* Work with me */
+/* Work together */
 .offers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--col-gap); }
 .offer { border-top: 1px solid var(--ink); padding-top: 18px; }
 .offer-title { font-size: clamp(22px, 2vw, 28px); line-height: 1.15; font-weight: 360; letter-spacing: -0.014em; text-wrap: balance; }

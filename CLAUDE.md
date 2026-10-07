@@ -48,6 +48,7 @@ Notes for Ran to fill in go in `<!-- -->` comments. They don't show on the site.
 - No em dashes, semicolons, or colons in prose. Use commas for asides, not spaced hyphens.
 - No slogans and no "not X, it's Y" constructions.
 - Present Ran as a leader who builds things, not a job seeker. Fun to read.
+- Invitations sound collaborative, about working together rather than about Ran ("Let’s work together", "Work together", "Let’s talk"), never "Work with me" or "More about me".
 - Prefer several short posts per experience, linked by `series`, over one long one.
 - Use `##` headings that match what people search for. Keep paragraphs short.
 
