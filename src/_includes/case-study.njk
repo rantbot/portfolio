@@ -4,8 +4,7 @@ layout: base.njk
 {%- set cs = case_study or {} %}
 <article class="article case">
   <header class="article-head grid">
-    {%- set ch = collections.posts | chapterOf(page.url) %}
-    <p class="rail eyebrow"><a href="/stories/" class="ul">Stories</a>{% if ch %}<span class="chapter-no">Chapter {{ ch }}</span>{% endif %}</p>
+    <p class="rail eyebrow"><a href="/stories/" class="ul">Stories</a></p>
     <div class="span-wide">
       {%- if cs.organization %}<p class="case-org">{{ cs.organization }}</p>{% endif %}
       <h1 class="case-title serif">{{ title }}</h1>

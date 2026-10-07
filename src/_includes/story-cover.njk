@@ -4,8 +4,7 @@
 <img class="cover-img" src="{{ d.image }}" alt="{{ d.image_alt or '' }}" loading="lazy" style="aspect-ratio: {{ ratio }}">
 {%- else %}
 <div class="cover story-cover" style="aspect-ratio: {{ ratio }}; background: {{ d.tone or '#EFEFEC' }}; color: {{ d.ink or '#1F1F1C' }}" aria-hidden="true">
-  {%- set ch = collections.posts | chapterOf(p.url or page.url) %}
-  <span class="cover-kicker">{{ ("Chapter " + ch) if ch else "Story" }}</span>
+  <span class="cover-kicker">Case study</span>
   <span class="story-cover-name">{{ d.case_study.organization if d.case_study else d.title }}</span>
 </div>
 {%- endif %}

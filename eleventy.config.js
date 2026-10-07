@@ -57,12 +57,6 @@ export default function (eleventyConfig) {
     }
     return groups;
   });
-  // Stories read like chapters of a book, numbered in the order the work happened
-  eleventyConfig.addFilter("chapterOf", (posts, url) => {
-    const chapters = posts.filter((p) => p.data.kind === "story").sort((a, b) => (a.data.case_study?.start || 0) - (b.data.case_study?.start || 0));
-    const i = chapters.findIndex((p) => p.url === url);
-    return i < 0 ? "" : i + 1;
-  });
   eleventyConfig.addFilter("withSkill", (posts, key) => posts.find((p) => p.data.skill === key));
   eleventyConfig.addFilter("kindLabel", (kind) => ({ story: "Story", making: "Making" })[kind] || "Writing");
   eleventyConfig.addFilter("inSeries", (posts, series) =>
