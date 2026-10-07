@@ -3,7 +3,7 @@
 
 name: Ran Craycraft
 title: Ran Craycraft
-description: Ran Craycraft turns new possibilities into products, experiences, and businesses. Writing on leading through change, and things he makes.
+description: Ran Craycraft helps shape big ideas and turn them into products, experiences, and businesses. Writing on leading through change, and things he makes.
 location: Los Angeles
 email: ran.craycraft@gmail.com
 # Not shown on the page. Search engines and AI tools read it as a one-line description of you.
@@ -13,7 +13,7 @@ employer: thoughtbot
 employer_url: https://thoughtbot.com
 
 # Homepage introduction
-headline: I turn new possibilities into products, experiences, and businesses.
+headline: I help shape big ideas and turn them into products, experiences, and businesses.
 intro: I’ve launched digital ventures at NBC and AOL, co-founded an award-winning studio, and helped reshape thoughtbot. Along the way, I’ve built a neighborhood network, produced drive-in movie nights, and turned my driveway into a produce pickup point.
 now: Today I’m Managing Director and a board member at thoughtbot, and President of Ruby Central. Based in Los Angeles.
 
@@ -29,3 +29,16 @@ same_as:
     url: https://github.com/rantbot
   - label: thoughtbot
     url: https://thoughtbot.com/blog/authors/ran-craycraft
+
+# Companies Ran has worked with. Logos live in src/assets/images/logos/, single-color PNGs, shown at about a third of their pixel size so they stay sharp. Width and height are tuned so every logo carries the same visual weight.
+logos:
+  - { name: NBC, file: nbc.png, width: 74, height: 43 }
+  - { name: AOL, file: aol.png, width: 89, height: 35 }
+  - { name: Google, file: google.png, width: 97, height: 33 }
+  - { name: YouTube, file: youtube.png, width: 119, height: 27 }
+  - { name: Microsoft, file: microsoft.png, width: 121, height: 26 }
+  - { name: Intel, file: intel.png, width: 90, height: 35 }
+  - { name: GM, file: gm.png, width: 57, height: 44 }
+  - { name: Toyota, file: toyota.png, width: 56, height: 56 }
+  - { name: Frito-Lay, file: frito-lay.png, width: 70, height: 45 }
+  - { name: Taco Bell, file: taco-bell.png, width: 45, height: 65 }

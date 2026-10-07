@@ -1,0 +1,9 @@
+{#- Companies Ran has worked with, set in one ink color so the wall reads as a single piece. -#}
+<section class="logos-section grid" aria-labelledby="logos-h">
+  <h2 id="logos-h" class="rail eyebrow">{{ logos_label or "Some of the companies I’ve worked with" }}</h2>
+  <ul class="span-wide logos">
+    {%- for l in site.logos %}
+    <li><img src="/assets/images/logos/{{ l.file }}" alt="{{ l.name }}" width="{{ l.width }}" height="{{ l.height }}" loading="lazy" decoding="async"></li>
+    {%- endfor %}
+  </ul>
+</section>

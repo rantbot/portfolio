@@ -55,6 +55,10 @@ Notes for Ran to fill in go in `<!-- -->` comments. They don't show on the site.
 
 Ran is available for consulting, helping businesses launch new things and solve tough problems with software and in physical spaces. `/work/` (`src/work.njk`) explains where he helps, ties each area to his stories, and asks people to tell him about their idea. Every page ends with the same invitation (`contact.njk`), story pages add a "Working on something like this?" prompt, and the nav and hero link to `/work/`. The email button opens a prefilled message (what I'm trying to do, where I'm stuck, timing). When adding stories, link the strongest ones from the matching area on `/work/`.
 
+## Logos
+
+A wall of companies Ran has worked with sits under the homepage hero and on `/work/` (`src/_includes/logos.njk`). The list, file names and display sizes are in `logos` in `src/_data/site.yml`. Each logo is a single-color PNG in `src/assets/images/logos/`, recolored to the site's ink and trimmed, with width and height tuned so every logo carries the same visual weight. Add new ones the same way. Logos stay off story covers.
+
 ## Language
 
 Call them stories everywhere, never case studies or milestones. A story is about the work, not the company, and there can be several from one place. The organization only appears as quiet context (the card's small meta line and the facts panel), never as a story's cover or heading.
