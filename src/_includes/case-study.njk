@@ -46,6 +46,14 @@ layout: base.njk
     </div>
   </div>
 
+  <aside class="story-cta grid" aria-label="Work with me">
+    <div class="span-main">
+      <p class="story-cta-title serif">Working on something like this?</p>
+      <p class="story-cta-text">I help businesses launch new things and work through tough problems. Tell me what you’re trying to do.</p>
+      <p class="closing-actions"><a href="/work/" class="button">Work with me</a></p>
+    </div>
+  </aside>
+
   {%- set others = collections.posts | stories %}
   {%- if others.length > 1 %}
   <nav class="section grid" aria-labelledby="more-h">

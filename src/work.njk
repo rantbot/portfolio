@@ -1,0 +1,59 @@
+---
+layout: base.njk
+title: Work with me
+description: Ran Craycraft helps businesses launch new products and ventures and work through tough problems, with software and in physical spaces. Start with a conversation about your idea.
+permalink: /work/
+section: work
+---
+<header class="page-head">
+  <h1 class="page-title serif">Work with me</h1>
+  <div class="grid">
+    <div class="span-main">
+      <p class="lede serif">I help businesses launch new things and work through tough problems, with software and in the real world. If you have an idea, or something that’s stuck, let’s talk about it.</p>
+      <p class="hero-more">
+        {%- set email_label = "Tell me about your idea" %}{% set email_class = "button" %}{% set email_subject = "An idea I’d like to talk about" %}{% set email_body = "What I’m trying to do:\n\nWhere I’m stuck:\n\nTiming:\n" %}
+        {% include "email-link.njk" %}
+        {%- set email_label = "" %}{% set email_class = "" %}{% set email_subject = "" %}{% set email_body = "" %}
+      </p>
+    </div>
+  </div>
+</header>
+
+<section class="section grid offer-section" aria-labelledby="help-h">
+  <h2 id="help-h" class="rail eyebrow strong">Where I help</h2>
+  <ol class="span-wide offers">
+    <li class="offer">
+      <h3 class="offer-title serif">Launching something new</h3>
+      <p class="offer-text">A product, a venture, a new office or a new line of business. I help shape the idea, find the smallest version worth building, and get it in front of the people it’s for.</p>
+      <p class="offer-proof">I’ve done this at <a href="/stories/launching-new-ventures-at-aol/" class="ul">AOL</a>, where I helped launch AOL Industry from zero, at <a href="/stories/bringing-north-kingdom-to-the-us/" class="ul">North Kingdom</a>, opening its US operation, and with <a href="/stories/wildebeest/" class="ul">Wildebeest</a>, the studio I co-founded.</p>
+    </li>
+    <li class="offer">
+      <h3 class="offer-title serif">Solving tough problems with software</h3>
+      <p class="offer-text">When a process is slow, a team is stuck or AI keeps coming up without a plan, I help find the real problem and build the tool or practice that fixes it.</p>
+      <p class="offer-proof">At <a href="/stories/building-the-next-chapter-of-thoughtbot/" class="ul">thoughtbot</a>, I’ve reshaped how a consultancy grows and delivers, and I build <a href="/writing/building-tools-for-my-team/" class="ul">tools for my own team</a> to test what AI can really do.</p>
+    </li>
+    <li class="offer">
+      <h3 class="offer-title serif">Bringing ideas into physical spaces</h3>
+      <p class="offer-text">Some of the best ideas happen in person. Events, community programs and places people gather need the same care as any product.</p>
+      <p class="offer-proof">I built <a href="/stories/why-leave-astoria/" class="ul">a neighborhood network</a> with more than 10,000 members, and in <a href="/stories/produce-movie-nights-and-a-cleanup/" class="ul">Ladera Heights</a> I’ve run produce pickups, drive-in movie nights and a monthly cleanup.</p>
+    </li>
+  </ol>
+</section>
+
+<section class="section grid offer-section" aria-labelledby="how-h">
+  <h2 id="how-h" class="rail eyebrow strong">How it starts</h2>
+  <ol class="span-main steps">
+    <li><span class="step-n">1</span><span><strong>You tell me about it.</strong> What you’re trying to do, where you’re stuck, and your timing. A few sentences is plenty.</span></li>
+    <li><span class="step-n">2</span><span><strong>We talk.</strong> A conversation to understand the idea and the people it’s for, and to see if I’m the right fit.</span></li>
+    <li><span class="step-n">3</span><span><strong>We decide the next step together.</strong> That might be a short piece of advice, a focused project, or an introduction to someone better suited.</span></li>
+  </ol>
+</section>
+
+<section class="section grid offer-section" aria-labelledby="proof-h">
+  <h2 id="proof-h" class="rail eyebrow strong">The work so far</h2>
+  <ol class="span-wide entries entries-compact">
+    {%- for s in collections.posts | stories %}
+    <li><a href="{{ s.url }}" class="entry entry-row"><span class="entry-title serif">{{ s.data.title }}</span><span class="meta">{{ s.data.case_study.organization }}</span></a></li>
+    {%- endfor %}
+  </ol>
+</section>

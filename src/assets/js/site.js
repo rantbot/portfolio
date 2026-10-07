@@ -21,8 +21,11 @@ document.querySelectorAll(".filter").forEach((group) => {
 document.querySelectorAll("a[data-e]").forEach((a) => {
   try {
     const address = atob(a.dataset.e).split("").reverse().join("");
-    a.href = "mailto:" + address;
-    a.textContent = address;
+    const params = [];
+    if (a.dataset.subject) params.push("subject=" + encodeURIComponent(a.dataset.subject));
+    if (a.dataset.body) params.push("body=" + encodeURIComponent(a.dataset.body.replace(/\\n/g, "\n")));
+    a.href = "mailto:" + address + (params.length ? "?" + params.join("&") : "");
+    if (!("keepLabel" in a.dataset)) a.textContent = address;
   } catch (e) {}
 });
 
