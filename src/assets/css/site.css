@@ -224,7 +224,31 @@ a:hover .cover, a:hover .cover-img { transform: scale(1.02); }
 .series .current { font-weight: 600; }
 .author { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule); font-size: 15px; color: var(--muted); max-width: 36em; }
 
-/* Case studies */
+/* Agent skill panel */
+.skill { margin-top: 64px; padding: clamp(22px, 2.6vw, 32px); background: var(--paper-2); border-radius: 3px; max-width: 40em; scroll-margin-top: 24px; }
+.skill-name { margin-top: 10px; font-family: var(--mark); font-size: clamp(24px, 2.4vw, 32px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
+.skill-name-sm { font-family: var(--mark); font-size: 21px; font-weight: 700; letter-spacing: -0.025em; }
+.skill-desc { margin-top: 10px; font-size: 15px; line-height: 1.55; color: var(--ink-2); max-width: 36em; }
+.skill-tabs { display: flex; gap: 4px; margin-top: 22px; border-bottom: 1px solid var(--rule-2); }
+.skill-tabs button { background: none; border: 0; padding: 8px 10px 10px; margin-bottom: -1px; font-size: 13px; color: var(--muted); cursor: pointer; border-bottom: 1px solid transparent; transition: color 200ms var(--ease); }
+.skill-tabs button:hover { color: var(--ink); }
+.skill-tabs button[aria-selected="true"] { color: var(--ink); font-weight: 500; border-bottom-color: var(--ink); }
+.skill-panel { margin-top: 16px; }
+.skill-panel[hidden] { display: none; }
+.skill-how { font-size: 13px; color: var(--muted); }
+.code { position: relative; margin-top: 10px; display: flex; align-items: flex-start; gap: 12px; padding: 14px 14px 14px 16px; background: var(--ink); color: #EDEDE8; border-radius: 3px; }
+.code code { flex: 1; font: 13px/1.6 ui-monospace, "SF Mono", Menlo, Consolas, monospace; overflow-wrap: anywhere; }
+.copy { flex: none; background: transparent; border: 1px solid #4A4A45; color: #EDEDE8; border-radius: 2px; padding: 3px 9px; font-size: 12px; cursor: pointer; transition: background 200ms var(--ease), border-color 200ms var(--ease); }
+.copy:hover { border-color: #EDEDE8; }
+.copy[data-copied] { background: #EDEDE8; color: var(--ink); }
+.skill-links { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px 28px; }
+.skill-links .arrow-link + .arrow-link { margin-left: 0; }
+
+/* Case studies, set like a chapter in a book */
+.chapter-no { display: block; margin-top: 4px; color: var(--ink); font-weight: 500; }
+.case .prose > p:first-of-type::first-letter { float: left; font-size: 3.4em; line-height: 0.82; padding: 0.06em 0.08em 0 0; font-weight: 340; }
+.case .prose hr { border: 0; margin: 2.6em 0; text-align: center; }
+.case .prose hr::after { content: "⁂"; color: var(--muted); font-size: 1.1em; letter-spacing: 0.2em; }
 .case-org { margin-bottom: 18px; font-size: 15px; font-weight: 500; }
 .case-title { font-size: clamp(40px, 5.6vw, 84px); line-height: 1.0; letter-spacing: -0.034em; font-weight: 320; max-width: 14em; text-wrap: balance; }
 .case .article-head .lede { margin-top: 28px; }

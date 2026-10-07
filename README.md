@@ -57,7 +57,8 @@ To start a post by hand, run `npm run new -- "Post title" making`.
 
 | What | Where |
 | --- | --- |
-| Posts | `src/posts/` |
+| Stories (case studies) | `src/stories/`, one Markdown file each |
+| Writing and Making posts | `src/posts/` |
 | Photos | `src/assets/images/` |
 | Homepage text and settings | `src/_data/site.yml` |
 | Essays on other sites | `src/_data/elsewhere.yml` |

@@ -2,8 +2,6 @@
 title: Wildebeest, a studio for products, platforms, and experiments
 description: I co-founded Wildebeest, an award-winning studio that built products, platforms, and experimental experiences for clients including Google, YouTube, Disney, and GM.
 date: 2026-10-06
-kind: story
-layout: case-study.njk
 case_study:
   organization: Wildebeest
   role: Co-founder and Managing Partner

@@ -8,6 +8,7 @@ series: Tools for my team
 meta: Chrome extension
 image: /assets/images/experiments/email-zenmaster.png
 image_alt: Illustration of Email Zenmaster in use
+skill: human-email-review
 ---
 
 I write a lot of email, and I have opinions about how it should read. Clear, kind, direct, and free of the habits that make writing sound generated.

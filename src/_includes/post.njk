@@ -39,6 +39,8 @@ layout: base.njk
 {{ content | safe }}
       </div>
 
+      {%- if skill and skills[skill] %}{% set sk = skills[skill] %}{% include "skill-panel.njk" %}{% endif %}
+
       {%- if try_url %}
       <p class="try"><a href="{{ try_url }}" class="arrow-link">{{ try_label or "Try it" }}</a></p>
       {%- endif %}

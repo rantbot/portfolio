@@ -1,10 +1,15 @@
 import yaml from "js-yaml";
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import { HtmlBasePlugin } from "@11ty/eleventy";
+import { zipSkills } from "./scripts/zip-skills.js";
 
 export default function (eleventyConfig) {
   eleventyConfig.addDataExtension("yml,yaml", (contents) => yaml.load(contents));
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
+  // Agent skills are published as-is, and zipped after each build
+  eleventyConfig.addPassthroughCopy({ "src/skills": "skills" }, { filter: ["**/*", "!*.js"] });
+  eleventyConfig.ignores.add("src/skills/**");
+  eleventyConfig.on("eleventy.after", ({ dir }) => zipSkills("src/skills", `${dir.output}/skills`));
   eleventyConfig.addPlugin(HtmlBasePlugin);
 
   // Keep <!-- notes --> in posts out of the published pages
@@ -15,13 +20,13 @@ export default function (eleventyConfig) {
   // Every published post, newest first
   eleventyConfig.addCollection("posts", (api) =>
     api
-      .getFilteredByGlob("src/posts/*.md")
+      .getFilteredByGlob(["src/posts/*.md", "src/stories/*.md"])
       .filter((p) => !p.data.draft)
       .sort((a, b) => b.date - a.date)
   );
   // Oldest first, for the feed plugin, which lists the newest entries first
   eleventyConfig.addCollection("feedPosts", (api) =>
-    api.getFilteredByGlob("src/posts/*.md").filter((p) => !p.data.draft).sort((a, b) => a.date - b.date)
+    api.getFilteredByGlob(["src/posts/*.md", "src/stories/*.md"]).filter((p) => !p.data.draft).sort((a, b) => a.date - b.date)
   );
 
   eleventyConfig.addFilter("ofKind", (posts, kind) => posts.filter((p) => p.data.kind === kind));
@@ -52,6 +57,13 @@ export default function (eleventyConfig) {
     }
     return groups;
   });
+  // Stories read like chapters of a book, numbered in the order the work happened
+  eleventyConfig.addFilter("chapterOf", (posts, url) => {
+    const chapters = posts.filter((p) => p.data.kind === "story").sort((a, b) => (a.data.case_study?.start || 0) - (b.data.case_study?.start || 0));
+    const i = chapters.findIndex((p) => p.url === url);
+    return i < 0 ? "" : i + 1;
+  });
+  eleventyConfig.addFilter("withSkill", (posts, key) => posts.find((p) => p.data.skill === key));
   eleventyConfig.addFilter("kindLabel", (kind) => ({ story: "Story", making: "Making" })[kind] || "Writing");
   eleventyConfig.addFilter("inSeries", (posts, series) =>
     series ? posts.filter((p) => p.data.series === series).sort((a, b) => a.date - b.date) : []

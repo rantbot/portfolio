@@ -1,0 +1,27 @@
+---
+layout: base.njk
+title: Skills
+description: Agent skills from Ran Craycraft’s work, free to install in Claude, Codex, Cursor and other agents, so you can do it yourself or raise the bar on it.
+permalink: /skills/
+section: skills
+---
+<header class="page-head">
+  <h1 class="page-title serif">Skills</h1>
+  <div class="grid">
+    <p class="span-main lede serif">Some of what I write about can be handed to an AI agent as a skill. Install one to do it yourself, or improve on it and tell me what you changed. They’re free to use under the MIT License.</p>
+  </div>
+</header>
+
+<section class="section grid list-section" aria-labelledby="skills-h">
+  <h2 id="skills-h" class="rail eyebrow strong">Skills</h2>
+  <ol class="span-main entries">
+    {%- for key, sk in skills %}
+    {%- set from = collections.posts | withSkill(key) %}
+    <li><a href="{{ (from.url + '#skill-' + key) if from else ('/skills/' + key + '/SKILL.md') }}" class="entry">
+      <span class="entry-title skill-name-sm">{{ sk.name }}</span>
+      <span class="entry-desc">{{ sk.description }}</span>
+      {%- if from %}<span class="meta">From {{ from.data.title }}</span>{% endif %}
+    </a></li>
+    {%- endfor %}
+  </ol>
+</section>

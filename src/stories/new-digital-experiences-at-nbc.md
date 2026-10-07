@@ -2,8 +2,6 @@
 title: New digital experiences for NBC, from Heroes to the project that became Hulu
 description: How a television network started building for the internet, from companion platforms for Heroes to fantasy football shows, virtual worlds, and the skunkworks project that became Hulu.
 date: 2026-10-06
-kind: story
-layout: case-study.njk
 case_study:
   organization: NBCUniversal
   role: Intern, then editor, shooter, and producer in digital production and innovation

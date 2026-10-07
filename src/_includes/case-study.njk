@@ -4,7 +4,8 @@ layout: base.njk
 {%- set cs = case_study or {} %}
 <article class="article case">
   <header class="article-head grid">
-    <p class="rail eyebrow"><a href="/stories/" class="ul">Stories</a></p>
+    {%- set ch = collections.posts | chapterOf(page.url) %}
+    <p class="rail eyebrow"><a href="/stories/" class="ul">Stories</a>{% if ch %}<span class="chapter-no">Chapter {{ ch }}</span>{% endif %}</p>
     <div class="span-wide">
       {%- if cs.organization %}<p class="case-org">{{ cs.organization }}</p>{% endif %}
       <h1 class="case-title serif">{{ title }}</h1>
@@ -42,6 +43,7 @@ layout: base.njk
       <div class="prose serif">
 {{ content | safe }}
       </div>
+      {%- if skill and skills[skill] %}{% set sk = skills[skill] %}{% include "skill-panel.njk" %}{% endif %}
       <p class="article-byline meta"><a href="/about/" rel="author" class="strong">{{ site.name }}</a><span class="dot">·</span><time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time><span class="dot">·</span>{{ content | readingTime }}</p>
     </div>
   </div>

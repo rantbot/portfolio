@@ -7,6 +7,7 @@ updated: 2026-10-06
 series: Tools for my team
 image: /assets/images/experiments/building-tools-for-my-team.png
 image_alt: Illustrations of the tools in this series
+skill: team-tool-experiment
 ---
 
 For the past year a lot of people at thoughtbot have been experimenting with AI on their own. Someone builds a prompt that saves them an hour. Someone else builds a script that fixes an annoying report. Most of it lives in a DM or a personal folder, and the next person starts over.

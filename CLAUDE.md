@@ -10,7 +10,8 @@ Ran will say things like "add a post about X", "update my AOL story", "add my ne
 
 | What | File |
 | --- | --- |
-| Posts (Stories, Writing and Making) | `src/posts/YYYY-MM-DD-slug.md` |
+| Stories (case studies) | `src/stories/slug.md`, one plain Markdown file each |
+| Writing and Making posts | `src/posts/YYYY-MM-DD-slug.md` |
 | Photos | `src/assets/images/`, referenced as `/assets/images/name.jpg` |
 | Homepage text, the subtitle under the name (`tagline`), profile links | `src/_data/site.yml` |
 | thoughtbot essays and other outside posts | `src/_data/elsewhere.yml`, newest first |
@@ -29,7 +30,7 @@ Front matter:
 - `description` one or two sentences, shown under the title and in search results
 - `date` publish date, `YYYY-MM-DD`
 - `kind` `story`, `writing` or `making`
-  - **Stories** are milestones, the large markers in Ran's career, written as long case studies. They use `layout: case-study.njk` and a `case_study` block (`organization`, `role`, `years`, `start` year for ordering, `scope`, `team`, `outcomes`). Sections are The situation, What I did, What changed, What I learned. Never invent facts or results. Leave a `<!-- TO ADD -->` note instead, and keep a heading in the note until its section has content.
+  - **Stories** live in `src/stories/`, not `src/posts/`. Every Markdown file there becomes a case study at `/stories/<file-name>/`, so the folder sets the kind and layout. Ran drafts and finesses them there in a Markdown editor. They take a `case_study` block (`organization`, `role`, `years`, `start` year for ordering, `scope`, `team`, `outcomes`). Each story reads like a chapter in a book. Narrative, engaging, insightful and opinionated, about 2,500 to 3,500 words, a 10 to 15 minute read. Open on a scene, set up the stakes, follow the decisions and turning points, say what changed, and end with what Ran believes now and why. First person, specific moments and real names (with permission), clear opinions. The layout numbers chapters by start year and adds a drop cap, and `---` in the text becomes a section break. Headings can be evocative rather than The situation or What I did. Facts, quotes, numbers and opinions must come from Ran. Draft by interviewing him first, then outline, then write, then let him finesse. Never invent facts or results. Leave a `<!-- TO ADD -->` note instead, and keep a heading in the note until its section has content.
   - **Writing** and **Making** are lighter, passing ideas, experiments and thoughts. Keep them short.
 - `draft: true` keeps it off the site. Remove it to publish.
 - `tldr` optional plain answer at the top ("In short")
@@ -49,6 +50,12 @@ Notes for Ran to fill in go in `<!-- -->` comments. They don't show on the site.
 - Present Ran as a leader who builds things, not a job seeker. Fun to read.
 - Prefer several short posts per experience, linked by `series`, over one long one.
 - Use `##` headings that match what people search for. Keep paragraphs short.
+
+## Agent skills
+
+- Skills live in `src/skills/<name>/SKILL.md` (Agent Skills format, `name` and `description` front matter). They publish at `/skills/<name>/SKILL.md`, a `.zip` is built for each, and `/skills/` lists them.
+- Add `skill: <name>` to a post's or story's front matter to show the install panel at the end of it.
+- Skills are MIT-licensed, unlike the writing. Write them as clear instructions grounded in what the post describes, and end with a "From Ran Craycraft" credit line.
 
 ## Design system
 

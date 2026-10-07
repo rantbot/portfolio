@@ -2,8 +2,6 @@
 title: Helping stabilize the organization behind the Ruby ecosystem
 description: As President of Ruby Central, I helped rebuild sponsor support and reshape governance and funding during a period of financial distress.
 date: 2026-10-05
-kind: story
-layout: case-study.njk
 case_study:
   organization: Ruby Central
   role: President of the Board of Directors

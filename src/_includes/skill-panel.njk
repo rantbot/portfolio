@@ -1,0 +1,31 @@
+{#- An install panel for an agent skill. Expects `sk`, an entry from _data/skills.js. -#}
+{%- set base = env.url + "/skills/" + sk.folder %}
+<aside class="skill" id="skill-{{ sk.folder }}" aria-labelledby="skill-{{ sk.folder }}-h">
+  <p class="eyebrow">Install this skill in your agent</p>
+  <h2 id="skill-{{ sk.folder }}-h" class="skill-name">{{ sk.name }}</h2>
+  <p class="skill-desc">{{ sk.description }}</p>
+
+  <div class="skill-tabs" role="tablist" aria-label="Ways to install" hidden>
+    <button type="button" role="tab" aria-selected="true" data-tab="npx">Any agent</button>
+    <button type="button" role="tab" aria-selected="false" data-tab="claude-code">Claude Code</button>
+    <button type="button" role="tab" aria-selected="false" data-tab="claude">Claude app</button>
+  </div>
+
+  <div class="skill-panel" data-panel="npx">
+    <p class="skill-how">Works with Claude Code, Codex, Cursor and dozens more through the open skills installer.</p>
+    <div class="code"><code>npx skills add {{ base }}/SKILL.md</code><button type="button" class="copy" aria-label="Copy command">Copy</button></div>
+  </div>
+  <div class="skill-panel" data-panel="claude-code">
+    <p class="skill-how">Installs for every project on this computer.</p>
+    <div class="code"><code>curl -fsSL {{ base }}.zip -o /tmp/{{ sk.folder }}.zip && unzip -o /tmp/{{ sk.folder }}.zip -d ~/.claude/skills</code><button type="button" class="copy" aria-label="Copy command">Copy</button></div>
+  </div>
+  <div class="skill-panel" data-panel="claude">
+    <p class="skill-how">Download the .zip, then upload it in Claude where you manage skills.</p>
+  </div>
+
+  <p class="skill-links">
+    <a href="/skills/{{ sk.folder }}.zip" download class="arrow-link">Download .zip</a>
+    <a href="/skills/{{ sk.folder }}/SKILL.md" class="arrow-link">Read the skill</a>
+    <a href="/skills/" class="arrow-link">All skills</a>
+  </p>
+</aside>

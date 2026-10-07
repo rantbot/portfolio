@@ -4,9 +4,9 @@
 
 The posts, pages and images in `src/` (including `src/posts/`, `src/about.md` and `src/assets/images/`) are © Ran Craycraft. All rights reserved. Please link to them rather than republishing them.
 
-## Code
+## Code and skills
 
-The templates, styles, scripts and configuration are available under the MIT License.
+The templates, styles, scripts, configuration, and the agent skills in `src/skills/` are available under the MIT License.
 
 Copyright (c) 2026 Ran Craycraft
 

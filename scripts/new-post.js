@@ -12,7 +12,7 @@ if (!["writing", "making", "story"].includes(kind)) {
 }
 const date = new Date().toLocaleDateString("en-CA", { timeZone: "America/Los_Angeles" });
 const slug = title.toLowerCase().replace(/[’']/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-const file = `src/posts/${date}-${slug}.md`;
+const file = kind === "story" ? `src/stories/${slug}.md` : `src/posts/${date}-${slug}.md`;
 if (existsSync(file)) {
   console.error(`${file} already exists.`);
   process.exit(1);
@@ -23,10 +23,8 @@ writeFileSync(
 title: ${JSON.stringify(title)}
 description: ""
 date: ${date}
-kind: ${kind}
-draft: true
-${kind === "story" ? `layout: case-study.njk
-case_study:
+${kind === "story" ? "" : `kind: ${kind}\n`}draft: true
+${kind === "story" ? `case_study:
   organization: ""
   role: ""
   years: ""

@@ -8,6 +8,7 @@ series: Tools for my team
 meta: Calendar service
 image: /assets/images/experiments/meeting-prep.png
 image_alt: Illustration of Meeting Prep in use
+skill: meeting-prep-brief
 ---
 
 Good sales calls start with ten minutes of homework. Who is this person, what does their company do, have we talked before, and is there an open deal. Most of us do that homework in a rush, or skip it.

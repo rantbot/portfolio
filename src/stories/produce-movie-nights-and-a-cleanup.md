@@ -2,8 +2,6 @@
 title: Produce pickups, movie nights, and a cleanup that’s still going
 description: What I’ve organized in Ladera Heights, from a driveway produce pickup during COVID to a monthly cleanup that’s six years old.
 date: 2026-10-04
-kind: story
-layout: case-study.njk
 case_study:
   organization: Ladera Heights
   role: Neighborhood organizer and civic association board member

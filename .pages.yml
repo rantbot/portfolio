@@ -24,7 +24,6 @@ content:
         default: writing
         options:
           values:
-            - { value: story, label: Story (a milestone, written as a case study) }
             - { value: writing, label: Writing }
             - { value: making, label: Making }
       - { name: date, label: Date, type: date, required: true }
@@ -42,21 +41,39 @@ content:
       - { name: updated, label: Last updated, type: date }
       - { name: try_url, label: Try it link, type: string, description: "Public link to the tool, if there is one. Adds a Try it link at the end of the post." }
       - { name: try_label, label: Try it label, type: string, description: "Optional, like “Install the extension”" }
-      - { name: layout, label: Layout, type: select, default: post.njk, options: { values: [{ value: post.njk, label: Post }, { value: case-study.njk, label: Case study }] }, description: "Stories use Case study" }
+      - { name: meta, label: Card label, type: string, description: "Optional, shown on cards instead of the date" }
+      - { name: body, label: Post, type: rich-text }
+
+  - name: stories
+    label: Stories
+    type: collection
+    path: src/stories
+    filename: "{primary}.md"
+    view:
+      fields: [title, draft]
+      primary: title
+    fields:
+      - { name: title, label: Title, type: string, required: true, description: "Describe the work, not the job title" }
+      - { name: description, label: Summary, type: text, required: true }
+      - { name: date, label: Date, type: date }
+      - { name: draft, label: Draft, type: boolean, default: true, description: "Turn off and save to publish" }
       - name: case_study
         label: Case study details
         type: object
-        description: For stories only
         fields:
           - { name: organization, label: Organization, type: string }
-          - { name: role, label: Role, type: string }
-          - { name: years, label: Years, type: string, description: "Like “2011 to 2013”" }
-          - { name: start, label: Start year, type: number, description: "Orders the stories" }
+          - { name: role, label: My role, type: string }
+          - { name: years, label: When, type: string, description: "Like “2011 to 2013”" }
+          - { name: start, label: Start year, type: number, description: "Orders the stories, most recent first" }
           - { name: scope, label: Focus, type: text }
-          - { name: team, label: With, type: text, description: "Who you did it with" }
+          - { name: team, label: With, type: text }
           - { name: outcomes, label: Outcomes, type: string, list: true }
-      - { name: meta, label: Card label, type: string, description: "Optional, shown on cards instead of the date" }
-      - { name: body, label: Post, type: rich-text }
+      - { name: image, label: Cover photo, type: image }
+      - { name: image_alt, label: Cover photo description, type: string }
+      - { name: tone, label: Cover color, type: string, description: "Background when there's no photo, like #E9E6DC" }
+      - { name: ink, label: Cover text color, type: string }
+      - { name: tldr, label: In short, type: text }
+      - { name: body, label: Story, type: rich-text }
 
   - name: site
     label: Site and homepage

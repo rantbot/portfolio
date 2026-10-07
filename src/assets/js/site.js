@@ -51,3 +51,32 @@ document.querySelectorAll(".carousel").forEach((track) => {
   window.addEventListener("resize", update);
   update();
 });
+
+// Skill panels: tabs for each way to install, and copy buttons for the commands.
+document.querySelectorAll(".skill").forEach((skill) => {
+  const tabs = skill.querySelector(".skill-tabs");
+  const panels = skill.querySelectorAll(".skill-panel");
+  if (tabs) {
+    tabs.hidden = false;
+    const show = (name) => {
+      tabs.querySelectorAll("button").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.tab === name)));
+      panels.forEach((p) => (p.hidden = p.dataset.panel !== name));
+    };
+    tabs.addEventListener("click", (e) => {
+      const b = e.target.closest("button[data-tab]");
+      if (b) show(b.dataset.tab);
+    });
+    show("npx");
+  }
+  skill.querySelectorAll(".copy").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const text = btn.parentElement.querySelector("code").textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = "Copied";
+        btn.dataset.copied = "";
+        setTimeout(() => { btn.textContent = "Copy"; delete btn.dataset.copied; }, 1600);
+      } catch (e) {}
+    });
+  });
+});
