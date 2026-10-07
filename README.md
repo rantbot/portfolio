@@ -28,17 +28,9 @@ A few tips that help readers and search:
 - **Pin as a story.** Puts the post in the Stories row on the homepage. The three newest pinned posts show.
 - **No photo yet?** Set a cover color and a few cover words and the site makes a typographic cover.
 
-**Site and homepage** in Pages CMS holds the homepage text, newsletter settings, and your profile links. **Essays published elsewhere** holds the thoughtbot posts, which link to the originals.
+**Site and homepage** in Pages CMS holds the homepage text and your profile links. **Essays published elsewhere** holds the thoughtbot posts, which link to the originals.
 
 You can also edit any file directly on github.com or in the GitHub mobile app. Posts are plain Markdown files in `src/posts`.
-
-## The newsletter
-
-1. Create a free account at [Buttondown](https://buttondown.com).
-2. In Pages CMS, open **Site and homepage**, then **Newsletter**, and enter your Buttondown username and a newsletter name. The signup form appears on every page.
-3. In Buttondown, turn on **RSS-to-email** with the feed `https://YOUR-SITE/feed.xml`, so subscribers get each new post automatically.
-
-Until a username is set, the site shows a link to the RSS feed instead of a form.
 
 ## Help people find it
 
@@ -78,4 +70,4 @@ To start a post by hand, run `npm run new -- "Post title" making`.
 - The dates on the six starter posts are placeholders. Set each one to the day you publish it.
 - The thoughtbot, AOL, and Ruby Central stories include notes in `<!-- -->` marks for the facts, collaborators, results, and lessons to add. These notes don't show on the site.
 - Seven more posts are waiting as drafts: Is it AI?, the meeting prep tool, the cookbook, the children's book, the outdoor kitchen, Austin, and the AI transformation.
-- Add your LinkedIn address, newsletter name, and a portrait (set `portrait` at the top of `src/about.md`).
+- Add your LinkedIn address and a portrait (set `portrait` at the top of `src/about.md`).

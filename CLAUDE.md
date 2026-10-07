@@ -12,7 +12,7 @@ Ran will say things like "add a post about X", "update my AOL story", "add my ne
 | --- | --- |
 | Posts (Writing and Making) | `src/posts/YYYY-MM-DD-slug.md` |
 | Photos | `src/assets/images/`, referenced as `/assets/images/name.jpg` |
-| Homepage text, newsletter, profile links | `src/_data/site.yml` |
+| Homepage text, profile links | `src/_data/site.yml` |
 | thoughtbot essays and other outside posts | `src/_data/elsewhere.yml`, newest first |
 | About page, roles, education | `src/about.md` |
 | Look and feel | `src/assets/css/site.css` |

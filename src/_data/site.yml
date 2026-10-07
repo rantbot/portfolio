@@ -19,13 +19,6 @@ now: Today I’m Managing Director and a board member at thoughtbot, and Preside
 invitation: I talk about leading through AI, turning ideas into businesses, and making things.
 invitation_note: For podcasts, events, and projects, write to me.
 
-# Newsletter. Create a free Buttondown account, then put your username here.
-# Leave buttondown_username blank to show an RSS link instead of a signup form.
-newsletter:
-  name: "[Newsletter name]"
-  pitch: New writing and new things I’ve made, sent when they’re published.
-  buttondown_username: ""
-
 # Profiles that are you. Search engines and AI tools use these to connect the dots.
 same_as:
   - label: LinkedIn

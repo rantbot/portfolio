@@ -61,13 +61,6 @@ content:
       - { name: now, label: What I do now, type: text }
       - { name: invitation, label: Closing invitation, type: text }
       - { name: invitation_note, label: Closing note, type: text }
-      - name: newsletter
-        label: Newsletter
-        type: object
-        fields:
-          - { name: name, label: Newsletter name, type: string }
-          - { name: pitch, label: Pitch, type: text }
-          - { name: buttondown_username, label: Buttondown username, type: string }
       - name: same_as
         label: My profiles elsewhere
         type: object
