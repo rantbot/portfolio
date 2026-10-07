@@ -19,6 +19,11 @@ cover_lines:
   - Moviefone
   - AOL TV
   - Cambio
+read_next:
+  - story: bringing-north-kingdom-to-the-us
+    why: What came next
+  - story: new-digital-experiences-at-nbc
+    why: Where the media work started
 ---
 
 ## The situation

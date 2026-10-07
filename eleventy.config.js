@@ -37,6 +37,22 @@ export default function (eleventyConfig) {
       .filter((p) => p.data.kind === "story")
       .sort((a, b) => (b.data.case_study?.start || 0) - (a.data.case_study?.start || 0) || b.date - a.date)
   );
+  // What to read after a story. Uses the story's read_next picks, otherwise the next story in career order.
+  eleventyConfig.addFilter("readNext", (posts, page, picks = []) => {
+    const stories = posts.filter((p) => p.data.kind === "story");
+    const out = [];
+    for (const r of picks || []) {
+      const p = stories.find((s) => s.page.fileSlug === r.story);
+      if (p && p.url !== page.url) out.push({ p, why: r.why });
+    }
+    if (!out.length) {
+      const order = [...stories].sort((a, b) => (a.data.case_study?.start || 0) - (b.data.case_study?.start || 0));
+      const i = order.findIndex((p) => p.url === page.url);
+      const p = order[i + 1] || order[i - 1];
+      if (p) out.push({ p, why: order[i + 1] ? "What came next" : "What came before" });
+    }
+    return out.slice(0, 2);
+  });
   // Everything except stories, newest first
   eleventyConfig.addFilter("stream", (posts, elsewhere = []) => {
     const own = posts.filter((p) => p.data.kind !== "story");

@@ -16,6 +16,11 @@ cover_lines:
   - Sponsors
   - Governance
   - Funding
+read_next:
+  - story: building-the-next-chapter-of-thoughtbot
+    why: My work at thoughtbot
+  - story: produce-movie-nights-and-a-cleanup
+    why: Another community I help look after
 ---
 
 ## The situation

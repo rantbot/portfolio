@@ -18,6 +18,11 @@ cover_lines:
   - Products
   - Platforms
   - Experiments
+read_next:
+  - story: building-the-next-chapter-of-thoughtbot
+    why: What came next
+  - story: bringing-north-kingdom-to-the-us
+    why: The studio before this one
 ---
 
 ## The situation

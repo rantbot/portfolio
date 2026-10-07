@@ -20,6 +20,11 @@ cover_lines:
   - Fantasy football
   - Virtual worlds
   - Hulu
+read_next:
+  - story: why-leave-astoria
+    why: What I did next
+  - story: launching-new-ventures-at-aol
+    why: More new ventures inside a media company
 ---
 
 ## The situation

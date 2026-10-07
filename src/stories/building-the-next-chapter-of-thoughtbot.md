@@ -22,6 +22,11 @@ cover_lines:
   - Delivery
   - Regulated industries
   - New offerings
+read_next:
+  - story: helping-stabilize-ruby-central
+    why: What I took on alongside it
+  - story: wildebeest
+    why: The consultancy I ran before
 ---
 
 ## The situation

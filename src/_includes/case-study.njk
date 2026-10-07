@@ -54,15 +54,22 @@ layout: base.njk
     </div>
   </aside>
 
-  {%- set others = collections.posts | stories %}
-  {%- if others.length > 1 %}
-  <nav class="section grid" aria-labelledby="more-h">
-    <h2 id="more-h" class="rail eyebrow strong">More stories</h2>
-    <ol class="span-main entries entries-compact">
-      {%- for s in others %}{% if s.url != page.url %}
-      <li><a href="{{ s.url }}" class="entry entry-row"><span class="entry-title serif">{{ s.data.title }}</span><span class="meta">{{ s.data.case_study.organization }}</span></a></li>
-      {%- endif %}{% endfor %}
-    </ol>
+  {%- set reads = collections.posts | readNext(page, read_next) %}
+  {%- set allStories = collections.posts | stories %}
+  {%- if reads.length %}
+  <nav class="section grid read-next" aria-labelledby="next-h">
+    <h2 id="next-h" class="rail eyebrow strong">Read next</h2>
+    <ul class="span-wide read-next-list{% if reads.length == 1 %} is-single{% endif %}">
+      {%- for r in reads %}{% set p = r.p %}
+      <li><a href="{{ p.url }}" class="card">
+        <span class="media">{% set ratio = "16 / 10" %}{% include "story-cover.njk" %}</span>
+        <span class="eyebrow">{{ r.why }}</span>
+        <span class="card-title card-title-lg serif">{{ p.data.title }}</span>
+        <span class="card-desc">{{ p.data.description }}</span>
+      </a></li>
+      {%- endfor %}
+    </ul>
+    <p class="span-wide section-foot"><a href="/stories/" class="arrow-link">All {{ allStories.length }} stories</a></p>
   </nav>
   {%- endif %}
 </article>

@@ -333,6 +333,11 @@ a:hover .text-panel-title { transform: translateY(-3px); }
 .closing-actions { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 0; }
 .closing-small { margin-top: 20px; font-size: 14px; color: var(--muted); }
 
+/* Read next, at the end of a story */
+.read-next-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px var(--col-gap); }
+.read-next-list.is-single { grid-template-columns: minmax(0, 1fr); max-width: 640px; }
+.read-next .section-foot { margin-top: 40px; }
+
 /* Logo wall. Quiet on purpose, small and soft, no dividers. */
 .logos-section { padding-top: clamp(72px, 8vw, 120px); align-items: start; }
 .logos-section .rail { padding-top: 6px; max-width: 14em; }
@@ -405,6 +410,7 @@ a:hover .text-panel-title { transform: translateY(-3px); }
   .entries-feed:hover .line-title { color: var(--ink); }
   .tiles, .tiles-2 { grid-template-columns: minmax(0, 1fr); }
   .offers { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .read-next-list { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .logos { display: flex; flex-wrap: wrap; gap: 18px 26px; }
   .logos li { min-height: 40px; }
   .logos img { width: calc(var(--w) * 0.78); }

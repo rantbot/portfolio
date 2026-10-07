@@ -14,6 +14,11 @@ cover_kicker: North Kingdom
 cover_lines:
   - A new office
   - A new market
+read_next:
+  - story: wildebeest
+    why: What came next
+  - story: building-the-next-chapter-of-thoughtbot
+    why: Leading a studio again, years later
 ---
 
 ## The situation

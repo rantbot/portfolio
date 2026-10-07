@@ -16,6 +16,11 @@ cover_lines:
   - Neighbors
   - Events
   - Local business
+read_next:
+  - story: launching-new-ventures-at-aol
+    why: What came next
+  - story: produce-movie-nights-and-a-cleanup
+    why: Another neighborhood, years later
 ---
 
 <!-- TO ADD: the years you ran it, as case_study years, and the real start year. -->

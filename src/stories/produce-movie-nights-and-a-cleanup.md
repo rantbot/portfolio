@@ -19,6 +19,11 @@ cover_lines:
   - Produce
   - Movie nights
   - Cleanups
+read_next:
+  - story: why-leave-astoria
+    why: Another neighborhood, another community
+  - story: helping-stabilize-ruby-central
+    why: Another community I help look after
 ---
 
 ## The situation

@@ -61,6 +61,18 @@ A quiet wall sits under the homepage hero and on `/work/` (`src/_includes/logos.
 
 To add one, make a single-color PNG in `src/assets/images/logos/`: flatten on white, alpha = 255 minus the darkest channel (ramp 28 to 110), fill with ink `#151513`, trim to the mark, and resize so its area is about 27,000 px². Remove any stray text from the source (the ANDYs file had "Ad Makers Collective" in a corner). Check the whole mark survived, the first Google pass lost the left of the G. In `site.yml` set width and height to about 0.28 of the PNG's pixel size. The CSS shows them at 38% opacity, 70% on hover, five per row on desktop and wrapped smaller on phones. Logos stay off story covers.
 
+## Read next
+
+Every story ends with "Read next", up to two stories chosen in its front matter:
+
+```yaml
+read_next:
+  - story: wildebeest          # the file name, without .md
+    why: What came next        # a short reason, shown above the title
+```
+
+The first is usually what happened next in Ran's career, the second a story that shares a theme. Without `read_next`, the next story by start year is shown. Update the picks when a new story is added.
+
 ## Language
 
 Call them stories everywhere, never case studies or milestones. A story is about the work, not the company, and there can be several from one place. The organization only appears as quiet context (the card's small meta line and the facts panel), never as a story's cover or heading.
