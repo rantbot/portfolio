@@ -45,39 +45,42 @@ title: Ran Craycraft
   <div class="section-head">
     <h2 id="latest-h" class="eyebrow strong">Latest</h2>
     <p class="section-note">Ideas, experiments and essays</p>
-    <div class="filter" role="group" aria-label="Show" hidden>
-      <button type="button" data-filter="all" aria-pressed="true">All</button>
-      <button type="button" data-filter="writing" aria-pressed="false">Writing</button>
-      <button type="button" data-filter="making" aria-pressed="false">Making</button>
-    </div>
+    <p class="section-links"><a href="/writing/" class="arrow-link">Writing</a><a href="/making/" class="arrow-link">Making</a></p>
   </div>
-  <div class="feed">
-    {%- for m in collections.posts | stream(elsewhere) | limit(24) | byMonth %}
-    <section class="month grid" aria-label="{{ m.month }} {{ m.year }}">
-      <h3 class="rail month-label"><span>{{ m.month }}</span> <span class="month-year">{{ m.year }}</span></h3>
-      <ol class="span-wide entries-feed">
-        {%- for p in m.items %}
-        {%- set making = p.data.kind == "making" %}
-        <li data-kind="{{ p.data.kind }}">
-          <a href="{{ p.url }}" class="line{% if making %} has-thumb{% endif %}">
-            <span class="line-main">
-              <span class="line-title serif">{{ p.data.title }}</span>
-              <span class="line-desc">{{ p.data.description }}</span>
-            </span>
-            <span class="line-meta">
-              <span class="line-kind">{{ "Making" if making else "Writing" }}{% if p.external %} <span class="ext" aria-label="on the thoughtbot blog, opens the original">↗</span>{% endif %}</span>
-              <time datetime="{{ p.date | isoDate }}">{{ p.date | dayMonth }}</time>
-            </span>
-            {%- if making %}<span class="line-thumb" aria-hidden="true">{% set ratio = "4 / 3" %}{% include "cover.njk" %}</span>{% endif %}
-          </a>
-        </li>
-        {%- endfor %}
-      </ol>
-    </section>
-    {%- endfor %}
+  {%- set items = collections.posts | stream(elsewhere) | limit(11) %}
+
+  {#- The newest piece leads, large -#}
+  {%- set p = items[0] %}{% set size = "lead" %}
+  <div class="lead">{% include "feed-card.njk" %}</div>
+
+  {#- The next three sit side by side -#}
+  <div class="trio">
+    {%- for p in items.slice(1, 4) %}{% set size = "card" %}{% include "feed-card.njk" %}{% endfor %}
+  </div>
+
+  {#- Then a quick list of what came before -#}
+  <div class="grid earlier">
+    <p class="rail eyebrow">Earlier</p>
+    <ol class="span-wide entries-feed">
+      {%- for p in items.slice(4) %}
+      {%- set making = p.data.kind == "making" %}
+      <li>
+        <a href="{{ p.url }}" class="line{% if making %} has-thumb{% endif %}">
+          <span class="line-main">
+            <span class="line-title serif">{{ p.data.title }}</span>
+          </span>
+          <span class="line-meta">
+            <span class="line-kind">{{ "Making" if making else "Writing" }}{% if p.external %} <span class="ext" aria-label="on the thoughtbot blog, opens the original">↗</span>{% endif %}</span>
+            <time datetime="{{ p.date | isoDate }}">{{ p.date | dayMonth }}</time>
+          </span>
+          {%- if making %}<span class="line-thumb" aria-hidden="true">{% set ratio = "4 / 3" %}{% include "cover.njk" %}</span>{% endif %}
+        </a>
+      </li>
+      {%- endfor %}
+    </ol>
   </div>
   <div class="grid section-foot">
-    <p class="span-main"><a href="/writing/" class="arrow-link">All writing</a><a href="/making/" class="arrow-link">Everything I’ve made</a></p>
+    <p class="span-wide"><a href="/writing/" class="arrow-link">All writing</a><a href="/making/" class="arrow-link">Everything I’ve made</a></p>
   </div>
 </section>
 

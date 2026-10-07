@@ -60,7 +60,7 @@ layout: base.njk
     <h2 id="more-h" class="rail eyebrow strong">More stories</h2>
     <ol class="span-main entries entries-compact">
       {%- for s in others %}{% if s.url != page.url %}
-      <li><a href="{{ s.url }}" class="entry entry-row"><span class="entry-title serif">{{ s.data.title }}</span><span class="meta">{{ s.data.case_study.organization }}{% if s.data.case_study.years %}<span class="dot">·</span>{{ s.data.case_study.years }}{% endif %}</span></a></li>
+      <li><a href="{{ s.url }}" class="entry entry-row"><span class="entry-title serif">{{ s.data.title }}</span><span class="meta">{{ s.data.case_study.organization }}</span></a></li>
       {%- endif %}{% endfor %}
     </ol>
   </nav>

@@ -5,7 +5,7 @@
 <img class="cover-img" src="{{ d.image }}" alt="{{ d.image_alt or '' }}" loading="lazy" style="aspect-ratio: {{ ratio }}">
 {%- else %}
 <div class="cover story-cover" style="aspect-ratio: {{ ratio }}; background: {{ d.tone or '#EFEFEC' }}; color: {{ d.ink or '#1F1F1C' }}" aria-hidden="true">
-  <span class="cover-kicker">{{ d.case_study.years if d.case_study and d.case_study.years else "" }}</span>
+  <span class="cover-kicker"></span>
   <span class="cover-lines">
     {%- for line in (d.cover_lines or [d.title]) %}<span{% if loop.last and loop.length > 1 %} class="i"{% endif %}>{{ line }}</span>{% endfor -%}
   </span>

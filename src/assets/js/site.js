@@ -103,7 +103,7 @@ if (window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 821px)
     frame = Math.abs(tx - x) + Math.abs(ty - y) > 0.5 ? requestAnimationFrame(move) : 0;
   };
   const place = (e, line) => {
-    const rail = line.closest(".month").querySelector(".rail").getBoundingClientRect();
+    const rail = line.closest(".grid").querySelector(".rail").getBoundingClientRect();
     peek.style.width = `${Math.min(rail.width, 300)}px`;
     const h = peek.offsetHeight || 200;
     tx = rail.left;

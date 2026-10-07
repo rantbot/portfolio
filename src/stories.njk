@@ -18,7 +18,7 @@ section: stories
     <span class="media">{% set ratio = "3 / 2" %}{% include "story-cover.njk" %}</span>
     <span class="card-title card-title-lg serif">{{ p.data.title }}</span>
     <span class="card-desc">{{ p.data.description }}</span>
-    {%- if p.data.case_study and p.data.case_study.organization %}<span class="card-meta">{{ p.data.case_study.organization }}{% if p.data.case_study.years %}<span class="dot">·</span>{{ p.data.case_study.years }}{% endif %}</span>{% endif %}
+    {%- if p.data.case_study and p.data.case_study.organization %}<span class="card-meta">{{ p.data.case_study.organization }}</span>{% endif %}
   </a>
   {%- endfor %}
 </div>
