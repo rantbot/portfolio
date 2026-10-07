@@ -35,6 +35,7 @@ Front matter:
 - `pinned: true` and `meta` put it in the homepage Stories row (three newest pinned)
 - Cover, either `image` plus `image_alt` (and optional `image_caption`), or a typographic cover with `tone`, `ink`, `cover_kicker`, `cover_lines`
 - `updated` optional date for revised posts
+- `try_url` and optional `try_label` add a "Try it" link at the end, only for tools that are public
 
 Notes for Ran to fill in go in `<!-- -->` comments. They don't show on the site.
 

@@ -41,6 +41,8 @@ content:
       - { name: cover_kicker, label: Cover small label, type: string }
       - { name: cover_lines, label: Cover words, type: string, list: true }
       - { name: updated, label: Last updated, type: date }
+      - { name: try_url, label: Try it link, type: string, description: "Public link to the tool, if there is one. Adds a Try it link at the end of the post." }
+      - { name: try_label, label: Try it label, type: string, description: "Optional, like “Install the extension”" }
       - { name: body, label: Post, type: rich-text }
 
   - name: site

@@ -165,3 +165,4 @@ a.list-row:hover .list-title { text-decoration: underline; text-decoration-thick
   .cards.three .cover { aspect-ratio: 4 / 3 !important; }
   .list-row > .small { white-space: normal; }
 }
+.try { margin-top: 32px; font-weight: 500; }

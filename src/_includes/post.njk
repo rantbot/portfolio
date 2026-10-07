@@ -27,6 +27,9 @@ layout: base.njk
     <div class="prose serif">
 {{ content | safe }}
     </div>
+    {%- if try_url %}
+    <p class="try"><a href="{{ try_url }}" class="ul">{{ try_label or "Try it" }} ↗</a></p>
+    {%- endif %}
 
     {%- set siblings = collections.posts | inSeries(series) %}
     {%- if siblings.length > 1 %}
