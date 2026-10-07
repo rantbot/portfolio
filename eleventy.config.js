@@ -1,7 +1,9 @@
 import yaml from "js-yaml";
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import { HtmlBasePlugin } from "@11ty/eleventy";
+import { readFileSync } from "node:fs";
 import { zipSkills } from "./scripts/zip-skills.js";
+import { ogCard, drawCards } from "./scripts/og/cards.js";
 
 export default function (eleventyConfig) {
   eleventyConfig.addDataExtension("yml,yaml", (contents) => yaml.load(contents));
@@ -9,8 +11,36 @@ export default function (eleventyConfig) {
   // Agent skills are published as-is, and zipped after each build
   eleventyConfig.addPassthroughCopy({ "src/skills": "skills" }, { filter: ["**/*", "!*.js"] });
   eleventyConfig.ignores.add("src/skills/**");
-  eleventyConfig.on("eleventy.after", ({ dir }) => zipSkills("src/skills", `${dir.output}/skills`));
+  eleventyConfig.on("eleventy.after", ({ directories }) => zipSkills("src/skills", `${directories.output}skills`));
   eleventyConfig.addPlugin(HtmlBasePlugin);
+
+  // Share cards for pages without a photo of their own, drawn after each build (scripts/og/cards.js)
+  eleventyConfig.addFilter("ogCard", (url, title, kicker, tone, ink, note) => ogCard(url, { title, kicker, tone, ink, note }));
+  eleventyConfig.on("eleventy.after", ({ directories }) => drawCards(directories.output));
+
+  // Markdown versions of each post, Leading piece and the About page, at the same address ending in .md,
+  // for AI tools and anyone who wants the plain text. Private <!-- notes --> never make it in.
+  eleventyConfig.addCollection("markdown", (api) =>
+    api.getFilteredByGlob(["src/posts/*.md", "src/leading/*.md", "src/about.md"]).filter((p) => !p.data.draft).sort((a, b) => b.date - a.date)
+  );
+  eleventyConfig.addFilter("mdUrl", (url) => (typeof url === "string" ? url.replace(/\/$/, "") + ".md" : ""));
+  eleventyConfig.addFilter("sourceMarkdown", (inputPath, base) => {
+    let s = readFileSync(inputPath, "utf8").replace(/^---\n[\s\S]*?\n---\n/, "").replace(/<!--[\s\S]*?-->\n?/g, "");
+    // The About page wraps its prose in layout markup. Keep just the prose.
+    const prose = s.match(/<div class="span-main prose serif">([\s\S]*?)<\/div>/);
+    if (prose) s = prose[1];
+    const attr = (tag, name) => (tag.match(new RegExp(`${name}="([^"]*)"`)) || [])[1] || "";
+    // Pictures become Markdown images, with the caption in italics beneath
+    s = s.replace(/<figure[\s\S]*?<\/figure>/g, (fig) => {
+      const img = (fig.match(/<img[^>]*>/) || [""])[0];
+      const cap = (fig.match(/<figcaption>([\s\S]*?)<\/figcaption>/) || [])[1];
+      return `![${attr(img, "alt")}](${attr(img, "src")})` + (cap ? `\n\n*${cap.trim()}*` : "");
+    });
+    s = s.replace(/<img[^>]*>/g, (img) => `![${attr(img, "alt")}](${attr(img, "src")})`);
+    // Links and images on this site get the full address
+    s = s.replace(/\]\(\//g, `](${base}/`).replace(/href="\//g, `href="${base}/`);
+    return s.replace(/\n{3,}/g, "\n\n").trim();
+  });
 
   // Keep <!-- notes --> in posts out of the published pages
   eleventyConfig.addTransform("stripComments", function (content) {

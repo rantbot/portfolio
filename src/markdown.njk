@@ -1,0 +1,53 @@
+---
+# Markdown versions of each post, Leading piece and the About page, at the page's address with .md on the end.
+# Linked from each page's <head> and from llms.txt. Built from the source files, with private <!-- notes --> removed.
+pagination:
+  data: collections.markdown
+  size: 1
+  alias: p
+permalink: "{{ p.url | mdUrl }}"
+eleventyExcludeFromCollections: true
+---
+{%- set d = p.data -%}
+{%- set cs = d.case_study or {} -%}
+# {{ ("About " + site.name) if p.url == "/about/" else d.title | safe }}
+
+> {{ d.description | safe }}
+
+{% if p.url != "/about/" %}By {{ site.name }} · {{ p.date | readableDate }}{% if d.kind %} · {{ d.kind | kindLabel }}{% endif %}{% if d.series %} · Series: {{ d.series | safe }}{% endif %}
+{% endif %}Web page: {{ env.url }}{{ p.url }}
+{%- if cs.organization %}
+
+- Organization: {{ cs.organization | safe }}
+{%- if cs.role %}
+- Role: {{ cs.role | safe }}{% endif %}
+{%- if cs.years %}
+- When: {{ cs.years | safe }}{% endif %}
+{%- if cs.scope or cs.challenge %}
+- Focus: {{ (cs.scope or cs.challenge) | safe }}{% endif %}
+{%- if cs.team %}
+- With: {{ cs.team | safe }}{% endif %}
+{%- for o in cs.outcomes %}
+- Outcome: {{ o | safe }}{% endfor %}
+{%- endif %}
+{%- if d.tldr %}
+
+In short: {{ d.tldr | safe }}
+{%- endif %}
+
+{{ p.inputPath | sourceMarkdown(env.url) | safe }}
+{%- if p.url == "/about/" %}
+
+## Roles
+
+{% for r in d.roles %}- {{ r.role | safe }} ({{ r.years | safe }})
+{% endfor %}
+## Education
+
+{% for e in d.education %}- {{ e.degree | safe }}, {{ e.school | safe }}
+{% endfor %}
+{%- endif %}
+{%- if d.try_url %}
+
+Try it: {{ d.try_url }}
+{%- endif %}

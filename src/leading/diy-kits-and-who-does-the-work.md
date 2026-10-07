@@ -30,7 +30,7 @@ read_next:
 
 <!-- TO ADD: an opening scene. A specific day in the garage, what was on the bench, and who was there. -->
 
-About a month into the pandemic, John Gist and I noticed the same thing about our days. All we did was stare at screens. Work was Zoom calls, and so was everything else. Our threshold for it was lower back then, and neither of us wanted that to be our lives.
+About a month into the pandemic, [John Gist](https://www.johngist.com/) and I noticed the same thing about our days. All we did was stare at screens. Work was Zoom calls, and so was everything else. Our threshold for it was lower back then, and neither of us wanted that to be our lives.
 
 We had an itch to get outside and use our hands. I had a small garage, and it became the place where we tried things. RELIC started there, as experiments on a workbench.
 

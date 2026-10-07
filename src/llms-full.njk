@@ -1,0 +1,20 @@
+---
+permalink: /llms-full.txt
+eleventyExcludeFromCollections: true
+---
+# {{ site.name }}, everything in one file
+
+> {{ site.description | safe }}
+
+Every Leading piece, Writing and Making post on {{ env.url }}, plus the About page, as plain Markdown. Each one also lives at its own address ending in .md. The short index is at {{ env.url }}/llms.txt.
+{% for p in collections.markdown %}
+---
+
+# {{ ("About " + site.name) if p.url == "/about/" else p.data.title | safe }}
+
+Source: {{ env.url }}{{ p.url }}{% if p.url != "/about/" %} · {{ p.date | readableDate }} · {{ p.data.kind | kindLabel }}{% endif %}
+
+{{ p.data.description | safe }}
+
+{{ p.inputPath | sourceMarkdown(env.url) | safe }}
+{% endfor %}

@@ -2,23 +2,25 @@
 permalink: /llms.txt
 eleventyExcludeFromCollections: true
 ---
-# {{ site.name }}
+# {{ site.name | safe }}
 
-> {{ site.description }}
+> {{ site.description | safe }}
 
-{{ site.now }}
+{{ site.now | safe }}
+
+Every page below links to a plain Markdown version. Everything in one file is at {{ env.url }}/llms-full.txt.
 
 ## About
-- [About {{ site.name }}]({{ env.url }}/about/): Background, roles, and education.
+- [About {{ site.name | safe }}]({{ env.url }}/about.md): Background, roles, and education.
 
 ## Leading
-Longer pieces about the bigger work {{ site.name }} has led.
-{% for p in collections.posts | stories %}- [{{ p.data.title }}]({{ env.url }}{{ p.url }}): {{ p.data.description }}
+Longer pieces about the bigger work {{ site.name | safe }} has led.
+{% for p in collections.posts | stories %}- [{{ p.data.title | safe }}]({{ env.url }}{{ p.url | mdUrl }}): {{ p.data.description | safe }}
 {% endfor %}
 ## Writing
-{% for p in collections.posts | ofKind("writing") %}- [{{ p.data.title }}]({{ env.url }}{{ p.url }}): {{ p.data.description }}
-{% endfor %}{% for e in elsewhere %}- [{{ e.title }}]({{ e.url }}): {{ e.summary }} ({{ e.publication }})
+{% for p in collections.posts | ofKind("writing") %}- [{{ p.data.title | safe }}]({{ env.url }}{{ p.url | mdUrl }}): {{ p.data.description | safe }}
+{% endfor %}{% for e in elsewhere %}- [{{ e.title | safe }}]({{ e.url }}): {{ e.summary | safe }} ({{ e.publication | safe }})
 {% endfor %}
 ## Making
-{% for p in collections.posts | ofKind("making") %}- [{{ p.data.title }}]({{ env.url }}{{ p.url }}): {{ p.data.description }}
+{% for p in collections.posts | ofKind("making") %}- [{{ p.data.title | safe }}]({{ env.url }}{{ p.url | mdUrl }}): {{ p.data.description | safe }}
 {% endfor %}

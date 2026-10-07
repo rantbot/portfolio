@@ -6,24 +6,48 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#FAFAF7">
-{%- set pageTitle = (title + " · " + site.name) if (title and title != site.name) else (site.name + " · " + site.headline) %}
+{#- Title tags. The name is added after the title when there's room, and seo_title in front matter overrides the whole thing. -#}
+{%- if seo_title %}{% set pageTitle = seo_title %}
+{%- elif title and title != site.name %}{% set pageTitle = (title + " · " + site.name) if (title | length) <= 48 else title %}
+{%- else %}{% set pageTitle = site.name + " · " + site.headline %}{% endif %}
 {%- set pageDescription = description or site.description %}
 {%- set canonical = env.url + page.url %}
+{%- set cs = case_study or {} %}
+{#- Share image. A page's own photo when it has one, the default card on the homepage, otherwise a card drawn from the title. -#}
+{%- if image %}{% set ogImage = image %}{% set ogAlt = image_alt or title %}
+{%- elif page.url == "/" or page.url == "/404.html" %}{% set ogImage = "/assets/og-default.png" %}{% set ogAlt = site.name + ". " + site.headline %}
+{%- else %}
+{%- set ogKicker = ((kind | kindLabel) + ((" · " + cs.organization) if cs.organization else ((" · " + series) if series else ""))) if kind else "" %}
+{%- set ogImage = page.url | ogCard(title, ogKicker, tone if kind == "story" else "", ink if kind == "story" else "", "" if kind else (og_note or description or "")) %}{% set ogAlt = title + ", by " + site.name %}
+{%- endif %}
 <title>{{ pageTitle }}</title>
 <meta name="description" content="{{ pageDescription }}">
 <link rel="canonical" href="{{ canonical }}">
+{%- if page.url == "/404.html" or draft %}
+<meta name="robots" content="noindex">
+{%- endif %}
 <meta name="author" content="{{ site.name }}">
 <meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:locale" content="en_US">
 <meta property="og:title" content="{{ title or site.name }}">
 <meta property="og:description" content="{{ pageDescription }}">
 <meta property="og:url" content="{{ canonical }}">
-<meta property="og:type" content="{{ 'article' if kind else 'website' }}">
-{%- if image %}
-<meta property="og:image" content="{{ env.url }}{{ image }}">
+<meta property="og:type" content="{{ 'article' if kind else ('profile' if page.url == '/about/' else 'website') }}">
+<meta property="og:image" content="{{ env.url }}{{ ogImage }}">
+{%- if not image %}
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+{%- endif %}
+<meta property="og:image:alt" content="{{ ogAlt }}">
 <meta name="twitter:card" content="summary_large_image">
-{%- else %}
-<meta property="og:image" content="{{ env.url }}/assets/og-default.png">
-<meta name="twitter:card" content="summary_large_image">
+{%- if kind %}
+<meta property="article:published_time" content="{{ page.date | isoDate }}">
+<meta property="article:modified_time" content="{{ (updated or page.date) | isoDate }}">
+<meta property="article:author" content="{{ env.url }}/about/">
+<meta property="article:section" content="{{ kind | kindLabel }}">
+{%- endif %}
+{%- if kind or page.url == "/about/" %}
+<link rel="alternate" type="text/markdown" title="{{ title }} (Markdown)" href="{{ page.url | mdUrl }}">
 {%- endif %}
 {%- if kind and kind != "story" %}{% set headNb = collections.posts | neighbors(page) %}
 {%- if headNb.older %}<link rel="prev" href="{{ headNb.older.url }}">{% endif %}
@@ -34,13 +58,14 @@
 <link rel="preload" href="/assets/fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 {%- include "schema.njk" %}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="wrap">
 <header class="site-header">
-  <a href="/" class="brand"{% if page.url == "/" %} aria-current="page"{% endif %}>{{ site.name }}</a>
+  <a href="/" class="brand"{% if page.url == "/" %} aria-current="page"{% endif %}>{% include "brand-name.njk" %}</a>
   <nav class="site-nav" aria-label="Main">
     <a href="/leading/"{% if section == "leading" %} aria-current="page"{% endif %}>Leading</a>
     <a href="/writing/"{% if section == "writing" %} aria-current="page"{% endif %}>Writing</a>
@@ -54,7 +79,7 @@
 <div id="menu" class="menu" aria-label="Menu">
   <div class="menu-inner">
     <div class="menu-top">
-      <a href="/" class="brand">{{ site.name }}</a>
+      <a href="/" class="brand">{% include "brand-name.njk" %}</a>
       <a href="#" class="menu-close"><span>Close</span><span class="menu-icon is-x" aria-hidden="true"></span></a>
     </div>
     <nav aria-label="Menu">
