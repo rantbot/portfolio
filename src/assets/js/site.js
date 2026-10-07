@@ -29,13 +29,14 @@ document.querySelectorAll("a[data-e]").forEach((a) => {
   } catch (e) {}
 });
 
-// Stories carousel: arrow buttons scroll by one card, and a counter shows where you are.
+// Leading carousel: arrow buttons scroll by one card, and a counter shows where you are.
 // Without JavaScript, the row still scrolls and swipes.
 document.querySelectorAll(".carousel").forEach((track) => {
   const section = track.closest("section");
   const buttons = section.querySelectorAll(".carousel-btn");
   const count = section.querySelector(".carousel-count");
   const cards = track.querySelectorAll("li");
+  const bar = section.querySelector(".carousel-progress span");
   const step = () => (cards[1] ? cards[1].offsetLeft - cards[0].offsetLeft : track.clientWidth);
   const update = () => {
     const max = track.scrollWidth - track.clientWidth - 2;
@@ -47,6 +48,11 @@ document.querySelectorAll(".carousel").forEach((track) => {
       b.hidden = max <= 0;
       b.disabled = Number(b.dataset.dir) < 0 ? track.scrollLeft <= 2 : track.scrollLeft >= max;
     });
+    if (bar) {
+      const shown = Math.min(1, track.clientWidth / track.scrollWidth);
+      bar.style.width = `${shown * 100}%`;
+      bar.style.transform = `translateX(${max > 0 ? (track.scrollLeft / max) * ((1 - shown) / shown) * 100 : 0}%)`;
+    }
     if (count) {
       count.hidden = max <= 0;
       count.textContent = (first === last ? first : `${first}–${last}`) + ` of ${cards.length}`;
@@ -161,4 +167,57 @@ if (postNav.ArrowLeft || postNav.ArrowRight) {
     t.title = new Date(Date.UTC(+m[1], m[2] - 1, +m[3])).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
     t.textContent = label;
   });
+})();
+
+// Phone menu. The button opens a full-screen menu, Escape or Close shuts it, and focus stays inside while it's open.
+// Without JavaScript the button jumps to #menu and CSS shows it with :target.
+(() => {
+  const menu = document.getElementById("menu");
+  const open = document.querySelector(".menu-btn");
+  if (!menu || !open) return;
+  const close = menu.querySelector(".menu-close");
+  const root = document.documentElement;
+  menu.setAttribute("role", "dialog");
+  menu.setAttribute("aria-modal", "true");
+  menu.hidden = true;
+  menu.dataset.js = "";
+  const focusables = () => [...menu.querySelectorAll("a[href], button")].filter((el) => el.offsetParent !== null);
+  const show = () => {
+    menu.hidden = false;
+    requestAnimationFrame(() => root.classList.add("menu-open"));
+    open.setAttribute("aria-expanded", "true");
+    setTimeout(() => close.focus({ preventScroll: true }), 50);
+  };
+  const hide = (returnFocus = true) => {
+    root.classList.remove("menu-open");
+    open.setAttribute("aria-expanded", "false");
+    const done = () => { if (!root.classList.contains("menu-open")) menu.hidden = true; };
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches ? done() : setTimeout(done, 320);
+    if (returnFocus) open.focus({ preventScroll: true });
+  };
+  open.addEventListener("click", (e) => { e.preventDefault(); show(); });
+  close.addEventListener("click", (e) => { e.preventDefault(); hide(); });
+  menu.addEventListener("click", (e) => { if (e.target.closest("a[href]") && e.target.closest("a") !== close) hide(false); });
+  document.addEventListener("keydown", (e) => {
+    if (!root.classList.contains("menu-open")) return;
+    if (e.key === "Escape") hide();
+    if (e.key === "Tab") {
+      const els = focusables();
+      const first = els[0], last = els[els.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+  window.matchMedia("(min-width: 821px)").addEventListener("change", (m) => { if (m.matches && root.classList.contains("menu-open")) hide(false); });
+})();
+
+// Phone header: a hairline appears under the sticky header once the page scrolls.
+(() => {
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+  const sentinel = document.createElement("div");
+  sentinel.setAttribute("aria-hidden", "true");
+  sentinel.style.cssText = "position:absolute;top:0;left:0;width:1px;height:8px;pointer-events:none";
+  document.body.prepend(sentinel);
+  new IntersectionObserver(([e]) => header.classList.toggle("is-stuck", !e.isIntersecting)).observe(sentinel);
 })();

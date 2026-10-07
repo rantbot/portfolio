@@ -20,13 +20,13 @@ export default function (eleventyConfig) {
   // Every published post, newest first
   eleventyConfig.addCollection("posts", (api) =>
     api
-      .getFilteredByGlob(["src/posts/*.md", "src/stories/*.md"])
+      .getFilteredByGlob(["src/posts/*.md", "src/leading/*.md"])
       .filter((p) => !p.data.draft)
       .sort((a, b) => b.date - a.date)
   );
   // Oldest first, for the feed plugin, which lists the newest entries first
   eleventyConfig.addCollection("feedPosts", (api) =>
-    api.getFilteredByGlob(["src/posts/*.md", "src/stories/*.md"]).filter((p) => !p.data.draft).sort((a, b) => a.date - b.date)
+    api.getFilteredByGlob(["src/posts/*.md", "src/leading/*.md"]).filter((p) => !p.data.draft).sort((a, b) => a.date - b.date)
   );
 
   eleventyConfig.addFilter("ofKind", (posts, kind) => posts.filter((p) => p.data.kind === kind));
@@ -131,7 +131,7 @@ export default function (eleventyConfig) {
     return html.slice(0, best.at) + aside.trim() + "\n" + html.slice(best.at);
   });
   eleventyConfig.addFilter("withSkill", (posts, key) => posts.find((p) => p.data.skill === key));
-  eleventyConfig.addFilter("kindLabel", (kind) => ({ story: "Story", making: "Making" })[kind] || "Writing");
+  eleventyConfig.addFilter("kindLabel", (kind) => ({ story: "Leading", making: "Making" })[kind] || "Writing");
   eleventyConfig.addFilter("inSeries", (posts, series) =>
     series ? posts.filter((p) => p.data.series === series).sort((a, b) => a.date - b.date) : []
   );

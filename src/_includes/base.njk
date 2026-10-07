@@ -42,20 +42,44 @@
 <header class="site-header">
   <a href="/" class="brand"{% if page.url == "/" %} aria-current="page"{% endif %}>{{ site.name }}</a>
   <nav class="site-nav" aria-label="Main">
-    <a href="/stories/"{% if section == "stories" %} aria-current="page"{% endif %}>Stories</a>
+    <a href="/leading/"{% if section == "leading" %} aria-current="page"{% endif %}>Leading</a>
     <a href="/writing/"{% if section == "writing" %} aria-current="page"{% endif %}>Writing</a>
     <a href="/making/"{% if section == "making" %} aria-current="page"{% endif %}>Making</a>
     <a href="/about/"{% if section == "about" %} aria-current="page"{% endif %}>About</a>
     <a href="/work/" class="nav-cta"{% if section == "work" %} aria-current="page"{% endif %}>Work together</a>
   </nav>
+  {#- On phones the nav folds into a full-screen menu. Without JavaScript the button jumps to it with #menu. -#}
+  <a href="#menu" class="menu-btn" aria-controls="menu" aria-expanded="false"><span>Menu</span><span class="menu-icon" aria-hidden="true"></span></a>
 </header>
+<div id="menu" class="menu" aria-label="Menu">
+  <div class="menu-inner">
+    <div class="menu-top">
+      <a href="/" class="brand">{{ site.name }}</a>
+      <a href="#" class="menu-close"><span>Close</span><span class="menu-icon is-x" aria-hidden="true"></span></a>
+    </div>
+    <nav aria-label="Menu">
+      <ol class="menu-links">
+        <li><a href="/leading/"{% if section == "leading" %} aria-current="page"{% endif %}><span class="menu-link-title">Leading</span><span class="menu-link-note">The bigger work</span></a></li>
+        <li><a href="/writing/"{% if section == "writing" %} aria-current="page"{% endif %}><span class="menu-link-title">Writing</span><span class="menu-link-note">Ideas and essays</span></a></li>
+        <li><a href="/making/"{% if section == "making" %} aria-current="page"{% endif %}><span class="menu-link-title">Making</span><span class="menu-link-note">Things I’ve built</span></a></li>
+        <li><a href="/about/"{% if section == "about" %} aria-current="page"{% endif %}><span class="menu-link-title">About</span><span class="menu-link-note">How I got here</span></a></li>
+      </ol>
+    </nav>
+    <div class="menu-foot">
+      <a href="/work/" class="button">Let’s work together</a>
+      <p class="menu-elsewhere">
+        {%- for p in site.same_as %}{% if "[" not in p.url %}<a href="{{ p.url }}">{{ p.label }}</a>{% endif %}{% endfor %}
+      </p>
+    </div>
+  </div>
+</div>
 <main id="main">
 {{ content | safe }}
 </main>
 <footer class="site-footer grid">
   <p class="rail footer-name">{{ site.name }}</p>
   <nav class="footer-col" aria-label="Sections">
-    <a href="/stories/">Stories</a>
+    <a href="/leading/">Leading</a>
     <a href="/writing/">Writing</a>
     <a href="/making/">Making</a>
     <a href="/about/">About</a>

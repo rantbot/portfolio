@@ -4,13 +4,13 @@ This is Ran Craycraft's personal site, separate from thoughtbot. It's an Elevent
 
 ## How Ran asks for changes
 
-Ran will say things like "add a post about X", "update my AOL story", "add my new thoughtbot essay", or "change the homepage intro". Make the change in this folder, check that the site builds, then tell Ran what changed and that it's ready to commit and push. Claude can't push to GitHub from a Cowork session, so Ran commits and pushes in GitHub Desktop (or asks Claude for a commit message). Every push to `main` publishes in about a minute.
+Ran will say things like "add a post about X", "update my AOL piece", "add my new thoughtbot essay", or "change the homepage intro". Make the change in this folder, check that the site builds, then tell Ran what changed and that it's ready to commit and push. Claude can't push to GitHub from a Cowork session, so Ran commits and pushes in GitHub Desktop (or asks Claude for a commit message). Every push to `main` publishes in about a minute.
 
 ## Where things live
 
 | What | File |
 | --- | --- |
-| Stories | `src/stories/slug.md`, one plain Markdown file each |
+| Leading | `src/leading/slug.md`, one plain Markdown file each |
 | Writing and Making posts | `src/posts/YYYY-MM-DD-slug.md` |
 | Photos | `src/assets/images/`, referenced as `/assets/images/name.jpg` |
 | Homepage text, the subtitle under the name (`tagline`), profile links | `src/_data/site.yml` |
@@ -22,20 +22,20 @@ Ran will say things like "add a post about X", "update my AOL story", "add my ne
 
 ## Posts
 
-Start one with `npm run new -- "Title" writing` (or `making`). The URL comes from the file name without the date, so `/stories/slug/`, `/writing/slug/` or `/making/slug/`.
+Start one with `npm run new -- "Title" writing` (or `making` or `leading`). The URL comes from the file name without the date, so `/leading/slug/`, `/writing/slug/` or `/making/slug/`.
 
 Front matter:
 
 - `title` the question someone would search for, when that fits
 - `description` one or two sentences, shown under the title and in search results
 - `date` publish date, `YYYY-MM-DD`
-- `kind` `story`, `writing` or `making`
-  - **Stories** live in `src/stories/`, not `src/posts/`. Every Markdown file there becomes a story at `/stories/<file-name>/`, so the folder sets the kind and layout. Ran drafts and finesses them there in a Markdown editor. They take a `case_study` block (`organization`, `role`, `years`, `start` year for ordering, `scope`, `team`, `outcomes`). Each story reads like a chapter in a book. Narrative, engaging, insightful and opinionated, about 2,500 to 3,500 words, a 10 to 15 minute read. Open on a scene, set up the stakes, follow the decisions and turning points, say what changed, and end with what Ran believes now and why. First person, specific moments and real names (with permission), clear opinions. "Chapter" is only the feel, so never label or number stories as chapters. The layout adds a drop cap, and `---` in the text becomes a section break. Headings can be evocative rather than The situation or What I did. Facts, quotes, numbers and opinions must come from Ran. Draft by interviewing him first, then outline, then write, then let him finesse. Never invent facts or results. Leave a `<!-- TO ADD -->` note instead, and keep a heading in the note until its section has content.
+- `kind` `story` (shown as Leading), `writing` or `making`
+  - **Leading** pieces live in `src/leading/`, not `src/posts/`. Every Markdown file there becomes a Leading piece at `/leading/<file-name>/`, so the folder sets the kind and layout. Internally the kind is still `story` and the details block is still `case_study`. Ran drafts and finesses them there in a Markdown editor. They take a `case_study` block (`organization`, `role`, `years`, `start` year for ordering, `scope`, `team`, `outcomes`). Each piece reads like a chapter in a book. Narrative, engaging, insightful and opinionated, about 2,500 to 3,500 words, a 10 to 15 minute read. Open on a scene, set up the stakes, follow the decisions and turning points, say what changed, and end with what Ran believes now and why. First person, specific moments and real names (with permission), clear opinions. "Chapter" is only the feel, so never label or number them as chapters. The layout adds a drop cap, and `---` in the text becomes a section break. Headings can be evocative rather than The situation or What I did. Facts, quotes, numbers and opinions must come from Ran. Draft by interviewing him first, then outline, then write, then let him finesse. Never invent facts or results. Leave a `<!-- TO ADD -->` note instead, and keep a heading in the note until its section has content.
   - **Writing** and **Making** are lighter, passing ideas, experiments and thoughts. Keep them short.
 - `draft: true` keeps it off the site. Remove it to publish.
 - `tldr` optional plain answer at the top ("In short")
 - `series` same name on related posts links them together
-- The homepage Stories carousel shows every story, most recent first. `meta` is an optional card label.
+- The homepage Leading carousel shows every piece, most recent first. `meta` is an optional card label.
 - Cover, either `image` plus `image_alt` (and optional `image_caption`), or a typographic cover with `tone`, `ink`, `cover_kicker`, `cover_lines`
 - `updated` optional date for revised posts
 - `try_url` and optional `try_label` add a "Try it" link at the end, only for tools that are public
@@ -55,17 +55,17 @@ Notes for Ran to fill in go in `<!-- -->` comments. They don't show on the site.
 
 ## Working with Ran
 
-Ran is available for consulting, helping businesses launch new things and solve tough problems with software and in physical spaces. `/work/` (`src/work.njk`) explains where he helps, ties each area to his stories, and asks people to tell him about their idea. Every page ends with the same invitation (`contact.njk`), story pages add a "Working on something like this?" prompt, and the nav and hero link to `/work/`. The email button opens a prefilled message (what I'm trying to do, where I'm stuck, timing). When adding stories, link the strongest ones from the matching area on `/work/`.
+Ran is available for consulting, helping businesses launch new things and solve tough problems with software and in physical spaces. `/work/` (`src/work.njk`) explains where he helps, ties each area to his Leading pieces, and asks people to tell him about their idea. Every page ends with the same invitation (`contact.njk`), Leading pieces add a "Working on something like this?" prompt, and the nav and hero link to `/work/`. The email button opens a prefilled message (what I'm trying to do, where I'm stuck, timing). When adding Leading pieces, link the strongest ones from the matching area on `/work/`.
 
 ## Logos and awards
 
 A quiet wall sits under the homepage hero and on `/work/` (`src/_includes/logos.njk`): companies Ran has worked with, then a row headed "My work has won" (The Emmys for the Heroes work at NBC, Cannes Lions, The Webby Awards, The ANDYs). Lists, file names and display sizes are `logos` and `awards` in `src/_data/site.yml`.
 
-To add one, make a single-color PNG in `src/assets/images/logos/`: flatten on white, alpha = 255 minus the darkest channel (ramp 28 to 110), fill with ink `#151513`, trim to the mark, and resize so its area is about 27,000 px². Remove any stray text from the source (the ANDYs file had "Ad Makers Collective" in a corner). Check the whole mark survived, the first Google pass lost the left of the G. In `site.yml` set width and height to about 0.28 of the PNG's pixel size. The CSS shows them at 38% opacity, 70% on hover, five per row on desktop and wrapped smaller on phones. Logos stay off story covers.
+To add one, make a single-color PNG in `src/assets/images/logos/`: flatten on white, alpha = 255 minus the darkest channel (ramp 28 to 110), fill with ink `#151513`, trim to the mark, and resize so its area is about 27,000 px². Remove any stray text from the source (the ANDYs file had "Ad Makers Collective" in a corner). Check the whole mark survived, the first Google pass lost the left of the G. In `site.yml` set width and height to about 0.28 of the PNG's pixel size. The CSS shows them at 38% opacity, 70% on hover, five per row on desktop and wrapped smaller on phones. Logos stay off Leading covers.
 
 ## Read next
 
-Every story ends with "Read next", up to two stories chosen in its front matter:
+Every Leading piece ends with "Read next", up to two others chosen in its front matter:
 
 ```yaml
 read_next:
@@ -73,24 +73,25 @@ read_next:
     why: What came next        # a short reason, shown above the title
 ```
 
-The first is usually what happened next in Ran's career, the second a story that shares a theme. Without `read_next`, the next story by start year is shown. Update the picks when a new story is added.
+The first is usually what happened next in Ran's career, the second a piece that shares a theme. Without `read_next`, the next piece by start year is shown. Update the picks when a new piece is added.
 
 ## Language
 
-Call them stories everywhere, never case studies or milestones. A story is about the work, not the company, and there can be several from one place. The organization only appears as quiet context (the card's small meta line and the facts panel), never as a story's cover or heading.
+The section for the longer pieces about the bigger work is called **Leading**, next to Writing and Making (Ran's call, October 2026, because Stories and Writing sounded too alike). Never call them stories, case studies or milestones on the site. Links to the whole section read "Everything I’ve led". A piece is about the work, not the company, and there can be several from one place. The organization only appears as quiet context (the card's small meta line and the facts panel), never as a cover or heading.
 
 ## Agent skills
 
 - Skills live in `src/skills/<name>/SKILL.md` (Agent Skills format, `name` and `description` front matter). They publish at `/skills/<name>/SKILL.md`, a `.zip` is built for each, and `/skills/` lists them.
-- Add `skill: <name>` to a post's or story's front matter to show the install panel at the end of it.
+- Add `skill: <name>` to a post's or Leading piece's front matter to show the install panel at the end of it.
 - Skills are MIT-licensed, unlike the writing. Write them as clear instructions grounded in what the post describes, and end with a "From Ran Craycraft" credit line.
 
 ## Design system
 
 - One 12-column grid (`.grid`). Labels and meta sit in the 3-column rail (`.rail`), reading text in `.span-main` (columns 4 to 10), wide content in `.span-wide`. Phones collapse to one column.
-- Type: Newsreader for reading and headlines, Instrument Sans for labels, meta and UI, Helvetica Neue Bold (Inter Tight fallback) for the name and story covers. Fonts are self-hosted in `src/assets/fonts/`, nothing loads from Google.
+- Type: Newsreader for reading and headlines, Instrument Sans for labels, meta and UI, Helvetica Neue Bold (Inter Tight fallback) for the name and Leading covers. Fonts are self-hosted in `src/assets/fonts/`, nothing loads from Google.
 - Color tokens live at the top of `site.css`. Type is warm dark grey, never pure black. `--ink` for headlines, labels and UI, `--text` for reading text, `--ink-2` for ledes. Keep text at WCAG AA contrast, so use `--muted` for small text, never lighter.
 - Section heads are a 1px ink rule with the label in the rail. Keep new sections on that pattern.
+- Phones (820px and under) get their own treatment, all in the phone block near the end of `site.css`. A sticky header with a Menu button that opens a full-screen menu, full-width buttons, edge-to-edge covers and carousel with a progress line, an even five-across logo grid, and the name set large at the foot of the page. Change phone layouts there, and confirm desktop still matches `main` pixel for pixel.
 - Run an accessibility check (axe) and look at desktop and phone screenshots before handing back design changes.
 
 ## The repo is public

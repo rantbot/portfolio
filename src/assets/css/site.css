@@ -52,6 +52,7 @@ ol, ul { padding: 0; list-style: none; }
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
 button { font: inherit; color: inherit; }
+a, button { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
 ::selection { background: var(--ink); color: var(--paper); }
 :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
 .skip { position: absolute; left: -999px; top: 12px; z-index: 10; background: var(--ink); color: var(--paper); padding: 10px 14px; border-radius: 2px; }
@@ -97,13 +98,23 @@ button { font: inherit; color: inherit; }
 .site-nav .nav-cta { color: var(--ink); font-weight: 500; }
 .site-nav a[aria-current] { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 7px; }
 
+/* Phone menu, hidden on wider screens */
+.menu-btn, .menu, .carousel-progress { display: none; }
+.menu-icon { position: relative; width: 18px; height: 9px; }
+.menu-icon::before, .menu-icon::after { content: ""; position: absolute; left: 0; right: 0; height: 1.5px; border-radius: 1px; background: currentColor; transition: transform 300ms var(--ease); }
+.menu-icon::before { top: 0; }
+.menu-icon::after { bottom: 0; }
+.menu-icon.is-x::before { transform: translateY(3.75px) rotate(45deg); }
+.menu-icon.is-x::after { transform: translateY(-3.75px) rotate(-45deg); }
+
 /* Home hero */
 .hero { padding: clamp(72px, 11vw, 168px) 0 0; }
 .hero-title { font-size: clamp(38px, 6.4vw, 96px); line-height: 1.01; letter-spacing: -0.032em; font-weight: 320; max-width: 13.5em; text-wrap: balance; }
 .hero-body { margin-top: clamp(40px, 5.5vw, 80px); }
 .hero-body .eyebrow { padding-top: 0.4em; }
 .hero-now { margin-top: 24px; font-size: 15px; color: var(--muted); max-width: 40em; }
-.hero-more { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 0; }
+.hero-more { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
+.hero-more > .arrow-link, .closing-actions > .arrow-link { margin-left: 0; }
 
 /* Section heads */
 .section-head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); align-items: center; border-top: 1px solid var(--ink); padding-top: 14px; margin-bottom: clamp(32px, 4vw, 48px); }
@@ -332,7 +343,7 @@ a:hover .text-panel-title { transform: translateY(-3px); }
 .closing-note a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--rule-2); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
 .closing-note a:hover { text-decoration-color: currentColor; }
 
-.closing-actions { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 0; }
+.closing-actions { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
 .closing-small { margin-top: 20px; font-size: 14px; color: var(--muted); }
 
 /* Read next, at the end of a story */
@@ -485,9 +496,159 @@ a:hover .text-panel-title { transform: translateY(-3px); }
   .site-footer { display: grid; grid-template-columns: 1fr 1fr; }
   .footer-name, .footer-legal { grid-column: 1 / -1; justify-self: start; }
   .footer-col:nth-of-type(1), .footer-col:nth-of-type(2) { grid-column: auto; }
+
+  /* Rhythm. Tighter section spacing so a phone screen always holds something worth reading. */
+  :root { --gutter: 20px; --section: 88px; }
+
+  /* Header. Sticky and slim, the name on the left and a Menu button on the right. */
+  .site-header { position: sticky; top: 0; z-index: 30; margin: 0 calc(-1 * var(--gutter)); padding: 0 var(--gutter); height: 60px; flex-wrap: nowrap; align-items: center; background: rgba(250, 250, 247, 0.86); -webkit-backdrop-filter: saturate(1.4) blur(14px); backdrop-filter: saturate(1.4) blur(14px); box-shadow: 0 1px 0 transparent; transition: box-shadow 250ms var(--ease); }
+  .site-header.is-stuck { box-shadow: 0 1px 0 var(--rule); }
+  .site-header .site-nav { display: none; }
+  .brand { font-size: 21px; letter-spacing: -0.035em; }
+  .menu-btn, .menu-close { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; margin-right: -10px; padding: 0 10px; font-size: 14px; font-weight: 500; color: var(--ink); }
+
+  /* The menu. A full screen of paper, the sections set large in the serif, the invitation at the bottom. */
+  .menu { position: fixed; inset: 0; z-index: 50; background: var(--paper); overflow-y: auto; overscroll-behavior: contain; }
+  .menu:target, .menu[data-js]:not([hidden]) { display: block; }
+  .menu[data-js] { opacity: 0; transition: opacity 260ms var(--ease); }
+  .menu-open .menu[data-js] { opacity: 1; }
+  .menu-open, .menu-open body { overflow: hidden; }
+  .menu-inner { min-height: 100%; min-height: 100dvh; display: flex; flex-direction: column; padding: 0 var(--gutter) max(28px, env(safe-area-inset-bottom)); }
+  .menu-top { display: flex; justify-content: space-between; align-items: center; height: 60px; }
+  .menu-links { margin-top: clamp(28px, 7vh, 64px); border-top: 1px solid var(--ink); }
+  .menu-links li { border-bottom: 1px solid var(--rule); }
+  .menu-links a { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 16px 0 14px; }
+  .menu-link-title { font-family: var(--serif); font-size: clamp(38px, 11vw, 48px); line-height: 1; font-weight: 320; letter-spacing: -0.03em; }
+  .menu-link-note { font-size: 13px; color: var(--muted); text-align: right; }
+  .menu-links a[aria-current] .menu-link-title { font-style: italic; }
+  .menu-links a:active .menu-link-title { color: var(--muted); }
+  .menu-foot { margin-top: auto; padding-top: 40px; }
+  .menu-foot .button { width: 100%; justify-content: center; min-height: 54px; font-size: 16px; }
+  .menu-elsewhere { display: flex; flex-wrap: wrap; gap: 4px 24px; margin-top: 18px; font-size: 14px; color: var(--muted); }
+  .menu-elsewhere a { display: inline-flex; align-items: center; min-height: 40px; }
+  .menu-links li, .menu-foot { opacity: 0; transform: translateY(14px); transition: opacity 420ms var(--ease), transform 520ms var(--ease); }
+  .menu:target .menu-links li, .menu:target .menu-foot, .menu-open .menu-links li, .menu-open .menu-foot { opacity: 1; transform: none; }
+  .menu-open .menu-links li:nth-child(2) { transition-delay: 40ms; }
+  .menu-open .menu-links li:nth-child(3) { transition-delay: 80ms; }
+  .menu-open .menu-links li:nth-child(4) { transition-delay: 120ms; }
+  .menu-open .menu-foot { transition-delay: 170ms; }
+
+  /* Hero. The headline carries the screen. */
+  .hero { padding-top: 48px; }
+  .hero-title { font-size: clamp(42px, 11.4vw, 60px); line-height: 1; letter-spacing: -0.036em; font-weight: 310; }
+  .hero-body { margin-top: 32px; }
+  .hero .lede { font-size: 20px; line-height: 1.45; }
+  .hero-now { margin-top: 20px; font-size: 15px; line-height: 1.6; }
+  .hero-more { margin-top: 32px; }
+
+  /* Buttons fill the width on phones, an easy target for a thumb. Secondary links sit under them. */
+  .hero-more .button, .closing-actions .button, .story-cta .button { flex: 1 1 100%; justify-content: center; min-height: 54px; font-size: 16px; }
+  .hero-more .arrow-link, .closing-actions .arrow-link { flex: 1 1 100%; justify-content: center; min-height: 44px; }
+
+  /* Section heads. The rule, the label and a quiet note, set on one line where they fit. */
+  .section-head { align-items: baseline; padding-top: 12px; margin-bottom: 28px; }
+  .section-note { order: 3; width: 100%; margin-top: 2px; }
+  .section-head .carousel-nav { order: 2; }
+  .carousel-btn { display: none; }
+  .carousel-count { display: inline; margin: 0; }
+  .section-foot { margin-top: 28px; }
+
+  /* Logo wall. An even grid so the rows line up, five across, then the four awards. */
+  .logos-section { padding-top: 72px; }
+  .logos-section .rail { margin-bottom: 22px; max-width: none; }
+  .logos { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px 10px; justify-items: center; }
+  .logos.awards { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 0; }
+  .logos li { min-height: 36px; justify-content: center; }
+  .logos img { width: min(calc(var(--w) * 0.6), 100%); }
+  .logos.awards img { width: calc(var(--w) * 0.8); }
+  .awards-label { margin-top: 40px; }
+
+  /* Stories carousel. Edge to edge, each card snapping to the gutter, with a thin progress line beneath. */
+  .carousel { margin: 0 calc(-1 * var(--gutter)); padding: 0 var(--gutter) 4px; scroll-padding: 0 var(--gutter); }
+  .carousel-track { grid-auto-columns: 84%; gap: 14px; }
+  .carousel-progress { display: block; position: relative; height: 1px; margin-top: 24px; background: var(--rule); overflow: hidden; }
+  .carousel-progress span { position: absolute; left: 0; top: 0; bottom: 0; width: 15%; background: var(--ink); transition: transform 120ms linear; }
+  .card .card-title { font-size: 22px; }
+  .card .card-desc { -webkit-line-clamp: 3; }
+
+  /* Latest. The lead picture runs edge to edge, the next three swipe. */
+  .lead .media { margin: 0 calc(-1 * var(--gutter)); border-radius: 0; }
+  .lead .text-panel { padding: 22px var(--gutter) 24px; aspect-ratio: 5 / 4; }
+  .lead .piece-kind { margin-top: 18px; }
+  .lead .piece-title, .lead .is-writing .piece-body .piece-title { font-size: 30px; line-height: 1.1; letter-spacing: -0.024em; }
+  .lead .piece-desc { font-size: 17px; -webkit-line-clamp: 3; }
+  .trio { margin: 56px calc(-1 * var(--gutter)) 0; padding: 0 var(--gutter); grid-auto-columns: 74%; gap: 14px; scroll-padding: 0 var(--gutter); }
+  .trio .piece-title { font-size: 20px; }
+  .trio .piece-desc { -webkit-line-clamp: 2; }
+  .earlier { margin-top: 64px; }
+  .earlier .rail { padding-top: 0; margin-bottom: 10px; }
+  .line { padding: 16px 0; }
+  .line.has-thumb { grid-template-columns: minmax(0, 1fr) 76px; column-gap: 18px; }
+  .line-title { font-size: 19px; line-height: 1.28; }
+  .line-meta { margin-top: 4px; }
+  .grid.section-foot .span-wide { display: flex; flex-direction: column; gap: 4px; }
+  .section-foot .arrow-link { min-height: 44px; margin: 0; }
+  .grid.section-foot .arrow-link + .arrow-link { margin-left: 0; }
+
+  /* Touch feedback. Cards give a little when pressed. */
+  .card .media, .piece .media, .line-thumb { transition: transform 300ms var(--ease); }
+  .card:active .media, .piece:active .media { transform: scale(0.985); }
+  a:hover .cover, a:hover .cover-img { transform: none; }
+
+  /* Page heads */
+  .page-head { padding-top: 48px; }
+  .page-title { font-size: clamp(60px, 17vw, 84px); line-height: 0.94; letter-spacing: -0.045em; }
+  .page-title-md { font-size: clamp(36px, 9.8vw, 46px); line-height: 1.04; letter-spacing: -0.03em; }
+  .about-head .portrait { max-width: 168px; margin-bottom: 28px; }
+  .page-head .grid { margin-top: 24px; }
+  .page-head .lede { font-size: 20px; }
+  .page-head + .tiles, .page-head + .section { margin-top: 64px; }
+  .tiles { gap: 52px; }
+
+  /* Articles and stories */
+  .article-head { padding: 40px 0 32px; }
+  .article-head .rail { margin-bottom: 16px; }
+  .article-title { font-size: clamp(34px, 9.4vw, 44px); line-height: 1.06; letter-spacing: -0.028em; }
+  .case-title { font-size: clamp(40px, 10.8vw, 54px); line-height: 1.0; letter-spacing: -0.036em; }
+  .article-head .lede, .case .article-head .lede { margin-top: 18px; font-size: 19px; }
+  .case-cover, .article-cover { margin-left: calc(-1 * var(--gutter)); margin-right: calc(-1 * var(--gutter)); }
+  .case-cover .media, .case-cover .cover, .case-cover .cover-img, .article-cover img, .article-cover .media { border-radius: 0; }
+  .case-cover .cover { padding: 22px var(--gutter); }
+  .case-cover figcaption, .article-cover figcaption { padding: 0 var(--gutter); }
+  .case-cover { margin-bottom: 40px; }
+  .case-facts { padding-top: 0; margin-bottom: 44px; }
+  .case-facts dl { gap: 0; }
+  .case-facts dl > div { grid-template-columns: 92px minmax(0, 1fr); padding: 12px 0; border-bottom: 1px solid var(--rule); }
+  .case-facts dt { padding-top: 2px; }
+  .case-facts dd { font-size: 15px; }
+  .article-meta { margin-bottom: 28px; padding-top: 12px; border-top: 1px solid var(--ink); }
+  .prose { font-size: 18.5px; line-height: 1.64; }
+  .case .prose { font-size: 18.5px; }
+  .case .prose h2 { font-size: 28px; }
+  .prose figure, .prose > img { margin-left: calc(-1 * var(--gutter)); margin-right: calc(-1 * var(--gutter)); }
+  .prose figure img { box-shadow: 0 1px 0 var(--rule), 0 -1px 0 var(--rule); border-radius: 0; }
+  .prose figcaption { padding: 0 var(--gutter); }
+  .story-cta { margin-top: 64px; }
+  .story-cta .span-main { margin: 0 calc(-1 * var(--gutter)); padding: 32px var(--gutter); border-radius: 0; }
+  .story-cta-title { font-size: 28px; }
+  .keep { padding: 56px var(--gutter); }
+  .up-next-title { font-size: 28px; }
+
+  /* Closing invitation */
+  .closing-title { font-size: clamp(34px, 9.4vw, 44px); line-height: 1.05; letter-spacing: -0.03em; }
+  .closing-note { font-size: 20px; line-height: 1.4; }
+  .closing-small { margin-top: 16px; text-align: center; text-wrap: balance; }
+
+  /* Footer. Links in two columns, then the name set large as a sign-off. */
+  .site-footer { margin-top: 112px; padding: 24px 0 max(28px, env(safe-area-inset-bottom)); border-top-color: var(--ink); column-gap: var(--col-gap); row-gap: 0; }
+  .footer-col { gap: 0; font-size: 15px; }
+  .footer-col a { display: flex; align-items: center; min-height: 40px; }
+  .footer-name { order: 3; margin-top: 56px; font-size: clamp(46px, 13.6vw, 64px); line-height: 0.9; letter-spacing: -0.045em; }
+  .footer-legal { order: 4; margin-top: 14px; font-size: 13px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
+  .menu-links li, .menu-foot { opacity: 1; transform: none; }
   a:hover .cover, a:hover .cover-img { transform: none; }
 }

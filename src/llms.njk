@@ -11,8 +11,8 @@ eleventyExcludeFromCollections: true
 ## About
 - [About {{ site.name }}]({{ env.url }}/about/): Background, roles, and education.
 
-## Stories
-Longer stories about the bigger work {{ site.name }} has led.
+## Leading
+Longer pieces about the bigger work {{ site.name }} has led.
 {% for p in collections.posts | stories %}- [{{ p.data.title }}]({{ env.url }}{{ p.url }}): {{ p.data.description }}
 {% endfor %}
 ## Writing

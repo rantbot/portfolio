@@ -45,9 +45,9 @@ content:
       - { name: body, label: Post, type: rich-text }
 
   - name: stories
-    label: Stories
+    label: Leading
     type: collection
-    path: src/stories
+    path: src/leading
     filename: "{primary}.md"
     view:
       fields: [title, draft]
@@ -58,13 +58,13 @@ content:
       - { name: date, label: Date, type: date }
       - { name: draft, label: Draft, type: boolean, default: true, description: "Turn off and save to publish" }
       - name: case_study
-        label: Story details
+        label: Details
         type: object
         fields:
           - { name: organization, label: Organization, type: string }
           - { name: role, label: My role, type: string }
           - { name: years, label: When, type: string, description: "Like “2011 to 2013”" }
-          - { name: start, label: Start year, type: number, description: "Orders the stories, most recent first" }
+          - { name: start, label: Start year, type: number, description: "Orders the Leading pieces, most recent first" }
           - { name: scope, label: Focus, type: text }
           - { name: team, label: With, type: text }
           - { name: outcomes, label: Outcomes, type: string, list: true }
@@ -73,7 +73,7 @@ content:
       - { name: tone, label: Cover color, type: string, description: "Background when there's no photo, like #E9E6DC" }
       - { name: ink, label: Cover text color, type: string }
       - { name: tldr, label: In short, type: text }
-      - { name: body, label: Story, type: rich-text }
+      - { name: body, label: Body, type: rich-text }
 
   - name: site
     label: Site and homepage

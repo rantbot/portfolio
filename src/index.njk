@@ -19,15 +19,15 @@ title: Ran Craycraft
 {%- if stories.length %}
 <section aria-labelledby="stories-h" class="section">
   <div class="section-head">
-    <h2 id="stories-h" class="eyebrow strong">Stories</h2>
+    <h2 id="stories-h" class="eyebrow strong">Leading</h2>
     <p class="section-note">The bigger work, told in full</p>
     <div class="carousel-nav">
       <span class="carousel-count" aria-live="polite" hidden></span>
-      <button type="button" class="carousel-btn" data-dir="-1" aria-label="Previous stories" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg></button>
-      <button type="button" class="carousel-btn" data-dir="1" aria-label="Next stories" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg></button>
+      <button type="button" class="carousel-btn" data-dir="-1" aria-label="Previous" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg></button>
+      <button type="button" class="carousel-btn" data-dir="1" aria-label="Next" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg></button>
     </div>
   </div>
-  <div class="carousel" role="region" aria-label="Story cards, scroll sideways for more" tabindex="0">
+  <div class="carousel" role="region" aria-label="Work I’ve led, scroll sideways for more" tabindex="0">
   <ul class="carousel-track">
     {%- for p in stories %}
     <li><a href="{{ p.url }}" class="card">
@@ -39,7 +39,8 @@ title: Ran Craycraft
     {%- endfor %}
   </ul>
   </div>
-  <p class="section-foot"><a href="/stories/" class="arrow-link">All {{ stories.length }} stories</a></p>
+  <div class="carousel-progress" aria-hidden="true"><span></span></div>
+  <p class="section-foot"><a href="/leading/" class="arrow-link">Everything I’ve led</a></p>
 </section>
 {%- endif %}
 

@@ -16,7 +16,7 @@ From then on, every saved change publishes itself in about a minute.
 
 1. Go to [app.pagescms.org](https://app.pagescms.org) and sign in with GitHub. On a phone, add it to your home screen so it opens like an app.
 2. Pick the repository, then **Posts**, then **Add an entry**.
-3. Fill in the title, choose **Story**, **Writing** or **Making**, set the date, write the post, and add a cover photo if you have one.
+3. Fill in the title, choose **Leading**, **Writing** or **Making**, set the date, write the post, and add a cover photo if you have one.
 4. Leave **Draft** on while you work. Turn it off and save to publish.
 
 A few tips that help readers and search:
@@ -25,7 +25,7 @@ A few tips that help readers and search:
 - **Summary.** One or two sentences. It shows under the title, in lists, and in search results.
 - **In short.** An optional plain answer at the top of the post. AI tools tend to quote this part.
 - **Series.** Give related posts the same series name and they link to each other automatically.
-- **Stories** are longer pieces about the bigger work, under **Stories** in Pages CMS. Fill in **Story details**. The homepage shows the three most recent. Writing and Making are the lighter, shorter posts.
+- **Leading** holds the longer pieces about the bigger work, under **Leading** in Pages CMS. Fill in **Details**. The homepage carousel shows all of them, most recent first. Writing and Making are the lighter, shorter posts.
 - **No photo yet?** Set a cover color and a few cover words and the site makes a typographic cover.
 
 **Site and homepage** in Pages CMS holds the homepage text and your profile links. **Essays published elsewhere** holds the thoughtbot posts, which link to the originals.
@@ -57,7 +57,7 @@ To start a post by hand, run `npm run new -- "Post title" making`.
 
 | What | Where |
 | --- | --- |
-| Stories | `src/stories/`, one Markdown file each |
+| Leading | `src/leading/`, one Markdown file each |
 | Writing and Making posts | `src/posts/` |
 | Photos | `src/assets/images/` |
 | Homepage text and settings | `src/_data/site.yml` |
@@ -69,6 +69,6 @@ To start a post by hand, run `npm run new -- "Post title" making`.
 ## Before you publish, check
 
 - The dates on the six starter posts are placeholders. Set each one to the day you publish it.
-- The four stories include notes in `<!-- -->` marks for the facts, collaborators, results, and lessons to add. These notes don't show on the site.
+- The Leading pieces include notes in `<!-- -->` marks for the facts, collaborators, results, and lessons to add. These notes don't show on the site.
 - Seven more posts are waiting as drafts: Is it AI?, the meeting prep tool, the cookbook, the children's book, the outdoor kitchen, Austin, and the AI transformation.
 - Add your LinkedIn address and a portrait (set `portrait` at the top of `src/about.md`).
