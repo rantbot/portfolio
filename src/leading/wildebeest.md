@@ -23,6 +23,8 @@ read_next:
     why: What came next
   - story: bringing-north-kingdom-to-the-us
     why: The studio before this one
+featured: 3
+highlight: "From 2014 to 2023, co-founded and ran an award-winning studio for clients including Google, YouTube, Disney and GM."
 ---
 
 ## The situation

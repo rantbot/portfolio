@@ -67,6 +67,10 @@ To add one, make a single-color PNG in `src/assets/images/logos/`: flatten on wh
 
 The wordmark is plain text, "Ran Craycraft" in Inter Tight Bold (self-hosted, so it looks the same everywhere). The favicon (`src/assets/favicon.svg`) and the home-screen icons (`apple-touch-icon.png`, `icon-512.png`) are Inter Tight's bold R in paper on an ink square. Ran tried a filled-in R in the wordmark and favicon and didn't like it, so leave the R as a normal letter. He also passed on a serif R for the favicon or wordmark, so keep both sans.
 
+## Leadership first
+
+The homepage leads with executive value. The carousel opens with three featured leadership stories, set with `featured: 1`, `2` and `3` in front matter (thoughtbot, AOL, Wildebeest). Each has a `highlight`, one verified outcome with its years written into the sentence, shown on the card in place of the description. Only use outcomes Ran has confirmed. The Work together page separates leadership opportunities from selective consulting.
+
 ## Read next
 
 Every Leading piece ends with "Read next", up to two others chosen in its front matter:

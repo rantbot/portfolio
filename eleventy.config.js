@@ -64,7 +64,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("stories", (posts) =>
     posts
       .filter((p) => p.data.kind === "story")
-      .sort((a, b) => (b.data.case_study?.start || 0) - (a.data.case_study?.start || 0) || b.date - a.date)
+      // Featured leadership stories lead, in their set order, then everything else by when the work began
+      .sort((a, b) => (a.data.featured || 99) - (b.data.featured || 99) || (b.data.case_study?.start || 0) - (a.data.case_study?.start || 0) || b.date - a.date)
   );
   // What to read after a story. Uses the story's read_next picks, otherwise the next story in career order.
   eleventyConfig.addFilter("readNext", (posts, page, picks = []) => {

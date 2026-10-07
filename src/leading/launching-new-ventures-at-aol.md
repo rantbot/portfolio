@@ -24,6 +24,8 @@ read_next:
     why: What came next
   - story: new-digital-experiences-at-nbc
     why: Where the media work started
+featured: 2
+highlight: "From 2011 to 2013, launched AOL Industry from zero, then ran AOL Entertainment, a $40M P&L and a 70-person organization."
 ---
 
 ## The situation

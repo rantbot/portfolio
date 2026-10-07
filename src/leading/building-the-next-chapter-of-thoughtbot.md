@@ -27,6 +27,8 @@ read_next:
     why: What I took on alongside it
   - story: wildebeest
     why: The consultancy I ran before
+featured: 1
+highlight: "Since 2023, grew from one of five Managing Directors to the only one, and reshaped how the Americas business sells, staffs and delivers."
 ---
 
 ## The situation

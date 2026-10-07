@@ -30,3 +30,10 @@ I think any tool that edits sales data should ask first and explain itself after
 ## What I'm watching
 
 Whether what it writes is close enough to what a person would write that we stop editing it, and whether the contact briefs change who we reach out to first.
+
+<!-- TO ADD, to connect this tool to your judgment. Answer in a sentence or two each:
+1. Who had the problem, and what was it costing them?
+2. What did you personally do, from spotting it to building it?
+3. What changed after people used it? A number or a before and after helps.
+4. Is it an experiment, a tool the team adopted, or something you'd sell?
+-->

@@ -4,11 +4,11 @@
     <h2 id="contact-h" class="closing-title serif">{{ site.invitation }}</h2>
     <p class="closing-note serif">{{ site.invitation_note }}</p>
     <p class="closing-actions">
-      {%- set email_label = "Tell me about your idea" %}{% set email_class = "button" %}{% set email_subject = "An idea I’d like to talk about" %}{% set email_body = "What I’m trying to do:\n\nWhere I’m stuck:\n\nTiming:\n" %}
+      {%- set email_label = "Start a conversation" %}{% set email_class = "button" %}{% set email_subject = "What comes next" %}{% set email_body = "What I’m working toward:\n\nWhere you might fit:\n\nTiming:\n" %}
       {% include "email-link.njk" %}
       {%- set email_label = "" %}{% set email_class = "" %}{% set email_subject = "" %}{% set email_body = "" %}
-      <a href="/work/" class="arrow-link">Ways to work together</a>
+      <a href="/work/" class="arrow-link">Leadership and consulting</a>
     </p>
-    <p class="closing-small">For podcasts and events, you can reach me the same way.</p>
+    <p class="closing-small">Podcasts, panels and events are welcome too.</p>
   </div>
 </section>

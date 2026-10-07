@@ -3,25 +3,25 @@
 
 name: Ran Craycraft
 title: Ran Craycraft
-description: Ran Craycraft starts new products, ventures and community projects with good people, and helps them last. Writing on leading through change, and the things he makes.
+description: Ran Craycraft builds new ventures and helps established businesses find what comes next. Managing Director at thoughtbot and President of Ruby Central, writing on leadership and the things he makes.
 location: Los Angeles
 # Shown in the footer. location stays in the search-engine data.
 footer_location: California
 email: ran.craycraft@gmail.com
 # Not shown on the page. Search engines and AI tools read it as a one-line description of you.
-tagline: Technology leader turning ideas into products, ventures, and teams
+tagline: Founder and business leader connecting product ideas, partnerships, and commercial execution
 job_title: Managing Director
 employer: thoughtbot
 employer_url: https://thoughtbot.com
 
 # Homepage introduction
-headline: I help turn big ideas into exceptional products, experiences, and businesses.
-intro: I started at NBC as an intern and ended up on the skunkworks project that became Hulu. Since then I’ve launched things at AOL, co-founded a studio called Wildebeest, and helped reshape thoughtbot. Closer to home, I’ve run drive-in movie nights and turned my driveway into a produce pickup.
-now: Right now I’m Managing Director and a board member at thoughtbot, where I build a small AI tool for my team most weeks to find out what better really looks like. I’m also President of Ruby Central. I live in Los Angeles.
+headline: I build new ventures and help established businesses find what comes next.
+intro: I’m Ran Craycraft, a founder and business leader who connects product ideas, partnerships, and commercial execution. I’ve launched ventures at NBC and AOL, co-founded Wildebeest, and helped reshape thoughtbot.
+now: Today I’m Managing Director and a board member at thoughtbot, and President of Ruby Central. I also make useful tools and bring neighbors together in Los Angeles.
 
 # Closing invitation on the homepage
-invitation: Got an idea, or a problem that won’t budge?
-invitation_note: Usually the first step is working out what the problem really is, and the smallest useful thing that would help. Send me a few sentences and we’ll start there.
+invitation: Let’s discuss what comes next.
+invitation_note: A leadership opportunity, a new venture, or a product worth building. Tell me what you’re working toward.
 
 # Profiles that are you. Search engines and AI tools use these to connect the dots.
 same_as:

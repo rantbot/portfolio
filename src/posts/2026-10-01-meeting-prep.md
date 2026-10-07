@@ -32,3 +32,10 @@ That small addition has greatly reduced our no-shows.
 A brief with one wrong fact is worse than no brief. Facts only count when both the name and the company match, so a namesake's career never ends up in front of you. A second pass checks every claim against its sources before you see it.
 
 The question I'm asking is whether the brief is good enough that you stop doing your own research, and which part you'd still check by hand.
+
+<!-- TO ADD, to connect this tool to your judgment. Answer in a sentence or two each:
+1. Who had the problem, and what was it costing them?
+2. What did you personally do, from spotting it to building it?
+3. What changed after people used it? A number or a before and after helps.
+4. Is it an experiment, a tool the team adopted, or something you'd sell?
+-->
