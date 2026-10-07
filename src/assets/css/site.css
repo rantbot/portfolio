@@ -120,7 +120,7 @@ a:hover .cover, a:hover .cover-img { transform: scale(1.02); }
 .card .eyebrow + .card-title { margin-top: 6px; }
 .card-title-lg { font-size: clamp(24px, 2.2vw, 30px); line-height: 1.18; font-weight: 360; letter-spacing: -0.012em; }
 .card-desc { margin-top: 8px; font-size: 15px; line-height: 1.5; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-wrap: pretty; }
-.card:hover .card-title, .make:hover .make-title, .write:hover .write-title, .entry:hover .entry-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; text-decoration-color: var(--rule-2); }
+.card:hover .card-title, .entry:hover .entry-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; text-decoration-color: var(--rule-2); }
 
 /* Stories carousel. Starts on the grid and runs off the right edge of the window. */
 .carousel { margin: 0 calc(50% - 50vw) 0 0; padding: 0 var(--gutter) 8px 0; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 0; scrollbar-width: none; overscroll-behavior-x: contain; }
@@ -140,30 +140,31 @@ a:hover .cover, a:hover .cover-img { transform: scale(1.02); }
 .filter button { background: none; border: 0; padding: 4px 0; color: var(--muted); cursor: pointer; transition: color 200ms var(--ease); }
 .filter button:hover { color: var(--ink); }
 .filter button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
-.feed-item { padding: clamp(32px, 3.6vw, 48px) 0; border-top: 1px solid var(--rule); }
-.feed-item:first-child { border-top: 0; padding-top: 0; }
-.feed-item[hidden] { display: none; }
-.feed .rail { padding-top: 0.35em; }
-.feed .span-main { grid-column: 4 / -1; }
-.write { display: flex; flex-direction: column; }
-.write-title { font-size: clamp(24px, 2.3vw, 32px); line-height: 1.14; letter-spacing: -0.016em; font-weight: 360; max-width: 22em; text-wrap: balance; }
-.write-desc { margin-top: 10px; font-size: 16px; line-height: 1.5; color: var(--ink-2); max-width: 38em; text-wrap: pretty; }
-.write .meta { margin-top: 12px; }
-.makes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--col-gap); }
-.make { display: flex; flex-direction: column; }
-.make-text { display: flex; flex-direction: column; }
-.make-desc { display: none; }
-/* Two side by side share the row evenly */
-.makes-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-/* One on its own sits beside its picture, with room for the summary */
-.makes-1 { grid-template-columns: minmax(0, 1fr); }
-.makes-1 .make { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 4fr); column-gap: var(--col-gap); align-items: center; }
-.makes-1 .make-title { margin-top: 0; font-size: clamp(22px, 2vw, 28px); line-height: 1.16; letter-spacing: -0.012em; font-weight: 360; }
-.makes-1 .make-desc { display: block; margin-top: 10px; font-size: 16px; line-height: 1.5; color: var(--ink-2); text-wrap: pretty; }
-.makes-1 .make .meta { margin-top: 12px; }
-.make-title { margin-top: 14px; font-size: 18px; line-height: 1.28; font-weight: 380; text-wrap: balance; }
-.make .meta { margin-top: 6px; }
-.make .cover-lines { font-size: clamp(16px, 1.4vw, 20px); }
+/* The feed, set like a contents page. One calm line per piece, grouped by month.
+   Pictures for Making appear beside the cursor on hover, and as thumbnails on phones. */
+.month { padding: 22px 0 26px; border-top: 1px solid var(--rule); }
+.month:first-child { border-top: 0; padding-top: 0; }
+.month[hidden] { display: none; }
+.month-label { font-family: var(--serif); font-size: 21px; line-height: 1.2; font-weight: 380; letter-spacing: -0.01em; padding-top: 10px; }
+.month-year { display: block; margin-top: 2px; font-family: var(--sans); font-size: 13px; color: var(--muted); letter-spacing: 0; font-variant-numeric: tabular-nums; }
+.entries-feed > li + li { border-top: 1px solid var(--rule); }
+.entries-feed > li[hidden] { display: none; }
+.line { display: grid; grid-template-columns: minmax(0, 1fr) 150px; column-gap: var(--col-gap); align-items: baseline; padding: 12px 0 13px; }
+.line-main { display: flex; flex-direction: column; min-width: 0; }
+.line-title { font-size: clamp(19px, 1.6vw, 22px); line-height: 1.28; font-weight: 380; letter-spacing: -0.008em; text-wrap: balance; transition: color 200ms var(--ease); }
+.line-desc { margin-top: 3px; font-size: 14px; line-height: 1.45; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.line-meta { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.line-kind { color: var(--ink-2); }
+.line-thumb { display: none; }
+.entries-feed:hover .line-title { color: var(--muted); }
+.entries-feed .line:hover .line-title, .entries-feed .line:focus-visible .line-title { color: var(--ink); }
+.line:hover .line-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; text-decoration-color: var(--rule-2); }
+
+/* The picture that appears in the rail beside the list */
+.peek { position: fixed; left: 0; top: 0; z-index: 20; width: 300px; pointer-events: none; opacity: 0; transform: translate3d(0, 0, 0) scale(0.96); transition: opacity 180ms var(--ease), scale 180ms var(--ease); border-radius: 3px; overflow: hidden; box-shadow: 0 18px 40px -18px rgba(21, 21, 19, 0.35); }
+.peek.on { opacity: 1; scale: 1; }
+.peek .cover, .peek .cover-img { transform: none !important; }
+.peek .cover-lines { font-size: 20px; }
 
 /* Page heads */
 .page-head { padding: clamp(64px, 9vw, 140px) 0 0; }
@@ -319,15 +320,17 @@ a:hover .cover, a:hover .cover-img { transform: scale(1.02); }
   .section-note { order: 3; width: 100%; }
   .carousel-count { display: none; }
   .carousel-track { grid-auto-columns: 82%; }
-  .feed .rail { padding: 0; margin-bottom: 10px; }
-  .makes, .makes-1, .makes-2 { grid-template-columns: minmax(0, 1fr); gap: 18px; }
-  .make, .makes-1 .make { display: grid; grid-template-columns: minmax(0, 1fr) 96px; column-gap: 16px; align-items: start; }
-  .make .media { grid-column: 2; grid-row: 1; }
-  .make .cover > * { display: none; }
-  .make-text { grid-column: 1; grid-row: 1; }
-  .make-title, .makes-1 .make-title { margin-top: 0; font-size: 18px; line-height: 1.28; letter-spacing: 0; font-weight: 380; }
-  .makes-1 .make-desc { display: none; }
-  .make .meta, .makes-1 .make .meta { margin-top: 6px; }
+  .month { padding: 18px 0 20px; }
+  .month-label { padding-top: 0; margin-bottom: 4px; font-size: 19px; }
+  .month-year { display: inline; margin-left: 6px; }
+  .line { grid-template-columns: minmax(0, 1fr); row-gap: 6px; padding: 14px 0; }
+  .line.has-thumb { grid-template-columns: minmax(0, 1fr) 84px; }
+  .line-thumb { display: block; grid-column: 2; grid-row: 1 / span 2; align-self: start; border-radius: 2px; overflow: hidden; }
+  .line-thumb .cover > * { display: none; }
+  .line-desc { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .line-meta { justify-content: flex-start; gap: 10px; }
+  .line-meta time::before { content: "·"; margin-right: 10px; color: var(--rule-2); }
+  .entries-feed:hover .line-title { color: var(--ink); }
   .tiles, .tiles-2 { grid-template-columns: minmax(0, 1fr); }
   .section-foot .arrow-link { display: flex; margin: 0 0 12px; }
   .entry-row { flex-direction: column; gap: 4px; }

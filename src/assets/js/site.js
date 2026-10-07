@@ -8,8 +8,11 @@ document.querySelectorAll(".filter").forEach((group) => {
     if (!btn) return;
     const kind = btn.dataset.filter;
     group.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
-    feed.querySelectorAll("li").forEach((li) => {
+    feed.querySelectorAll("li[data-kind]").forEach((li) => {
       li.hidden = kind !== "all" && li.dataset.kind !== kind;
+    });
+    feed.querySelectorAll(".month").forEach((m) => {
+      m.hidden = !m.querySelector("li[data-kind]:not([hidden])");
     });
   });
 });
@@ -80,3 +83,41 @@ document.querySelectorAll(".skill").forEach((skill) => {
     });
   });
 });
+
+// Feed: on a mouse or trackpad, a Making piece's picture appears in the empty rail
+// beside the list, following the cursor up and down so it never covers the text.
+if (window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 821px)").matches) {
+  const peek = document.createElement("div");
+  peek.className = "peek";
+  peek.setAttribute("aria-hidden", "true");
+  document.body.appendChild(peek);
+  const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let x = 0, y = 0, tx = 0, ty = 0, frame = 0;
+  const move = () => {
+    x += (tx - x) * (still ? 1 : 0.2);
+    y += (ty - y) * (still ? 1 : 0.2);
+    peek.style.translate = `${x}px ${y}px`;
+    frame = Math.abs(tx - x) + Math.abs(ty - y) > 0.5 ? requestAnimationFrame(move) : 0;
+  };
+  const place = (e, line) => {
+    const rail = line.closest(".month").querySelector(".rail").getBoundingClientRect();
+    peek.style.width = `${Math.min(rail.width, 300)}px`;
+    const h = peek.offsetHeight || 200;
+    tx = rail.left;
+    ty = Math.min(Math.max(e.clientY - h / 2, 16), window.innerHeight - h - 16);
+    if (!frame) frame = requestAnimationFrame(move);
+  };
+  document.querySelectorAll(".line.has-thumb").forEach((line) => {
+    const thumb = line.querySelector(".line-thumb");
+    line.addEventListener("pointerenter", (e) => {
+      const wasOn = peek.classList.contains("on");
+      peek.innerHTML = thumb.innerHTML;
+      peek.querySelectorAll("img").forEach((img) => (img.loading = "eager"));
+      place(e, line);
+      if (!wasOn) { x = tx; y = ty; peek.style.translate = `${x}px ${y}px`; }
+      peek.classList.add("on");
+    });
+    line.addEventListener("pointermove", (e) => place(e, line));
+    line.addEventListener("pointerleave", () => peek.classList.remove("on"));
+  });
+}
