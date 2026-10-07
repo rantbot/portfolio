@@ -1,0 +1,117 @@
+# Pages CMS settings (https://pagescms.org). Edit the site at app.pagescms.org.
+media:
+  input: src/assets/images
+  output: /assets/images
+
+content:
+  - name: posts
+    label: Posts
+    type: collection
+    path: src/posts
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, kind, date, draft]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - { name: title, label: Title, type: string, required: true, description: "The question someone would search for" }
+      - name: kind
+        label: Type
+        type: select
+        default: writing
+        options:
+          values:
+            - { value: writing, label: Writing }
+            - { value: making, label: Making }
+      - { name: date, label: Date, type: date, required: true }
+      - { name: draft, label: Draft, type: boolean, default: true, description: "Turn off and save to publish" }
+      - { name: description, label: Summary, type: text, required: true, description: "One or two sentences. Shows under the title and in search results." }
+      - { name: tldr, label: In short, type: text, description: "Optional plain answer at the top of the post" }
+      - { name: series, label: Series, type: string, description: "Posts with the same series name link to each other" }
+      - { name: pinned, label: Pin as a story, type: boolean, description: "The three newest pinned posts show on the homepage" }
+      - { name: meta, label: Story label, type: string, description: "Shown on the story card instead of the date, like “AOL, 2011 to 2013”" }
+      - { name: image, label: Cover photo, type: image }
+      - { name: image_alt, label: Cover photo description, type: string }
+      - { name: image_caption, label: Cover photo caption, type: string }
+      - { name: tone, label: Cover color, type: string, description: "Background for a typographic cover, like #E9E4D8" }
+      - { name: ink, label: Cover text color, type: string, description: "Like #2E2A22" }
+      - { name: cover_kicker, label: Cover small label, type: string }
+      - { name: cover_lines, label: Cover words, type: string, list: true }
+      - { name: updated, label: Last updated, type: date }
+      - { name: body, label: Post, type: rich-text }
+
+  - name: site
+    label: Site and homepage
+    type: file
+    path: src/_data/site.yml
+    fields:
+      - { name: name, label: Name, type: string }
+      - { name: title, label: Site title, type: string }
+      - { name: description, label: Site description, type: text }
+      - { name: location, label: Location, type: string }
+      - { name: email, label: Email, type: string }
+      - { name: job_title, label: Job title, type: string }
+      - { name: employer, label: Employer, type: string }
+      - { name: employer_url, label: Employer website, type: string }
+      - { name: headline, label: Homepage headline, type: text }
+      - { name: intro, label: Homepage introduction, type: text }
+      - { name: now, label: What I do now, type: text }
+      - { name: invitation, label: Closing invitation, type: text }
+      - { name: invitation_note, label: Closing note, type: text }
+      - name: newsletter
+        label: Newsletter
+        type: object
+        fields:
+          - { name: name, label: Newsletter name, type: string }
+          - { name: pitch, label: Pitch, type: text }
+          - { name: buttondown_username, label: Buttondown username, type: string }
+      - name: same_as
+        label: My profiles elsewhere
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: url, label: Address, type: string }
+
+  - name: elsewhere
+    label: Essays published elsewhere
+    type: file
+    path: src/_data/elsewhere.yml
+    list: true
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: url, label: Address, type: string, required: true }
+      - { name: date, label: Date, type: date }
+      - { name: publication, label: Published in, type: string, default: thoughtbot blog }
+      - { name: coauthor, label: Co-author, type: string }
+      - { name: summary, label: Summary, type: text }
+
+  - name: about
+    label: About page
+    type: file
+    path: src/about.md
+    fields:
+      - { name: layout, type: string, hidden: true }
+      - { name: title, type: string, hidden: true }
+      - { name: permalink, type: string, hidden: true }
+      - { name: section, type: string, hidden: true }
+      - { name: description, label: Summary for search, type: text }
+      - { name: portrait, label: Portrait, type: image }
+      - name: roles
+        label: Roles
+        type: object
+        list: true
+        fields:
+          - { name: role, label: Role, type: string }
+          - { name: years, label: Years, type: string }
+      - name: education
+        label: Education
+        type: object
+        list: true
+        fields:
+          - { name: degree, label: Degree, type: string }
+          - { name: school, label: School, type: string }
+      - { name: body, label: Page text (HTML and Markdown), type: code, options: { language: html } }

@@ -55,6 +55,12 @@ Buy the domain, then in the repository go to Settings, then Pages, and enter it 
 
 Install [Node.js](https://nodejs.org), then in this folder run `npm install` once and `npm start`. Open the address it prints.
 
+## Edit with Claude
+
+Open the Portfolio project in Claude and ask for what you want, like “add a Making post about the cookbook” or “add my new thoughtbot essay”. Claude edits this folder, checks the build, and hands it back. Then commit and push in GitHub Desktop. `CLAUDE.md` holds the conventions Claude follows.
+
+To start a post by hand, run `npm run new -- "Post title" making`.
+
 ## Where things live
 
 | What | Where |

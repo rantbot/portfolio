@@ -45,7 +45,8 @@ export default function (eleventyConfig) {
       language: "en",
       title: "Ran Craycraft",
       subtitle: "Writing and things I make.",
-      base: process.env.SITE_URL || "https://rantbot.github.io/",
+      // Origin only. The base plugin adds the path prefix to every link.
+      base: new URL(process.env.SITE_URL || "https://rantbot.github.io").origin + "/",
       author: { name: "Ran Craycraft" }
     }
   });
