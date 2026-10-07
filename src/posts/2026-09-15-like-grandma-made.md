@@ -1,7 +1,7 @@
 ---
 title: "Like Grandma Made, a cookbook of my grandmother’s recipes"
 description: "A printed cookbook of my grandmother’s recipes, designed to feel like sitting at her table, with the stories that made each dish hers."
-date: 2026-10-06
+date: 2026-09-15
 kind: making
 series: "Home"
 meta: Printed book
