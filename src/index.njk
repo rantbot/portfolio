@@ -41,14 +41,14 @@ title: Ran Craycraft
     </div>
   </div>
   <ol class="feed">
-    {%- for p in collections.posts | stream %}
+    {%- for p in collections.posts | stream(elsewhere) | limit(30) %}
     <li data-kind="{{ p.data.kind }}">
       <a href="{{ p.url }}" class="row">
         <span class="row-kind small muted">{{ p.data.kind | kindLabel }}</span>
         <span class="row-body">
           <span class="row-title serif">{{ p.data.title }}</span>
           <span class="muted">{{ p.data.description }}</span>
-          <span class="small faint"><time datetime="{{ p.date | isoDate }}">{{ p.date | readableDate }}</time>{% if p.data.series %} · {{ p.data.series }}{% endif %}</span>
+          <span class="small faint"><time datetime="{{ p.date | isoDate }}">{{ p.date | readableDate }}</time>{% if p.data.series %} · {{ p.data.series }}{% endif %}{% if p.external %} · {{ p.data.publication }} ↗{% endif %}</span>
         </span>
         {%- if p.data.kind == "making" %}
         <span class="row-thumb">{% set ratio = "4 / 3" %}{% include "cover.njk" %}</span>

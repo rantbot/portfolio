@@ -1,7 +1,7 @@
 ---
 title: Experiments, a home for what thoughtbot people build
 description: A catalog where thoughtbot people share the tools they make, try each other’s work, leave feedback, and vote on what’s ready for production.
-date: 2026-09-10
+date: 2026-08-24
 kind: making
 series: Tools for my team
 meta: Web app

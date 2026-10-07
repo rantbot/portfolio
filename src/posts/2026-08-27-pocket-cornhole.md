@@ -1,7 +1,7 @@
 ---
 title: Pocket Cornhole, a bar game played on your phone
 description: Cornhole played by tossing a foil-wrapped sugar packet at a phone lying flat on the table.
-date: 2026-09-12
+date: 2026-08-27
 kind: making
 series: Pocket Cornhole
 meta: Mobile web game

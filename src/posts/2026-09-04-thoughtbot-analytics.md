@@ -1,7 +1,7 @@
 ---
 title: thoughtbot analytics, one useful suggestion for every page
 description: A side panel on thoughtbot.com that says what's happening with the page you're on and the most valuable thing to improve.
-date: 2026-09-22
+date: 2026-09-04
 kind: making
 updated: 2026-10-05
 series: Tools for my team

@@ -66,7 +66,7 @@ content:
       - { name: name, label: Name, type: string }
       - { name: title, label: Site title, type: string }
       - { name: description, label: Site description, type: text }
-      - { name: tagline, label: Subtitle under your name, type: string }
+      - { name: tagline, label: One-line description for search engines, type: string }
       - { name: location, label: Location, type: string }
       - { name: email, label: Email, type: string }
       - { name: job_title, label: Job title, type: string }

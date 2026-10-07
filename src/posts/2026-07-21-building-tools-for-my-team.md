@@ -1,8 +1,8 @@
 ---
 title: Building tools for my own team
 description: Why I spend some of my week building small tools for the people I work with, and what I've learned from shipping them.
-date: 2026-09-09
-kind: making
+date: 2026-07-21
+kind: writing
 updated: 2026-10-06
 series: Tools for my team
 image: /assets/images/experiments/building-tools-for-my-team.png

@@ -50,7 +50,7 @@ I designed a subscription maintenance program to support clients after the initi
 
 ### Created space to experiment
 
-I created Space Station to organize work between client engagements, along with an experiment framework. The aim was to give available capacity a purpose and a way to test ideas, share what we learned, and produce useful work. I took part too, building a series of [tools for my own team](/making/building-tools-for-my-team/).
+I created Space Station to organize work between client engagements, along with an experiment framework. The aim was to give available capacity a purpose and a way to test ideas, share what we learned, and produce useful work. I took part too, building a series of [tools for my own team](/writing/building-tools-for-my-team/).
 
 <!-- TO ADD: the people who shaped and carried each initiative, named with permission. -->
 

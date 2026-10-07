@@ -31,7 +31,17 @@ export default function (eleventyConfig) {
     posts.filter((p) => p.data.kind === "story").sort((a, b) => (b.data.case_study?.start || 0) - (a.data.case_study?.start || 0))
   );
   // Everything except stories, newest first
-  eleventyConfig.addFilter("stream", (posts) => posts.filter((p) => p.data.kind !== "story"));
+  eleventyConfig.addFilter("stream", (posts, elsewhere = []) => {
+    const own = posts.filter((p) => p.data.kind !== "story");
+    // Essays published on other sites join the stream as Writing and link to the original
+    const outside = elsewhere.map((e) => ({
+      url: e.url,
+      date: new Date(e.date),
+      external: true,
+      data: { kind: "writing", title: e.title, description: e.summary, publication: e.publication }
+    }));
+    return [...own, ...outside].sort((a, b) => b.date - a.date);
+  });
   eleventyConfig.addFilter("kindLabel", (kind) => ({ story: "Story", making: "Making" })[kind] || "Writing");
   eleventyConfig.addFilter("inSeries", (posts, series) =>
     series ? posts.filter((p) => p.data.series === series).sort((a, b) => a.date - b.date) : []

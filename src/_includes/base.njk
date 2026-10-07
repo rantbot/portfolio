@@ -35,10 +35,7 @@
 <a class="skip" href="#main">Skip to content</a>
 <div class="wrap">
 <header class="site-header">
-  <a href="/" class="brand">
-    <span class="brand-name">{{ site.name }}</span>
-    {%- if site.tagline %}<span class="brand-tagline">{{ site.tagline }}</span>{% endif %}
-  </a>
+  <a href="/" class="brand"><span class="brand-name">{{ site.name }}</span></a>
   <nav aria-label="Main">
     <a href="/stories/"{% if section == "stories" %} aria-current="page"{% endif %}>Stories</a>
     <a href="/writing/"{% if section == "writing" %} aria-current="page"{% endif %}>Writing</a>

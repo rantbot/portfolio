@@ -51,12 +51,11 @@ img { max-width: 100%; display: block; }
 .ul:hover { text-decoration-color: var(--ink); }
 
 /* Header and footer */
-.site-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px 32px; padding: 32px 0; }
+.site-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px 32px; padding: 32px 0; }
 /* Wordmark. Helvetica Neue Bold where it's installed (Apple devices), Inter Tight as the close match everywhere else. */
 .brand { display: flex; flex-direction: column; gap: 8px; }
 .brand-name { font-family: "Helvetica Neue", Helvetica, "Inter Tight", Arial, sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
 .brand-tagline { font-size: 13px; line-height: 1.4; color: var(--muted); max-width: 36ch; }
-.site-header nav { padding-top: 6px; }
 .site-header nav { display: flex; gap: 28px; color: var(--muted); flex-wrap: wrap; }
 .site-header nav a:hover, .site-header nav a[aria-current] { color: var(--ink); }
 .site-footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-top: clamp(96px, 10vw, 144px); padding: 24px 0 40px; border-top: 1px solid var(--rule); font-size: 14px; color: var(--muted); }
