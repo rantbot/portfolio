@@ -22,3 +22,25 @@ document.querySelectorAll("a[data-e]").forEach((a) => {
     a.textContent = address;
   } catch (e) {}
 });
+
+// Stories carousel: arrow buttons scroll by one card. Without JavaScript, it still scrolls.
+document.querySelectorAll(".carousel").forEach((track) => {
+  const buttons = track.closest("section").querySelectorAll(".carousel-btn");
+  const update = () => {
+    const max = track.scrollWidth - track.clientWidth - 2;
+    buttons.forEach((b) => {
+      b.hidden = max <= 0;
+      b.disabled = Number(b.dataset.dir) < 0 ? track.scrollLeft <= 2 : track.scrollLeft >= max;
+    });
+  };
+  buttons.forEach((b) =>
+    b.addEventListener("click", () => {
+      const card = track.querySelector("li");
+      const step = card ? card.getBoundingClientRect().width + 32 : track.clientWidth;
+      track.scrollBy({ left: Number(b.dataset.dir) * step, behavior: "smooth" });
+    })
+  );
+  track.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+  update();
+});

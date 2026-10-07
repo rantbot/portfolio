@@ -52,7 +52,7 @@ content:
           - { name: role, label: Role, type: string }
           - { name: years, label: Years, type: string, description: "Like “2011 to 2013”" }
           - { name: start, label: Start year, type: number, description: "Orders the stories" }
-          - { name: scope, label: Scope, type: text }
+          - { name: scope, label: Focus, type: text }
           - { name: team, label: With, type: text, description: "Who you did it with" }
           - { name: outcomes, label: Outcomes, type: string, list: true }
       - { name: meta, label: Card label, type: string, description: "Optional, shown on cards instead of the date" }

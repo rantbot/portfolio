@@ -4,7 +4,7 @@ layout: base.njk
 {%- set cs = case_study or {} %}
 <article class="case">
   <header class="case-head">
-    <p class="small muted"><a href="/stories/" class="ul">Stories</a>{% if cs.organization %} · {{ cs.organization }}{% endif %}{% if cs.years %} · {{ cs.years }}{% endif %}</p>
+    <p class="small muted"><a href="/stories/" class="ul">Stories</a>{% if cs.organization %} · {{ cs.organization }}{% endif %}</p>
     <h1 class="serif display">{{ title }}</h1>
     {%- if description %}<p class="serif lede">{{ description }}</p>{% endif %}
     <p class="small muted byline"><a href="/about/" rel="author">{{ site.name }}</a> · <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time> · {{ content | readingTime }}</p>
@@ -21,11 +21,11 @@ layout: base.njk
   <div class="case-grid">
     <aside class="case-facts" aria-label="At a glance">
       <dl>
-        {%- if cs.role %}<div><dt>Role</dt><dd>{{ cs.role }}</dd></div>{% endif %}
         {%- if cs.organization %}<div><dt>Organization</dt><dd>{{ cs.organization }}</dd></div>{% endif %}
-        {%- if cs.years %}<div><dt>Years</dt><dd>{{ cs.years }}</dd></div>{% endif %}
-        {%- if cs.scope %}<div><dt>Scope</dt><dd>{{ cs.scope }}</dd></div>{% endif %}
+        {%- if cs.challenge or cs.scope %}<div><dt>Focus</dt><dd>{{ cs.challenge or cs.scope }}</dd></div>{% endif %}
+        {%- if cs.role %}<div><dt>My role</dt><dd>{{ cs.role }}</dd></div>{% endif %}
         {%- if cs.team %}<div><dt>With</dt><dd>{{ cs.team }}</dd></div>{% endif %}
+        {%- if cs.years %}<div><dt>When</dt><dd>{{ cs.years }}</dd></div>{% endif %}
       </dl>
       {%- if cs.outcomes and cs.outcomes.length %}
       <p class="case-facts-label">Outcomes</p>
@@ -52,7 +52,7 @@ layout: base.njk
     <p class="label">More stories</p>
     <ol class="list">
       {%- for s in others %}{% if s.url != page.url %}
-      <li><a href="{{ s.url }}" class="list-row"><span class="serif list-title">{{ s.data.title }}</span><span class="small muted">{{ s.data.case_study.organization }}, {{ s.data.case_study.years }}</span></a></li>
+      <li><a href="{{ s.url }}" class="list-row"><span class="serif list-title">{{ s.data.title }}</span><span class="small muted">{{ s.data.case_study.organization }}</span></a></li>
       {%- endif %}{% endfor %}
     </ol>
   </nav>

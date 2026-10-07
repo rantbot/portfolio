@@ -7,22 +7,16 @@ section: stories
 ---
 <section class="page-head">
   <h1 class="serif display">Stories</h1>
-  <p class="serif lede">The milestones. Each one is a longer look at a piece of work I led, what the situation was, what I did, and what changed.</p>
+  <p class="serif lede">Case studies of the bigger pieces of work I’ve led. What the situation was, what we did, and what changed.</p>
 </section>
 
-<ol class="milestones">
+<div class="cards stories-grid">
   {%- for p in collections.posts | milestones %}
-  {%- set cs = p.data.case_study %}
-  <li>
-    <a href="{{ p.url }}" class="milestone">
-      <span class="milestone-when small muted">{{ cs.years }}</span>
-      <span class="milestone-body">
-        <span class="small muted">{{ cs.organization }}{% if cs.role %} · {{ cs.role }}{% endif %}</span>
-        <span class="milestone-title serif">{{ p.data.title }}</span>
-        <span class="muted">{{ p.data.description }}</span>
-      </span>
-      <span class="milestone-cover">{% set ratio = "4 / 3" %}{% include "cover.njk" %}</span>
-    </a>
-  </li>
+  <a href="{{ p.url }}" class="card">
+    {%- set ratio = "4 / 3" %}{% include "cover.njk" %}
+    <span class="small muted">{{ p.data.case_study.organization }}</span>
+    <span class="card-title serif">{{ p.data.title }}</span>
+    <span class="muted">{{ p.data.description }}</span>
+  </a>
   {%- endfor %}
-</ol>
+</div>

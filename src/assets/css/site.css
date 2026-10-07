@@ -52,9 +52,9 @@ img { max-width: 100%; display: block; }
 
 /* Header and footer */
 .site-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px 32px; padding: 32px 0; }
-/* Wordmark. Instrument Sans Bold, set tight like a logo. */
+/* Wordmark. Helvetica Neue Bold where it's installed (Apple devices), Inter Tight as the close match everywhere else. */
 .brand { display: flex; flex-direction: column; gap: 8px; }
-.brand-name { font-family: var(--sans); font-size: 26px; font-weight: 700; letter-spacing: -0.035em; line-height: 1; }
+.brand-name { font-family: "Helvetica Neue", Helvetica, "Inter Tight", Arial, sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
 .brand-tagline { font-size: 13px; line-height: 1.4; color: var(--muted); max-width: 36ch; }
 .site-header nav { padding-top: 6px; }
 .site-header nav { display: flex; gap: 28px; color: var(--muted); flex-wrap: wrap; }
@@ -179,20 +179,16 @@ a.list-row:hover .list-title { text-decoration: underline; text-decoration-thick
 .light .post-cover { max-width: 680px; margin: 0 auto clamp(40px, 5vw, 56px); }
 .light .post-cover .cover-lines { font-size: clamp(24px, 2.6vw, 36px); }
 
-/* Stories, the milestones, written as case studies */
-.career { list-style: none; padding: 0; }
-.career-row { display: grid; grid-template-columns: 140px 180px minmax(0, 1fr); gap: 24px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--rule); }
-.career li:first-child .career-row { padding-top: 0; }
-.career-org { font-weight: 500; }
-.career-title { font-size: 20px; line-height: 1.35; font-weight: 380; }
-.career-row:hover .career-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
-.milestones { list-style: none; padding: 0; border-top: 1px solid var(--ink); }
-.milestone { display: grid; grid-template-columns: 160px minmax(0, 1fr) 280px; gap: 32px; align-items: start; padding: 40px 0; border-bottom: 1px solid var(--rule); }
-.milestone-when { padding-top: 4px; }
-.milestone-body { display: flex; flex-direction: column; gap: 10px; }
-.milestone-title { font-size: clamp(26px, 2.6vw, 36px); line-height: 1.15; letter-spacing: -0.015em; font-weight: 360; }
-.milestone:hover .milestone-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; }
-.milestone-cover .cover-lines { font-size: clamp(18px, 1.6vw, 22px); }
+/* Stories, written as case studies */
+.carousel { list-style: none; padding: 0 0 8px; margin: 0; display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 64px) / 3.2); gap: 32px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin; }
+.carousel > li { scroll-snap-align: start; }
+.carousel:focus-visible { outline: 1px solid var(--ink); outline-offset: 8px; }
+.carousel-nav { display: flex; align-items: center; gap: 16px; }
+.carousel-btn { font: inherit; font-size: 18px; line-height: 1; width: 40px; height: 40px; border: 1px solid var(--rule); border-radius: 50%; background: none; color: var(--ink); cursor: pointer; }
+.carousel-btn:hover { border-color: var(--ink); }
+.carousel-btn:disabled { opacity: 0.3; cursor: default; }
+.stories-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 80px 32px; }
+.stories-grid .card-title { font-size: clamp(24px, 2.2vw, 30px); line-height: 1.2; }
 
 .case-head { padding: clamp(80px, 10vw, 144px) 0 clamp(48px, 6vw, 80px); display: flex; flex-direction: column; gap: 28px; max-width: 980px; }
 .case-cover { margin: 0 0 clamp(56px, 7vw, 96px); display: flex; flex-direction: column; gap: 12px; }
@@ -213,13 +209,11 @@ a.list-row:hover .list-title { text-decoration: underline; text-decoration-thick
 @media (max-width: 900px) {
   .case-grid { grid-template-columns: minmax(0, 1fr); }
   .case-facts { position: static; }
-  .milestone { grid-template-columns: minmax(0, 1fr) 200px; }
-  .milestone-when { grid-column: 1 / -1; padding-top: 0; }
+  .carousel { grid-auto-columns: calc((100% - 32px) / 2.2); }
 }
 @media (max-width: 720px) {
-  .milestone { grid-template-columns: minmax(0, 1fr); gap: 16px; }
-  .milestone-cover { order: -1; }
-  .career-row { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .carousel { grid-auto-columns: 78%; gap: 20px; }
+  .stories-grid { grid-template-columns: minmax(0, 1fr); gap: 56px; }
   .brand-name { font-size: 23px; }
   .case-cover .cover, .case-cover .cover-img { aspect-ratio: 4 / 3 !important; }
 }

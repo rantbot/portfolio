@@ -13,17 +13,21 @@ title: Ran Craycraft
 <section aria-labelledby="stories-h" class="block">
   <div class="block-head">
     <h2 id="stories-h" class="label">Stories</h2>
-    <a href="/stories/" class="small muted ul">The highlights, as case studies</a>
+    <div class="carousel-nav">
+      <a href="/stories/" class="small muted ul">All stories</a>
+      <button type="button" class="carousel-btn" data-dir="-1" aria-label="Previous stories" hidden>←</button>
+      <button type="button" class="carousel-btn" data-dir="1" aria-label="Next stories" hidden>→</button>
+    </div>
   </div>
-  <ol class="career">
+  <ul class="carousel" role="region" aria-label="Stories" tabindex="0">
     {%- for p in stories %}
-    <li><a href="{{ p.url }}" class="career-row">
-      <span class="career-years small muted">{{ p.data.case_study.years }}</span>
-      <span class="career-org">{{ p.data.case_study.organization }}</span>
-      <span class="career-title serif">{{ p.data.title }}</span>
+    <li><a href="{{ p.url }}" class="card">
+      {%- set ratio = "4 / 5" %}{% include "cover.njk" %}
+      <span class="small muted">{{ p.data.case_study.organization }}</span>
+      <span class="card-title serif">{{ p.data.title }}</span>
     </a></li>
     {%- endfor %}
-  </ol>
+  </ul>
 </section>
 {%- endif %}
 

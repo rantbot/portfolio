@@ -1,6 +1,6 @@
 ---
-title: From intern to new digital ventures at NBC
-description: At NBC, I went from intern to editor, shooter, and producer, then worked on new digital ventures, including companion platforms for Heroes and the skunkworks project that became Hulu.
+title: New digital experiences for NBC, from Heroes to the project that became Hulu
+description: How a television network started building for the internet, from companion platforms for Heroes to fantasy football shows, virtual worlds, and the skunkworks project that became Hulu.
 date: 2026-10-06
 kind: story
 layout: case-study.njk
