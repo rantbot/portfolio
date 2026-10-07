@@ -357,3 +357,20 @@ if (postNav.ArrowLeft || postNav.ArrowRight) {
     });
   }
 })();
+
+// Hidden edit links, for Ran. Add ?edit to any address to show them in this browser, ?edit=off (or ×) to hide them.
+(() => {
+  const box = document.querySelector(".edit-links");
+  if (!box) return;
+  const KEY = "show-edit-links";
+  const param = new URLSearchParams(location.search).get("edit");
+  try {
+    if (param === "off") localStorage.removeItem(KEY);
+    else if (param !== null) localStorage.setItem(KEY, "1");
+    box.hidden = localStorage.getItem(KEY) !== "1";
+  } catch { box.hidden = param === null || param === "off"; }
+  box.querySelector(".edit-links-hide").addEventListener("click", () => {
+    try { localStorage.removeItem(KEY); } catch {}
+    box.hidden = true;
+  });
+})();
