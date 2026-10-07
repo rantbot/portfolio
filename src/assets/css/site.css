@@ -253,6 +253,10 @@ a:hover .text-panel-title { transform: translateY(-3px); }
 .prose li::marker { color: var(--muted); }
 .prose strong { font-weight: 560; }
 .prose img { border-radius: 2px; margin: 2em 0; }
+/* Book spreads and other pages shown in a post. A hairline keeps white pages off the paper. */
+.prose figure { margin: 2.5em 0; }
+.prose figure img { display: block; width: 100%; height: auto; margin: 0; box-shadow: 0 0 0 1px var(--rule); }
+.prose figcaption { margin-top: 10px; font-family: var(--sans); font-size: 0.8125rem; line-height: 1.5; color: var(--muted); }
 .prose blockquote { font-style: italic; color: var(--ink-2); padding-left: 1em; border-left: 1px solid var(--rule-2); }
 .prose code { font-size: 0.86em; background: var(--paper-2); padding: 0.1em 0.3em; border-radius: 2px; }
 .prose hr { border: 0; border-top: 1px solid var(--rule); margin: 2.4em 0; }
