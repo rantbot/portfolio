@@ -24,6 +24,7 @@ content:
         default: writing
         options:
           values:
+            - { value: story, label: Story (a milestone, written as a case study) }
             - { value: writing, label: Writing }
             - { value: making, label: Making }
       - { name: date, label: Date, type: date, required: true }
@@ -31,8 +32,6 @@ content:
       - { name: description, label: Summary, type: text, required: true, description: "One or two sentences. Shows under the title and in search results." }
       - { name: tldr, label: In short, type: text, description: "Optional plain answer at the top of the post" }
       - { name: series, label: Series, type: string, description: "Posts with the same series name link to each other" }
-      - { name: pinned, label: Pin as a story, type: boolean, description: "The three newest pinned posts show on the homepage" }
-      - { name: meta, label: Story label, type: string, description: "Shown on the story card instead of the date, like “AOL, 2011 to 2013”" }
       - { name: image, label: Cover photo, type: image }
       - { name: image_alt, label: Cover photo description, type: string }
       - { name: image_caption, label: Cover photo caption, type: string }
@@ -43,6 +42,20 @@ content:
       - { name: updated, label: Last updated, type: date }
       - { name: try_url, label: Try it link, type: string, description: "Public link to the tool, if there is one. Adds a Try it link at the end of the post." }
       - { name: try_label, label: Try it label, type: string, description: "Optional, like “Install the extension”" }
+      - { name: layout, label: Layout, type: select, default: post.njk, options: { values: [{ value: post.njk, label: Post }, { value: case-study.njk, label: Case study }] }, description: "Stories use Case study" }
+      - name: case_study
+        label: Case study details
+        type: object
+        description: For stories only
+        fields:
+          - { name: organization, label: Organization, type: string }
+          - { name: role, label: Role, type: string }
+          - { name: years, label: Years, type: string, description: "Like “2011 to 2013”" }
+          - { name: start, label: Start year, type: number, description: "Orders the stories" }
+          - { name: scope, label: Scope, type: text }
+          - { name: team, label: With, type: text, description: "Who you did it with" }
+          - { name: outcomes, label: Outcomes, type: string, list: true }
+      - { name: meta, label: Card label, type: string, description: "Optional, shown on cards instead of the date" }
       - { name: body, label: Post, type: rich-text }
 
   - name: site
@@ -53,6 +66,7 @@ content:
       - { name: name, label: Name, type: string }
       - { name: title, label: Site title, type: string }
       - { name: description, label: Site description, type: text }
+      - { name: tagline, label: Subtitle under your name, type: string }
       - { name: location, label: Location, type: string }
       - { name: email, label: Email, type: string }
       - { name: job_title, label: Job title, type: string }

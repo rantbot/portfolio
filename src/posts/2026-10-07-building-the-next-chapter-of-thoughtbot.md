@@ -2,9 +2,20 @@
 title: Building the next chapter of thoughtbot
 description: An established consultancy needed new ways to grow and deliver value. As Managing Director, I helped reshape how the Americas business operates, the opportunities we pursue, and the services we offer.
 date: 2026-10-07
-kind: writing
-pinned: true
-meta: thoughtbot, 2023 to present
+kind: story
+layout: case-study.njk
+case_study:
+  organization: thoughtbot
+  role: Managing Director and board member
+  years: 2023 to present
+  start: 2023
+  scope: The Americas business, from sales and staffing to delivery and financial performance
+  team: Colleagues across delivery, consulting, sales, marketing, and operations
+  outcomes:
+    - Created the Americas and Fusion team structure
+    - Established the Delivery discipline
+    - Focused the market strategy on regulated industries
+    - Launched subscription maintenance and an AI and Product Innovation practice
 tone: "#1E2B25"
 ink: "#EDE9DF"
 cover_kicker: thoughtbot
@@ -15,30 +26,34 @@ cover_lines:
   - New offerings
 ---
 
-## The challenge
+## The situation
 
-The task was to develop new opportunities while keeping sales, staffing, delivery, and financial performance connected. That meant looking at our operating structure alongside our positioning and offerings.
+thoughtbot has built software for clients for more than twenty years, and it has earned a strong reputation. The market around it changed quickly. Clients were asking different questions, AI was changing what code costs to produce, and an established firm needed new ways to grow and to prove its value.
 
-<!-- TO ADD: starting conditions and comparison period. Market changes, team size, revenue, utilization, and margin. -->
+The task was to develop new opportunities while keeping sales, staffing, delivery, and financial performance connected. That meant looking at how we were organized alongside how we positioned ourselves and what we offered.
 
-## Reshaping the organization
+<!-- TO ADD: starting conditions and the comparison period. Market changes, team size, revenue, utilization, and margin. -->
 
-I created the Americas and Fusion team structure and oversaw three reorganizations. I also established the Delivery discipline to help ensure clients receive what they signed up for and to strengthen accountability across engagements.
+## What I did
 
-## Focusing our market strategy
+### Reshaped the organization
 
-I led a focus on regulated industries, including healthcare, fintech, and insurance, and helped develop new enterprise relationships. I also closed some of thoughtbot’s largest deals.
+I created the Americas and Fusion team structure, so each region could operate and price for its own market, and I oversaw three reorganizations as the business changed. I also established the Delivery discipline, to make sure clients receive what they signed up for and to strengthen accountability across engagements.
 
-## Developing new offerings
+### Focused the market strategy
 
-I designed a subscription maintenance program to support clients beyond the initial build and create recurring revenue for the business. I also helped launch an AI and Product Innovation practice.
+I led a focus on regulated industries, including healthcare, fintech, and insurance, where experienced judgment matters as much as speed. I helped develop new enterprise relationships and closed some of thoughtbot's largest deals.
 
-## Creating space to experiment
+### Developed new offerings
 
-I created Space Station to organize work between client engagements and developed an experiment framework. The aim was to give available capacity a purpose and create a way to test ideas, share learning, and produce useful work. You can see what people have built in the [experiments catalog](https://thoughtbot.github.io/experiments/).
+I designed a subscription maintenance program to support clients after the initial build and to create recurring revenue for the business. I also helped launch an AI and Product Innovation practice.
 
-## Collaboration
+### Created space to experiment
 
-These changes depended on colleagues across delivery, consulting, sales, marketing, and operations.
+I created Space Station to organize work between client engagements, along with an experiment framework. The aim was to give available capacity a purpose and a way to test ideas, share what we learned, and produce useful work. I took part too, building a series of [tools for my own team](/making/building-tools-for-my-team/).
 
-<!-- TO ADD: the people who shaped and carried each initiative, named with permission. Then a Results section with dated, verified figures, and a Lessons section in your own words. -->
+<!-- TO ADD: the people who shaped and carried each initiative, named with permission. -->
+
+<!-- TO ADD as "## What changed": dated, verified results for each initiative. -->
+
+<!-- TO ADD as "## What I learned": two or three lessons in your own words. -->

@@ -5,6 +5,8 @@ date: 2026-10-03
 kind: making
 series: Pocket Cornhole
 tldr: A touchscreen can register a sugar packet landing on it, and where it comes to rest, once the packet is wrapped in foil. That makes it possible to play cornhole with a phone as the board.
+image: /assets/images/experiments/pocket-cornhole-throw.png
+image_alt: A foil-wrapped sugar packet sliding toward a phone lying on a wooden table
 tone: "#E9E4D8"
 ink: "#2E2A22"
 cover_kicker: Pocket Cornhole

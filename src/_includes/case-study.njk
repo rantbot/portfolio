@@ -1,0 +1,60 @@
+---
+layout: base.njk
+---
+{%- set cs = case_study or {} %}
+<article class="case">
+  <header class="case-head">
+    <p class="small muted"><a href="/stories/" class="ul">Stories</a>{% if cs.organization %} · {{ cs.organization }}{% endif %}{% if cs.years %} · {{ cs.years }}{% endif %}</p>
+    <h1 class="serif display">{{ title }}</h1>
+    {%- if description %}<p class="serif lede">{{ description }}</p>{% endif %}
+    <p class="small muted byline"><a href="/about/" rel="author">{{ site.name }}</a> · <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time> · {{ content | readingTime }}</p>
+  </header>
+
+  {%- if image or cover_lines %}
+  <figure class="case-cover">
+    {%- set p = { data: { image: image, image_alt: image_alt, tone: tone, ink: ink, cover_lines: cover_lines, cover_kicker: cover_kicker, series: series } } %}
+    {%- set ratio = "21 / 9" %}{% include "cover.njk" %}
+    {%- if image_caption %}<figcaption class="small muted">{{ image_caption }}</figcaption>{% endif %}
+  </figure>
+  {%- endif %}
+
+  <div class="case-grid">
+    <aside class="case-facts" aria-label="At a glance">
+      <dl>
+        {%- if cs.role %}<div><dt>Role</dt><dd>{{ cs.role }}</dd></div>{% endif %}
+        {%- if cs.organization %}<div><dt>Organization</dt><dd>{{ cs.organization }}</dd></div>{% endif %}
+        {%- if cs.years %}<div><dt>Years</dt><dd>{{ cs.years }}</dd></div>{% endif %}
+        {%- if cs.scope %}<div><dt>Scope</dt><dd>{{ cs.scope }}</dd></div>{% endif %}
+        {%- if cs.team %}<div><dt>With</dt><dd>{{ cs.team }}</dd></div>{% endif %}
+      </dl>
+      {%- if cs.outcomes and cs.outcomes.length %}
+      <p class="case-facts-label">Outcomes</p>
+      <ul>{% for o in cs.outcomes %}<li>{{ o }}</li>{% endfor %}</ul>
+      {%- endif %}
+    </aside>
+
+    <div class="case-body">
+      {%- if tldr %}
+      <aside class="tldr" aria-label="In short">
+        <p class="tldr-label">In short</p>
+        <p>{{ tldr }}</p>
+      </aside>
+      {%- endif %}
+      <div class="prose serif">
+{{ content | safe }}
+      </div>
+    </div>
+  </div>
+
+  {%- set others = collections.posts | milestones %}
+  {%- if others.length > 1 %}
+  <nav class="case-more" aria-label="More stories">
+    <p class="label">More stories</p>
+    <ol class="list">
+      {%- for s in others %}{% if s.url != page.url %}
+      <li><a href="{{ s.url }}" class="list-row"><span class="serif list-title">{{ s.data.title }}</span><span class="small muted">{{ s.data.case_study.organization }}, {{ s.data.case_study.years }}</span></a></li>
+      {%- endif %}{% endfor %}
+    </ol>
+  </nav>
+  {%- endif %}
+</article>

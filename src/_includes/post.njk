@@ -1,10 +1,10 @@
 ---
 layout: base.njk
 ---
-<article class="post">
+<article class="post light">
   <header class="post-head">
-    <p class="small muted"><a href="/{{ kind }}/" class="ul">{{ "Making" if kind == "making" else "Writing" }}</a>{% if series %} · {{ series }}{% endif %}{% if meta %} · {{ meta }}{% endif %}</p>
-    <h1 class="serif display-3">{{ title }}</h1>
+    <p class="small muted"><a href="/{{ section }}/" class="ul">{{ kind | kindLabel }}</a>{% if series %} · {{ series }}{% endif %}{% if meta %} · {{ meta }}{% endif %}</p>
+    <h1 class="serif post-title">{{ title }}</h1>
     {%- if description %}<p class="serif lede">{{ description }}</p>{% endif %}
     <p class="small muted byline"><a href="/about/" rel="author">{{ site.name }}</a> · <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time> · {{ content | readingTime }}</p>
   </header>

@@ -8,18 +8,18 @@ title: Ran Craycraft
   <p class="small muted">{{ site.now }}</p>
 </section>
 
-{%- set stories = collections.posts | pinned | limit(3) %}
+{%- set stories = collections.posts | milestones | limit(3) %}
 {%- if stories.length %}
 <section aria-labelledby="stories-h" class="block">
   <div class="block-head">
     <h2 id="stories-h" class="label">Stories</h2>
-    <p class="small muted">Longer accounts of work I’ve led</p>
+    <a href="/stories/" class="small muted ul">Milestones, told as case studies</a>
   </div>
   <div class="cards three">
     {%- for p in stories %}
     <a href="{{ p.url }}" class="card">
       {%- set ratio = "4 / 5" %}{% include "cover.njk" %}
-      <span class="small muted">{{ p.data.meta or (p.date | readableDate) }}</span>
+      <span class="small muted">{% if p.data.case_study %}{{ p.data.case_study.organization }}, {{ p.data.case_study.years }}{% else %}{{ p.data.meta or (p.date | readableDate) }}{% endif %}</span>
       <span class="card-title serif">{{ p.data.title }}</span>
     </a>
     {%- endfor %}
@@ -40,7 +40,7 @@ title: Ran Craycraft
     {%- for p in collections.posts | limit(12) %}
     <li data-kind="{{ p.data.kind }}">
       <a href="{{ p.url }}" class="row">
-        <span class="row-kind small muted">{{ "Making" if p.data.kind == "making" else "Writing" }}</span>
+        <span class="row-kind small muted">{{ p.data.kind | kindLabel }}</span>
         <span class="row-body">
           <span class="row-title serif">{{ p.data.title }}</span>
           <span class="muted">{{ p.data.description }}</span>

@@ -6,13 +6,8 @@ kind: making
 updated: 2026-10-06
 series: Tools for my team
 meta: Chrome extension
-tone: '#E6EAF2'
-ink: '#1F2A44'
-cover_kicker: Pipeline Health
-cover_lines:
-- Forecast
-- Grade
-- Next steps
+image: /assets/images/experiments/pipeline-health.png
+image_alt: Illustration of Pipeline Health in use
 ---
 
 Every sales leader has looked at a pipeline and had a feeling about it. I wanted a number that agreed with the feeling when the feeling was right, and argued with it when it wasn't.

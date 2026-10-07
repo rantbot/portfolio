@@ -1,0 +1,28 @@
+---
+layout: base.njk
+title: Stories
+description: Milestones in Ran Craycraft’s career, written as case studies, from launching ventures at AOL to leading thoughtbot’s Americas business and Ruby Central.
+permalink: /stories/
+section: stories
+---
+<section class="page-head">
+  <h1 class="serif display">Stories</h1>
+  <p class="serif lede">The milestones. Each one is a longer look at a piece of work I led, what the situation was, what I did, and what changed.</p>
+</section>
+
+<ol class="milestones">
+  {%- for p in collections.posts | milestones %}
+  {%- set cs = p.data.case_study %}
+  <li>
+    <a href="{{ p.url }}" class="milestone">
+      <span class="milestone-when small muted">{{ cs.years }}</span>
+      <span class="milestone-body">
+        <span class="small muted">{{ cs.organization }}{% if cs.role %} · {{ cs.role }}{% endif %}</span>
+        <span class="milestone-title serif">{{ p.data.title }}</span>
+        <span class="muted">{{ p.data.description }}</span>
+      </span>
+      <span class="milestone-cover">{% set ratio = "4 / 3" %}{% include "cover.njk" %}</span>
+    </a>
+  </li>
+  {%- endfor %}
+</ol>

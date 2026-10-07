@@ -26,6 +26,11 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addFilter("ofKind", (posts, kind) => posts.filter((p) => p.data.kind === kind));
   eleventyConfig.addFilter("pinned", (posts) => posts.filter((p) => p.data.pinned));
+  // Stories are milestones, ordered by when the work began, most recent first
+  eleventyConfig.addFilter("milestones", (posts) =>
+    posts.filter((p) => p.data.kind === "story").sort((a, b) => (b.data.case_study?.start || 0) - (a.data.case_study?.start || 0))
+  );
+  eleventyConfig.addFilter("kindLabel", (kind) => ({ story: "Story", making: "Making" })[kind] || "Writing");
   eleventyConfig.addFilter("inSeries", (posts, series) =>
     series ? posts.filter((p) => p.data.series === series).sort((a, b) => a.date - b.date) : []
   );

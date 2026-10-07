@@ -10,9 +10,9 @@ Ran will say things like "add a post about X", "update my AOL story", "add my ne
 
 | What | File |
 | --- | --- |
-| Posts (Writing and Making) | `src/posts/YYYY-MM-DD-slug.md` |
+| Posts (Stories, Writing and Making) | `src/posts/YYYY-MM-DD-slug.md` |
 | Photos | `src/assets/images/`, referenced as `/assets/images/name.jpg` |
-| Homepage text, profile links | `src/_data/site.yml` |
+| Homepage text, the subtitle under the name (`tagline`), profile links | `src/_data/site.yml` |
 | thoughtbot essays and other outside posts | `src/_data/elsewhere.yml`, newest first |
 | About page, roles, education | `src/about.md` |
 | Look and feel | `src/assets/css/site.css` |
@@ -21,18 +21,20 @@ Ran will say things like "add a post about X", "update my AOL story", "add my ne
 
 ## Posts
 
-Start one with `npm run new -- "Title" writing` (or `making`). The URL comes from the file name without the date, so `/writing/slug/` or `/making/slug/`.
+Start one with `npm run new -- "Title" writing` (or `making`). The URL comes from the file name without the date, so `/stories/slug/`, `/writing/slug/` or `/making/slug/`.
 
 Front matter:
 
 - `title` the question someone would search for, when that fits
 - `description` one or two sentences, shown under the title and in search results
 - `date` publish date, `YYYY-MM-DD`
-- `kind` `writing` or `making`
+- `kind` `story`, `writing` or `making`
+  - **Stories** are milestones, the large markers in Ran's career, written as long case studies. They use `layout: case-study.njk` and a `case_study` block (`organization`, `role`, `years`, `start` year for ordering, `scope`, `team`, `outcomes`). Sections are The situation, What I did, What changed, What I learned. Never invent facts or results. Leave a `<!-- TO ADD -->` note instead, and keep a heading in the note until its section has content.
+  - **Writing** and **Making** are lighter, passing ideas, experiments and thoughts. Keep them short.
 - `draft: true` keeps it off the site. Remove it to publish.
 - `tldr` optional plain answer at the top ("In short")
 - `series` same name on related posts links them together
-- `pinned: true` and `meta` put it in the homepage Stories row (three newest pinned)
+- The homepage Stories row shows the three most recent milestones. `meta` is an optional card label.
 - Cover, either `image` plus `image_alt` (and optional `image_caption`), or a typographic cover with `tone`, `ink`, `cover_kicker`, `cover_lines`
 - `updated` optional date for revised posts
 - `try_url` and optional `try_label` add a "Try it" link at the end, only for tools that are public

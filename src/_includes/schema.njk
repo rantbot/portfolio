@@ -4,6 +4,7 @@
   "@id": env.url + "/#person",
   "name": site.name,
   "url": env.url + "/",
+  "description": site.tagline,
   "jobTitle": site.job_title,
   "worksFor": { "@type": "Organization", "name": site.employer, "url": site.employer_url },
   "memberOf": { "@type": "Organization", "name": "Ruby Central", "url": "https://rubycentral.org" },
@@ -14,7 +15,7 @@
   "homeLocation": { "@type": "Place", "name": site.location },
   "sameAs": site.same_as | pluck("url")
 } -%}
-{%- if layout == "post.njk" %}
+{%- if kind %}
 <script type="application/ld+json">{{ {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
@@ -28,7 +29,8 @@
   "author": person,
   "publisher": { "@id": env.url + "/#person" },
   "isPartOf": { "@type": "CreativeWorkSeries", "name": series } if series else none,
-  "articleSection": "Making" if kind == "making" else "Writing"
+  "about": { "@type": "Organization", "name": case_study.organization } if case_study and case_study.organization else none,
+  "articleSection": kind | kindLabel
 } | json | safe }}</script>
 {%- else %}
 <script type="application/ld+json">{{ {

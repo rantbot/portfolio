@@ -11,6 +11,10 @@ eleventyExcludeFromCollections: true
 ## About
 - [About {{ site.name }}]({{ env.url }}/about/): Background, roles, and education.
 
+## Stories
+Milestones in {{ site.name }}’s career, written as case studies.
+{% for p in collections.posts | milestones %}- [{{ p.data.title }}]({{ env.url }}{{ p.url }}): {{ p.data.description }}
+{% endfor %}
 ## Writing
 {% for p in collections.posts | ofKind("writing") %}- [{{ p.data.title }}]({{ env.url }}{{ p.url }}): {{ p.data.description }}
 {% endfor %}{% for e in elsewhere %}- [{{ e.title }}]({{ e.url }}): {{ e.summary }} ({{ e.publication }})

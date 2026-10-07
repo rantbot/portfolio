@@ -51,8 +51,12 @@ img { max-width: 100%; display: block; }
 .ul:hover { text-decoration-color: var(--ink); }
 
 /* Header and footer */
-.site-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 16px; padding: 32px 0; }
-.brand { font-weight: 500; }
+.site-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px 32px; padding: 32px 0; }
+/* Wordmark. Instrument Sans Bold, set tight like a logo. */
+.brand { display: flex; flex-direction: column; gap: 8px; }
+.brand-name { font-family: var(--sans); font-size: 26px; font-weight: 700; letter-spacing: -0.035em; line-height: 1; }
+.brand-tagline { font-size: 13px; line-height: 1.4; color: var(--muted); max-width: 36ch; }
+.site-header nav { padding-top: 6px; }
 .site-header nav { display: flex; gap: 28px; color: var(--muted); flex-wrap: wrap; }
 .site-header nav a:hover, .site-header nav a[aria-current] { color: var(--ink); }
 .site-footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-top: clamp(96px, 10vw, 144px); padding: 24px 0 40px; border-top: 1px solid var(--rule); font-size: 14px; color: var(--muted); }
@@ -165,4 +169,50 @@ a.list-row:hover .list-title { text-decoration: underline; text-decoration-thick
   .cards.three .cover { aspect-ratio: 4 / 3 !important; }
   .list-row > .small { white-space: normal; }
 }
+
 .try { margin-top: 32px; font-weight: 500; }
+
+/* Lighter posts, for passing ideas, experiments and thoughts */
+.light .post-head { max-width: 680px; padding: clamp(56px, 7vw, 96px) 0 clamp(32px, 4vw, 48px); gap: 16px; }
+.post-title { font-size: clamp(28px, 3vw, 40px); line-height: 1.15; letter-spacing: -0.015em; font-weight: 380; }
+.light .lede { font-size: clamp(18px, 1.5vw, 21px); }
+.light .post-cover { max-width: 680px; margin: 0 auto clamp(40px, 5vw, 56px); }
+.light .post-cover .cover-lines { font-size: clamp(24px, 2.6vw, 36px); }
+
+/* Stories, the milestones, written as case studies */
+.milestones { list-style: none; padding: 0; border-top: 1px solid var(--ink); }
+.milestone { display: grid; grid-template-columns: 160px minmax(0, 1fr) 280px; gap: 32px; align-items: start; padding: 40px 0; border-bottom: 1px solid var(--rule); }
+.milestone-when { padding-top: 4px; }
+.milestone-body { display: flex; flex-direction: column; gap: 10px; }
+.milestone-title { font-size: clamp(26px, 2.6vw, 36px); line-height: 1.15; letter-spacing: -0.015em; font-weight: 360; }
+.milestone:hover .milestone-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; }
+.milestone-cover .cover-lines { font-size: clamp(18px, 1.6vw, 22px); }
+
+.case-head { padding: clamp(80px, 10vw, 144px) 0 clamp(48px, 6vw, 80px); display: flex; flex-direction: column; gap: 28px; max-width: 980px; }
+.case-cover { margin: 0 0 clamp(56px, 7vw, 96px); display: flex; flex-direction: column; gap: 12px; }
+.case-cover .cover-lines { font-size: clamp(32px, 4.4vw, 64px); }
+.case-grid { display: grid; grid-template-columns: 240px minmax(0, 720px); gap: clamp(40px, 6vw, 96px); justify-content: center; align-items: start; }
+.case-facts { position: sticky; top: 32px; font-size: 14px; border-top: 1px solid var(--ink); padding-top: 16px; }
+.case-facts dl { margin: 0; display: flex; flex-direction: column; gap: 14px; }
+.case-facts dt, .case-facts-label { color: var(--faint); font-size: 13px; }
+.case-facts dd { margin: 2px 0 0; }
+.case-facts-label { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--rule); }
+.case-facts ul { margin: 8px 0 0; padding-left: 1.1em; display: flex; flex-direction: column; gap: 8px; }
+.case .prose { font-size: 21px; }
+.case .prose h2 { font-family: var(--serif); font-size: clamp(26px, 2.4vw, 32px); line-height: 1.2; font-weight: 360; letter-spacing: -0.012em; margin-top: 2.2em; }
+.case .prose h3 { font-family: var(--sans); font-size: 15px; font-weight: 500; margin-top: 2em; }
+.case .prose > :first-child { margin-top: 0; }
+.case-more { max-width: 1056px; margin: clamp(96px, 10vw, 144px) auto 0; display: flex; flex-direction: column; gap: 16px; }
+
+@media (max-width: 900px) {
+  .case-grid { grid-template-columns: minmax(0, 1fr); }
+  .case-facts { position: static; }
+  .milestone { grid-template-columns: minmax(0, 1fr) 200px; }
+  .milestone-when { grid-column: 1 / -1; padding-top: 0; }
+}
+@media (max-width: 720px) {
+  .milestone { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .milestone-cover { order: -1; }
+  .brand-name { font-size: 23px; }
+  .case-cover .cover, .case-cover .cover-img { aspect-ratio: 4 / 3 !important; }
+}
