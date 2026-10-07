@@ -1,0 +1,22 @@
+---
+layout: base.njk
+title: Search
+description: Search Ran Craycraft’s stories, writing, and the things he makes.
+permalink: /search/
+section: search
+eleventyExcludeFromCollections: true
+---
+<header class="page-head">
+  <h1 class="page-title serif">Search</h1>
+  <div class="grid">
+    <div class="span-main search-page">
+      <form class="search-form" role="search" action="/search/">
+        <label class="sr-label" for="search-page-q">Search the site</label>
+        <input id="search-page-q" class="search-input" type="search" name="q" placeholder="Stories, writing, things I’ve made" autocomplete="off" spellcheck="false" enterkeyhint="go">
+      </form>
+      <p class="search-status" aria-live="polite"></p>
+      <ol class="search-results" role="list"></ol>
+      <noscript><p class="search-status">Search needs JavaScript. You can browse <a href="/leading/" class="ul">Leading</a>, <a href="/writing/" class="ul">Writing</a> and <a href="/making/" class="ul">Making</a> instead.</p></noscript>
+    </div>
+  </div>
+</header>

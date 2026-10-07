@@ -427,6 +427,48 @@ a:hover .text-panel-title { transform: translateY(-3px); }
 .footer-legal { grid-column: 9 / -1; justify-self: end; color: var(--muted); }
 
 /* Tablet */
+/* Search. An icon in the header opens a quiet panel; /search/ is the same thing as a page. */
+.search-btn { display: inline-flex; align-items: center; align-self: center; color: var(--muted); transition: color 200ms var(--ease); }
+.search-btn:hover, .search-btn[aria-current] { color: var(--ink); }
+.search-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; }
+.site-nav .search-btn[aria-current] { text-decoration: none; }
+.header-tools { display: none; }
+.sr-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+html.search-open { overflow: hidden; }
+.search-dialog { position: fixed; inset: 10vh 0 auto; margin: 0 auto; width: min(720px, calc(100vw - 2 * var(--gutter))); max-width: none; max-height: 76vh; padding: 0; border: 0; border-radius: 14px; background: var(--paper); color: var(--ink); box-shadow: 0 0 0 1px var(--rule), 0 30px 80px -24px rgba(20, 20, 18, 0.35); overflow: hidden; }
+.search-dialog[open] { display: flex; animation: search-in 220ms var(--ease); }
+.search-dialog::backdrop { background: rgba(38, 38, 36, 0.24); backdrop-filter: blur(2px); }
+@keyframes search-in { from { opacity: 0; transform: translateY(-8px); } }
+.search-panel { display: flex; flex-direction: column; width: 100%; min-height: 0; }
+.search-form { display: flex; align-items: center; gap: 16px; }
+.search-dialog .search-form { padding: 20px 24px; border-bottom: 1px solid var(--rule); }
+.search-input { flex: 1; min-width: 0; padding: 0; border: 0; background: transparent; color: var(--ink); font-family: var(--serif); font-size: clamp(24px, 2.6vw, 30px); font-weight: 380; line-height: 1.2; letter-spacing: -0.01em; outline: none; -webkit-appearance: none; appearance: none; }
+.search-input::placeholder { color: var(--muted); opacity: 0.7; }
+.search-input::-webkit-search-cancel-button { display: none; }
+.search-close { flex: none; padding: 3px 8px; border: 1px solid var(--rule-2); border-radius: 6px; background: none; color: var(--muted); font: 500 12px var(--sans); cursor: pointer; }
+.search-close:hover { color: var(--ink); border-color: var(--ink-2); }
+.search-status { margin: 0; padding: 14px 24px 4px; font-size: 14px; color: var(--muted); }
+.search-status:empty { display: none; }
+.search-idea { margin: 0 4px; padding: 0; border: 0; background: none; color: var(--ink); font: inherit; text-decoration: underline; text-decoration-color: var(--rule-2); text-underline-offset: 3px; cursor: pointer; }
+.search-idea:hover { text-decoration-color: var(--ink); }
+.search-results { margin: 0; padding: 6px 12px 14px; list-style: none; overflow-y: auto; overscroll-behavior: contain; }
+.search-results:empty { display: none; }
+.search-hit { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 3px 18px; padding: 14px 12px; border-radius: 10px; }
+.search-hit:hover, .search-hit[aria-selected="true"] { background: var(--paper-2); }
+.search-hit-title { font-family: var(--serif); font-size: 20px; font-weight: 400; line-height: 1.3; color: var(--ink); text-wrap: balance; }
+.search-hit-meta { padding-top: 4px; font-size: 13px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.search-hit-text { grid-column: 1 / -1; font-size: 15px; line-height: 1.5; color: var(--ink-2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.search-out { color: var(--muted); }
+.search-results mark { background: #EFE8CC; color: inherit; border-radius: 2px; padding: 0 1px; }
+.search-page { margin-top: 8px; }
+.search-page .search-form { padding-bottom: 14px; border-bottom: 1px solid var(--ink); }
+.search-page .search-input { font-size: clamp(28px, 3.2vw, 38px); }
+.search-page .search-status { padding: 16px 0 0; }
+.search-page .search-results { padding: 8px 0 0; overflow: visible; }
+.search-page .search-hit { padding: 18px 0; border-radius: 0; border-bottom: 1px solid var(--rule); }
+.search-page .search-hit:hover, .search-page .search-hit[aria-selected="true"] { background: none; }
+.search-page .search-hit:hover .search-hit-title, .search-page .search-hit[aria-selected="true"] .search-hit-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; text-decoration-color: var(--rule-2); }
+
 @media (max-width: 1024px) {
   .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .span-main { grid-column: 4 / -1; }
@@ -504,6 +546,12 @@ a:hover .text-panel-title { transform: translateY(-3px); }
   .site-header { position: sticky; top: 0; z-index: 30; margin: 0 calc(-1 * var(--gutter)); padding: 0 var(--gutter); height: 60px; flex-wrap: nowrap; align-items: center; background: rgba(250, 250, 247, 0.86); -webkit-backdrop-filter: saturate(1.4) blur(14px); backdrop-filter: saturate(1.4) blur(14px); box-shadow: 0 1px 0 transparent; transition: box-shadow 250ms var(--ease); }
   .site-header.is-stuck { box-shadow: 0 1px 0 var(--rule); }
   .site-header .site-nav { display: none; }
+  .header-tools { display: flex; align-items: center; gap: 22px; }
+  .search-dialog { inset: 0; width: 100%; height: 100%; max-height: none; border-radius: 0; box-shadow: none; }
+  .search-dialog .search-form { padding: 18px 20px; }
+  .search-status { padding: 14px 20px 4px; }
+  .search-results { padding: 4px 8px 24px; }
+  .search-hit-meta { grid-column: 1 / -1; padding-top: 0; }
   .brand { font-size: 21px; letter-spacing: -0.035em; }
   .menu-btn, .menu-close { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; margin-right: -10px; padding: 0 10px; font-size: 14px; font-weight: 500; color: var(--ink); }
 
@@ -648,6 +696,7 @@ a:hover .text-panel-title { transform: translateY(-3px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .search-dialog[open] { animation: none; }
   *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
   .menu-links li, .menu-foot { opacity: 1; transform: none; }
   a:hover .cover, a:hover .cover-img { transform: none; }

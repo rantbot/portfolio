@@ -71,6 +71,10 @@ The wordmark is plain text, "Ran Craycraft" in Inter Tight Bold (self-hosted, so
 
 The homepage leads with executive value. The carousel opens with three featured leadership stories, set with `featured: 1`, `2` and `3` in front matter (thoughtbot, AOL, Wildebeest). Each has a `highlight`, one verified outcome with its years written into the sentence, shown on the card in place of the description. Only use outcomes Ran has confirmed. The Work together page separates leadership opportunities from selective consulting.
 
+## Site search
+
+Search needs no service and no library. At build time `src/search-index.njk` writes `/search.json` (the `searchIndex` filter in `eleventy.config.js`), covering every post and story, the outside essays in `elsewhere.yml`, and the About, Work together and Skills pages. It holds each title, description, kind, date and about 2,400 characters of body text. The magnifier in the header opens a panel (`.search-dialog` in `base.njk`), and `/` or Cmd/Ctrl+K open it from anywhere. The index only loads the first time someone searches. Results and keyboard handling live at the end of `site.js`. `/search/` is the same search as a full page, and the header icon links there when JavaScript is off. Words of three letters or fewer only match at the start of a word, so "ai" doesn't match "again". To add another page to search, add its URL to the list in `search-index.njk`.
+
 ## Read next
 
 Every Leading piece ends with "Read next", up to two others chosen in its front matter:

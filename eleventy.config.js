@@ -136,6 +136,37 @@ export default function (eleventyConfig) {
     return html.slice(0, best.at) + aside.trim() + "\n" + html.slice(best.at);
   });
   eleventyConfig.addFilter("withSkill", (posts, key) => posts.find((p) => p.data.skill === key));
+  // Search. One small JSON file with every post, story, outside essay and main page, built with the site.
+  // Body text is stripped of markup and trimmed, so the file stays light.
+  const plain = (s) =>
+    String(s || "")
+      .replace(/<!--[\s\S]*?-->/g, " ")
+      .replace(/\{[%{#][\s\S]*?[%}#]\}/g, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")
+      .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+      .replace(/[#>*_`~|-]+/g, " ")
+      .replace(/&[a-z]+;/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  eleventyConfig.addFilter("searchIndex", (posts, elsewhere = [], pages = []) => {
+    const day = (d) => new Date(d).toISOString().slice(0, 10);
+    const kind = (k) => ({ story: "Leading", making: "Making" })[k] || "Writing";
+    const items = [
+      ...posts.map((p) => ({
+        t: p.data.title,
+        u: p.url,
+        k: kind(p.data.kind),
+        d: plain(p.data.highlight || p.data.description),
+        m: [p.data.series, p.data.meta, p.data.case_study?.organization].filter(Boolean).join(" "),
+        x: plain(p.rawInput).slice(0, 2400),
+        y: p.data.kind === "story" ? "" : day(p.date),
+      })),
+      ...elsewhere.map((e) => ({ t: e.title, u: e.url, k: "Writing", d: plain(e.summary), m: e.publication || "", x: "", y: day(e.date), o: 1 })),
+      ...pages.map((p) => ({ t: p.data.title, u: p.url, k: "Page", d: plain(p.data.description), m: "", x: plain(p.rawInput).slice(0, 1200), y: "" })),
+    ];
+    return JSON.stringify(items);
+  });
   eleventyConfig.addFilter("kindLabel", (kind) => ({ story: "Leading", making: "Making" })[kind] || "Writing");
   eleventyConfig.addFilter("inSeries", (posts, series) =>
     series ? posts.filter((p) => p.data.series === series).sort((a, b) => a.date - b.date) : []

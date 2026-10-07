@@ -72,10 +72,14 @@
     <a href="/writing/"{% if section == "writing" %} aria-current="page"{% endif %}>Writing</a>
     <a href="/making/"{% if section == "making" %} aria-current="page"{% endif %}>Making</a>
     <a href="/about/"{% if section == "about" %} aria-current="page"{% endif %}>About</a>
+    <a href="/search/" class="search-btn" data-search{% if section == "search" %} aria-current="page"{% endif %} aria-label="Search" title="Search  /"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.75"/><path d="m13 13 4.25 4.25"/></svg></a>
     <a href="/work/" class="nav-cta"{% if section == "work" %} aria-current="page"{% endif %}>Work together</a>
   </nav>
   {#- On phones the nav folds into a full-screen menu. Without JavaScript the button jumps to it with #menu. -#}
-  <a href="#menu" class="menu-btn" aria-controls="menu" aria-expanded="false"><span>Menu</span><span class="menu-icon" aria-hidden="true"></span></a>
+  <div class="header-tools">
+    <a href="/search/" class="search-btn" data-search aria-label="Search"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.75"/><path d="m13 13 4.25 4.25"/></svg></a>
+    <a href="#menu" class="menu-btn" aria-controls="menu" aria-expanded="false"><span>Menu</span><span class="menu-icon" aria-hidden="true"></span></a>
+  </div>
 </header>
 <div id="menu" class="menu" aria-label="Menu">
   <div class="menu-inner">
@@ -99,6 +103,18 @@
     </div>
   </div>
 </div>
+{#- Search. The icon opens this panel; without JavaScript it goes to /search/ instead. -#}
+<dialog class="search-dialog" aria-label="Search">
+  <div class="search-panel">
+    <form class="search-form" role="search" action="/search/">
+      <label class="sr-label" for="search-q">Search the site</label>
+      <input id="search-q" class="search-input" type="search" name="q" placeholder="Search" autocomplete="off" spellcheck="false" enterkeyhint="go">
+      <button type="button" class="search-close" aria-label="Close search">Esc</button>
+    </form>
+    <p class="search-status" aria-live="polite"></p>
+    <ol class="search-results" role="list"></ol>
+  </div>
+</dialog>
 <main id="main">
 {{ content | safe }}
 </main>

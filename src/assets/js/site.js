@@ -202,3 +202,158 @@ if (postNav.ArrowLeft || postNav.ArrowRight) {
   document.body.prepend(sentinel);
   new IntersectionObserver(([e]) => header.classList.toggle("is-stuck", !e.isIntersecting)).observe(sentinel);
 })();
+
+// Search. A small index (/search.json) loads the first time someone searches, then every keystroke filters it here.
+// The header icon opens a panel; "/" or Cmd/Ctrl+K open it from anywhere. /search/ uses the same code on a full page.
+(() => {
+  let index = null;
+  const load = () => (index ||= fetch("/search.json").then((r) => r.json()).catch(() => []));
+  const fold = (s) => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[’‘]/g, "'");
+  const esc = (s) => String(s || "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const reEsc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  // Short words (three letters or fewer) only match at the start of a word, so "ai" finds AI but not "again".
+  const pattern = (t) => (t.length <= 3 ? `(?<![\\p{L}\\p{N}])${reEsc(t)}` : reEsc(t));
+  const has = (field, t) => (t.length <= 3 ? new RegExp(pattern(t), "u").test(field) : field.includes(t));
+  const mark = (text, terms) => {
+    const out = esc(text);
+    if (!terms.length) return out;
+    const re = new RegExp(`(${terms.map((t) => pattern(esc(t))).join("|")})`, "giu");
+    return out.replace(re, "<mark>$1</mark>");
+  };
+  const when = (y) => (y ? new Date(y + "T00:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }) : "");
+  const snippet = (item, terms) => {
+    if (item.d && terms.some((t) => has(fold(item.d), t))) return item.d;
+    const body = item.x || "";
+    const at = terms.map((t) => fold(body).search(new RegExp(pattern(t), "u"))).filter((i) => i >= 0).sort((a, b) => a - b)[0];
+    if (at === undefined) return item.d || body.slice(0, 150);
+    const start = Math.max(0, body.lastIndexOf(" ", Math.max(0, at - 60)) + 1);
+    return (start > 0 ? "… " : "") + body.slice(start, start + 170).replace(/\s\S*$/, "") + " …";
+  };
+  const search = (items, q) => {
+    const terms = fold(q).split(/\s+/).filter((t) => t.length > 1 || /\d/.test(t));
+    if (!terms.length) return { terms, hits: [] };
+    const hits = [];
+    for (const it of items) {
+      const f = { t: fold(it.t), m: fold(it.m + " " + it.k), d: fold(it.d), x: fold(it.x) };
+      let score = 0;
+      for (const t of terms) {
+        const word = new RegExp(`(^|[^a-z0-9])${reEsc(t)}`);
+        const s = (word.test(f.t) ? 12 : has(f.t, t) ? 7 : 0) + (has(f.m, t) ? 4 : 0) + (word.test(f.d) ? 4 : has(f.d, t) ? 2 : 0) + (has(f.x, t) ? 1 : 0);
+        if (!s) { score = 0; break; }
+        score += s;
+      }
+      if (score) hits.push({ it, score: score + (it.y ? Number(it.y.slice(0, 4)) / 10000 : 0) });
+    }
+    hits.sort((a, b) => b.score - a.score);
+    return { terms, hits: hits.slice(0, 12).map((h) => h.it) };
+  };
+
+  const ideas = ["AI", "thoughtbot", "Ruby Central", "cookbook", "Slack", "neighborhood"];
+  const setup = (root, { onPick } = {}) => {
+    const input = root.querySelector(".search-input");
+    const list = root.querySelector(".search-results");
+    const status = root.querySelector(".search-status");
+    let active = -1;
+    input.setAttribute("role", "combobox");
+    input.setAttribute("aria-autocomplete", "list");
+    input.setAttribute("aria-expanded", "false");
+    list.id ||= input.id + "-results";
+    input.setAttribute("aria-controls", list.id);
+    const setActive = (i) => {
+      const opts = [...list.querySelectorAll(".search-hit")];
+      opts.forEach((o, n) => o.setAttribute("aria-selected", String(n === i)));
+      active = opts.length ? Math.max(-1, Math.min(i, opts.length - 1)) : -1;
+      if (active >= 0) { input.setAttribute("aria-activedescendant", opts[active].id); opts[active].scrollIntoView({ block: "nearest" }); }
+      else input.removeAttribute("aria-activedescendant");
+    };
+    const hint = () => {
+      list.innerHTML = "";
+      input.setAttribute("aria-expanded", "false");
+      status.innerHTML = "Try " + ideas.map((w) => `<button type="button" class="search-idea">${esc(w)}</button>`).join(" ");
+    };
+    const render = async () => {
+      const q = input.value.trim();
+      if (!q) return hint();
+      const { terms, hits } = search(await load(), q);
+      if (input.value.trim() !== q) return;
+      list.innerHTML = hits.map((it, n) => {
+        const meta = [it.k, it.y ? when(it.y) : it.m].filter(Boolean).join(" · ");
+        return `<li><a class="search-hit" id="${list.id}-${n}" role="option" aria-selected="false" href="${esc(it.u)}"${it.o ? ' rel="noopener"' : ""}>
+          <span class="search-hit-title">${mark(it.t, terms)}${it.o ? ' <span class="search-out" aria-label="on another site">↗</span>' : ""}</span>
+          <span class="search-hit-meta">${esc(meta)}</span>
+          <span class="search-hit-text">${mark(snippet(it, terms), terms)}</span></a></li>`;
+      }).join("");
+      input.setAttribute("aria-expanded", String(hits.length > 0));
+      status.textContent = hits.length ? `${hits.length === 12 ? "Top 12" : hits.length} result${hits.length === 1 ? "" : "s"}` : `Nothing yet for “${q}”. Try fewer or different words.`;
+      setActive(-1);
+      onPick && onPick(q);
+    };
+    input.addEventListener("input", render);
+    input.addEventListener("keydown", (e) => {
+      const n = list.querySelectorAll(".search-hit").length;
+      if (e.key === "ArrowDown" && n) { e.preventDefault(); setActive(active + 1 >= n ? 0 : active + 1); }
+      else if (e.key === "ArrowUp" && n) { e.preventDefault(); setActive(active <= 0 ? n - 1 : active - 1); }
+      else if (e.key === "Enter") {
+        const target = list.querySelectorAll(".search-hit")[active >= 0 ? active : 0];
+        if (target) { e.preventDefault(); target.click(); }
+      }
+    });
+    root.querySelector(".search-form").addEventListener("submit", (e) => e.preventDefault());
+    status.addEventListener("click", (e) => {
+      const b = e.target.closest(".search-idea");
+      if (b) { input.value = b.textContent; render(); input.focus(); }
+    });
+    return { input, render, hint };
+  };
+
+  // The panel
+  const dialog = document.querySelector(".search-dialog");
+  if (dialog && typeof dialog.showModal === "function" && !document.querySelector(".search-page")) {
+    const ui = setup(dialog);
+    let opener = null;
+    const open = () => {
+      if (dialog.open) return;
+      opener = document.activeElement;
+      load();
+      if (!ui.input.value) ui.hint();
+      dialog.showModal();
+      document.documentElement.classList.add("search-open");
+      ui.input.focus();
+      ui.input.select();
+    };
+    const close = () => dialog.open && dialog.close();
+    dialog.addEventListener("close", () => {
+      document.documentElement.classList.remove("search-open");
+      opener && opener.focus && opener.focus({ preventScroll: true });
+    });
+    document.querySelectorAll("[data-search]").forEach((a) => a.addEventListener("click", (e) => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+      e.preventDefault();
+      if (document.documentElement.classList.contains("menu-open")) document.querySelector(".menu-close")?.click();
+      open();
+    }));
+    dialog.querySelector(".search-close").addEventListener("click", close);
+    // A search box clears itself on the first Escape; here Escape should always close the panel.
+    dialog.addEventListener("keydown", (e) => { if (e.key === "Escape") { e.preventDefault(); close(); } });
+    dialog.addEventListener("click", (e) => { if (e.target === dialog) close(); });
+    document.addEventListener("keydown", (e) => {
+      const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName) || document.activeElement?.isContentEditable;
+      if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || (e.key === "/" && !typing && !e.metaKey && !e.ctrlKey && !e.altKey)) {
+        e.preventDefault();
+        dialog.open ? close() : open();
+      }
+    });
+  }
+
+  // The /search/ page
+  const page = document.querySelector(".search-page");
+  if (page) {
+    const ui = setup(page, { onPick: (q) => history.replaceState(null, "", "?q=" + encodeURIComponent(q)) });
+    const q = new URLSearchParams(location.search).get("q");
+    if (q) { ui.input.value = q; ui.render(); } else ui.hint();
+    ui.input.focus();
+    document.addEventListener("keydown", (e) => {
+      if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || (e.key === "/" && document.activeElement !== ui.input)) { e.preventDefault(); ui.input.focus(); ui.input.select(); }
+    });
+  }
+})();
