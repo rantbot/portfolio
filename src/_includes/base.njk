@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{%- set pageTitle = (title + " · " + site.name) if (title and title != site.name) else (site.name + " · " + site.headline) %}
+{%- set pageDescription = description or site.description %}
+{%- set canonical = env.url + page.url %}
+<title>{{ pageTitle }}</title>
+<meta name="description" content="{{ pageDescription }}">
+<link rel="canonical" href="{{ canonical }}">
+<meta name="author" content="{{ site.name }}">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:title" content="{{ title or site.name }}">
+<meta property="og:description" content="{{ pageDescription }}">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:type" content="{{ 'article' if layout == 'post.njk' else 'website' }}">
+{%- if image %}
+<meta property="og:image" content="{{ env.url }}{{ image }}">
+<meta name="twitter:card" content="summary_large_image">
+{%- else %}
+<meta name="twitter:card" content="summary">
+{%- endif %}
+<link rel="alternate" type="application/atom+xml" title="{{ site.name }}" href="/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&family=Instrument+Sans:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+{%- include "schema.njk" %}
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+<header class="site-header">
+  <a href="/" class="brand">{{ site.name }}</a>
+  <nav aria-label="Main">
+    <a href="/writing/"{% if section == "writing" %} aria-current="page"{% endif %}>Writing</a>
+    <a href="/making/"{% if section == "making" %} aria-current="page"{% endif %}>Making</a>
+    <a href="/about/"{% if section == "about" %} aria-current="page"{% endif %}>About</a>
+    <a href="/#subscribe">Subscribe</a>
+  </nav>
+</header>
+<main id="main">
+{{ content | safe }}
+</main>
+<footer class="site-footer">
+  <p>© {{ env.year }} {{ site.name }}</p>
+  <p class="links">
+    <a href="/feed.xml">RSS</a>
+    {%- for p in site.same_as %}{% if "[" not in p.url %} <a href="{{ p.url }}" rel="me">{{ p.label }}</a>{% endif %}{% endfor %}
+  </p>
+</footer>
+</div>
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

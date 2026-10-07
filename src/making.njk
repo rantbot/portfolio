@@ -1,0 +1,24 @@
+---
+layout: base.njk
+title: Making
+description: Things Ran Craycraft has built, cooked, written, and wired together, at home and for his team, with the story of how each came to be.
+permalink: /making/
+section: making
+---
+<section class="page-head">
+  <h1 class="serif display">Making</h1>
+  <p class="serif lede">Things I’ve built, cooked, written, and wired together, at home and for my team, with the story of how each one came to be.</p>
+</section>
+
+<div class="cards grid">
+  {%- for p in collections.posts | ofKind("making") %}
+  <a href="{{ p.url }}" class="card">
+    {%- set ratio = "4 / 3" %}{% include "cover.njk" %}
+    <span class="small muted">{{ p.data.series or (p.date | readableDate) }}</span>
+    <span class="card-title serif">{{ p.data.title }}</span>
+    <span class="muted">{{ p.data.description }}</span>
+  </a>
+  {%- endfor %}
+</div>
+
+{% include "subscribe.njk" %}

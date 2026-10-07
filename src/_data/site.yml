@@ -1,0 +1,36 @@
+# Site-wide settings and homepage text.
+# Edit this in Pages CMS under "Site and homepage", or right here on GitHub.
+
+name: Ran Craycraft
+title: Ran Craycraft
+description: Ran Craycraft turns new possibilities into products, experiences, and businesses. Writing on leading through change, and things he makes.
+location: Los Angeles
+email: ran.craycraft@gmail.com
+job_title: Managing Director
+employer: thoughtbot
+employer_url: https://thoughtbot.com
+
+# Homepage introduction
+headline: I turn new possibilities into products, experiences, and businesses.
+intro: I’ve launched digital ventures at NBC and AOL, co-founded an award-winning studio, and helped reshape thoughtbot. Along the way, I’ve built a neighborhood network, produced drive-in movie nights, and turned my driveway into a produce pickup point.
+now: Today I’m Managing Director and a board member at thoughtbot, and President of Ruby Central. Based in Los Angeles.
+
+# Closing invitation on the homepage
+invitation: I talk about leading through AI, turning ideas into businesses, and making things.
+invitation_note: For podcasts, events, and projects, write to me.
+
+# Newsletter. Create a free Buttondown account, then put your username here.
+# Leave buttondown_username blank to show an RSS link instead of a signup form.
+newsletter:
+  name: "[Newsletter name]"
+  pitch: New writing and new things I’ve made, sent when they’re published.
+  buttondown_username: ""
+
+# Profiles that are you. Search engines and AI tools use these to connect the dots.
+same_as:
+  - label: LinkedIn
+    url: "https://www.linkedin.com/in/[your-handle]"
+  - label: GitHub
+    url: https://github.com/rantbot
+  - label: thoughtbot
+    url: https://thoughtbot.com/blog/authors/ran-craycraft

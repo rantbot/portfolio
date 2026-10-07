@@ -1,0 +1,20 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+# {{ site.name }}
+
+> {{ site.description }}
+
+{{ site.now }}
+
+## About
+- [About {{ site.name }}]({{ env.url }}/about/): Background, roles, and education.
+
+## Writing
+{% for p in collections.posts | ofKind("writing") %}- [{{ p.data.title }}]({{ env.url }}{{ p.url }}): {{ p.data.description }}
+{% endfor %}{% for e in elsewhere %}- [{{ e.title }}]({{ e.url }}): {{ e.summary }} ({{ e.publication }})
+{% endfor %}
+## Making
+{% for p in collections.posts | ofKind("making") %}- [{{ p.data.title }}]({{ env.url }}{{ p.url }}): {{ p.data.description }}
+{% endfor %}

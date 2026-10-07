@@ -1,0 +1,41 @@
+{#- Structured data that tells search engines and AI tools who wrote what. -#}
+{%- set person = {
+  "@type": "Person",
+  "@id": env.url + "/#person",
+  "name": site.name,
+  "url": env.url + "/",
+  "jobTitle": site.job_title,
+  "worksFor": { "@type": "Organization", "name": site.employer, "url": site.employer_url },
+  "memberOf": { "@type": "Organization", "name": "Ruby Central", "url": "https://rubycentral.org" },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Syracuse University" },
+    { "@type": "CollegeOrUniversity", "name": "University of Cincinnati" }
+  ],
+  "homeLocation": { "@type": "Place", "name": site.location },
+  "sameAs": site.same_as | pluck("url")
+} -%}
+{%- if layout == "post.njk" %}
+<script type="application/ld+json">{{ {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "datePublished": page.date | isoDate,
+  "dateModified": (updated or page.date) | isoDate,
+  "url": env.url + page.url,
+  "mainEntityOfPage": env.url + page.url,
+  "image": (env.url + image) if image else none,
+  "author": person,
+  "publisher": { "@id": env.url + "/#person" },
+  "isPartOf": { "@type": "CreativeWorkSeries", "name": series } if series else none,
+  "articleSection": "Making" if kind == "making" else "Writing"
+} | json | safe }}</script>
+{%- else %}
+<script type="application/ld+json">{{ {
+  "@context": "https://schema.org",
+  "@graph": [
+    person,
+    { "@type": "WebSite", "@id": env.url + "/#site", "url": env.url + "/", "name": site.name, "description": site.description, "author": { "@id": env.url + "/#person" } }
+  ]
+} | json | safe }}</script>
+{%- endif %}

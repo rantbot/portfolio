@@ -1,0 +1,75 @@
+---
+layout: base.njk
+title: Ran Craycraft
+---
+<section class="hero">
+  <h1 class="serif display">{{ site.headline }}</h1>
+  <p class="serif lede">{{ site.intro }}</p>
+  <p class="small muted">{{ site.now }}</p>
+</section>
+
+{%- set stories = collections.posts | pinned | limit(3) %}
+{%- if stories.length %}
+<section aria-labelledby="stories-h" class="block">
+  <div class="block-head">
+    <h2 id="stories-h" class="label">Stories</h2>
+    <p class="small muted">Longer accounts of work I’ve led</p>
+  </div>
+  <div class="cards three">
+    {%- for p in stories %}
+    <a href="{{ p.url }}" class="card">
+      {%- set ratio = "4 / 5" %}{% include "cover.njk" %}
+      <span class="small muted">{{ p.data.meta or (p.date | readableDate) }}</span>
+      <span class="card-title serif">{{ p.data.title }}</span>
+    </a>
+    {%- endfor %}
+  </div>
+</section>
+{%- endif %}
+
+<section aria-labelledby="latest-h" class="block">
+  <div class="block-head strong">
+    <h2 id="latest-h" class="label">Latest</h2>
+    <div class="filter" role="group" aria-label="Show" hidden>
+      <button type="button" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" data-filter="writing" aria-pressed="false">Writing</button>
+      <button type="button" data-filter="making" aria-pressed="false">Making</button>
+    </div>
+  </div>
+  <ol class="feed">
+    {%- for p in collections.posts | limit(12) %}
+    <li data-kind="{{ p.data.kind }}">
+      <a href="{{ p.url }}" class="row">
+        <span class="row-kind small muted">{{ "Making" if p.data.kind == "making" else "Writing" }}</span>
+        <span class="row-body">
+          <span class="row-title serif">{{ p.data.title }}</span>
+          <span class="muted">{{ p.data.description }}</span>
+          <span class="small faint"><time datetime="{{ p.date | isoDate }}">{{ p.date | readableDate }}</time>{% if p.data.series %} · {{ p.data.series }}{% endif %}</span>
+        </span>
+        {%- if p.data.kind == "making" %}
+        <span class="row-thumb">{% set ratio = "4 / 3" %}{% include "cover.njk" %}</span>
+        {%- endif %}
+      </a>
+    </li>
+    {%- endfor %}
+  </ol>
+  <p class="more small"><a href="/writing/" class="ul">All writing</a> <a href="/making/" class="ul">Everything I’ve made</a></p>
+</section>
+
+<section aria-labelledby="elsewhere-h" class="block split">
+  <div>
+    <h2 id="elsewhere-h" class="label">Recent essays</h2>
+    <p class="small muted">On the thoughtbot blog</p>
+  </div>
+  <ol class="list">
+    {%- for e in elsewhere | limit(4) %}
+    <li><a href="{{ e.url }}" class="list-row"><span class="serif list-title">{{ e.title }}</span><span class="small muted">{{ e.date | readableDate }} ↗</span></a></li>
+    {%- endfor %}
+  </ol>
+</section>
+
+{% include "subscribe.njk" %}
+
+<section class="closing" aria-labelledby="contact-h">
+  <h2 id="contact-h" class="serif display-2">{{ site.invitation }} <span class="faint">{{ site.invitation_note }}</span> <a href="mailto:{{ site.email }}" class="ul">{{ site.email }}</a></h2>
+</section>

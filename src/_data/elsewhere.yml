@@ -1,0 +1,51 @@
+# Essays published on other sites. They link to the original.
+# Newest first.
+
+- title: When to vibe code an app and when to hire someone
+  url: https://thoughtbot.com/blog/when-to-vibe-code-an-app-and-when-to-hire-someone
+  date: 2026-09-08
+  publication: thoughtbot blog
+  summary: Vibe coding is a great way to prototype an app. Here’s when to bring in professional developers.
+
+- title: Don’t hire thoughtbot to write code
+  url: https://thoughtbot.com/blog/don-t-hire-thoughtbot-to-write-code
+  date: 2026-08-21
+  publication: thoughtbot blog
+  summary: AI makes code faster and cheaper to produce. Premium consultancies need to offer experienced judgment and help teams solve the right problems.
+
+- title: AI makes creating software faster, but in regulated industries, judgment matters more
+  url: https://thoughtbot.com/blog/ai-makes-creating-software-faster-but-in-regulated-industries-judgment-matters-more
+  date: 2026-08-21
+  publication: thoughtbot blog
+  summary: Regulated industries face a harder challenge, moving faster without increasing risk.
+
+- title: A prototype is not a product. It’s a conversation.
+  url: https://thoughtbot.com/blog/a-prototype-is-not-a-product-it-s-a-conversation
+  date: 2026-07-31
+  publication: thoughtbot blog
+  summary: The best prototypes aren’t built to validate software. They’re built to create alignment.
+
+- title: Why thoughtbot is joining the Ruby Alliance
+  url: https://thoughtbot.com/blog/why-thoughtbot-is-joining-the-ruby-alliance
+  date: 2026-05-20
+  publication: thoughtbot blog
+  coauthor: Chad Pytel
+  summary: A coalition of companies investing in the long-term sustainability of Ruby infrastructure.
+
+- title: How to launch a Lovable MVP in 2026
+  url: https://thoughtbot.com/blog/how-to-launch-a-lovable-mvp-in-2026
+  date: 2026-03-16
+  publication: thoughtbot blog
+  summary: AI tools can spin up polished apps in a weekend, which makes it easier than ever to build the wrong thing.
+
+- title: When to build an in-house engineering team and when to hire an agency
+  url: https://thoughtbot.com/blog/when-to-build-an-in-house-engineering-team-and-when-to-hire-an-agency
+  date: 2025-05-16
+  publication: thoughtbot blog
+  summary: Our best advice, after thousands of engagements, on when to hire in-house and when to find an external partner.
+
+- title: Does thoughtbot offer AI-assisted programming?
+  url: https://thoughtbot.com/blog/does-thoughtbot-offer-ai-assisted-programming
+  date: 2024-04-09
+  publication: thoughtbot blog
+  summary: Whether generative AI creates more or less work for developers.

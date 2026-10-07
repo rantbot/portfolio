@@ -1,0 +1,50 @@
+---
+layout: base.njk
+---
+<article class="post">
+  <header class="post-head">
+    <p class="small muted"><a href="/{{ kind }}/" class="ul">{{ "Making" if kind == "making" else "Writing" }}</a>{% if series %} · {{ series }}{% endif %}{% if meta %} · {{ meta }}{% endif %}</p>
+    <h1 class="serif display-3">{{ title }}</h1>
+    {%- if description %}<p class="serif lede">{{ description }}</p>{% endif %}
+    <p class="small muted byline"><a href="/about/" rel="author">{{ site.name }}</a> · <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time> · {{ content | readingTime }}</p>
+  </header>
+
+  {%- if image or cover_lines %}
+  <figure class="post-cover">
+    {%- set p = { data: { image: image, image_alt: image_alt, tone: tone, ink: ink, cover_lines: cover_lines, cover_kicker: cover_kicker, series: series } } %}
+    {%- set ratio = "16 / 9" %}{% include "cover.njk" %}
+    {%- if image_caption %}<figcaption class="small muted">{{ image_caption }}</figcaption>{% endif %}
+  </figure>
+  {%- endif %}
+
+  <div class="post-body">
+    {%- if tldr %}
+    <aside class="tldr" aria-label="In short">
+      <p class="tldr-label">In short</p>
+      <p>{{ tldr }}</p>
+    </aside>
+    {%- endif %}
+    <div class="prose serif">
+{{ content | safe }}
+    </div>
+
+    {%- set siblings = collections.posts | inSeries(series) %}
+    {%- if siblings.length > 1 %}
+    <aside class="series" aria-label="Series">
+      <p class="label">{{ series }}, a series in {{ siblings.length }} parts</p>
+      <ol>
+        {%- for s in siblings %}
+        <li>{% if s.url == page.url %}<span class="current">{{ s.data.title }}</span>{% else %}<a href="{{ s.url }}" class="ul">{{ s.data.title }}</a>{% endif %}</li>
+        {%- endfor %}
+      </ol>
+    </aside>
+    {%- endif %}
+
+    <aside class="author" aria-label="About the author">
+      <span class="author-mark" aria-hidden="true">RC</span>
+      <p class="small muted"><a href="/about/" class="strong">{{ site.name }}</a> leads the Americas business at thoughtbot, serves as President of Ruby Central, and writes here about leading through change and the things he makes.</p>
+    </aside>
+  </div>
+</article>
+
+{% include "subscribe.njk" %}

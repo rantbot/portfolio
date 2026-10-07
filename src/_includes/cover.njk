@@ -1,0 +1,14 @@
+{#- A post's cover. Uses the photo if there is one, otherwise a typographic cover from cover_lines. Expects `p` (a post) and `ratio`. -#}
+{%- set d = p.data -%}
+{%- if d.image %}
+<img class="cover-img" src="{{ d.image }}" alt="{{ d.image_alt or '' }}" loading="lazy" style="aspect-ratio: {{ ratio }}">
+{%- else %}
+<div class="cover" style="aspect-ratio: {{ ratio }}; background: {{ d.tone or '#EFEFEC' }}; color: {{ d.ink or '#1F1F1C' }}" {% if d.cover_lines %}role="img" aria-label="{{ d.cover_lines | join(', ') }}"{% else %}aria-hidden="true"{% endif %}>
+  <span class="cover-kicker">{{ d.cover_kicker or d.series or '' }}</span>
+  {%- if d.cover_lines %}
+  <span class="cover-lines">
+    {%- for line in d.cover_lines %}<span{% if loop.last and loop.length > 1 %} class="i"{% endif %}>{{ line }}</span>{% endfor -%}
+  </span>
+  {%- endif %}
+</div>
+{%- endif %}
