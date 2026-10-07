@@ -3,87 +3,84 @@ layout: base.njk
 title: Ran Craycraft
 ---
 <section class="hero">
-  <h1 class="serif display">{{ site.headline }}</h1>
-  <p class="serif lede">{{ site.intro }}</p>
-  <p class="small muted">{{ site.now }}</p>
+  <h1 class="hero-title serif">{{ site.headline }}</h1>
+  <div class="grid hero-body">
+    <div class="span-main hero-text">
+      <p class="lede serif">{{ site.intro }}</p>
+      <p class="hero-now">{{ site.now }}</p>
+      <p class="hero-more"><a href="/about/" class="arrow-link">More about me</a></p>
+    </div>
+  </div>
 </section>
 
 {%- set stories = collections.posts | milestones %}
 {%- if stories.length %}
-<section aria-labelledby="stories-h" class="block">
-  <div class="block-head">
-    <h2 id="stories-h" class="label">Stories</h2>
+<section aria-labelledby="stories-h" class="section">
+  <div class="section-head">
+    <h2 id="stories-h" class="eyebrow strong">Stories</h2>
+    <p class="section-note">Case studies of the bigger work</p>
     <div class="carousel-nav">
-      <span class="carousel-count small muted" aria-live="polite" hidden></span>
-      <button type="button" class="carousel-btn" data-dir="-1" aria-label="Previous stories" hidden>←</button>
-      <button type="button" class="carousel-btn" data-dir="1" aria-label="Next stories" hidden>→</button>
+      <span class="carousel-count" aria-live="polite" hidden></span>
+      <button type="button" class="carousel-btn" data-dir="-1" aria-label="Previous stories" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg></button>
+      <button type="button" class="carousel-btn" data-dir="1" aria-label="Next stories" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg></button>
     </div>
   </div>
-  <ul class="carousel" role="region" aria-label="Stories" tabindex="0">
+  <div class="carousel" role="region" aria-label="Story cards, scroll sideways for more" tabindex="0">
+  <ul class="carousel-track">
     {%- for p in stories %}
     <li><a href="{{ p.url }}" class="card">
-      {%- set ratio = "4 / 3" %}{% include "story-cover.njk" %}
+      <span class="media">{% set ratio = "4 / 3" %}{% include "story-cover.njk" %}</span>
       <span class="card-title serif">{{ p.data.title }}</span>
-      <span class="card-desc muted">{{ p.data.description }}</span>
+      <span class="card-desc">{{ p.data.description }}</span>
     </a></li>
     {%- endfor %}
   </ul>
-  <p class="carousel-more"><a href="/stories/" class="ul">Read all {{ stories.length }} stories</a></p>
+  </div>
+  <p class="section-foot"><a href="/stories/" class="arrow-link">All {{ stories.length }} stories</a></p>
 </section>
 {%- endif %}
 
-<section aria-labelledby="latest-h" class="block stream-block">
-  <div class="block-head strong">
-    <h2 id="latest-h" class="label">Latest</h2>
+<section aria-labelledby="latest-h" class="section">
+  <div class="section-head">
+    <h2 id="latest-h" class="eyebrow strong">Latest</h2>
+    <p class="section-note">Ideas, experiments and essays</p>
     <div class="filter" role="group" aria-label="Show" hidden>
       <button type="button" data-filter="all" aria-pressed="true">All</button>
       <button type="button" data-filter="writing" aria-pressed="false">Writing</button>
       <button type="button" data-filter="making" aria-pressed="false">Making</button>
     </div>
   </div>
-  <ol class="feed stream">
+  <ol class="feed">
     {%- for g in collections.posts | stream(elsewhere) | limit(24) | groupStream %}
     {%- if g.kind == "making" %}
-    <li data-kind="making" class="stream-item">
-      <p class="stream-rail small muted">Making</p>
-      <div class="makes makes-{{ g.items.length }}">
+    <li data-kind="making" class="feed-item grid">
+      <p class="rail eyebrow">Making</p>
+      <div class="span-main makes">
         {%- for p in g.items %}
         <a href="{{ p.url }}" class="make">
-          {%- set ratio = "4 / 3" %}{% include "cover.njk" %}
+          <span class="media">{% set ratio = "4 / 3" %}{% include "cover.njk" %}</span>
           <span class="make-title serif">{{ p.data.title }}</span>
-          <span class="small faint"><time datetime="{{ p.date | isoDate }}">{{ p.date | readableDate }}</time></span>
+          <span class="meta"><time datetime="{{ p.date | isoDate }}">{{ p.date | readableDate }}</time></span>
         </a>
         {%- endfor %}
       </div>
     </li>
     {%- else %}
     {%- set p = g.items[0] %}
-    <li data-kind="writing" class="stream-item">
-      <p class="stream-rail small muted">Writing</p>
-      <a href="{{ p.url }}" class="write">
+    <li data-kind="writing" class="feed-item grid">
+      <p class="rail eyebrow">Writing</p>
+      <a href="{{ p.url }}" class="span-main write">
         <span class="write-title serif">{{ p.data.title }}</span>
-        <span class="write-desc muted">{{ p.data.description }}</span>
-        <span class="small faint"><time datetime="{{ p.date | isoDate }}">{{ p.date | readableDate }}</time>{% if p.external %} · {{ p.data.publication }} ↗{% elif p.data.series %} · {{ p.data.series }}{% endif %}</span>
+        <span class="write-desc">{{ p.data.description }}</span>
+        <span class="meta"><time datetime="{{ p.date | isoDate }}">{{ p.date | readableDate }}</time>{% if p.external %}<span class="dot">·</span>{{ p.data.publication }} <span class="ext" aria-label="opens the original">↗</span>{% elif p.data.series %}<span class="dot">·</span>{{ p.data.series }}{% endif %}</span>
       </a>
     </li>
     {%- endif %}
     {%- endfor %}
   </ol>
-  <p class="more small"><a href="/writing/" class="ul">All writing</a> <a href="/making/" class="ul">Everything I’ve made</a></p>
-</section>
-
-<section aria-labelledby="elsewhere-h" class="block split">
-  <div>
-    <h2 id="elsewhere-h" class="label">Recent essays</h2>
-    <p class="small muted">On the thoughtbot blog</p>
+  <div class="grid section-foot">
+    <p class="span-main"><a href="/writing/" class="arrow-link">All writing</a><a href="/making/" class="arrow-link">Everything I’ve made</a></p>
   </div>
-  <ol class="list">
-    {%- for e in elsewhere | limit(4) %}
-    <li><a href="{{ e.url }}" class="list-row"><span class="serif list-title">{{ e.title }}</span><span class="small muted">{{ e.date | readableDate }} ↗</span></a></li>
-    {%- endfor %}
-  </ol>
 </section>
 
-<section class="closing" aria-labelledby="contact-h">
-  <h2 id="contact-h" class="serif display-2">{{ site.invitation }} <span class="faint">{{ site.invitation_note }}</span> {% include "email-link.njk" %}</h2>
-</section>
+{% include "contact.njk" %}

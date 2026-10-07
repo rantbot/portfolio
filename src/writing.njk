@@ -5,40 +5,40 @@ description: Essays and short pieces by Ran Craycraft on leading through the AI 
 permalink: /writing/
 section: writing
 ---
-<section class="page-head">
-  <h1 class="serif display">Writing</h1>
-  <p class="serif lede">Shorter thoughts on leading through the AI era, building businesses, and what I’m noticing along the way. The bigger milestones are under <a href="/stories/" class="ul">Stories</a>, and things I’ve built are under <a href="/making/" class="ul">Making</a>.</p>
-</section>
+<header class="page-head">
+  <h1 class="page-title serif">Writing</h1>
+  <div class="grid">
+    <p class="span-main lede serif">Shorter thoughts on leading through the AI era, building businesses, and what I’m noticing along the way. The bigger milestones are under <a href="/stories/" class="ul">Stories</a>, and things I’ve built are under <a href="/making/" class="ul">Making</a>.</p>
+  </div>
+</header>
 
 {%- set posts = collections.posts | ofKind("writing") %}
 {%- if posts.length %}
-<section class="block split" aria-labelledby="here-h">
-  <div>
-    <h2 id="here-h" class="label">On this site</h2>
-  </div>
-  <ol class="list">
+<section class="section grid list-section" aria-labelledby="here-h">
+  <h2 id="here-h" class="rail eyebrow strong">On this site</h2>
+  <ol class="span-main entries">
     {%- for p in posts %}
-    <li><a href="{{ p.url }}" class="list-row stacked">
-      <span class="serif list-title">{{ p.data.title }}</span>
-      <span class="muted">{{ p.data.description }}</span>
-      <span class="small faint">{{ p.date | readableDate }}</span>
+    <li><a href="{{ p.url }}" class="entry">
+      <span class="entry-title serif">{{ p.data.title }}</span>
+      <span class="entry-desc">{{ p.data.description }}</span>
+      <span class="meta"><time datetime="{{ p.date | isoDate }}">{{ p.date | readableDate }}</time></span>
     </a></li>
     {%- endfor %}
   </ol>
 </section>
 {%- endif %}
 
-<section class="block split" aria-labelledby="elsewhere-h">
-  <div>
-    <h2 id="elsewhere-h" class="label">On the thoughtbot blog</h2>
-    <p class="small muted">Each links to the original.</p>
+<section class="section grid list-section" aria-labelledby="elsewhere-h">
+  <div class="rail">
+    <h2 id="elsewhere-h" class="eyebrow strong">On the thoughtbot blog</h2>
+    <p class="rail-note">Each links to the original.</p>
   </div>
-  <ol class="list">
+  <ol class="span-main entries">
     {%- for e in elsewhere %}
-    <li><a href="{{ e.url }}" class="list-row stacked">
-      <span class="serif list-title">{{ e.title }}</span>
-      <span class="muted">{{ e.summary }}</span>
-      <span class="small faint">{{ e.date | readableDate }}{% if e.coauthor %} · with {{ e.coauthor }}{% endif %} · {{ e.publication }} ↗</span>
+    <li><a href="{{ e.url }}" class="entry">
+      <span class="entry-title serif">{{ e.title }}</span>
+      <span class="entry-desc">{{ e.summary }}</span>
+      <span class="meta"><time datetime="{{ e.date | isoDate }}">{{ e.date | readableDate }}</time>{% if e.coauthor %}<span class="dot">·</span>with {{ e.coauthor }}{% endif %}<span class="dot">·</span>{{ e.publication }} <span class="ext" aria-label="opens the original">↗</span></span>
     </a></li>
     {%- endfor %}
   </ol>

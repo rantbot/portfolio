@@ -2,57 +2,57 @@
 layout: base.njk
 ---
 {%- set cs = case_study or {} %}
-<article class="case">
-  <header class="case-head">
-    <p class="small muted"><a href="/stories/" class="ul">Stories</a>{% if cs.organization %} · {{ cs.organization }}{% endif %}</p>
-    <h1 class="serif display">{{ title }}</h1>
-    {%- if description %}<p class="serif lede">{{ description }}</p>{% endif %}
-    <p class="small muted byline"><a href="/about/" rel="author">{{ site.name }}</a> · <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time> · {{ content | readingTime }}</p>
+<article class="article case">
+  <header class="article-head grid">
+    <p class="rail eyebrow"><a href="/stories/" class="ul">Stories</a></p>
+    <div class="span-wide">
+      {%- if cs.organization %}<p class="case-org">{{ cs.organization }}</p>{% endif %}
+      <h1 class="case-title serif">{{ title }}</h1>
+      {%- if description %}<p class="lede serif">{{ description }}</p>{% endif %}
+    </div>
   </header>
 
-  {%- if image or tone or case_study %}
   <figure class="case-cover">
     {%- set p = { data: { image: image, image_alt: image_alt, tone: tone, ink: ink, case_study: case_study, title: title } } %}
     {%- set ratio = "21 / 9" %}{% include "story-cover.njk" %}
-    {%- if image_caption %}<figcaption class="small muted">{{ image_caption }}</figcaption>{% endif %}
+    {%- if image_caption %}<figcaption class="meta">{{ image_caption }}</figcaption>{% endif %}
   </figure>
-  {%- endif %}
 
-  <div class="case-grid">
-    <aside class="case-facts" aria-label="At a glance">
+  <div class="grid article-grid">
+    <aside class="rail case-facts" aria-label="At a glance">
       <dl>
         {%- if cs.organization %}<div><dt>Organization</dt><dd>{{ cs.organization }}</dd></div>{% endif %}
         {%- if cs.challenge or cs.scope %}<div><dt>Focus</dt><dd>{{ cs.challenge or cs.scope }}</dd></div>{% endif %}
         {%- if cs.role %}<div><dt>My role</dt><dd>{{ cs.role }}</dd></div>{% endif %}
         {%- if cs.team %}<div><dt>With</dt><dd>{{ cs.team }}</dd></div>{% endif %}
         {%- if cs.years %}<div><dt>When</dt><dd>{{ cs.years }}</dd></div>{% endif %}
+        {%- if cs.outcomes and cs.outcomes.length %}
+        <div><dt>Outcomes</dt><dd><ul>{% for o in cs.outcomes %}<li>{{ o }}</li>{% endfor %}</ul></dd></div>
+        {%- endif %}
       </dl>
-      {%- if cs.outcomes and cs.outcomes.length %}
-      <p class="case-facts-label">Outcomes</p>
-      <ul>{% for o in cs.outcomes %}<li>{{ o }}</li>{% endfor %}</ul>
-      {%- endif %}
     </aside>
 
-    <div class="case-body">
+    <div class="span-main">
       {%- if tldr %}
       <aside class="tldr" aria-label="In short">
-        <p class="tldr-label">In short</p>
+        <p class="eyebrow strong">In short</p>
         <p>{{ tldr }}</p>
       </aside>
       {%- endif %}
       <div class="prose serif">
 {{ content | safe }}
       </div>
+      <p class="article-byline meta"><a href="/about/" rel="author" class="strong">{{ site.name }}</a><span class="dot">·</span><time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time><span class="dot">·</span>{{ content | readingTime }}</p>
     </div>
   </div>
 
   {%- set others = collections.posts | milestones %}
   {%- if others.length > 1 %}
-  <nav class="case-more" aria-label="More stories">
-    <p class="label">More stories</p>
-    <ol class="list">
+  <nav class="section grid" aria-labelledby="more-h">
+    <h2 id="more-h" class="rail eyebrow strong">More stories</h2>
+    <ol class="span-main entries entries-compact">
       {%- for s in others %}{% if s.url != page.url %}
-      <li><a href="{{ s.url }}" class="list-row"><span class="serif list-title">{{ s.data.title }}</span><span class="small muted">{{ s.data.case_study.organization }}</span></a></li>
+      <li><a href="{{ s.url }}" class="entry entry-row"><span class="entry-title serif">{{ s.data.title }}</span><span class="meta">{{ s.data.case_study.organization }}</span></a></li>
       {%- endif %}{% endfor %}
     </ol>
   </nav>

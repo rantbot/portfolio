@@ -5,18 +5,20 @@ description: Things Ran Craycraft has built, cooked, written, and wired together
 permalink: /making/
 section: making
 ---
-<section class="page-head">
-  <h1 class="serif display">Making</h1>
-  <p class="serif lede">Things I’ve built, cooked, written, and wired together, at home and for my team, with the story of how each one came to be.</p>
-</section>
+<header class="page-head">
+  <h1 class="page-title serif">Making</h1>
+  <div class="grid">
+    <p class="span-main lede serif">Things I’ve built, cooked, written, and wired together, at home and for my team, with the story of how each one came to be.</p>
+  </div>
+</header>
 
-<div class="cards grid">
+<div class="tiles">
   {%- for p in collections.posts | ofKind("making") %}
   <a href="{{ p.url }}" class="card">
-    {%- set ratio = "4 / 3" %}{% include "cover.njk" %}
-    <span class="small muted">{{ p.data.series or (p.date | readableDate) }}</span>
+    <span class="media">{% set ratio = "4 / 3" %}{% include "cover.njk" %}</span>
+    <span class="eyebrow">{{ p.data.series or (p.date | readableDate) }}</span>
     <span class="card-title serif">{{ p.data.title }}</span>
-    <span class="muted">{{ p.data.description }}</span>
+    <span class="card-desc">{{ p.data.description }}</span>
   </a>
   {%- endfor %}
 </div>

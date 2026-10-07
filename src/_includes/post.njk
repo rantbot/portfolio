@@ -1,51 +1,63 @@
 ---
 layout: base.njk
 ---
-<article class="post light">
-  <header class="post-head">
-    <p class="small muted"><a href="/{{ section }}/" class="ul">{{ kind | kindLabel }}</a>{% if series %} · {{ series }}{% endif %}{% if meta %} · {{ meta }}{% endif %}</p>
-    <h1 class="serif post-title">{{ title }}</h1>
-    {%- if description %}<p class="serif lede">{{ description }}</p>{% endif %}
-    <p class="small muted byline"><a href="/about/" rel="author">{{ site.name }}</a> · <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time> · {{ content | readingTime }}</p>
+<article class="article">
+  <header class="article-head grid">
+    <p class="rail eyebrow"><a href="/{{ section }}/" class="ul">{{ kind | kindLabel }}</a></p>
+    <div class="span-main">
+      <h1 class="article-title serif">{{ title }}</h1>
+      {%- if description %}<p class="lede serif">{{ description }}</p>{% endif %}
+    </div>
   </header>
 
-  {%- if image or cover_lines %}
-  <figure class="post-cover">
-    {%- set p = { data: { image: image, image_alt: image_alt, tone: tone, ink: ink, cover_lines: cover_lines, cover_kicker: cover_kicker, series: series } } %}
-    {%- set ratio = "16 / 9" %}{% include "cover.njk" %}
-    {%- if image_caption %}<figcaption class="small muted">{{ image_caption }}</figcaption>{% endif %}
-  </figure>
-  {%- endif %}
-
-  <div class="post-body">
-    {%- if tldr %}
-    <aside class="tldr" aria-label="In short">
-      <p class="tldr-label">In short</p>
-      <p>{{ tldr }}</p>
+  <div class="grid article-grid">
+    <aside class="rail article-meta" aria-label="About this post">
+      <p><a href="/about/" rel="author" class="strong">{{ site.name }}</a></p>
+      <p><time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time></p>
+      <p>{{ content | readingTime }}</p>
+      {%- if series %}<p>{{ series }}</p>{% endif %}
+      {%- if meta %}<p>{{ meta }}</p>{% endif %}
     </aside>
-    {%- endif %}
-    <div class="prose serif">
+
+    <div class="span-main">
+      {%- if image or cover_lines %}
+      <figure class="article-cover">
+        {%- set p = { data: { image: image, image_alt: image_alt, tone: tone, ink: ink, cover_lines: cover_lines, cover_kicker: cover_kicker, series: series } } %}
+        {%- set ratio = "16 / 9" %}{% include "cover.njk" %}
+        {%- if image_caption %}<figcaption class="meta">{{ image_caption }}</figcaption>{% endif %}
+      </figure>
+      {%- endif %}
+
+      {%- if tldr %}
+      <aside class="tldr" aria-label="In short">
+        <p class="eyebrow strong">In short</p>
+        <p>{{ tldr }}</p>
+      </aside>
+      {%- endif %}
+
+      <div class="prose serif">
 {{ content | safe }}
+      </div>
+
+      {%- if try_url %}
+      <p class="try"><a href="{{ try_url }}" class="arrow-link">{{ try_label or "Try it" }}</a></p>
+      {%- endif %}
+
+      {%- set siblings = collections.posts | inSeries(series) %}
+      {%- if siblings.length > 1 %}
+      <nav class="series" aria-label="{{ series }}, a series">
+        <p class="eyebrow strong">{{ series }}<span class="series-count">{{ siblings.length }} parts</span></p>
+        <ol>
+          {%- for s in siblings %}
+          <li>{% if s.url == page.url %}<span class="current" aria-current="page">{{ s.data.title }}</span>{% else %}<a href="{{ s.url }}">{{ s.data.title }}</a>{% endif %}</li>
+          {%- endfor %}
+        </ol>
+      </nav>
+      {%- endif %}
+
+      <aside class="author" aria-label="About the author">
+        <p><a href="/about/" class="strong">{{ site.name }}</a> leads the Americas business at thoughtbot, serves as President of Ruby Central, and writes here about leading through change and the things he makes.</p>
+      </aside>
     </div>
-    {%- if try_url %}
-    <p class="try"><a href="{{ try_url }}" class="ul">{{ try_label or "Try it" }} ↗</a></p>
-    {%- endif %}
-
-    {%- set siblings = collections.posts | inSeries(series) %}
-    {%- if siblings.length > 1 %}
-    <aside class="series" aria-label="Series">
-      <p class="label">{{ series }}, a series in {{ siblings.length }} parts</p>
-      <ol>
-        {%- for s in siblings %}
-        <li>{% if s.url == page.url %}<span class="current">{{ s.data.title }}</span>{% else %}<a href="{{ s.url }}" class="ul">{{ s.data.title }}</a>{% endif %}</li>
-        {%- endfor %}
-      </ol>
-    </aside>
-    {%- endif %}
-
-    <aside class="author" aria-label="About the author">
-      <span class="author-mark" aria-hidden="true">RC</span>
-      <p class="small muted"><a href="/about/" class="strong">{{ site.name }}</a> leads the Americas business at thoughtbot, serves as President of Ruby Central, and writes here about leading through change and the things he makes.</p>
-    </aside>
   </div>
 </article>

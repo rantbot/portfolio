@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#FAFAF7">
 {%- set pageTitle = (title + " · " + site.name) if (title and title != site.name) else (site.name + " · " + site.headline) %}
 {%- set pageDescription = description or site.description %}
 {%- set canonical = env.url + page.url %}
@@ -21,12 +22,12 @@
 <meta property="og:image" content="{{ env.url }}{{ image }}">
 <meta name="twitter:card" content="summary_large_image">
 {%- else %}
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="{{ env.url }}/assets/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
 {%- endif %}
 <link rel="alternate" type="application/atom+xml" title="{{ site.name }}" href="/feed.xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&family=Instrument+Sans:wght@400;500&family=Inter+Tight:wght@700&display=swap">
+<link rel="preload" href="/assets/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 {%- include "schema.njk" %}
@@ -35,8 +36,8 @@
 <a class="skip" href="#main">Skip to content</a>
 <div class="wrap">
 <header class="site-header">
-  <a href="/" class="brand"><span class="brand-name">{{ site.name }}</span></a>
-  <nav aria-label="Main">
+  <a href="/" class="brand"{% if page.url == "/" %} aria-current="page"{% endif %}>{{ site.name }}</a>
+  <nav class="site-nav" aria-label="Main">
     <a href="/stories/"{% if section == "stories" %} aria-current="page"{% endif %}>Stories</a>
     <a href="/writing/"{% if section == "writing" %} aria-current="page"{% endif %}>Writing</a>
     <a href="/making/"{% if section == "making" %} aria-current="page"{% endif %}>Making</a>
@@ -46,12 +47,19 @@
 <main id="main">
 {{ content | safe }}
 </main>
-<footer class="site-footer">
-  <p>© {{ env.year }} {{ site.name }}</p>
-  <p class="links">
+<footer class="site-footer grid">
+  <p class="rail footer-name">{{ site.name }}</p>
+  <nav class="footer-col" aria-label="Sections">
+    <a href="/stories/">Stories</a>
+    <a href="/writing/">Writing</a>
+    <a href="/making/">Making</a>
+    <a href="/about/">About</a>
+  </nav>
+  <nav class="footer-col" aria-label="Elsewhere">
+    {%- for p in site.same_as %}{% if "[" not in p.url %}<a href="{{ p.url }}" rel="me">{{ p.label }}</a>{% endif %}{% endfor %}
     <a href="/feed.xml">RSS</a>
-    {%- for p in site.same_as %}{% if "[" not in p.url %} <a href="{{ p.url }}" rel="me">{{ p.label }}</a>{% endif %}{% endfor %}
-  </p>
+  </nav>
+  <p class="footer-legal">© {{ env.year }} {{ site.name }}. {{ site.location }}.</p>
 </footer>
 </div>
 <script src="/assets/js/site.js" defer></script>

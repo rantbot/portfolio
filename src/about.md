@@ -24,12 +24,15 @@ education:
   - degree: BS, Digital Design
     school: University of Cincinnati
 ---
-<section class="about">
-  <div class="portrait">
+<header class="page-head about-head grid">
+  <div class="rail portrait">
     {%- if portrait %}<img src="{{ portrait }}" alt="Ran Craycraft">{% else %}<div class="portrait-empty" aria-hidden="true">RC</div>{% endif %}
   </div>
-  <div class="prose serif">
-    <h1 class="serif display-3">I started by making the work. Then I learned to build the business around it.</h1>
+  <h1 class="span-main page-title page-title-md serif">I started by making the work. Then I learned to build the business around it.</h1>
+</header>
+
+<div class="grid">
+<div class="span-main prose serif">
 
 I started a window-washing company at sixteen. Since then, I’ve worked across media, technology, consulting, and community organizing, following opportunities to create something useful and make it last.
 
@@ -45,24 +48,23 @@ Today I’m Managing Director and a board member at thoughtbot. My work spans bu
 
 In Ladera Heights, I’ve organized produce pickups, sixteen weeks of drive-in movie nights, and a monthly neighborhood cleanup that continues six years after it began.
 
-<p class="faint">Across these settings, I enjoy finding an opportunity, bringing the right people together, and turning an idea into something people can use, enjoy, or build on.</p>
-  </div>
-</section>
+<p class="pull">Across these settings, I enjoy finding an opportunity, bringing the right people together, and turning an idea into something people can use, enjoy, or build on.</p>
 
-<section class="block split" aria-labelledby="roles-h">
-  <h2 id="roles-h" class="label">Roles</h2>
-  <ol class="list plain">
-    {%- for r in roles %}<li class="list-row"><span>{{ r.role }}</span><span class="small muted">{{ r.years }}</span></li>{% endfor %}
+</div>
+</div>
+
+<section class="section grid list-section" aria-labelledby="roles-h">
+  <h2 id="roles-h" class="rail eyebrow strong">Roles</h2>
+  <ol class="span-main facts">
+    {%- for r in roles %}<li><span>{{ r.role }}</span><span class="meta">{{ r.years }}</span></li>{% endfor %}
   </ol>
 </section>
 
-<section class="block split" aria-labelledby="edu-h">
-  <h2 id="edu-h" class="label">Education</h2>
-  <ol class="list plain">
-    {%- for e in education %}<li class="list-row"><span>{{ e.degree }}</span><span class="small muted">{{ e.school }}</span></li>{% endfor %}
+<section class="section grid list-section" aria-labelledby="edu-h">
+  <h2 id="edu-h" class="rail eyebrow strong">Education</h2>
+  <ol class="span-main facts">
+    {%- for e in education %}<li><span>{{ e.degree }}</span><span class="meta">{{ e.school }}</span></li>{% endfor %}
   </ol>
 </section>
 
-<section class="closing" aria-labelledby="contact-h">
-  <h2 id="contact-h" class="serif display-2">{{ site.invitation }} <span class="faint">{{ site.invitation_note }}</span> {% include "email-link.njk" %}</h2>
-</section>
+{% include "contact.njk" %}
