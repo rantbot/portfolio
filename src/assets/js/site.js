@@ -23,23 +23,30 @@ document.querySelectorAll("a[data-e]").forEach((a) => {
   } catch (e) {}
 });
 
-// Stories carousel: arrow buttons scroll by one card. Without JavaScript, it still scrolls.
+// Stories carousel: arrow buttons scroll by one card, and a counter shows where you are.
+// Without JavaScript, the row still scrolls and swipes.
 document.querySelectorAll(".carousel").forEach((track) => {
-  const buttons = track.closest("section").querySelectorAll(".carousel-btn");
+  const section = track.closest("section");
+  const buttons = section.querySelectorAll(".carousel-btn");
+  const count = section.querySelector(".carousel-count");
+  const cards = track.querySelectorAll("li");
+  const step = () => (cards[1] ? cards[1].offsetLeft - cards[0].offsetLeft : track.clientWidth);
   const update = () => {
     const max = track.scrollWidth - track.clientWidth - 2;
+    const s = step();
+    const first = Math.min(cards.length, Math.round(track.scrollLeft / s) + 1);
+    const visible = Math.max(1, Math.floor((track.clientWidth - 32) / s + 0.15));
+    const last = track.scrollLeft >= max ? cards.length : Math.min(cards.length, first + visible - 1);
     buttons.forEach((b) => {
       b.hidden = max <= 0;
       b.disabled = Number(b.dataset.dir) < 0 ? track.scrollLeft <= 2 : track.scrollLeft >= max;
     });
+    if (count) {
+      count.hidden = max <= 0;
+      count.textContent = (first === last ? first : `${first}–${last}`) + ` of ${cards.length}`;
+    }
   };
-  buttons.forEach((b) =>
-    b.addEventListener("click", () => {
-      const card = track.querySelector("li");
-      const step = card ? card.getBoundingClientRect().width + 32 : track.clientWidth;
-      track.scrollBy({ left: Number(b.dataset.dir) * step, behavior: "smooth" });
-    })
-  );
+  buttons.forEach((b) => b.addEventListener("click", () => track.scrollBy({ left: Number(b.dataset.dir) * step(), behavior: "smooth" })));
   track.addEventListener("scroll", update, { passive: true });
   window.addEventListener("resize", update);
   update();

@@ -14,7 +14,7 @@ title: Ran Craycraft
   <div class="block-head">
     <h2 id="stories-h" class="label">Stories</h2>
     <div class="carousel-nav">
-      <a href="/stories/" class="small muted ul">All stories</a>
+      <span class="carousel-count small muted" aria-live="polite" hidden></span>
       <button type="button" class="carousel-btn" data-dir="-1" aria-label="Previous stories" hidden>←</button>
       <button type="button" class="carousel-btn" data-dir="1" aria-label="Next stories" hidden>→</button>
     </div>
@@ -22,16 +22,17 @@ title: Ran Craycraft
   <ul class="carousel" role="region" aria-label="Stories" tabindex="0">
     {%- for p in stories %}
     <li><a href="{{ p.url }}" class="card">
-      {%- set ratio = "4 / 5" %}{% include "cover.njk" %}
-      <span class="small muted">{{ p.data.case_study.organization }}</span>
+      {%- set ratio = "4 / 3" %}{% include "story-cover.njk" %}
       <span class="card-title serif">{{ p.data.title }}</span>
+      <span class="card-desc muted">{{ p.data.description }}</span>
     </a></li>
     {%- endfor %}
   </ul>
+  <p class="carousel-more"><a href="/stories/" class="ul">Read all {{ stories.length }} stories</a></p>
 </section>
 {%- endif %}
 
-<section aria-labelledby="latest-h" class="block">
+<section aria-labelledby="latest-h" class="block stream-block">
   <div class="block-head strong">
     <h2 id="latest-h" class="label">Latest</h2>
     <div class="filter" role="group" aria-label="Show" hidden>
@@ -40,21 +41,32 @@ title: Ran Craycraft
       <button type="button" data-filter="making" aria-pressed="false">Making</button>
     </div>
   </div>
-  <ol class="feed">
-    {%- for p in collections.posts | stream(elsewhere) | limit(30) %}
-    <li data-kind="{{ p.data.kind }}">
-      <a href="{{ p.url }}" class="row">
-        <span class="row-kind small muted">{{ p.data.kind | kindLabel }}</span>
-        <span class="row-body">
-          <span class="row-title serif">{{ p.data.title }}</span>
-          <span class="muted">{{ p.data.description }}</span>
-          <span class="small faint"><time datetime="{{ p.date | isoDate }}">{{ p.date | readableDate }}</time>{% if p.data.series %} · {{ p.data.series }}{% endif %}{% if p.external %} · {{ p.data.publication }} ↗{% endif %}</span>
-        </span>
-        {%- if p.data.kind == "making" %}
-        <span class="row-thumb">{% set ratio = "4 / 3" %}{% include "cover.njk" %}</span>
-        {%- endif %}
+  <ol class="feed stream">
+    {%- for g in collections.posts | stream(elsewhere) | limit(24) | groupStream %}
+    {%- if g.kind == "making" %}
+    <li data-kind="making" class="stream-item">
+      <p class="stream-rail small muted">Making</p>
+      <div class="makes makes-{{ g.items.length }}">
+        {%- for p in g.items %}
+        <a href="{{ p.url }}" class="make">
+          {%- set ratio = "4 / 3" %}{% include "cover.njk" %}
+          <span class="make-title serif">{{ p.data.title }}</span>
+          <span class="small faint"><time datetime="{{ p.date | isoDate }}">{{ p.date | readableDate }}</time></span>
+        </a>
+        {%- endfor %}
+      </div>
+    </li>
+    {%- else %}
+    {%- set p = g.items[0] %}
+    <li data-kind="writing" class="stream-item">
+      <p class="stream-rail small muted">Writing</p>
+      <a href="{{ p.url }}" class="write">
+        <span class="write-title serif">{{ p.data.title }}</span>
+        <span class="write-desc muted">{{ p.data.description }}</span>
+        <span class="small faint"><time datetime="{{ p.date | isoDate }}">{{ p.date | readableDate }}</time>{% if p.external %} · {{ p.data.publication }} ↗{% elif p.data.series %} · {{ p.data.series }}{% endif %}</span>
       </a>
     </li>
+    {%- endif %}
     {%- endfor %}
   </ol>
   <p class="more small"><a href="/writing/" class="ul">All writing</a> <a href="/making/" class="ul">Everything I’ve made</a></p>

@@ -10,10 +10,10 @@ layout: base.njk
     <p class="small muted byline"><a href="/about/" rel="author">{{ site.name }}</a> · <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time> · {{ content | readingTime }}</p>
   </header>
 
-  {%- if image or cover_lines %}
+  {%- if image or tone or case_study %}
   <figure class="case-cover">
-    {%- set p = { data: { image: image, image_alt: image_alt, tone: tone, ink: ink, cover_lines: cover_lines, cover_kicker: cover_kicker, series: series } } %}
-    {%- set ratio = "21 / 9" %}{% include "cover.njk" %}
+    {%- set p = { data: { image: image, image_alt: image_alt, tone: tone, ink: ink, case_study: case_study, title: title } } %}
+    {%- set ratio = "21 / 9" %}{% include "story-cover.njk" %}
     {%- if image_caption %}<figcaption class="small muted">{{ image_caption }}</figcaption>{% endif %}
   </figure>
   {%- endif %}

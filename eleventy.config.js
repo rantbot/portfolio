@@ -42,6 +42,16 @@ export default function (eleventyConfig) {
     }));
     return [...own, ...outside].sort((a, b) => b.date - a.date);
   });
+  // Groups the stream so Writing stands alone and runs of Making sit side by side, up to three at a time
+  eleventyConfig.addFilter("groupStream", (items) => {
+    const groups = [];
+    for (const p of items) {
+      const last = groups[groups.length - 1];
+      if (p.data.kind === "making" && last && last.kind === "making" && last.items.length < 3) last.items.push(p);
+      else groups.push({ kind: p.data.kind === "making" ? "making" : "writing", items: [p] });
+    }
+    return groups;
+  });
   eleventyConfig.addFilter("kindLabel", (kind) => ({ story: "Story", making: "Making" })[kind] || "Writing");
   eleventyConfig.addFilter("inSeries", (posts, series) =>
     series ? posts.filter((p) => p.data.series === series).sort((a, b) => a.date - b.date) : []
