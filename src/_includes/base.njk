@@ -134,7 +134,7 @@
     {% include "email-link.njk" %}
     <a href="/feed.xml">RSS</a>
   </nav>
-  <p class="footer-legal"><span class="footer-year">© {{ env.year }} {{ site.name }}.</span> <span>{{ site.footer_location or site.location }}</span><span class="footer-year">.</span></p>
+  <p class="footer-legal"><span class="footer-year">© {{ env.year }}</span> <span>{{ site.footer_note }}</span></p>
 </footer>
 </div>
 <meta name="edit-source" content="{{ page.inputPath }}">

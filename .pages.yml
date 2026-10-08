@@ -85,6 +85,7 @@ content:
       - { name: description, label: Site description, type: text }
       - { name: tagline, label: One-line description for search engines, type: string }
       - { name: location, label: Location, type: string }
+      - { name: footer_note, label: Footer line after the year, type: string }
       - { name: email, label: Email, type: string }
       - { name: job_title, label: Job title, type: string }
       - { name: employer, label: Employer, type: string }
