@@ -7,6 +7,8 @@ const KEY_TOKEN = "edit-github-token";
 
 const page = document.querySelector('meta[name="edit-source"]')?.content?.replace(/^\.\//, "") || "";
 const main = document.querySelector("main");
+const footer = document.querySelector(".site-footer");
+const areas = [main, footer].filter(Boolean); // the page itself and the footer
 const root = document.documentElement;
 const pending = new Map(); // element -> { before, after }
 const files = new Map(); // path -> { text, sha }
@@ -43,6 +45,18 @@ async function allSourceFiles() {
 const reEsc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const finder = (text) => new RegExp(text.trim().split(/\s+/).map((w) => reEsc(w).replace(/&/g, "(?:&|&amp;)").replace(/[’']/g, "[’']")).join("\\s+"), "g");
 const count = (text, re) => (text.match(re) || []).length;
+// Footer text lives in site.yml or in the footer of base.njk, where words like "Leading" also appear in the header
+const BASE = "src/_includes/base.njk";
+const footerPart = (text) => { const a = text.indexOf("<footer"), b = text.indexOf("</footer>"); return a < 0 || b < 0 ? null : [a, b]; };
+async function locateFooter(before) {
+  const re = finder(before);
+  const yml = await readFile("src/_data/site.yml").catch(() => null);
+  if (yml && count(yml.text, re) === 1) return "src/_data/site.yml";
+  const base = await readFile(BASE).catch(() => null);
+  const part = base && footerPart(base.text);
+  if (part && count(base.text.slice(...part), re) === 1) return BASE;
+  throw new Error("Couldn’t find that footer text in one place. It may be generated automatically, so ask Claude to change it.");
+}
 async function locate(before) {
   const re = finder(before);
   const first = [page, "src/_data/site.yml"].filter(Boolean);
@@ -74,7 +88,9 @@ function fixYaml(text, value, isYaml) {
 }
 const inFrontMatter = (text, index) => { const m = text.match(/^---\n[\s\S]*?\n---/); return m ? index < m[0].length : false; };
 
-function apply(text, path, before, after) {
+function apply(text, path, before, after, inFooter) {
+  const part = inFooter && path === BASE && footerPart(text);
+  if (part) return text.slice(0, part[0]) + apply(text.slice(...part), path, before, after) + text.slice(part[1]);
   const re = finder(before);
   const at = text.search(re);
   const isHtml = /\.(njk|html)$/.test(path) && !inFrontMatter(text, at);
@@ -144,15 +160,16 @@ const autolink = (n) => n.nodeName === "A" && n.hasAttribute("data-autolink") &&
 const leaf = (el) => [...el.childNodes].every((n) => n.nodeType === 3 || n.nodeName === "BR" || autolink(n)) && el.textContent.trim().length > 1;
 const ownText = (el) => [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
 function markEditable() {
-  main.querySelectorAll(SEL).forEach((el) => {
-    if (el.closest(".sr, .sr-label, svg, [aria-hidden='true'], .search-dialog, time, .carousel-count")) return;
+  const all = [...main.querySelectorAll(SEL), ...(footer ? footer.querySelectorAll(SEL + ", nav a") : [])];
+  all.forEach((el) => {
+    if (el.closest(".sr, .sr-label, svg, [aria-hidden='true'], .search-dialog, time, .carousel-count, .footer-name, .footer-year")) return;
     if (leaf(el)) { el.dataset.ed = ""; el.contentEditable = "true"; el.spellcheck = true; }
     else if (ownText(el)) { el.dataset.edFixed = ""; el.title = "This line has links or formatting. Ask Claude to change it for now."; }
   });
 }
 function unmark() {
-  main.querySelectorAll("[data-ed]").forEach((el) => { el.removeAttribute("contenteditable"); delete el.dataset.ed; });
-  main.querySelectorAll("[data-ed-fixed]").forEach((el) => { delete el.dataset.edFixed; el.removeAttribute("title"); });
+  areas.forEach((a) => a.querySelectorAll("[data-ed]").forEach((el) => { el.removeAttribute("contenteditable"); delete el.dataset.ed; }));
+  areas.forEach((a) => a.querySelectorAll("[data-ed-fixed]").forEach((el) => { delete el.dataset.edFixed; el.removeAttribute("title"); }));
 }
 
 function askForKey() {
@@ -214,9 +231,10 @@ async function publish() {
   const failed = [];
   for (const [el, { before, after }] of pending) {
     try {
-      const path = await locate(before);
+      const inFooter = !!el.closest(".site-footer");
+      const path = inFooter ? await locateFooter(before) : await locate(before);
       if (!byFile.has(path)) byFile.set(path, []);
-      byFile.get(path).push({ el, before, after });
+      byFile.get(path).push({ el, before, after, inFooter });
     } catch (e) { failed.push(e.message); }
   }
   let saved = 0;
@@ -224,7 +242,7 @@ async function publish() {
     try {
       const f = await readFile(path);
       let text = f.text;
-      for (const { before, after } of edits) text = apply(text, path, before, after);
+      for (const { before, after, inFooter } of edits) text = apply(text, path, before, after, inFooter);
       await gh(`/contents/${encodeURI(path)}`, { method: "PUT", body: JSON.stringify({ message: `Edit copy in ${path.replace(/^src\//, "")}`, content: b64encode(text), sha: f.sha, branch: BRANCH }) });
       edits.forEach(({ el }) => { pending.delete(el); delete el.dataset.edChanged; });
       saved += edits.length;
@@ -244,19 +262,19 @@ bar.addEventListener("click", (e) => {
 });
 
 // Editing text: Enter finishes a line, Escape undoes it, pasting keeps plain text only
-main.addEventListener("focusin", (e) => { const el = e.target.closest("[data-ed]"); if (el && !pending.has(el)) el.dataset.edBefore = el.textContent; });
-main.addEventListener("keydown", (e) => {
+areas.forEach((a) => a.addEventListener("focusin", (e) => { const el = e.target.closest("[data-ed]"); if (el && !pending.has(el)) el.dataset.edBefore = el.textContent; }));
+areas.forEach((a) => a.addEventListener("keydown", (e) => {
   const el = e.target.closest("[data-ed]");
   if (!el) return;
   if (e.key === "Enter") { e.preventDefault(); el.blur(); }
   if (e.key === "Escape") { el.textContent = pending.get(el)?.before ?? el.dataset.edBefore; pending.delete(el); delete el.dataset.edChanged; el.blur(); render(); }
-});
-main.addEventListener("paste", (e) => {
+}));
+areas.forEach((a) => a.addEventListener("paste", (e) => {
   if (!e.target.closest("[data-ed]")) return;
   e.preventDefault();
   document.execCommand("insertText", false, (e.clipboardData || window.clipboardData).getData("text/plain").replace(/\s+/g, " "));
-});
-main.addEventListener("focusout", (e) => {
+}));
+areas.forEach((a) => a.addEventListener("focusout", (e) => {
   const el = e.target.closest("[data-ed]");
   if (!el) return;
   const before = pending.get(el)?.before ?? el.dataset.edBefore;
@@ -265,7 +283,7 @@ main.addEventListener("focusout", (e) => {
   else if (after === before.replace(/\s+/g, " ").trim()) { pending.delete(el); delete el.dataset.edChanged; }
   else { pending.set(el, { before, after }); el.dataset.edChanged = ""; }
   render();
-});
+}));
 // While editing, clicking text inside a link edits it instead of following the link
 document.addEventListener("click", (e) => { if (root.classList.contains("ed-on") && e.target.closest("[data-ed], [data-ed-fixed]") && e.target.closest("a")) e.preventDefault(); }, true);
 window.addEventListener("beforeunload", (e) => { if (pending.size) { e.preventDefault(); e.returnValue = ""; } });

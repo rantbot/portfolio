@@ -10,3 +10,6 @@ private/
 # System and editor files
 .DS_Store
 *.log
+
+# Files the Claude app saves alongside the repo
+Claude outputs/
