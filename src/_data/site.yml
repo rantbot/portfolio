@@ -25,8 +25,8 @@ org_links:
   Ruby Central: https://rubycentral.org
 
 # Closing invitation on the homepage
-invitation: Let’s discuss the next chapter.
-invitation_note: A leadership opportunity, a new venture, or a product worth building. Tell me what you’re working toward.
+invitation: Let’s discuss what's next.
+invitation_note: A leadership opportunity, a new venture, or a product worth building. Tell me what you’re working toward, and I'll do my best to help.
 
 # Profiles that are you. Search engines and AI tools use these to connect the dots.
 same_as:
