@@ -102,6 +102,13 @@ content:
         fields:
           - { name: label, label: Label, type: string }
           - { name: url, label: Address, type: string }
+      - name: footer_links
+        label: More footer links
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: url, label: Address, type: string }
 
   - name: elsewhere
     label: Essays published elsewhere

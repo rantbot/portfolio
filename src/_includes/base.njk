@@ -130,6 +130,7 @@
   </nav>
   <nav class="footer-col" aria-label="Elsewhere">
     {%- for p in site.same_as %}{% if "[" not in p.url %}<a href="{{ p.url }}" rel="me">{{ p.label }}</a>{% endif %}{% endfor %}
+    {%- for p in site.footer_links %}<a href="{{ p.url }}">{{ p.label }}</a>{% endfor %}
     {%- set email_label = "Email" %}{% set email_class = "footer-email" %}{% set email_subject = "Hello from your site" %}{% set email_body = "" %}
     {% include "email-link.njk" %}
     <a href="/feed.xml">RSS</a>

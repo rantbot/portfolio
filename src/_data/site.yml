@@ -37,6 +37,11 @@ same_as:
   - label: thoughtbot
     url: https://thoughtbot.com/blog/authors/ran-craycraft
 
+# More links in the footer, after the profiles above. These aren't profiles of you, so search engines don't treat them as you.
+footer_links:
+  - label: Ruby Central
+    url: https://rubycentral.org
+
 # Companies Ran has worked with. Logos live in src/assets/images/logos/, single-color PNGs, shown at under a third of their pixel size so they stay sharp. Width and height are tuned so every logo carries the same visual weight.
 logos:
   - { name: NBC, file: nbc.png, width: 61, height: 35 }

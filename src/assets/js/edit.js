@@ -142,16 +142,17 @@ const bar = document.createElement("div");
 bar.className = "ed-bar";
 document.body.append(bar);
 
+let drawn = "";
 function render() {
   const on = root.classList.contains("ed-on");
   const n = pending.size;
-  if (!on) {
-    bar.innerHTML = `<button type="button" class="ed-primary" data-act="start">Edit this page</button><button type="button" class="ed-x" data-act="hide" aria-label="Hide the edit bar">×</button>`;
-  } else {
-    bar.innerHTML = `<span class="ed-note">${n ? `${n} change${n === 1 ? "" : "s"}` : "Click any text to change it"}</span>` +
+  const html = !on
+    ? `<button type="button" class="ed-primary" data-act="start">Edit this page</button><button type="button" class="ed-x" data-act="hide" aria-label="Hide the edit bar">×</button>`
+    : `<span class="ed-note">${n ? `${n} change${n === 1 ? "" : "s"}` : "Click any text to change it"}</span>` +
       `<button type="button" data-act="cancel">${n ? "Discard" : "Done"}</button>` +
       `<button type="button" class="ed-primary" data-act="publish"${n ? "" : " disabled"}>Publish</button>`;
-  }
+  // Only redraw when something changed. Redrawing while a button is being clicked swallows the click.
+  if (html !== drawn) bar.innerHTML = drawn = html;
 }
 
 const SEL = "h1, h2, h3, h4, p, li, figcaption, blockquote, dt, dd, span, a.button, a.arrow-link, strong, em";
@@ -273,6 +274,16 @@ areas.forEach((a) => a.addEventListener("paste", (e) => {
   if (!e.target.closest("[data-ed]")) return;
   e.preventDefault();
   document.execCommand("insertText", false, (e.clipboardData || window.clipboardData).getData("text/plain").replace(/\s+/g, " "));
+}));
+// Count a change as soon as it's typed, so Publish is ready before the line loses focus
+areas.forEach((a) => a.addEventListener("input", (e) => {
+  const el = e.target.closest("[data-ed]");
+  if (!el) return;
+  const before = pending.get(el)?.before ?? el.dataset.edBefore;
+  const after = el.textContent.replace(/\s+/g, " ").trim();
+  if (after && after !== before.replace(/\s+/g, " ").trim()) { pending.set(el, { before, after }); el.dataset.edChanged = ""; }
+  else { pending.delete(el); delete el.dataset.edChanged; }
+  render();
 }));
 areas.forEach((a) => a.addEventListener("focusout", (e) => {
   const el = e.target.closest("[data-ed]");
