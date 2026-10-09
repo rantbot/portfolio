@@ -14,6 +14,14 @@ Stagehand turns a Markdown file into a presentation that looks designed. Drop th
 
 There's no account, no build step and nothing to install.
 
+## Why not Slides or PowerPoint?
+
+Slides and PowerPoint are good at what they do. They stop making sense when a talk needs something a slide app can't hold. Every slide in Stagehand is part of a web page, so anything I can imagine for a deck can be built, whether that's the look and feel, something working pulled in from across the web, or sound, video and the devices in the room.
+
+A few things that are easy here and hard or impossible there. I can run the real prototype on a slide instead of a screenshot of it. I can show a live dashboard, a map, a pull request or a Figma frame as it is right now. Room sound can play under the narration, and a video can start on the click. A webcam can show the phone in my hand. A ring can circle part of a diagram while I talk about it. The type, color and motion can be whatever the talk calls for, with no template to fight.
+
+It also fits the way we already work. A deck is one plain text file, so it can live in a repository, show its changes in a pull request and get reviewed like code. Claude can write and edit it directly, which is hard to do with a slide file. It opens in any browser. A theme is a few variables, so a client's brand carries across every deck. And my script stays in its own window, so it never shows on a shared screen.
+
 ## Where it came from
 
 I was getting ready for a five minute lightning talk about the American dive bar, told like a nature documentary. It needed narration, room sound from my own field recordings, and a script nobody else could see. Once I had that working, I wanted the same setup for every other talk, so I pulled it out into its own tool.
