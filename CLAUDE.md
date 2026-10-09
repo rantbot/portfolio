@@ -19,6 +19,7 @@ Ran will say things like "add a post about X", "update my AOL piece", "add my ne
 | Look and feel | `src/assets/css/site.css` |
 | Templates | `src/_includes/`, `src/*.njk` |
 | Pages CMS editor settings | `.pages.yml` (keep fields in sync when front matter changes) |
+| Chromatic, Ran's Chrome extension on the Web Store | `chromatic/` (source and store listing, not part of the site), privacy policy at `src/chromatic/privacy.md` |
 
 ## Posts
 

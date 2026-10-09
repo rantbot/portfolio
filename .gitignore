@@ -13,3 +13,6 @@ private/
 
 # Files the Claude app saves alongside the repo
 Claude outputs/
+
+# Chromatic's built extension, uploaded to the Chrome Web Store by hand
+chromatic/*.zip

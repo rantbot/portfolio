@@ -3,5 +3,5 @@ permalink: /search.json
 eleventyExcludeFromCollections: true
 ---
 {%- set pages = [] -%}
-{%- for p in collections.all -%}{% if p.url in ["/about/", "/work/", "/skills/"] %}{% set pages = (pages.push(p), pages) %}{% endif %}{%- endfor -%}
+{%- for p in collections.all -%}{% if p.url in ["/about/", "/work/", "/skills/", "/chromatic/"] %}{% set pages = (pages.push(p), pages) %}{% endif %}{%- endfor -%}
 {{ collections.posts | searchIndex(elsewhere, pages) | safe }}
