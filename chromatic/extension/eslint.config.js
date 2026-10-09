@@ -12,7 +12,7 @@ export default [
     ignores: ["node_modules/**"],
   },
   {
-    files: ["lib/color.js"],
+    files: ["lib/color.js", "dev/color-v1.js"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
@@ -33,7 +33,7 @@ export default [
     rules: commonRules,
   },
   {
-    files: ["offscreen.js"],
+    files: ["offscreen.js", "dev/compare.js"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",

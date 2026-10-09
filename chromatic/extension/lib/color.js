@@ -1,343 +1,348 @@
 /**
- * Pure color-math helpers shared by background.js (the service worker that decides tab
- * order) and offscreen.js (the DOM context that actually reads favicon pixels).
+ * Pure color-math helpers shared by lib/sort.js (which decides tab order) and offscreen.js
+ * (the DOM context that actually reads favicon pixels).
  *
  * Everything in this file is a pure function or constant, no chrome.* APIs, so it can be
  * unit tested directly with plain arrays and imported unmodified into both contexts.
+ *
+ * Color is measured in OKLCH rather than HSL. OKLCH is built around how people see color:
+ * L is how light a color looks, C (chroma) is how vivid it looks, and h is its hue, with hues
+ * spaced the way the eye spaces them. HSL calls pure yellow and navy blue equally light, and
+ * squeezes cyan and blue into a sliver of the wheel while giving green a huge range, which is
+ * what made "pale" and the color families feel off before.
  */
 
-/** A saturation below this is treated as "no real color" once a color has already been extracted. */
-export const HUE_SATURATION_THRESHOLD = 0.15;
+/** Chroma below this reads as gray. Used for single pixels and for an icon's final color. */
+export const NEUTRAL_CHROMA = 0.045;
+
+/** A color this light and this soft reads as a pastel, so it sits with the whites. */
+export const PALE_LIGHTNESS = 0.86;
+export const PALE_CHROMA = 0.1;
+
+/** A color this dark and this soft reads as near-black, so it sits with the blacks. */
+export const DARK_LIGHTNESS = 0.3;
+export const DARK_CHROMA = 0.08;
+
+/** Neutrals at or above this lightness go in the light bookend, below it in the dark one. */
+export const LIGHT_NEUTRAL_CUTOFF = 0.6;
 
 /**
- * A lightness above this is treated as too pale to belong in the vivid rainbow, even when it
- * carries a real, correctly-detected hue. A rainbow reads as a rainbow because its colors are
- * vivid; a washed-out pastel (a light Google icon, say) doesn't serve that even though it
- * technically has a hue, so it's grouped with the light neutrals instead.
+ * The color families, in rainbow order, as OKLCH hue centers. Every colorful icon belongs to
+ * the family whose center is nearest. The centers were placed so real brand colors land
+ * where people expect, Facebook, Dropbox and Zoom together in blue, Discord, Stripe and
+ * Linear together in indigo, Amazon in orange, Mailchimp and Miro in yellow.
  */
-export const PALE_LIGHTNESS_THRESHOLD = 0.78;
+export const FAMILIES = Object.freeze([
+  { name: "red", hue: 25 },
+  { name: "orange", hue: 55 },
+  { name: "yellow", hue: 95 },
+  { name: "green", hue: 142 },
+  { name: "teal", hue: 190 },
+  { name: "blue", hue: 252 },
+  { name: "indigo", hue: 278 },
+  { name: "violet", hue: 305 },
+  { name: "pink", hue: 345 },
+]);
 
 /**
- * Chrome's fixed tab group palette, mapped to approximate hues so a group can slot into the
- * same rainbow order as an individual tab. "grey" has no hue and is treated as neutral.
+ * Chrome's tab group colors in OKLCH, measured from the colors Chrome draws them in, so a
+ * group slots into the same rainbow as a single tab. Grey has no hue and sorts as a neutral.
  */
-export const GROUP_COLOR_HUES = {
-  red: 5,
-  orange: 25,
-  yellow: 45,
-  green: 130,
-  cyan: 185,
-  blue: 210,
-  purple: 265,
-  pink: 330,
-  grey: null,
-};
+export const GROUP_COLORS = Object.freeze({
+  red: { l: 0.58, c: 0.206, h: 29 },
+  orange: { l: 0.75, c: 0.158, h: 55 },
+  yellow: { l: 0.8, c: 0.167, h: 76 },
+  green: { l: 0.53, c: 0.141, h: 148 },
+  cyan: { l: 0.53, c: 0.09, h: 203 },
+  blue: { l: 0.57, c: 0.195, h: 258 },
+  purple: { l: 0.6, c: 0.25, h: 304 },
+  pink: { l: 0.57, c: 0.225, h: 352 },
+  grey: { l: 0.5, c: 0, h: 0 },
+});
 
 /**
  * Chrome's own internal pages (chrome://extensions and similar) render their favicon
- * differently depending on system dark/light mode. In dark mode the icon Chrome's
- * `_favicon` endpoint hands back is often still the original, non-dark-mode asset, so pixel
- * extraction can't be trusted for these. They're always treated as pure white instead, which
- * is how they actually render in a dark-mode tab strip.
+ * differently depending on system dark/light mode, and the icon Chrome's `_favicon` endpoint
+ * hands back is often the light-mode asset, so pixel extraction can't be trusted for these.
+ * They're always treated as pure white instead.
  *
- * This deliberately does NOT cover chrome-extension:// pages, which are a different thing:
- * some *other* installed extension's own page (an options page, a "leave a review" prompt,
- * etc.), not Chrome's UI. Those have an ordinary, stable favicon with no dark-mode mismatch,
- * so they go through normal color extraction like any other page.
+ * This deliberately does NOT cover chrome-extension:// pages, some other installed
+ * extension's own page, which have an ordinary, stable favicon.
  */
-export const FORCED_WHITE = Object.freeze({ h: 0, s: 0, l: 1 });
+export const FORCED_WHITE = Object.freeze({ l: 1, c: 0, h: 0, multicolor: false });
 
 /**
  * @param {string} url
  * @returns {boolean} true only for chrome:// pages (Chrome's own UI), not chrome-extension://
- *   pages (some other installed extension's own page)
  */
 export function isChromeInternalUrl(url) {
   return typeof url === "string" && url.startsWith("chrome://");
 }
 
-/**
- * @param {{h: number, s: number, l: number} | null | undefined} hsl
- * @returns {boolean} whether this color carries enough saturation to sort by hue, and isn't
- *   so pale/washed-out that it should be treated as a light neutral instead
- */
-export function hasHue(hsl) {
-  return Boolean(hsl && hsl.s >= HUE_SATURATION_THRESHOLD && hsl.l <= PALE_LIGHTNESS_THRESHOLD);
+function srgbToLinear(channel) {
+  const c = channel / 255;
+  return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
 }
 
 /**
- * Unlike hasHue, this ignores paleness entirely, it only asks whether a real hue was
- * detected at all. A pale, washed-out color still has this even though hasHue rejects it,
- * which is what lets a demoted-for-paleness color be placed within the neutral bookend by
- * which color it leans toward, rather than being treated as having no hue information at all.
- * @param {{h: number, s: number} | null | undefined} hsl
- * @returns {boolean}
+ * Converts 8-bit sRGB to OKLCH. l in [0, 1], c from 0 to about 0.37, h in degrees [0, 360).
  */
-export function hasSaturationSignal(hsl) {
-  return Boolean(hsl && hsl.s >= HUE_SATURATION_THRESHOLD);
+export function rgbToOklch(r, g, b) {
+  const R = srgbToLinear(r);
+  const G = srgbToLinear(g);
+  const B = srgbToLinear(b);
+
+  const l = Math.cbrt(0.4122214708 * R + 0.5363325363 * G + 0.0514459929 * B);
+  const m = Math.cbrt(0.2119034982 * R + 0.6806995451 * G + 0.1073969566 * B);
+  const s = Math.cbrt(0.0883024619 * R + 0.2817188376 * G + 0.6299787005 * B);
+
+  const L = 0.2104542553 * l + 0.793617785 * m - 0.0040720468 * s;
+  const A = 1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s;
+  const Bk = 0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s;
+
+  let h = (Math.atan2(Bk, A) * 180) / Math.PI;
+  if (h < 0) h += 360;
+
+  return { l: L, c: Math.hypot(A, Bk), h };
 }
 
-/**
- * Converts 8-bit RGB to HSL. Standard conversion, h in degrees [0, 360), s and l in [0, 1].
- */
-export function rgbToHsl(r, g, b) {
-  r /= 255;
-  g /= 255;
-  b /= 255;
-
-  const max = Math.max(r, g, b);
-  const min = Math.min(r, g, b);
-  const l = (max + min) / 2;
-
-  let h = 0;
-  let s = 0;
-
-  if (max !== min) {
-    const d = max - min;
-    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-
-    switch (max) {
-      case r:
-        h = (g - b) / d + (g < b ? 6 : 0);
-        break;
-      case g:
-        h = (b - r) / d + 2;
-        break;
-      case b:
-        h = (r - g) / d + 4;
-        break;
-    }
-    h *= 60;
-  }
-
-  return { h, s, l };
-}
-
-/**
- * Signed-shortest-path distance in degrees from `anchorHue` to `hue`, always in [0, 360).
- * Used to sort colors as if the rainbow starts at the anchor rather than always at red.
- */
-export function hueDistance(hue, anchorHue) {
-  return (((hue - anchorHue) % 360) + 360) % 360;
-}
-
-/**
- * The named color centers tabs are bucketed into before sorting, reusing Chrome's own tab
- * group palette (minus grey, which has no hue) as the canonical set of "named colors" so a
- * favicon and a tab group agree on what counts as, say, "red".
- */
-const NAMED_HUE_CENTERS = Object.values(GROUP_COLOR_HUES).filter((hue) => hue !== null);
-
-/**
- * Ordinary shortest-path circular distance, e.g. distance(350, 10) is 20, not 340. Used only
- * to find which named color a hue is closest to; the final sort order still uses the
- * one-directional hueDistance above, which is a different measurement on purpose.
- */
-function circularDistance(a, b) {
+/** Shortest distance around the wheel, so circularDistance(350, 10) is 20. */
+export function circularDistance(a, b) {
   const diff = Math.abs(a - b) % 360;
   return diff > 180 ? 360 - diff : diff;
 }
 
-/**
- * Snaps a hue to whichever named color center it's closest to. Two different brands' reds
- * (say hue 350 and hue 10) both look "red" to a person even though they're 20° apart, and
- * sorting by raw hue alone can let an unrelated color's hue fall numerically between them.
- * Snapping first groups every red-ish favicon into one block regardless of the exact shade,
- * matching how people actually categorize color rather than a continuous sweep.
- * @param {number} hue
- * @returns {number} the nearest value in NAMED_HUE_CENTERS
- */
-export function nearestNamedHue(hue) {
-  let nearest = NAMED_HUE_CENTERS[0];
-  let minDistance = circularDistance(hue, nearest);
-
-  for (const center of NAMED_HUE_CENTERS.slice(1)) {
-    const distance = circularDistance(hue, center);
-    if (distance < minDistance) {
-      minDistance = distance;
-      nearest = center;
-    }
+/** @returns {number} index into FAMILIES of the family nearest this hue */
+export function familyIndex(hue) {
+  let best = 0;
+  for (let i = 1; i < FAMILIES.length; i++) {
+    if (circularDistance(hue, FAMILIES[i].hue) < circularDistance(hue, FAMILIES[best].hue)) best = i;
   }
-
-  return nearest;
+  return best;
 }
 
 /**
- * Finds the dominant hue in a block of RGBA pixel data by binning saturated pixels into hue
- * buckets (weighted by how saturated each pixel is) and taking the heaviest bucket. This is
- * deliberately not a flat average: an icon that spans several hues at once (Chrome's own
- * pinwheel logo, for example) would average out to a washed-out gray and get wrongly sorted
- * as neutral. Finding the peak bucket instead avoids that cancellation.
+ * Sums up a set of pixels: how much of each color family they hold (weighted by how vivid
+ * and how opaque each pixel is), and the average lightness of the gray ones.
+ */
+function tally(pixels) {
+  const families = FAMILIES.map(() => ({ weight: 0, count: 0, sin: 0, cos: 0, c: 0, l: 0 }));
+  let neutralCount = 0;
+  let neutralLightness = 0;
+  let lightnessSum = 0;
+
+  for (const p of pixels) {
+    lightnessSum += p.l;
+
+    if (p.c < NEUTRAL_CHROMA) {
+      neutralCount++;
+      neutralLightness += p.l;
+      continue;
+    }
+
+    const f = families[familyIndex(p.h)];
+    const w = p.c * p.a;
+    const rad = (p.h * Math.PI) / 180;
+    f.weight += w;
+    f.count++;
+    f.sin += Math.sin(rad) * w;
+    f.cos += Math.cos(rad) * w;
+    f.c += p.c * w;
+    f.l += p.l * w;
+  }
+
+  let peak = 0;
+  for (let i = 1; i < families.length; i++) {
+    if (families[i].weight > families[peak].weight) peak = i;
+  }
+
+  return {
+    families,
+    peak,
+    colorfulWeight: families.reduce((sum, f) => sum + f.weight, 0),
+    colorfulCount: families.reduce((sum, f) => sum + f.count, 0),
+    opaqueCount: pixels.length,
+    neutralLightness: neutralCount > 0 ? neutralLightness / neutralCount : null,
+    meanLightness: pixels.length > 0 ? lightnessSum / pixels.length : 0,
+  };
+}
+
+/**
+ * Whether a tally holds several strong, unrelated colors, like Google's G, Slack's hash or
+ * Microsoft's four squares. Any single color picked from those is arbitrary, so they get
+ * their own place in the sort instead.
+ *
+ * Three or more families each holding a real share of the color counts, unless they all sit
+ * side by side on the wheel (red, orange and yellow in a sunset gradient is one warm color).
+ */
+function isMulticolor(t) {
+  if (t.colorfulCount < 12) return false;
+
+  const strong = [];
+  t.families.forEach((f, i) => {
+    if (f.weight / t.colorfulWeight >= 0.15) strong.push(i);
+  });
+  if (strong.length < 3) return false;
+
+  const n = FAMILIES.length;
+  for (const start of strong) {
+    const fitsInThree = strong.every((i) => (i - start + n) % n <= 2);
+    if (fitsInThree) return false;
+  }
+  return true;
+}
+
+/** The red-ish families an unread badge is usually drawn in (red, orange, pink). */
+const BADGE_FAMILIES = new Set([0, 1, FAMILIES.length - 1]);
+
+/**
+ * Whether the top-right corner holds a notification badge, a small, vivid, red-ish dot that
+ * doesn't match the rest of the icon. Only then is the corner left out, so icons without a
+ * badge are read whole.
+ */
+function hasBadge(cornerPixels, restTally) {
+  if (cornerPixels.length === 0) return false;
+  const vividRed = cornerPixels.filter((p) => p.c >= 0.12 && BADGE_FAMILIES.has(familyIndex(p.h))).length;
+  if (vividRed / cornerPixels.length < 0.2) return false;
+
+  // A red icon with red in its corner is just a red icon.
+  const restIsRed = restTally.colorfulCount > 0 && BADGE_FAMILIES.has(restTally.peak);
+  return !restIsRed;
+}
+
+/**
+ * Works out the color a person would call an icon, from its RGBA pixels.
+ *
+ * Colors vote by family, weighted by how vivid each pixel is, and the heaviest family wins,
+ * so a multi-hue icon doesn't average out to gray. Then a few checks match what the eye sees.
+ * Several strong unrelated colors mark it multicolor. A small colored mark on a big gray,
+ * black or white tile takes the tile's color, since that's what shows in the tab bar. An
+ * unread badge in the top-right corner is ignored, but only when there is one.
  *
  * @param {Uint8ClampedArray|number[]} pixels flat RGBA data, 4 values per pixel
  * @param {number} width
  * @param {number} height
  * @param {object} [options]
  * @param {number} [options.minAlpha=100] ignore pixels less opaque than this (0-255)
- * @param {number} [options.badgeMarginFraction=0.35] ignore this fraction of width/height in the top-right corner, where notification badges are conventionally drawn
- * @param {number} [options.neutralSaturationThreshold=0.18] per-pixel saturation below this doesn't count toward the hue vote
- * @param {number} [options.binCount=24] number of hue buckets (360 / binCount degrees each)
- * @param {number} [options.whiteLightnessThreshold=0.85] mean lightness above this triggers the stricter check below, for a mostly-white icon
- * @param {number} [options.faintColorSaturationThreshold=0.3] when the icon is overwhelmingly light, its colorful pixels must average at least this saturation to be trusted as a real logo color rather than a faint tinted shadow
- * @param {number} [options.minColorfulWeight=1.5] an absolute floor on colorful weight, regardless of area
- * @returns {{h: number, s: number, l: number} | null} null only when there were no sampled pixels at all (e.g. a fully transparent image)
+ * @param {number} [options.badgeMarginFraction=0.35] size of the top-right corner checked for a badge
+ * @param {number} [options.markShare=0.25] colorful pixels below this share of a solid tile count as a small mark
+ * @returns {{l: number, c: number, h: number, multicolor: boolean} | null} null only when
+ *   there were no opaque pixels at all
  */
 export function extractDominantColor(pixels, width, height, options = {}) {
-  const {
-    minAlpha = 100,
-    badgeMarginFraction = 0.35,
-    neutralSaturationThreshold = 0.18,
-    binCount = 24,
-    whiteLightnessThreshold = 0.85,
-    faintColorSaturationThreshold = 0.3,
-    minColorfulWeight = 1.5,
-  } = options;
+  const { minAlpha = 100, badgeMarginFraction = 0.35, markShare = 0.25 } = options;
 
-  const bins = new Array(binCount).fill(0);
-  const binPixels = Array.from({ length: binCount }, () => []);
-
-  let neutralLightnessSum = 0;
-  let neutralCount = 0;
-  let totalCount = 0;
-  let totalLightnessSum = 0;
-
-  const badgeMarginX = Math.ceil(width * badgeMarginFraction);
-  const badgeMarginY = Math.ceil(height * badgeMarginFraction);
+  const rest = [];
+  const corner = [];
+  const badgeX = width - Math.ceil(width * badgeMarginFraction);
+  const badgeY = Math.ceil(height * badgeMarginFraction);
 
   for (let i = 0; i < pixels.length; i += 4) {
     const alpha = pixels[i + 3];
     if (alpha < minAlpha) continue;
 
-    const pixelIndex = i / 4;
-    const x = pixelIndex % width;
-    const y = Math.floor(pixelIndex / width);
-    if (x >= width - badgeMarginX && y < badgeMarginY) continue; // skip badge corner
-
-    const { h, s, l } = rgbToHsl(pixels[i], pixels[i + 1], pixels[i + 2]);
-
-    totalCount++;
-    totalLightnessSum += l;
-
-    if (s < neutralSaturationThreshold) {
-      neutralLightnessSum += l;
-      neutralCount++;
-      continue;
-    }
-
-    const bin = Math.floor(h / (360 / binCount)) % binCount;
-    bins[bin] += s;
-    binPixels[bin].push({ h, s, l });
+    const index = i / 4;
+    const x = index % width;
+    const y = Math.floor(index / width);
+    const p = { ...rgbToOklch(pixels[i], pixels[i + 1], pixels[i + 2]), a: alpha / 255 };
+    (x >= badgeX && y < badgeY ? corner : rest).push(p);
   }
 
-  if (totalCount === 0) return null;
+  if (rest.length + corner.length === 0) return null;
 
-  const colorfulWeight = bins.reduce((sum, w) => sum + w, 0);
-  const colorfulPixelCount = binPixels.reduce((sum, arr) => sum + arr.length, 0);
-  const meanLightness = totalLightnessSum / totalCount;
-  const avgColorfulSaturation = colorfulPixelCount > 0 ? colorfulWeight / colorfulPixelCount : 0;
+  const restTally = tally(rest);
+  const t = hasBadge(corner, restTally) ? restTally : tally([...rest, ...corner]);
 
-  // Area alone doesn't tell you whether a color is real: a small, fully-saturated logo on a
-  // big solid background (Supabase's green bolt on black, say) should still count as
-  // colorful even though the background vastly outnumbers it in pixels. What actually needs
-  // catching is the opposite case, an icon that's overwhelmingly light where the only "color"
-  // is a faint, weakly-saturated artifact (anti-aliasing, a soft drop shadow). That's judged
-  // by how saturated the colorful pixels are on average, not by how many of them there are.
-  const isOverwhelminglyLight = meanLightness > whiteLightnessThreshold;
-  const colorTooFaintToTrust = isOverwhelminglyLight && avgColorfulSaturation < faintColorSaturationThreshold;
+  const neutral = () => ({ l: t.neutralLightness ?? t.meanLightness, c: 0, h: 0, multicolor: false });
 
-  if (colorfulPixelCount === 0 || colorfulWeight < minColorfulWeight || colorTooFaintToTrust) {
-    const l = neutralCount > 0 ? neutralLightnessSum / neutralCount : meanLightness;
-    return { h: 0, s: 0, l };
-  }
+  if (t.colorfulCount === 0) return neutral();
+  if (isMulticolor(t)) return { l: t.meanLightness, c: 0, h: 0, multicolor: true };
 
-  let peakBin = 0;
-  for (let b = 1; b < binCount; b++) {
-    if (bins[b] > bins[peakBin]) peakBin = b;
-  }
+  // A solid tile (most of the icon is opaque) that's mostly gray, black or white, with only
+  // a small colored mark on it, looks like the tile in a tab bar.
+  const solidTile = t.opaqueCount / (width * height) >= 0.8;
+  if (solidTile && t.colorfulCount / t.opaqueCount < markShare) return neutral();
 
-  // Circular weighted mean of the hues inside the winning bin, so the result isn't just
-  // snapped to the bin's center. Lightness is tracked the same way, so a pale, washed-out
-  // color and a rich, vivid one with the same hue don't come out identical: a real lightness
-  // value is what lets a pale tint get treated differently from a vivid color later, instead
-  // of every colorful result defaulting to the same placeholder mid-lightness.
-  let sinSum = 0;
-  let cosSum = 0;
-  let sSum = 0;
-  let lSum = 0;
+  const f = t.families[t.peak];
+  let h = (Math.atan2(f.sin, f.cos) * 180) / Math.PI;
+  if (h < 0) h += 360;
 
-  for (const { h, s, l } of binPixels[peakBin]) {
-    const rad = (h * Math.PI) / 180;
-    sinSum += Math.sin(rad) * s;
-    cosSum += Math.cos(rad) * s;
-    sSum += s;
-    lSum += l;
-  }
-
-  let meanHue = (Math.atan2(sinSum, cosSum) * 180) / Math.PI;
-  if (meanHue < 0) meanHue += 360;
-
-  const meanSaturation = sSum / binPixels[peakBin].length;
-  const meanColorLightness = lSum / binPixels[peakBin].length;
-
-  return { h: meanHue, s: meanSaturation, l: meanColorLightness };
+  return { l: f.l / f.weight, c: f.c / f.weight, h, multicolor: false };
 }
 
 /**
- * Splits a list of `{ hue, rawHue, lightness }`-shaped items into hue-sorted "colorful" items
- * bookended by "neutral" items. Lighter neutrals (whites, light grays) go right before the
- * color sequence starts; darker neutrals (blacks, dark grays) go right after it ends. The
- * result reads as one smooth light → color → dark gradient, rather than dumping every
- * non-colorful item in a single clump at one end. Used for both individual tabs and whole
- * tab groups, since both share this same shape.
- *
- * Colorful items sort primarily by which named color they're nearest to (see
- * nearestNamedHue), measured as distance from `startHue` so the sequence can begin anywhere
- * on the wheel, and only secondarily by their exact hue. That keeps every red-ish tab in one
- * block regardless of small brand-color differences, rather than letting an unrelated color
- * that happens to fall numerically between two "reds" split them apart.
- *
- * Within each neutral bookend, items with a real hue underneath (a color too pale to count
- * as "colorful", but not truly achromatic) are placed by how close that hue is to the color
- * sequence, so the handoff from white into the rainbow (and from the rainbow into black)
- * eases through near-colors first rather than jumping straight from pure gray to full color.
- * Truly achromatic items (no hue signal at all) sit at the far end of their bookend, away
- * from the color sequence, sorted by lightness as before.
- * @param {Array<{hue: number | null, rawHue?: number | null, lightness: number}>} items
- * @param {number} startHue degrees; colors are ordered by distance from this hue
- * @param {number} [midLightness=0.5] the lightness cutoff between the "light" and "dark" neutral halves
- * @returns {Array} the same items, reordered
+ * Sorts a color into where it goes in the strip.
+ * @param {{l: number, c: number, h: number, multicolor?: boolean} | null | undefined} color
+ * @returns {"missing" | "multicolor" | "light" | "dark" | "color"}
  */
-export function orderByHueThenLightness(items, startHue, midLightness = 0.5) {
-  const colorful = items.filter((item) => item.hue !== null && item.hue !== undefined);
-  const neutral = items.filter((item) => item.hue === null || item.hue === undefined);
+export function classify(color) {
+  if (!color) return "missing";
+  if (color.multicolor) return "multicolor";
+  if (color.c < NEUTRAL_CHROMA) return color.l >= LIGHT_NEUTRAL_CUTOFF ? "light" : "dark";
+  if (color.l > PALE_LIGHTNESS && color.c < PALE_CHROMA) return "light";
+  if (color.l < DARK_LIGHTNESS && color.c < DARK_CHROMA) return "dark";
+  return "color";
+}
 
-  const lightNeutrals = neutral.filter((item) => item.lightness > midLightness);
-  const darkNeutrals = neutral.filter((item) => item.lightness <= midLightness);
+/**
+ * Orders items by color, light to color to dark, as one long rainbow.
+ *
+ * - Multicolor icons go first, then whites and light grays, then pastels, with the pastels
+ *   that lean toward red last so they lead into the color blocks.
+ * - Colors come in blocks by family, red through pink, so it's easy to find "the red ones".
+ *   Inside each block tabs fade by lightness, and the direction alternates block to block
+ *   (light to dark, then dark to light), so each block meets the next at a similar lightness
+ *   instead of jumping from dark red to pale orange.
+ * - Near-blacks and dark grays come after the colors, the ones with a hint of pink first.
+ * - Tabs whose icon couldn't be read go at the very end.
+ *
+ * The sort is stable, so tabs that share an icon (several tabs on one site) keep their order.
+ *
+ * @template {{color: {l: number, c: number, h: number, multicolor?: boolean} | null}} T
+ * @param {T[]} items
+ * @returns {T[]} the same items, reordered
+ */
+export function orderByColor(items) {
+  const groups = { missing: [], multicolor: [], light: [], dark: [], color: [] };
+  for (const item of items) groups[classify(item.color)].push(item);
 
-  colorful.sort((a, b) => {
-    const familyDiff =
-      hueDistance(nearestNamedHue(a.hue), startHue) - hueDistance(nearestNamedHue(b.hue), startHue);
-    return familyDiff !== 0 ? familyDiff : hueDistance(a.hue, startHue) - hueDistance(b.hue, startHue);
+  const first = FAMILIES[0].hue;
+  const last = FAMILIES[FAMILIES.length - 1].hue;
+  const lean = (item, anchor) => (item.color.c >= NEUTRAL_CHROMA ? circularDistance(item.color.h, anchor) : null);
+
+  // Light bookend: pure neutrals brightest first, then tinted pastels, farthest from red first.
+  groups.light.sort((a, b) => {
+    const la = lean(a, first);
+    const lb = lean(b, first);
+    if (la === null && lb === null) return b.color.l - a.color.l;
+    if (la === null) return -1;
+    if (lb === null) return 1;
+    return lb - la;
   });
 
-  // Ascending: an item with a real (but too-pale-to-count) hue gets a more negative key the
-  // closer that hue sits to startHue, so the reddest-leaning pale item ends up last, right
-  // next to where the colorful sequence begins. A truly achromatic item (no hue signal) gets
-  // pushed to whichever end is farthest from the color sequence.
-  const affinityKey = (item, farEnd) => {
-    const rawHue = item.rawHue ?? null;
-    if (rawHue === null) return farEnd;
-    return -hueDistance(rawHue, startHue);
-  };
-
-  lightNeutrals.sort((a, b) => {
-    const diff = affinityKey(a, -Infinity) - affinityKey(b, -Infinity);
-    return diff !== 0 ? diff : b.lightness - a.lightness; // tie-break: brightest first
-  });
-  darkNeutrals.sort((a, b) => {
-    const diff = affinityKey(a, Infinity) - affinityKey(b, Infinity);
-    return diff !== 0 ? diff : b.lightness - a.lightness; // tie-break: brightest first
+  // Dark bookend: tinted darks closest to pink first, then grays fading to black.
+  groups.dark.sort((a, b) => {
+    const la = lean(a, last);
+    const lb = lean(b, last);
+    if (la !== null && lb !== null) return la - lb;
+    if (la !== null) return -1;
+    if (lb !== null) return 1;
+    return b.color.l - a.color.l;
   });
 
-  return [...lightNeutrals, ...colorful, ...darkNeutrals];
+  groups.multicolor.sort((a, b) => b.color.l - a.color.l);
+
+  const blocks = FAMILIES.map(() => []);
+  for (const item of groups.color) blocks[familyIndex(item.color.h)].push(item);
+
+  const colors = [];
+  let lightFirst = true;
+  for (const block of blocks) {
+    if (block.length === 0) continue;
+    block.sort((a, b) => (lightFirst ? b.color.l - a.color.l : a.color.l - b.color.l));
+    colors.push(...block);
+    lightFirst = !lightFirst;
+  }
+
+  return [...groups.multicolor, ...groups.light, ...colors, ...groups.dark, ...groups.missing];
 }

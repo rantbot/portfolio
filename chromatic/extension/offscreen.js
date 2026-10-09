@@ -41,7 +41,7 @@ function faviconUrl(pageUrl) {
 /**
  * Fetches a page's favicon and extracts its dominant color.
  * @param {string} pageUrl
- * @returns {Promise<{h: number, s: number, l: number} | null>} null on any failure (no
+ * @returns {Promise<{l: number, c: number, h: number, multicolor: boolean} | null>} null on any failure (no
  *   favicon, network error, fully transparent image, etc.)
  */
 async function extractColor(pageUrl) {

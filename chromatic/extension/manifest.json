@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Chromatic",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Sorts the tabs and tab groups in a window into rainbow order by the color of each site's icon. Click again to undo.",
   "homepage_url": "https://rancraycraft.com/chromatic/",
   "minimum_chrome_version": "116",

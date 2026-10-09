@@ -1,25 +1,10 @@
-import {
-  GROUP_COLOR_HUES,
-  FORCED_WHITE,
-  isChromeInternalUrl,
-  hasHue,
-  hasSaturationSignal,
-  orderByHueThenLightness,
-} from "./color.js";
+import { GROUP_COLORS, FORCED_WHITE, isChromeInternalUrl, orderByColor } from "./color.js";
 
 const OFFSCREEN_URL = "offscreen.html";
 
-// The color sequence always starts at red. Continuing it from the last pinned tab's hue was
-// tried, but since white/light neutrals always sit right before the color sequence begins
-// (see color.js), that white bookend already breaks the visual handoff from the pinned tabs,
-// so matching the anchor hue no longer bought anything.
-//
-// Red sits right at the 0°/360° seam of the hue wheel, so two favicons that both look "red"
-// to the eye can measure a few degrees apart on either side of that seam (say hue 2 and hue
-// 356) and, on a straight 0→360 sweep, end up at opposite ends of the sort instead of next to
-// each other. Starting the sweep a little before 0 gives "red" a buffer that straddles the
-// seam, so both sides of it land together at the front, with violet landing just before it.
-const START_HUE = -15;
+// The color sequence always starts at red, after the whites and pastels (see orderByColor in
+// color.js). Continuing it from the last pinned tab's color was tried, but the white bookend
+// already breaks the handoff from the pinned tabs, so matching it bought nothing.
 
 /**
  * Reorders every sortable tab (and tab group) in the given window into rainbow order by
@@ -27,7 +12,7 @@ const START_HUE = -15;
  * set (used when the person chose to sort pinned tabs via the confirm popup).
  *
  * Tabs feed into the color sort in their current left-to-right order. Since the sort is
- * stable, that's what makes several tabs on the same site (which tie on hue, sharing a
+ * stable, that's what makes several tabs on the same site (which tie on color, sharing a
  * favicon) hold their existing relative order rather than getting shuffled among themselves,
  * which in practice tracks oldest-to-newest for anyone who hasn't manually dragged tabs
  * around, without needing to track anything extra.
@@ -52,7 +37,7 @@ export async function sortWindow(windowId, { includePinned = false } = {}) {
 
   const colors = await collectColors(sortable);
   const units = buildSortUnits(sortable, groupById, colors);
-  const ordered = orderByHueThenLightness(units, START_HUE);
+  const ordered = orderByColor(units);
 
   return await applyOrder(ordered, pinned.length);
 }
@@ -60,7 +45,7 @@ export async function sortWindow(windowId, { includePinned = false } = {}) {
 /**
  * Reads (or, for Chrome-internal pages, forces) a color for every given tab.
  * @param {chrome.tabs.Tab[]} tabs
- * @returns {Promise<Record<string, {h: number, s: number, l: number}>>} keyed by tab id
+ * @returns {Promise<Record<string, {l: number, c: number, h: number, multicolor: boolean} | null>>} keyed by tab id
  */
 async function collectColors(tabs) {
   const items = [];
@@ -80,29 +65,20 @@ async function collectColors(tabs) {
 
 /**
  * Builds one sortable unit per ungrouped tab, and one per tab group (covering all of that
- * group's tabs, which move together as a block and are internally sorted by hue).
+ * group's tabs, which move together as a block and are internally sorted by color).
  * @param {chrome.tabs.Tab[]} tabs
  * @param {Map<number, chrome.tabGroups.TabGroup>} groupById
- * @param {Record<string, {h: number, s: number, l: number}>} colors
- * @returns {Array<{tabs: chrome.tabs.Tab[], hue: number | null, rawHue: number | null, lightness: number, groupId?: number}>}
+ * @param {Record<string, object | null>} colors
+ * @returns {Array<{tabs: chrome.tabs.Tab[], color: object | null, groupId?: number}>}
  */
 function buildSortUnits(tabs, groupById, colors) {
   const NO_GROUP = chrome.tabGroups.TAB_GROUP_ID_NONE;
   const units = [];
 
-  const toItem = (tab) => {
-    const hsl = colors[tab.id];
-    return {
-      tab,
-      hue: hasHue(hsl) ? hsl.h : null,
-      rawHue: hasSaturationSignal(hsl) ? hsl.h : null,
-      lightness: hsl ? hsl.l : 0.5,
-    };
-  };
+  const toItem = (tab) => ({ tab, color: colors[tab.id] ?? null });
 
   for (const tab of tabs.filter((t) => t.groupId === NO_GROUP)) {
-    const { hue, rawHue, lightness } = toItem(tab);
-    units.push({ tabs: [tab], hue, rawHue, lightness });
+    units.push({ tabs: [tab], color: toItem(tab).color });
   }
 
   const seenGroups = new Set();
@@ -112,15 +88,13 @@ function buildSortUnits(tabs, groupById, colors) {
 
     const tabsInGroup = tabs.filter((t) => t.groupId === tab.groupId);
     const groupTabItems = tabsInGroup.map(toItem);
-    const sortedGroupTabs = orderByHueThenLightness(groupTabItems, START_HUE).map((item) => item.tab);
+    const sortedGroupTabs = orderByColor(groupTabItems).map((item) => item.tab);
 
+    // A group sorts by the color Chrome draws it in, so a red group sits with the red tabs.
     const group = groupById.get(tab.groupId);
-    const hue = group ? GROUP_COLOR_HUES[group.color] : null;
+    const color = (group && GROUP_COLORS[group.color]) || GROUP_COLORS.grey;
 
-    // Chrome's fixed group colors have no lightness/paleness concept, so a group's hue is
-    // already final, there's no separate "raw" value to fall back on the way there is for an
-    // individual tab's too-pale-to-count color.
-    units.push({ tabs: sortedGroupTabs, groupId: tab.groupId, hue, rawHue: hue, lightness: 0.5 });
+    units.push({ tabs: sortedGroupTabs, groupId: tab.groupId, color });
   }
 
   return units;

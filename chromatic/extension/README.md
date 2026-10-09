@@ -36,73 +36,69 @@ naive pixel average produces. A few things make that harder than it sounds:
   own `_favicon` endpoint (the `favicon` permission), which serves the icon
   Chrome already has cached, from the extension's own origin. No network
   request, no CORS issue.
+- **Color the way people see it.** Pixels are measured in OKLCH, a color space
+  built around human vision, where lightness, vividness (chroma) and hue match
+  what the eye sees. HSL, which 1.0 used, calls pure yellow and navy blue
+  equally light and spaces hues unevenly, so "pale" and the color families
+  felt off.
+- **Color families.** Every colorful icon belongs to one of nine families, red,
+  orange, yellow, green, teal, blue, indigo, violet and pink, centered so real
+  brand colors land where people expect. Facebook, Dropbox and Zoom sit together
+  in blue, Discord, Stripe and Linear together in indigo.
 - **Multi-hue icons.** A flat average of every pixel washes out to gray for any
-  icon that spans several hues at once (Chrome's own pinwheel logo, for
-  example), since opposing hues cancel out. Colors are instead binned into hue
-  buckets weighted by saturation, and the heaviest bucket wins, a simple
-  dominant-color approach rather than a mean.
+  icon that spans several hues. Pixels vote by family instead, weighted by how
+  vivid they are, and the heaviest family wins.
+- **Multicolor logos.** When three or more unrelated families each hold a real
+  share of an icon (Google's G, Microsoft's squares, Figma), any single color
+  would be arbitrary, so the icon is marked multicolor and sorted at the very
+  start, before the whites. A red to yellow gradient still counts as one warm
+  color.
+- **A small mark on a big tile.** A solid black, gray or white tile with a small
+  colored mark on it (a green bolt on black, say) looks like the tile in a tab
+  bar, so it sorts as the tile's color.
 - **Notification badges.** An unread-count dot in the top-right corner is
-  usually more saturated than the actual logo, so it's excluded from sampling
-  entirely rather than being allowed to hijack the hue.
-- **Near-white icons with a faint tint.** A soft drop shadow or anti-aliasing
-  can nudge an otherwise white icon's average just over a naive saturation
-  threshold. Icons that read as overwhelmingly light need their colorful
-  pixels to average a real level of saturation, not just a faint tint, before
-  they're classified as "colorful" rather than white.
-- **Small logos on a big background.** A small, fully-saturated logo on a
-  much larger background of a different color (a thin green lightning bolt on
-  a black square, say) is still a real color, even though the background
-  outnumbers it in pixels. What actually needs catching is a different
-  problem, one where the "color" is a weak, barely-saturated artifact, so
-  that's judged by how saturated the colorful pixels are on average, not by
-  how much area they cover.
-- **Pale colors don't feel like a rainbow.** A color can be technically
-  saturated (high `s`) while still reading as washed-out and pale, because
-  saturation and lightness are independent, a pastel blue can be just as
-  "saturated" as a vivid one, only much lighter. A rainbow reads as a rainbow
-  because its colors are vivid, so anything whose actual lightness is high
-  enough to look pale is treated as a light neutral instead of being sorted
-  into the vivid color sequence, even though it has a real, correctly
-  detected hue.
-- **A smooth handoff from white into color, and from color into black.**
-  A pale color demoted by the rule above still has a real hue underneath, it
-  was just too washed-out to count as "colorful". That hue is kept and used
-  to place the item within its neutral bookend: a pale, reddish-leaning tab
-  sits at the very end of the white cluster, right next to where the red
-  section begins, while a pale blue-leaning tab (less related to where the
-  rainbow starts) sits further back. The same applies in reverse for the
-  black bookend, relative to whichever hue the color sequence ends on. Fully
-  achromatic items (no hue signal at all) sit at the far end of their
-  bookend, away from the color sequence, sorted by lightness as before.
+  usually more vivid than the logo. The corner is left out only when it holds a
+  vivid red-ish dot that doesn't match the rest of the icon, so icons without a
+  badge are read whole, and a red icon stays red.
+- **Pastels and near-blacks.** A very light, soft color reads as a tint of white
+  and a very dark, soft one as a shade of black, so they join the white and
+  black bookends instead of the color blocks.
 - **Chrome's own internal pages.** `chrome://extensions` and similar pages
   render differently in dark mode than the raw favicon bytes Chrome hands back,
-  so pixel extraction can't be trusted for these specifically. They're always
-  treated as pure white instead.
-- **Similar-but-different brand colors.** Two unrelated sites' "reds" (say hue
-  350 and hue 8) are close enough to look identical to a person but far enough
-  apart that a third, genuinely different color's hue could numerically fall
-  between them on a continuous sweep, splitting the two reds apart. Hues are
-  snapped to the nearest named color (the same palette used for tab groups)
-  before sorting, so every red-ish tab lands in one block no matter how many
-  different brands of "red" are mixed in; the exact hue only breaks ties
-  within that block.
-- **Bookending with black and white.** Fully neutral tabs (grayscale or
-  white/black favicons) aren't dumped in one clump at the end. Lighter
-  neutrals sit right before the color sequence starts and darker neutrals sit
-  right after it ends, so the whole strip reads as one gradient: light → color
-  → dark.
-- **Same-site tabs keep their relative order.** Several tabs on the same
-  site share the same favicon and so tie on hue. Since the sort is stable,
-  ties hold their existing left-to-right order rather than getting shuffled
-  among themselves, which in practice tracks oldest-to-newest for anyone who
-  hasn't manually dragged tabs around. Chrome's tabs API has no creation
-  timestamp to sort by directly, and tracking one independently wasn't worth
-  the added surface for this.
+  so pixel extraction can't be trusted for these. They're always treated as
+  pure white instead.
 
-All of this pixel-math lives in [`lib/color.js`](lib/color.js) as plain,
-dependency-free functions with no `chrome.*` calls, kept separate from the
-`chrome.*` orchestration in `background.js` and `offscreen.js` so the sorting
-logic isn't duplicated across both.
+## How the order works
+
+From left to right:
+
+1. Multicolor icons.
+2. Whites and light grays, brightest first, then pastels, with the ones leaning
+   toward red last so they lead into the colors.
+3. Color blocks, red through pink. Inside each block tabs fade by lightness,
+   and the direction alternates (light to dark, then dark to light), so each
+   block meets the next at a similar lightness instead of jumping from dark red
+   to pale orange.
+4. Near-blacks with a hint of color, then dark grays fading to black.
+5. Tabs whose icon couldn't be read.
+
+Tab groups move as a block, placed by the color Chrome draws the group in, with
+the tabs inside sorted the same way. Tabs on the same site share an icon and so
+tie, and since the sort is stable they keep their existing left-to-right order,
+which in practice tracks oldest to newest.
+
+All of this lives in [`lib/color.js`](lib/color.js) as plain, dependency-free
+functions with no `chrome.*` calls, kept separate from the `chrome.*`
+orchestration in `background.js`, `lib/sort.js` and `offscreen.js`.
+
+### Comparing sorts
+
+`dev/compare.html` shows the current window's tabs as they are, sorted the 1.0
+way, and sorted the current way, side by side, without moving anything. Hover an
+icon to see how it was read. With the extension loaded unpacked, copy its ID
+from `chrome://extensions` and open
+`chrome-extension://<ID>/dev/compare.html` in the window you want to check.
+The `dev/` folder isn't part of the store build.
 
 ## Architecture
 
@@ -118,8 +114,8 @@ lib/undo.js          Captures each tab's pre-sort position and restores it,
                      window so a stale undo is never applied.
 lib/pinnedPrompt.js  Asks whether to sort pinned tabs when there's nothing
                      else to sort, via the confirm popup.
-lib/color.js         Pure color math, no chrome.* calls: RGB→HSL,
-                     dominant-hue extraction, hue-distance sorting. Shared by
+lib/color.js         Pure color math, no chrome.* calls: RGB→OKLCH,
+                     dominant-color extraction, the rainbow order. Shared by
                      lib/sort.js and offscreen.js.
 offscreen.js         Runs in a hidden offscreen document (the only context
                      with canvas access in Manifest V3). Reads favicon pixels

@@ -16,7 +16,7 @@ Its page on the site is https://rancraycraft.com/chromatic/, from `src/chromatic
 
    ```sh
    cd chromatic/extension
-   zip -r ../chromatic-v1.0.1.zip manifest.json background.js offscreen.html offscreen.js confirm.html confirm.js lib icons -x '.*'
+   zip -r ../chromatic-v1.1.0.zip manifest.json background.js offscreen.html offscreen.js confirm.html confirm.js lib icons -x '.*'
    ```
 
-4. Upload it in the Chrome Web Store developer dashboard. Zips are ignored by git.
+4. Upload it in the Chrome Web Store developer dashboard. Zips are ignored by git. The `dev/` folder (a page for comparing sorts) is left out of the zip on purpose.
