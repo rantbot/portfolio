@@ -3,6 +3,7 @@ title: "NextScore, finding the next neighborhood before the market does"
 description: "A tool for real estate investors that scores any Los Angeles address on early signals of change, down to the block."
 date: 2026-03-08
 kind: making
+topics: [public]
 meta: Web app, built with Lovable
 image: /assets/images/projects/nextscore.jpg
 image_alt: "The NextScore home page, with an address search over a view of Los Angeles at sunset"

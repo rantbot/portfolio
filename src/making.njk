@@ -12,9 +12,11 @@ section: making
   </div>
 </header>
 
+{%- set filter_label = "Newest first" %}{% set filter_options = site.making_topics %}
+{% include "filter.njk" %}
 <div class="tiles">
   {%- for p in collections.posts | ofKind("making") %}
-  <a href="{{ p.url }}" class="card">
+  <a href="{{ p.url }}" class="card" data-tags="{{ (p.data.topics or []) | join(' ') }}">
     <span class="media">{% set ratio = "4 / 3" %}{% include "cover.njk" %}</span>
     <span class="eyebrow">{{ p.data.series or (p.date | readableDate) }}</span>
     <span class="card-title serif">{{ p.data.title }}</span>

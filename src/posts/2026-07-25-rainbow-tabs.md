@@ -3,6 +3,7 @@ title: Rainbow Tabs, sorting browser tabs by color
 description: A small Chrome extension that sorts the tabs in a window into rainbow order by the color of each site's icon.
 date: 2026-07-25
 kind: making
+topics: [fun]
 updated: 2026-10-05
 meta: Chrome extension
 image: /assets/images/experiments/rainbow-tabs.png

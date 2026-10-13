@@ -365,17 +365,21 @@ if (postNav.ArrowLeft || postNav.ArrowRight) {
   }
 })();
 
-// Leading: show one kind of leadership at a time, keeping the pieces in order
+// Filters on Leading, Writing and Making: show one topic at a time, keeping everything in order.
+// Items carry data-tags="key other-key". A group of items (data-filter-group) hides when none of its items show.
 (() => {
-  const filter = document.querySelector("[data-led-filter]");
+  const filter = document.querySelector("[data-filter]");
   if (!filter) return;
-  const cards = [...document.querySelectorAll(".card[data-led], .tiles > .card")];
+  const items = [...document.querySelectorAll("[data-tags]")];
+  const groups = [...document.querySelectorAll("[data-filter-group]")];
   filter.hidden = false;
   filter.addEventListener("click", (e) => {
     const b = e.target.closest("button");
     if (!b) return;
+    const key = b.dataset.key;
     filter.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
-    cards.forEach((c) => (c.hidden = !!b.dataset.key && c.dataset.led !== b.dataset.key));
+    items.forEach((i) => (i.hidden = !!key && !i.dataset.tags.split(" ").includes(key)));
+    groups.forEach((g) => (g.hidden = ![...g.querySelectorAll("[data-tags]")].some((i) => !i.hidden)));
   });
 })();
 

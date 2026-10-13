@@ -1,0 +1,11 @@
+{#- A row of filter buttons. Set filter_label and filter_options (a list of { key, label }) before including.
+    Items on the page with data-tags="key other-key" show or hide. It appears only when JavaScript runs (site.js). #}
+<div class="section-head filter-head">
+  <p class="eyebrow strong">{{ filter_label }}</p>
+  <div class="filter" data-filter role="group" aria-label="Show" hidden>
+    <button type="button" aria-pressed="true" data-key="">All</button>
+    {%- for o in filter_options %}
+    <button type="button" aria-pressed="false" data-key="{{ o.key }}">{{ o.label }}</button>
+    {%- endfor %}
+  </div>
+</div>

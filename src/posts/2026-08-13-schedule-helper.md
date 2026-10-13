@@ -3,6 +3,7 @@ title: Schedule Helper, seeing who's free at a glance
 description: A resource-planning timeline for thoughtbot's team schedule, with one row per person and the filters we actually use.
 date: 2026-08-13
 kind: making
+topics: [team]
 updated: 2026-10-06
 series: Tools for my team
 meta: Chrome extension

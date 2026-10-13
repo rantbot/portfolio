@@ -3,6 +3,7 @@ title: "Building an outdoor kitchen"
 description: "[One sentence about the build.]"
 date: 2026-10-08
 kind: making
+topics: [home]
 draft: true
 series: "Home"
 tone: "#CFCBC2"

@@ -34,6 +34,26 @@ leading_groups:
   - key: community
     label: In the community
 
+# Topics for the filters on Writing and Making. Set `topics` in a post's front matter (or in elsewhere.yml) to one or more of these keys.
+writing_topics:
+  - key: ai
+    label: AI
+  - key: product
+    label: Building products
+  - key: consulting
+    label: Consulting
+  - key: ruby
+    label: Ruby
+making_topics:
+  - key: team
+    label: For my team
+  - key: public
+    label: Public tools
+  - key: fun
+    label: For fun
+  - key: home
+    label: At home
+
 # Closing invitation on the homepage
 invitation: Let’s discuss what's next.
 invitation_note: A leadership opportunity, a new venture, or a product worth building. Tell me what you’re working toward, and I'll do my best to help.

@@ -31,6 +31,21 @@ content:
       - { name: description, label: Summary, type: text, required: true, description: "One or two sentences. Shows under the title and in search results." }
       - { name: tldr, label: In short, type: text, description: "Optional plain answer at the top of the post" }
       - { name: series, label: Series, type: string, description: "Posts with the same series name link to each other" }
+      - name: topics
+        label: Topics
+        type: select
+        description: "Used by the filters on Writing and Making"
+        options:
+          multiple: true
+          values:
+            - { value: ai, label: "Writing: AI" }
+            - { value: product, label: "Writing: Building products" }
+            - { value: consulting, label: "Writing: Consulting" }
+            - { value: ruby, label: "Writing: Ruby" }
+            - { value: team, label: "Making: For my team" }
+            - { value: public, label: "Making: Public tools" }
+            - { value: fun, label: "Making: For fun" }
+            - { value: home, label: "Making: At home" }
       - { name: image, label: Cover photo, type: image }
       - { name: image_alt, label: Cover photo description, type: string }
       - { name: image_caption, label: Cover photo caption, type: string }
@@ -131,6 +146,16 @@ content:
       - { name: publication, label: Published in, type: string, default: thoughtbot blog }
       - { name: coauthor, label: Co-author, type: string }
       - { name: summary, label: Summary, type: text }
+      - name: topics
+        label: Topics
+        type: select
+        options:
+          multiple: true
+          values:
+            - { value: ai, label: AI }
+            - { value: product, label: Building products }
+            - { value: consulting, label: Consulting }
+            - { value: ruby, label: Ruby }
 
   - name: about
     label: About page

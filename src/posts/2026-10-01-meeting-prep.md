@@ -3,6 +3,7 @@ title: Meeting Prep, a brief waiting before every sales call
 description: A calendar service that books a prep block before each outside meeting and fills it with a brief on who you're about to meet.
 date: 2026-10-01
 kind: making
+topics: [team]
 updated: 2026-10-06
 series: Tools for my team
 meta: Calendar service

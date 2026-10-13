@@ -99,7 +99,7 @@ In any consultancy, some people are between client projects at any given time. T
 
 I created Space Station to give consultants who aren’t on a client engagement meaningful internal work that moves the business forward. Instead of waiting for the next project, they improve how thoughtbot operates, build new capabilities and make our client work better.
 
-I also created the Experiments framework, a structured way for people to test ideas, challenge assumptions, and share what they learn. The goal is to make experimenting a normal part of how thoughtbot works. It’s early, and it’s already starting to spark the kinds of conversations I hoped it would.
+I also created the [Experiments framework](/making/experiments-a-home-for-what-thoughtbot-people-build/), a structured way for people to test ideas, challenge assumptions, and share what they learn. The goal is to make experimenting a normal part of how thoughtbot works. It’s early, and it’s already starting to spark the kinds of conversations I hoped it would.
 
 Behind both is something I care about a lot. I want consultants to build the tools they need to become the best in the world at their jobs. I try to do it too, and I’ve built a series of [tools for my own team](/writing/building-tools-for-my-team/).
 
@@ -111,7 +111,7 @@ The idea that ties all of this together is still taking shape. I think premium c
 
 It means clients feel deeply understood. The team anticipates what they need. The work is unusually thoughtful, and the results go past what they expected. Getting there takes product judgment to find the right problem, engineering that lasts, design that feels intentional, delivery that keeps everyone focused on outcomes, and tools, including AI, that let a team do more than anyone thought it could.
 
-Some of that comes from earlier in my career. North Kingdom taught me how much storytelling and craft matter. Wildebeest taught me to bring creative ambition to building real products. At thoughtbot, I’m trying to bring those ideas together into a consulting experience people remember.
+Some of that comes from earlier in my career. [North Kingdom](/leading/bringing-north-kingdom-to-the-us/) taught me how much storytelling and craft matter. [Wildebeest](/leading/wildebeest/) taught me to bring creative ambition to building real products. At thoughtbot, I’m trying to bring those ideas together into a consulting experience people remember.
 
 ## What changed
 

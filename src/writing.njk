@@ -12,13 +12,15 @@ section: writing
   </div>
 </header>
 
+{%- set filter_label = "Newest first" %}{% set filter_options = site.writing_topics %}
+{% include "filter.njk" %}
 {%- set posts = collections.posts | ofKind("writing") %}
 {%- if posts.length %}
-<section class="section grid list-section" aria-labelledby="here-h">
+<section class="section grid list-section" aria-labelledby="here-h" data-filter-group>
   <h2 id="here-h" class="rail eyebrow strong">On this site</h2>
   <ol class="span-main entries">
     {%- for p in posts %}
-    <li><a href="{{ p.url }}" class="entry">
+    <li data-tags="{{ (p.data.topics or []) | join(' ') }}"><a href="{{ p.url }}" class="entry">
       <span class="entry-title serif">{{ p.data.title }}</span>
       <span class="entry-desc">{{ p.data.description }}</span>
       <span class="meta"><time datetime="{{ p.date | isoDate }}" data-relative>{{ p.date | readableDate }}</time></span>
@@ -28,14 +30,14 @@ section: writing
 </section>
 {%- endif %}
 
-<section class="section grid list-section" aria-labelledby="elsewhere-h">
+<section class="section grid list-section" aria-labelledby="elsewhere-h" data-filter-group>
   <div class="rail">
     <h2 id="elsewhere-h" class="eyebrow strong">On the thoughtbot blog</h2>
     <p class="rail-note">Each links to the original.</p>
   </div>
   <ol class="span-main entries">
     {%- for e in elsewhere %}
-    <li><a href="{{ e.url }}" class="entry">
+    <li data-tags="{{ (e.topics or []) | join(' ') }}"><a href="{{ e.url }}" class="entry">
       <span class="entry-title serif">{{ e.title }}</span>
       <span class="entry-desc">{{ e.summary }}</span>
       <span class="meta"><time datetime="{{ e.date | isoDate }}" data-relative>{{ e.date | readableDate }}</time>{% if e.coauthor %}<span class="dot">·</span>with {{ e.coauthor }}{% endif %}<span class="dot">·</span>{{ e.publication }} <span class="ext" aria-label="opens the original">↗</span></span>

@@ -3,6 +3,7 @@ title: Email Zenmaster, AI help in Gmail that still sounds like me
 description: Subject lines, one-click rewrites, a pre-send review and drafted replies inside Gmail, tuned so the result reads like a person wrote it.
 date: 2026-07-23
 kind: making
+topics: [team]
 updated: 2026-10-05
 series: Tools for my team
 meta: Chrome extension

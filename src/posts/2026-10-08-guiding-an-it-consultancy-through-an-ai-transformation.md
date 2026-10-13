@@ -3,6 +3,7 @@ title: "Guiding an IT consultancy through an AI transformation"
 description: "Helping an IT consultancy navigate what AI changes about its business, across sales, people, and technology."
 date: 2026-10-08
 kind: writing
+topics: [ai, consulting]
 draft: true
 series: "An AI transformation"
 tone: "#23262E"

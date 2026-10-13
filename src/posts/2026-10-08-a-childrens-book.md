@@ -3,6 +3,7 @@ title: "A children’s book"
 description: "[One sentence about the book and who it’s for.]"
 date: 2026-10-08
 kind: making
+topics: [home]
 draft: true
 series: "Home"
 tone: "#D6DDE6"

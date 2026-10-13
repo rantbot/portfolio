@@ -3,6 +3,7 @@ title: "ShareCheck, a quick check before you share"
 description: "A simple tool that helps people I love tell whether a link, a screenshot or a forwarded post is credible before they pass it on."
 date: 2026-02-22
 kind: making
+topics: [public]
 meta: Web app, built with Lovable
 image: /assets/images/projects/sharecheck.jpg
 image_alt: "The ShareCheck home page, a single box to paste a link, text or screenshot"

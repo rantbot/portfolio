@@ -168,9 +168,10 @@ a:hover .cover, a:hover .cover-img { transform: scale(1.02); }
 .filter { display: flex; gap: 20px; font-size: 13px; }
 .filter button { background: none; border: 0; padding: 4px 0; color: var(--muted); cursor: pointer; transition: color 200ms var(--ease); }
 .filter button:hover { color: var(--ink); }
-.filter[hidden], .tiles > [hidden] { display: none; }
-.leading-head .filter { flex-wrap: wrap; column-gap: 20px; row-gap: 4px; }
-.page-head + .leading-head { margin-top: clamp(56px, 7vw, 112px); }
+.filter[hidden], [data-tags][hidden], [data-filter-group][hidden] { display: none; }
+.filter-head .filter { flex-wrap: wrap; column-gap: 20px; row-gap: 4px; }
+.page-head + .filter-head { margin-top: clamp(56px, 7vw, 112px); }
+.filter-head + .section { margin-top: 0; padding-top: 0; }
 .filter button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
 /* Latest. The newest piece leads, three follow side by side, then a quick list of what came before.
    Making shows its picture. Writing gets a typographic panel so the two read differently at a glance. */

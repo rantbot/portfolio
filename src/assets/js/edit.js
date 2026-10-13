@@ -166,7 +166,10 @@ function renderBlocks(md) {
 const swap = (text, before, after) => {
   const i = text.indexOf(before);
   if (i < 0 || text.indexOf(before, i + 1) >= 0) throw new Error("Part of this page changed on GitHub since it loaded. Reload the page and try again.");
-  return text.slice(0, i) + after + text.slice(i + before.length);
+  if (after) return text.slice(0, i) + after + text.slice(i + before.length);
+  // Removing a block takes the blank lines around it too
+  const head = text.slice(0, i).replace(/\n*$/, ""), tail = text.slice(i + before.length).replace(/^\n*/, "");
+  return head + (tail ? "\n\n" + tail : "\n");
 };
 let blocks = [];
 async function markMarkdown(pageText) {
@@ -198,8 +201,21 @@ function show(block, nodes) {
 }
 function setAfter(block, after) {
   block.after = after;
-  show(block, after == null ? block.orig : block.mode === "html" ? [preview(block, after)] : renderBlocks(after));
+  show(block, after == null ? block.orig : after === "" ? [gone(block)] : block.mode === "html" ? [preview(block, after)] : renderBlocks(after));
   if (after == null) pending.delete(block); else pending.set(block, pend(block, after));
+}
+// A removed block leaves a small note in its place while editing, so it can be brought back
+function gone(block) {
+  const n = document.createElement("div");
+  n.className = "ed-gone";
+  n.innerHTML = `<span>Removed</span><button type="button">Bring it back</button>`;
+  n.querySelector("button").addEventListener("click", (e) => {
+    e.stopPropagation();
+    remember(() => setAfter(block, ""), () => setAfter(block, null));
+    setAfter(block, null);
+    render();
+  });
+  return n;
 }
 // What gets written to the file. Template lines are HTML, so the Markdown typed in the box becomes HTML again.
 const toHtml = (block, md) => renderInline(md).replace(/<a href="([^"]*)">/g, (_, u) => (block.linkClass ? `<a href="${u}" class="${block.linkClass}">` : `<a href="${u}">`));
@@ -268,6 +284,11 @@ const css = `
   .ed-fmt input { width: min(260px, 50vw); padding: 7px 9px; border: 0; border-radius: 6px; background: #FAFAF7; color: #262624; font: 13px ui-monospace, monospace; }
   .ed-ta { display: block; width: 100%; box-sizing: border-box; padding: 6px 8px; margin-left: -8px; margin-right: -8px; width: calc(100% + 16px); border: 0; border-radius: 4px; outline: 1.5px solid #262624; background: rgba(239, 232, 204, .35); color: inherit; resize: none; overflow: hidden; }
   .ed-toast.is-error { background: #7A2A22; }
+  .ed-gone { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; border: 1px dashed #C9C8C1; border-radius: 6px; color: #6B6A64; font: 400 13px/1.4 "Instrument Sans", system-ui, sans-serif; }
+  .ed-gone button { padding: 6px 12px; border: 1px solid #C9C8C1; border-radius: 999px; background: none; color: #262624; font: inherit; cursor: pointer; }
+  .ed-add { position: absolute; z-index: 59; width: 28px; height: 28px; padding: 0; border: 1px solid #C9C8C1; border-radius: 50%; background: #FAFAF7; color: #262624; font: 400 18px/1 "Instrument Sans", system-ui, sans-serif; cursor: pointer; box-shadow: 0 4px 12px -6px rgba(0,0,0,.3); }
+  .ed-add:hover { border-color: #262624; }
+  .ed-add[hidden] { display: none; }
 `;
 document.head.append(Object.assign(document.createElement("style"), { textContent: css }));
 
@@ -313,6 +334,7 @@ function markEditable(pageText) {
   });
 }
 function unmark() {
+  addBtn.hidden = true;
   blocks.forEach((b) => b.nodes.forEach((n) => { delete n.dataset.edmd; n.removeAttribute("tabindex"); }));
   blocks = [];
   areas.forEach((a) => a.querySelectorAll("[data-ed]").forEach((el) => { el.removeAttribute("contenteditable"); delete el.dataset.ed; }));
@@ -398,7 +420,8 @@ async function publish() {
       await gh(`/contents/${encodeURI(path)}`, { method: "PUT", body: JSON.stringify({ message: `Edit copy in ${path.replace(/^src\//, "")}`, content: b64encode(text), sha: f.sha, branch: BRANCH }) });
       edits.forEach(({ el, after, md }) => {
         pending.delete(el);
-        if (md) { el.src = after; el.start = el.after; el.after = null; el.orig = el.nodes; show(el, el.nodes); } else delete el.dataset.edChanged;
+        if (md && after === "") { el.nodes.forEach((n) => n.remove()); blocks = blocks.filter((b) => b !== el); }
+        else if (md) { el.src = after; el.start = el.after; el.after = null; el.orig = el.nodes; show(el, el.nodes); } else delete el.dataset.edChanged;
       });
       undos.length = redos.length = 0;
       saved += edits.length;
@@ -463,6 +486,8 @@ fmt.innerHTML = `<button type="button" data-f="bold" title="Bold (⌘B)" aria-la
   `<button type="button" data-f="link" title="Link (⌘K)">Link</button>` +
   `<button type="button" data-f="ul" title="Bulleted list (⌘⇧8)" aria-label="Bulleted list">• List</button>` +
   `<button type="button" data-f="ol" title="Numbered list (⌘⇧7)" aria-label="Numbered list">1. List</button>` +
+  `<button type="button" data-f="para" title="New paragraph (press Enter twice)">+ Paragraph</button>` +
+  `<button type="button" data-f="del" title="Remove this block">Remove</button>` +
   `<span class="ed-fmt-link" hidden><input type="text" inputmode="url" placeholder="https://…" aria-label="Link address" spellcheck="false"><button type="button" data-f="apply">Save</button><button type="button" data-f="unlink" hidden>Remove</button></span>`;
 document.body.append(fmt);
 const linkBox = fmt.querySelector(".ed-fmt-link");
@@ -485,8 +510,9 @@ function place() {
 }
 function remember(undo, redo) { undos.push({ undo, redo }); redos.length = 0; }
 
-function open(block) {
+function open(block, addBelow) {
   if (active) close();
+  addBtn.hidden = true;
   const first = block.nodes[0];
   const cs = getComputedStyle(first.tagName === "UL" || first.tagName === "OL" ? first.querySelector("li") || first : first);
   ta = document.createElement("textarea");
@@ -496,6 +522,7 @@ function open(block) {
   ta.value = shown(block);
   ta._start = ta.value;
   ta._was = block.after;
+  if (addBelow) ta.value = ta.value.replace(/\s+$/, "") + "\n\n";
   active = block;
   show(block, [ta]);
   ta.addEventListener("input", () => { grow(); track(); place(); });
@@ -503,8 +530,10 @@ function open(block) {
   ta.addEventListener("focusout", (e) => { if (!fmt.contains(e.relatedTarget)) close(); });
   grow();
   ta.focus();
+  if (addBelow) ta.setSelectionRange(ta.value.length, ta.value.length);
   linkBox.hidden = true;
-  fmt.querySelectorAll('[data-f="ul"], [data-f="ol"]').forEach((b) => (b.hidden = block.mode === "html")); // template lines can't hold lists
+  // Template lines are single lines, so they can't hold lists or new paragraphs, or be removed from here
+  fmt.querySelectorAll('[data-f="ul"], [data-f="ol"], [data-f="para"], [data-f="del"]').forEach((b) => (b.hidden = block.mode === "html"));
   place();
 }
 function track() {
@@ -521,7 +550,8 @@ function close() {
   fmt.hidden = true;
   linkBox.hidden = true;
   let v = box.value.replace(/\s+$/, "");
-  if (!v.trim()) { toast("A block can’t be empty here. Ask Claude to remove it.", true); v = box._start; }
+  if (!v.trim() && block.mode === "html") { toast("A line can’t be empty here. Ask Claude to remove it.", true); v = box._start; }
+  else if (!v.trim()) { v = ""; toast("Removed. Press ⌘Z to bring it back, or Publish to save."); }
   const was = box._was;
   const now = v === block.start ? null : v;
   setAfter(block, now);
@@ -630,6 +660,8 @@ fmt.addEventListener("click", (e) => {
   if (f === "apply") saveLink(false);
   if (f === "unlink") saveLink(true);
   if (f === "ul" || f === "ol") list(f);
+  if (f === "para" && ta) { const n = ta.value.replace(/\s+$/, "").length; edit(n, ta.value.length, "\n\n", n + 2); }
+  if (f === "del" && ta) { ta.value = ""; ta.blur(); }
 });
 linkInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") { e.preventDefault(); saveLink(false); }
@@ -639,13 +671,30 @@ linkInput.addEventListener("keydown", (e) => {
 linkInput.addEventListener("focusout", (e) => { if (active && e.relatedTarget !== ta && !fmt.contains(e.relatedTarget)) close(); });
 main.addEventListener("click", (e) => {
   const n = root.classList.contains("ed-on") && e.target.closest("[data-edmd]");
-  if (n?._block) { e.preventDefault(); open(n._block); }
+  if (n?._block && n._block.after !== "") { e.preventDefault(); open(n._block); }
 });
 main.addEventListener("keydown", (e) => {
   const n = e.target.closest?.("[data-edmd]");
   if (n?._block && e.key === "Enter") { e.preventDefault(); open(n._block); }
 });
 addEventListener("resize", place);
+
+// A + button under the block you're pointing at adds a new paragraph below it
+const addBtn = Object.assign(document.createElement("button"), { type: "button", className: "ed-add", textContent: "+", title: "Add a paragraph below", hidden: true });
+addBtn.setAttribute("aria-label", "Add a paragraph below");
+document.body.append(addBtn);
+let addFor = null;
+main.addEventListener("mouseover", (e) => {
+  const b = root.classList.contains("ed-on") && !active && e.target.closest("[data-edmd]")?._block;
+  if (!b || b.mode !== "md" || b.after === "") return;
+  addFor = b;
+  const r = b.nodes[b.nodes.length - 1].getBoundingClientRect();
+  addBtn.style.top = `${r.bottom + scrollY - 14}px`;
+  addBtn.style.left = `${Math.max(4, r.left - 40) + scrollX}px`;
+  addBtn.hidden = false;
+});
+addBtn.addEventListener("mousedown", (e) => e.preventDefault());
+addBtn.addEventListener("click", () => { if (addFor) open(addFor, true); });
 
 // Plain lines keep their own history too, so ⌘Z after clicking away undoes the whole line
 areas.forEach((a) => a.addEventListener("focusin", (e) => { const el = e.target.closest("[data-ed]"); if (el) el._at = { text: el.textContent, pend: pending.get(el) }; }));

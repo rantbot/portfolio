@@ -3,6 +3,7 @@ title: Client Onboarding, learning how a client works before kickoff
 description: A short intake wizard that asks new clients how they like to work, so we can match them with the right people.
 date: 2026-08-17
 kind: making
+topics: [team]
 series: Tools for my team
 meta: Web app
 image: /assets/images/experiments/client-onboarding.png

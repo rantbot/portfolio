@@ -3,6 +3,7 @@ title: Can a phone tell where a sugar packet landed?
 description: Yes, if you wrap the packet in foil. How a tabletop game idea turned into a question about touchscreens.
 date: 2026-09-26
 kind: making
+topics: [fun]
 series: Pocket Cornhole
 tldr: A touchscreen can register a sugar packet landing on it, and where it comes to rest, once the packet is wrapped in foil. That makes it possible to play cornhole with a phone as the board.
 image: /assets/images/experiments/pocket-cornhole-throw.png

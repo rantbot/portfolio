@@ -34,7 +34,7 @@ It’s hard to think of a better place for a secret than a room that was built t
 
 Inside were authors, keynote speakers, CTOs, open source and core contributors. The people who built much of what the Ruby and Rails community uses every day, and the people shaping what those tools become in the AI age. Between 50 and 100 of them in one room, with cocktails, hors d’oeuvres and nowhere else to be.
 
-That’s The Ruby Underground. I created it for thoughtbot in 2024, and I’ve hosted and produced every one since. It’s become the most sought-after ticket for some of the most influential people in our industry, and it happens after hours, in a place you’d never find on your own.
+That’s The Ruby Underground. I created it for [thoughtbot](/leading/building-the-next-chapter-of-thoughtbot/) in 2024, and I’ve hosted and produced every one since. It’s become the most sought-after ticket for some of the most influential people in our industry, and it happens after hours, in a place you’d never find on your own.
 
 ## What a conference can’t do
 

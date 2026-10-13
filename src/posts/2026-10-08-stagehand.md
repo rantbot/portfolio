@@ -3,6 +3,7 @@ title: Stagehand, a deck from a Markdown file
 description: A simpler alternative to Slides and PowerPoint. Drop in a Markdown file, or hand it to Claude, and present a polished deck with notes only you can see.
 date: 2026-10-08
 kind: making
+topics: [team]
 series: Tools for my team
 meta: Presentation tool
 image: /assets/images/experiments/stagehand.png

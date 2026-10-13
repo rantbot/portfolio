@@ -13,19 +13,11 @@ section: leading
 </header>
 
 {%- set stories = collections.posts | stories | chronological %}
-<div class="section-head leading-head">
-  <p class="eyebrow strong">Most recent first</p>
-  {#- Shows one kind of leadership at a time without changing the order. Appears only when JavaScript runs (site.js). #}
-  <div class="filter" data-led-filter role="group" aria-label="Show" hidden>
-    <button type="button" aria-pressed="true" data-key="">All</button>
-    {%- for g in site.leading_groups %}
-    <button type="button" aria-pressed="false" data-key="{{ g.key }}">{{ g.label }}</button>
-    {%- endfor %}
-  </div>
-</div>
+{%- set filter_label = "Most recent first" %}{% set filter_options = site.leading_groups %}
+{% include "filter.njk" %}
 <div class="tiles tiles-2">
   {%- for p in stories %}
-  <a href="{{ p.url }}" class="card"{% if p.data.led %} data-led="{{ p.data.led }}"{% endif %}>
+  <a href="{{ p.url }}" class="card"{% if p.data.led %} data-tags="{{ p.data.led }}"{% endif %}>
     <span class="media">{% set ratio = "3 / 2" %}{% include "story-cover.njk" %}</span>
     <span class="card-title card-title-lg serif">{{ p.data.title }}</span>
     <span class="card-desc">{{ p.data.description }}</span>

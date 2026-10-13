@@ -3,6 +3,7 @@ title: Qualifier, moving a sales lead forward with one emoji
 description: A Slack app that turns a checkmark on an inbound opportunity into an enriched, qualified deal in our CRM, with a brief on the people involved.
 date: 2026-10-05
 kind: making
+topics: [team]
 series: Tools for my team
 meta: Slack app
 image: /assets/images/experiments/qualifier.png

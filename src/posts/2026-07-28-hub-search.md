@@ -3,6 +3,7 @@ title: Hub Search, Cmd+K for our internal app
 description: A fast search palette for thoughtbot's internal app that re-ranks results locally and never sends what you type anywhere new.
 date: 2026-07-28
 kind: making
+topics: [team]
 updated: 2026-10-05
 series: Tools for my team
 meta: Chrome extension

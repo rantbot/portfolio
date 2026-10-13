@@ -30,7 +30,7 @@ highlight: "From 2014 to 2023, co-founded and ran an award-winning studio for cl
 
 ## The situation
 
-After helping North Kingdom launch in the US, I wanted to build a studio of my own.
+After helping [North Kingdom launch in the US](/leading/bringing-north-kingdom-to-the-us/), I wanted to build a studio of my own.
 
 <!-- TO ADD: why you started Wildebeest, who you started it with, and what you set out to do differently. -->
 

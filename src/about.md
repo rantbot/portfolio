@@ -45,21 +45,21 @@ AI is making it easier than ever to build things. As making gets easier, judgmen
 
 I started building websites for clients at fourteen and built a window washing company at sixteen, and have been making things ever since.
 
-At NBC, I grew from intern to producer, building emerging technologies from virtual worlds to early AI-powered live speech-to-text. It’s also where I learned how much the right partnerships can open up.
+At [NBC](/leading/new-digital-experiences-at-nbc/), I grew from intern to producer, building emerging technologies from virtual worlds to early AI-powered live speech-to-text. It’s also where I learned how much the right partnerships can open up.
 
-I founded Why Leave Astoria in 2008, a neighborhood social network that grew to more than 10,000 local members and raised tens of thousands of dollars a year for charity. I even officiated the wedding of two people who met through it.
+I founded [Why Leave Astoria](/leading/why-leave-astoria/) in 2008, a neighborhood social network that grew to more than 10,000 local members and raised tens of thousands of dollars a year for charity. I even officiated the wedding of two people who met through it.
 
-At AOL, I went from Director of Product on the company's smallest team to leading product across the company and eventually working with the CEO and COO as General Manager of AOL Entertainment, where I ran Moviefone, Cambio, and AOL Music, with a $40M P&L and a 70-person team.
+At [AOL](/leading/launching-new-ventures-at-aol/), I went from Director of Product on the company's smallest team to leading product across the company and eventually working with the CEO and COO as General Manager of AOL Entertainment, where I ran Moviefone, Cambio, and AOL Music, with a $40M P&L and a 70-person team.
 
-North Kingdom taught me how much storytelling and craft matter. That inspired me to co-found Wildebeest, which over nine years, built from scratch to work with Google, YouTube, Microsoft, Disney, and Toyota, General Motors and won a Webby, a Cannes Lions Grand Prix, and a D&AD Pencil.
+[North Kingdom](/leading/bringing-north-kingdom-to-the-us/) taught me how much storytelling and craft matter. That inspired me to co-found [Wildebeest](/leading/wildebeest/), which over nine years, built from scratch to work with Google, YouTube, Microsoft, Disney, and Toyota, General Motors and won a Webby, a Cannes Lions Grand Prix, and a D&AD Pencil.
 
-I joined [thoughtbot](https://thoughtbot.com/) as one of five Managing Directors. Today I lead the Americas business and serve on the board. I’m also President of [Ruby Central](https://rubycentral.org/), supporting the people and technology behind the Ruby ecosystem.
+I joined [thoughtbot](/leading/building-the-next-chapter-of-thoughtbot/) as one of five Managing Directors. Today I lead the Americas business and serve on the board. I’m also President of [Ruby Central](/leading/helping-stabilize-ruby-central/), supporting the people and technology behind the Ruby ecosystem.
 
 ## Always making something
 
 On a weekend, I might be building an app, working on a book, restoring my old Ford truck, taking a long motorcycle ride, or fixing something on my ranch near Joshua Tree. I also own vacation rentals across Southern California and invest in founders bringing the physical and digital worlds together.
 
-Over the years, I’ve helped organize fresh produce pickups for seniors, sixteen weeks of drive-in movies for my community during COVID, and founded a monthly Ladera Heights cleanup that’s still going six years later.
+Over the years, I’ve helped organize fresh produce pickups for seniors, sixteen weeks of drive-in movies for my community during COVID, and founded a [monthly Ladera Heights cleanup](/leading/produce-movie-nights-and-a-cleanup/) that’s still going six years later.
 
 ## What I believe
 

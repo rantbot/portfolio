@@ -3,6 +3,7 @@ title: Experiments, a home for what thoughtbot people build
 description: A catalog where thoughtbot people share the tools they make, try each other’s work, leave feedback, and vote on what’s ready for production.
 date: 2026-08-24
 kind: making
+topics: [team]
 series: Tools for my team
 meta: Web app
 image: /assets/images/experiments/experiments-site.png
@@ -13,7 +14,7 @@ The first thing I built wasn't a tool. It was a place to put tools.
 
 People at thoughtbot were building useful things on their own, and almost none of it traveled. A great prompt stayed in one person's notes. An extension that saved someone an hour a week never reached the person sitting next to them in Slack.
 
-I'd already created Space Station to organize work between client engagements, along with an experiment framework to help people turn ideas into tangible work and shared learning. That work needed a home. So I built Experiments, an internal catalog where every experiment gets a card, a page, an install button and a few honest numbers.
+I'd already created [Space Station](/leading/building-the-next-chapter-of-thoughtbot/) to organize work between client engagements, along with an experiment framework to help people turn ideas into tangible work and shared learning. That work needed a home. So I built Experiments, an internal catalog where every experiment gets a card, a page, an install button and a few honest numbers.
 
 Today it holds 29 experiments, and dozens of people at thoughtbot are using them.
 

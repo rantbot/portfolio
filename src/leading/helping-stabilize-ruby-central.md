@@ -63,7 +63,7 @@ The idea goes further than a logo on a sponsor page. Members contribute money an
 
 We were careful about one thing in particular. The Alliance gives companies a real way to support Ruby without giving any single company control over Ruby Central or the infrastructure it runs. Sustainable support and good stewardship had to come together, or the whole thing would just trade one kind of risk for another.
 
-In May 2026, thoughtbot announced it was joining the Ruby Alliance. Today, the Alliance is one of the main reasons Ruby Central is financially stable.
+In May 2026, [thoughtbot](/leading/building-the-next-chapter-of-thoughtbot/) announced it was joining the Ruby Alliance. Today, the Alliance is one of the main reasons Ruby Central is financially stable.
 
 ## A working board
 
