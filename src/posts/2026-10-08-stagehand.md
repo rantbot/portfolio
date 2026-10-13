@@ -26,7 +26,7 @@ It also fits the way we already work. A deck is one plain text file, so it can l
 
 ## Where it came from
 
-I was getting ready for a five minute lightning talk about the American dive bar, told like a nature documentary. It needed narration, room sound from my own field recordings, and a script nobody else could see. Once I had that working, I wanted the same setup for every other talk, so I pulled it out into its own tool.
+I was getting ready for a five minute lightning talk about [the American dive bar](/making/the-american-dive-bar/), told like a nature documentary. It needed narration, room sound from my own field recordings, and a script nobody else could see. Once I had that working, I wanted the same setup for every other talk, so I pulled it out into its own tool.
 
 ## Two windows
 
