@@ -53,22 +53,22 @@ At AOL, I went from Director of Product on the company's smallest team to leadin
 
 North Kingdom taught me how much storytelling and craft matter. That inspired me to co-found Wildebeest, which over nine years, built from scratch to work with Google, YouTube, Microsoft, Disney, and Toyota, General Motors and won a Webby, a Cannes Lions Grand Prix, and a D&AD Pencil.
 
-I joined [thoughtbot](https://thoughtbot.com/) as one of five Managing Directors. Today I lead the Americas business and serve on the board. I’m also President of [Ruby Central](https://rubycentral.org/), supporting the people behind the Ruby ecosystem.
+I joined [thoughtbot](https://thoughtbot.com/) as one of five Managing Directors. Today I lead the Americas business and serve on the board. I’m also President of [Ruby Central](https://rubycentral.org/), supporting the people and technology behind the Ruby ecosystem.
 
 ## Always making something
 
-On a weekend I might be building an app, working on a book, restoring my old Ford truck, or fixing something at the Old West saloon I built near Joshua Tree. I also own vacation rentals across Southern California and invest in founders bringing the physical and digital worlds together.
+On a weekend, I might be building an app, working on a book, restoring my old Ford truck, taking a long motorcycle ride, or fixing something on my ranch near Joshua Tree. I also own vacation rentals across Southern California and invest in founders bringing the physical and digital worlds together.
 
-Closer to home, I’ve helped organize produce pickups, sixteen weeks of drive-in movies, and a monthly Ladera Heights cleanup that’s still going six years later.
+Over the years, I’ve helped organize fresh produce pickups for seniors, sixteen weeks of drive-in movies for my community during COVID, and founded a monthly Ladera Heights cleanup that’s still going six years later.
 
 ## What I believe
 
-- The biggest opportunity with AI is attempting things that weren’t possible before.
-- Knowing what not to build is becoming as important as knowing how to build.
-- Speed matters, but only when you’re heading in the right direction.
-- Trust what people do over what they say.
+- The biggest opportunity with AI is to take on what wasn't possible before.
+- Knowing what not to build is now more important than knowing how to build.
+- Speed absolutely matters, but only when you’re heading in the right direction.
+- Work toward progress, not change.
 - Be honest when something isn’t working, especially when it was your idea.
-- You can’t know exactly what comes next, but you can build something that’s ready for it.
+- If you don't know what's next, build the things you need to create it.
 
 
 </div>
