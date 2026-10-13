@@ -9,6 +9,7 @@ meta: Presentation tool
 image: /assets/images/experiments/stagehand.png
 image_alt: Illustration of Stagehand in use
 skill: stagehand
+try_url: https://rantbot.github.io/stagehand
 ---
 
 Stagehand turns a Markdown file into a presentation that looks designed. Drop the file on the make page and each slide gets a layout from what's on it. A number becomes a big stat, a quote becomes a pull quote, and a picture fills the screen. Pick Classic, Paper or Signal, then present it or save it as one HTML file.
