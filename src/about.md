@@ -29,7 +29,7 @@ education:
   <div class="rail portrait">
     {%- if portrait %}<img src="{{ portrait }}" alt="Ran Craycraft, smiling, in a black t-shirt" width="960" height="1200">{% else %}<div class="portrait-empty" aria-hidden="true">RC</div>{% endif %}
   </div>
-  <h1 class="span-main page-title page-title-md serif">I started by making the work. Then I learned to build the business around it.</h1>
+  <h1 class="span-main page-title page-title-md serif">I help founders and executives turn big ideas into modern businesses.</h1>
 </header>
 
 <div class="grid">
@@ -37,7 +37,7 @@ education:
 
 I learned to make things from some of the best people in the business. Then I became a pretty good maker myself. Eventually, I discovered that I enjoyed helping other people make things just as much.
 
-Today I help founders and executives turn complicated challenges into a series of simpler decisions, and turn big ideas into real businesses.
+Most of that work is turning complicated challenges into a series of simpler decisions.
 
 AI is making it easier than ever to build things. As making gets easier, judgment becomes more valuable. Knowing what not to build, where to focus, and when to make the difficult decisions can make all the difference. That’s where I want to spend my time.
 
