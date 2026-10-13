@@ -51,7 +51,7 @@ I founded [Why Leave Astoria](/leading/why-leave-astoria/) in 2008, a neighborho
 
 At [AOL](/leading/launching-new-ventures-at-aol/), I went from Director of Product on the company's smallest team to leading product across the company and eventually working with the CEO and COO as General Manager of AOL Entertainment, where I ran Moviefone, Cambio, and AOL Music, with a $40M P&L and a 70-person team.
 
-[North Kingdom](/leading/bringing-north-kingdom-to-the-us/) taught me how much storytelling and craft matter. That inspired me to co-found [Wildebeest](/leading/wildebeest/), which over nine years, built from scratch to work with Google, YouTube, Microsoft, Disney, and Toyota, General Motors and won a Webby, a Cannes Lions Grand Prix, and a D&AD Pencil.
+[North Kingdom](/leading/bringing-north-kingdom-to-the-us/) taught me how much storytelling and craft matter. That inspired me to co-found [Wildebeest](/leading/wildebeest/), which over nine years, built from scratch to work with Google, YouTube, Microsoft, Disney, Toyota, and General Motors. Our team won a Webby, a Cannes Lions Grand Prix, and a D&AD Pencil.
 
 I joined [thoughtbot](/leading/building-the-next-chapter-of-thoughtbot/) as one of five Managing Directors. Today I lead the Americas business and serve on the board. I’m also President of [Ruby Central](/leading/helping-stabilize-ruby-central/), supporting the people and technology behind the Ruby ecosystem.
 
