@@ -15,14 +15,16 @@ employer: thoughtbot
 employer_url: https://thoughtbot.com
 
 # Homepage introduction
-headline: I build new products and help established teams discover what comes next.
-intro: I’m Ran Craycraft, a founder and business leader who connects product ideas, partnerships, and commercial execution. I’ve launched ventures at NBC and AOL, co-founded Wildebeest, and helped reshape thoughtbot.
-now: Today I’m Managing Director and a board member at thoughtbot and President of Ruby Central. I also enjoy building digital ways to bring people together in real life.
+headline: I build businesses, launch products, and lead organizations through what’s next.
+intro: I’m a founder and executive who brings together product vision, commercial strategy, and operational leadership. I’ve led a $40 million business at AOL, built an award-winning consultancy, transformed operations at thoughtbot, and helped return Ruby Central to financial stability.
+now: I do my best work where there’s something ambitious to build, a business to transform, or a difficult problem worth solving.
 
-# Names that become links in the homepage intro. Edit the words freely, the links follow the names.
+# Names that become links in the homepage intro, each to its Leading piece. Edit the words freely, the links follow the names.
 org_links:
-  thoughtbot: https://thoughtbot.com
-  Ruby Central: https://rubycentral.org
+  AOL: /leading/launching-new-ventures-at-aol/
+  award-winning consultancy: /leading/wildebeest/
+  thoughtbot: /leading/building-the-next-chapter-of-thoughtbot/
+  Ruby Central: /leading/helping-stabilize-ruby-central/
 
 # Kinds of leadership, shown as labels on Leading cards and as filters on the Leading page.
 # Set `led` in a piece's front matter to one of these keys.
