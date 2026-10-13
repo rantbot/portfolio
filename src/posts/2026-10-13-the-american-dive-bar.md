@@ -31,9 +31,17 @@ The talk needed things a slide app can't do well. Narration, room sound that cha
 
 A lightning talk only lives in the room. I wanted something people could watch on their own, so I turned it into a twelve-minute film built from the same slides, with four scenes from the longer version added back in.
 
-It's an AI-generated film, pulled from my own experiences in these bars. One AI narrator tells the whole story, the slides reveal on cue with the voice, and captions run underneath. You can pause, skip between its twenty chapters, turn captions off and go full screen. At the end there's a field journal that asks for your favorite dive bar and a protocol of your own, so the survey keeps growing.
+[Watch The American Dive Bar](https://rantbot.github.io/dive-bars/). It's an AI-generated film, pulled from my own experiences in these bars. One AI narrator tells the whole story, the slides reveal on cue with the voice, and captions run underneath. You can pause, skip between its twenty chapters, turn captions off and go full screen. At the end there's a field journal that asks for your favorite dive bar and a protocol of your own, so the survey keeps growing.
 
 The [five-minute version](https://rantbot.github.io/dive-bars/lightning/) is still there for presenting.
+
+## How it's built
+
+I built the talk and the film with Claude, as plain web pages hosted for free on GitHub Pages. There's no app and no video file. The film plays the same slides the talk uses, in the browser.
+
+- **The sound.** My field recordings carry the bar rooms, and the rest of the ambience is synthesized live in the browser with the Web Audio API, crossfading from scene to scene.
+- **The narrator.** Every line of narration lives in one script file, and ElevenLabs reads it in a single narrator's voice. When I change a line and push, a GitHub Action records only the lines that changed and saves them back to the site. Until a line is recorded, the film shows it as a caption and keeps going.
+- **The field journal.** Notes from viewers go to Supabase. Anyone can add a note, but only I can read them.
 
 <!-- TO ADD, if you like:
 1. Where you gave the lightning talk, and how the room took it.
