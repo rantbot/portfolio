@@ -55,19 +55,19 @@ Today I lead the Americas business and serve on thoughtbot’s board. My respons
 
 Asking a new client to commit to a large, expensive engagement before they’ve seen what you can do is a hard sell. So we made it easier to start.
 
-Shaping Sprints are short, fixed-price engagements, usually one or two weeks long. They give a client a real experience of how we think, how we collaborate and how good our product judgment is, before they make a bigger commitment. For us, they’re a chance to understand the client’s business, build credibility and find the work that will matter most.
+We created [Shaping Sprints](https://thoughtbot.com/services/shaping-sprint) to be short, fixed-price engagements, usually one or two weeks long. They give a client a real experience of how we think, how we collaborate, and how good our product judgment is, before they make a bigger commitment. For us, they’re a chance to understand the client’s business, build credibility and find the work that will matter most.
 
-The pattern is simple. Start focused. Show exceptional value. Earn a deeper partnership. It lowers the risk for clients, and it lets thoughtbot stand out through what we actually deliver instead of what we promise.
+Start focused, show enormous value, and earn a deeper partnership. It lowers the risk for clients, and it lets thoughtbot stand out through what we actually deliver instead of what we promise.
 
 It also helped the economics. A steady path from small engagements to larger ones was a big part of turning the team I inherited into a profitable one.
 
-I’ve stayed personally involved in a significant share of the Americas sales effort, and I’ve closed some of thoughtbot’s largest deals. The pharmaceutical account is the clearest example of the model working at full scale.
+I’ve closed over 90% of the Americas deals, some of them the largest in our twenty-three-year history. The pharmaceutical account is the clearest example of the model working at full scale.
 
 ## Three reorganizations
 
 I’ve led three reorganizations at thoughtbot, each one responding to what the business needed at the time.
 
-I created the Americas and Fusion team structure, so that each region could operate and price for its own market. We consolidated teams, strengthened each discipline, and made leadership responsibilities clearer. Engineering, design, product and delivery each needed strong leaders who own their practice and develop their people, without losing the multidisciplinary collaboration that makes thoughtbot valuable to clients.
+I worked with our CEO to reorganize into two geographic teams, one in the Americas and the other in EMEA, so that each region could operate and price for its own market. We consolidated into these two teams, strengthened each discipline, and made leadership responsibilities clearer. Engineering, design, product, and delivery each needed strong leaders who own their practice and develop their people, without losing the multidisciplinary collaboration that makes thoughtbot valuable to clients.
 
 That meant investing in discipline leaders and giving them real ownership. It also meant making hard structural decisions about cost. Together, those changes helped make the business I inherited profitable.
 
@@ -83,7 +83,7 @@ It connects what we sell with the value clients receive. And it has paid off com
 
 Consulting usually lives project to project. I wanted a way to stay with clients after the initial build and to make part of our revenue more predictable.
 
-I designed a support and maintenance subscription for exactly that. In its first year, it signed 24 clients and grew to more than $1 million in annual recurring revenue.
+I designed and operated a support and maintenance subscription for exactly that. In its first year, it signed 24 clients and grew to more than $1 million in annual recurring revenue.
 
 Alongside that, I helped launch an AI and Product Innovation practice, for clients who want to explore what AI makes possible in their products.
 
