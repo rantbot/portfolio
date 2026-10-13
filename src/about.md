@@ -17,7 +17,7 @@ roles:
     years: 2013 to 2014
   - role: General Manager, AOL Entertainment; previously Director of Product
     years: 2011 to 2013
-  - role: Digital production and innovation, NBCUniversal
+  - role: Senior Producer, Digital Innovation, NBCUniversal
     years: 2005 to 2011
 education:
   - degree: MA, Television, Radio & Film
