@@ -89,7 +89,7 @@ Alongside that, I helped launch an AI and Product Innovation practice, for clien
 
 ## Choosing where to compete
 
-I led a focus on regulated industries, including healthcare, financial services and insurance. These are places where technical quality, reliability, product judgment and trust matter as much as speed.
+After feeling downward pressure on rates, I led a transition to focus on regulated industries in 2025, including healthcare, financial services, and insurance. These are places where technical quality, reliability, product judgment and trust matter as much as speed.
 
 That focus separates thoughtbot from lower-cost development shops. It positions us as a partner for difficult, consequential work, the kind where the cost of getting it wrong is high. The pharmaceutical account shows what that can look like when it comes together.
 
@@ -99,11 +99,11 @@ In any consultancy, some people are between client projects at any given time. T
 
 I created Space Station to give consultants who aren’t on a client engagement meaningful internal work that moves the business forward. Instead of waiting for the next project, they improve how thoughtbot operates, build new capabilities and make our client work better.
 
-I also created an Experiments framework, a structured way for people to test ideas, challenge assumptions and share what they learn. The goal is to make experimenting a normal part of how thoughtbot works. It’s early, and it’s already starting to spark the kinds of conversations I hoped it would.
+I also created the Experiments framework, a structured way for people to test ideas, challenge assumptions, and share what they learn. The goal is to make experimenting a normal part of how thoughtbot works. It’s early, and it’s already starting to spark the kinds of conversations I hoped it would.
 
 Behind both is something I care about a lot. I want consultants to build the tools they need to become the best in the world at their jobs. I try to do it too, and I’ve built a series of [tools for my own team](/writing/building-tools-for-my-team/).
 
-AI makes this more important. When routine work takes less effort, the question I keep asking the team is what we can now do that we couldn’t before. Doing the same work faster is the least interesting answer. Higher quality, bigger ambition and more value for clients are much better ones.
+AI makes this more important. When routine work takes less effort, the question I ask my team is what we can now do that we couldn’t before. Doing the same work faster is not the answer. Higher quality, bigger ambition, and more value for clients are much better ones.
 
 ## What premium should feel like
 
