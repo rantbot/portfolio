@@ -66,7 +66,7 @@ Over the years, I’ve helped organize fresh produce pickups for seniors, sixtee
 - The biggest opportunity with AI is to take on what wasn't possible before.
 - Knowing what not to build is now more important than knowing how to build.
 - Speed absolutely matters, but only when you’re heading in the right direction.
-- Trust what people do over what they say.
+- Work toward progress, not change.
 - Be honest when something isn’t working, especially when it was your idea.
 - If you don't know what's next, build the things you need to create it.
 
