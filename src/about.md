@@ -7,10 +7,10 @@ section: about
 portrait: /assets/images/ran-craycraft.jpg
 image: /assets/images/ran-craycraft.jpg
 roles:
-  - role: President, Ruby Central
+  - role: President, Ruby Central Board of Directors
     years: 2026 to present
-  - role: Managing Director and board member, thoughtbot
-    years: Managing Director since 2023
+  - role: Managing Director and Board Member, thoughtbot
+    years: 2023 to present
   - role: Co-founder and Managing Partner, Wildebeest
     years: 2014 to 2023
   - role: Founding Managing Director, North Kingdom US
