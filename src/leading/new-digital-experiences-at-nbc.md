@@ -1,6 +1,7 @@
 ---
 title: New digital experiences for NBC, from Heroes to the project that became Hulu
-description: How a television network started building for the internet, from companion platforms for Heroes to fantasy football shows, virtual worlds, and the skunkworks project that became Hulu.
+seo_title: NBC digital experiences, from Heroes to Hulu · Ran Craycraft
+description: How a TV network started building for the internet, from companion platforms for Heroes to virtual worlds and the skunkworks project that became Hulu.
 date: 2026-10-06
 led: inside
 case_study:

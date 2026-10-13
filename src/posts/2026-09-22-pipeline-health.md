@@ -1,8 +1,10 @@
 ---
 title: Pipeline Health, a grade for the sales pipeline that matches how it feels
+seo_title: Pipeline Health, a sales pipeline grade · Ran Craycraft
 description: A bar in our CRM that forecasts what the pipeline you're looking at will deliver against budget, and names the deals to work on.
 date: 2026-09-22
 kind: making
+skill: pipeline-health
 topics: [team]
 updated: 2026-10-06
 series: Tools for my team

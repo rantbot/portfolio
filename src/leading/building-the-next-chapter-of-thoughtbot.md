@@ -1,6 +1,7 @@
 ---
 title: Building the next chapter of thoughtbot
-description: An established consultancy needed new ways to grow. As Managing Director, I reshaped how the Americas business is organized, wins work, delivers it and makes money.
+description: An established consultancy needed new ways to grow. As Managing Director, I reshaped how the Americas business is organized, sells, delivers and makes money.
+tldr: "I joined thoughtbot in 2023 as one of five Managing Directors. Today I’m the only one, leading the Americas business and serving on the board. I made an inherited, high-overhead team profitable, grew revenue 10% and then 20%, turned a small discovery project into $3.5 million in sold work, and launched a subscription offering that passed $1 million in recurring revenue in its first year."
 date: 2026-10-07
 updated: 2026-10-12
 led: inside

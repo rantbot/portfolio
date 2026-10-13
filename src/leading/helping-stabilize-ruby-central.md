@@ -1,6 +1,7 @@
 ---
 title: Helping turn around the organization behind the Ruby ecosystem
-description: I joined Ruby Central’s board during a financial, legal and community crisis. As President, I helped return it to financial stability and put its governance on firmer ground.
+description: I joined Ruby Central’s board during a financial, legal and community crisis. As President, I helped return it to financial stability.
+tldr: "I joined Ruby Central’s board in January 2026, during a financial, legal and community crisis, and became its President. In less than a year, the Ruby Alliance and a leaner, volunteer working board returned it to financial stability. The legal threat was resolved, the organization came through a security attack on the Ruby gem ecosystem, and its governance is on firmer ground."
 date: 2026-10-05
 updated: 2026-10-12
 led: community
