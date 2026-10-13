@@ -24,17 +24,15 @@ org_links:
   thoughtbot: https://thoughtbot.com
   Ruby Central: https://rubycentral.org
 
-# How the Leading pieces are grouped, in this order. Set `led` in a piece's front matter to one of these keys.
+# Kinds of leadership, shown as labels on Leading cards and as filters on the Leading page.
+# Set `led` in a piece's front matter to one of these keys.
 leading_groups:
   - key: inside
     label: Inside companies
-    note: Joining a team, taking on more, and building something new from within
   - key: founded
     label: Founded
-    note: Businesses and communities I started
   - key: community
     label: In the community
-    note: Volunteer and neighborhood work
 
 # Closing invitation on the homepage
 invitation: Let’s discuss what's next.

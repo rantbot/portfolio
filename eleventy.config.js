@@ -70,8 +70,9 @@ export default function (eleventyConfig) {
   // How each Leading piece was led, from `led` in its front matter. The groups and labels live in site.yml.
   const leadingGroups = yaml.load(readFileSync("src/_data/site.yml", "utf8")).leading_groups || [];
   eleventyConfig.addFilter("ledLabel", (key) => leadingGroups.find((g) => g.key === key)?.label || "");
-  eleventyConfig.addFilter("ledBy", (posts, key) =>
-    posts.filter((p) => (key ? p.data.led === key : !leadingGroups.some((g) => g.key === p.data.led)))
+  // The Leading page runs strictly by when the work began, most recent first
+  eleventyConfig.addFilter("chronological", (posts) =>
+    [...posts].sort((a, b) => (b.data.case_study?.start || 0) - (a.data.case_study?.start || 0) || b.date - a.date)
   );
   // What to read after a story. Uses the story's read_next picks, otherwise the next story in career order.
   eleventyConfig.addFilter("readNext", (posts, page, picks = []) => {

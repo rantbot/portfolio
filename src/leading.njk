@@ -12,28 +12,26 @@ section: leading
   </div>
 </header>
 
-{%- set stories = collections.posts | stories %}
-{#- One section per group in site.yml (leading_groups), then anything without a group #}
-{%- set groups = site.leading_groups | default([]) %}
-{%- set groups = (groups.concat([{ key: "", label: "More" }])) %}
-{%- for g in groups %}
-{%- set group = stories | ledBy(g.key) %}
-{%- if group.length %}
-<section class="section leading-group" aria-labelledby="led-{{ g.key or 'more' }}">
-  <div class="section-head">
-    <h2 id="led-{{ g.key or 'more' }}" class="eyebrow strong">{{ g.label }}</h2>
-    {%- if g.note %}<p class="section-note">{{ g.note }}</p>{% endif %}
-  </div>
-  <div class="tiles tiles-2">
-    {%- for p in group %}
-    <a href="{{ p.url }}" class="card">
-      <span class="media">{% set ratio = "3 / 2" %}{% include "story-cover.njk" %}</span>
-      <span class="card-title card-title-lg serif">{{ p.data.title }}</span>
-      <span class="card-desc">{{ p.data.description }}</span>
-      {%- if p.data.case_study and p.data.case_study.organization %}<span class="card-meta">{{ p.data.case_study.organization }}</span>{% endif %}
-    </a>
+{%- set stories = collections.posts | stories | chronological %}
+<div class="section-head leading-head">
+  <p class="eyebrow strong">Most recent first</p>
+  {#- Shows one kind of leadership at a time without changing the order. Appears only when JavaScript runs (site.js). #}
+  <div class="filter" data-led-filter role="group" aria-label="Show" hidden>
+    <button type="button" aria-pressed="true" data-key="">All</button>
+    {%- for g in site.leading_groups %}
+    <button type="button" aria-pressed="false" data-key="{{ g.key }}">{{ g.label }}</button>
     {%- endfor %}
   </div>
-</section>
-{%- endif %}
-{%- endfor %}
+</div>
+<div class="tiles tiles-2">
+  {%- for p in stories %}
+  <a href="{{ p.url }}" class="card"{% if p.data.led %} data-led="{{ p.data.led }}"{% endif %}>
+    <span class="media">{% set ratio = "3 / 2" %}{% include "story-cover.njk" %}</span>
+    <span class="card-title card-title-lg serif">{{ p.data.title }}</span>
+    <span class="card-desc">{{ p.data.description }}</span>
+    {%- set led = p.data.led | ledLabel %}
+    {%- set org = p.data.case_study.organization if p.data.case_study else "" %}
+    {%- if led or org %}<span class="card-meta">{{ led }}{% if led and org %} · {% endif %}{{ org }}</span>{% endif %}
+  </a>
+  {%- endfor %}
+</div>

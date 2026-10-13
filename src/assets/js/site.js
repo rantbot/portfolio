@@ -365,6 +365,20 @@ if (postNav.ArrowLeft || postNav.ArrowRight) {
   }
 })();
 
+// Leading: show one kind of leadership at a time, keeping the pieces in order
+(() => {
+  const filter = document.querySelector("[data-led-filter]");
+  if (!filter) return;
+  const cards = [...document.querySelectorAll(".card[data-led], .tiles > .card")];
+  filter.hidden = false;
+  filter.addEventListener("click", (e) => {
+    const b = e.target.closest("button");
+    if (!b) return;
+    filter.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    cards.forEach((c) => (c.hidden = !!b.dataset.key && c.dataset.led !== b.dataset.key));
+  });
+})();
+
 // Inline editing, for Ran. Add ?edit to any address to turn it on in this browser, ?edit=off to turn it off.
 // Only then does the editor load, so visitors never download it.
 (() => {
