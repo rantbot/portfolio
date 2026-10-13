@@ -2,6 +2,7 @@
 title: Why do the best conversations at a conference happen after hours?
 description: I created The Ruby Underground for thoughtbot, an invite-only night in a secret location for the people shaping Ruby and Rails.
 date: 2026-10-12
+led: inside
 case_study:
   organization: thoughtbot
   org_url: https://thoughtbot.com

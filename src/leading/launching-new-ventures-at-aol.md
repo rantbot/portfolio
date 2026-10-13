@@ -2,6 +2,7 @@
 title: Launching new ventures and growing established products at AOL
 description: I helped launch AOL Industry from zero, then led AOL Entertainment, a portfolio that included Moviefone, AOL TV, Cambio, and AOL Music.
 date: 2026-10-06
+led: inside
 case_study:
   organization: AOL
   role: Director of Product, then General Manager of AOL Entertainment

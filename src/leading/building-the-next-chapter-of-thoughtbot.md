@@ -2,6 +2,7 @@
 title: Building the next chapter of thoughtbot
 description: An established consultancy needed new ways to grow and deliver value. As Managing Director, I helped reshape how the Americas business operates, the opportunities we pursue, and the services we offer.
 date: 2026-10-07
+led: inside
 case_study:
   organization: thoughtbot
   org_url: https://thoughtbot.com

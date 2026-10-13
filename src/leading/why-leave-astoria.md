@@ -2,6 +2,7 @@
 title: Why Leave Astoria, a neighborhood network with more than 10,000 members
 description: I founded Why Leave Astoria, a hyperlocal social network that brought neighbors together through events, charity, and local business partnerships.
 date: 2026-10-06
+led: founded
 case_study:
   organization: Why Leave Astoria
   role: Founder

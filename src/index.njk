@@ -35,7 +35,8 @@ title: Ran Craycraft
       <span class="media">{% set ratio = "4 / 3" %}{% include "story-cover.njk" %}</span>
       <span class="card-title serif">{{ p.data.title }}</span>
       {%- if p.data.highlight %}<span class="card-highlight">{{ p.data.highlight }}</span>{% else %}<span class="card-desc">{{ p.data.description }}</span>{% endif %}
-      {%- if p.data.case_study and p.data.case_study.organization %}<span class="card-meta">{{ p.data.case_study.organization }}</span>{% endif %}
+      {%- set led = p.data.led | ledLabel %}
+      {%- if led or (p.data.case_study and p.data.case_study.organization) %}<span class="card-meta">{{ led }}{% if led and p.data.case_study and p.data.case_study.organization %} · {% endif %}{{ p.data.case_study.organization if p.data.case_study }}</span>{% endif %}
     </a></li>
     {%- endfor %}
   </ul>

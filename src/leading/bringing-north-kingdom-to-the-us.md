@@ -2,6 +2,7 @@
 title: Bringing North Kingdom to the United States
 description: As Founding Managing Director, I helped the Swedish digital studio North Kingdom launch its operation in the United States.
 date: 2026-10-06
+led: inside
 case_study:
   organization: North Kingdom
   role: Founding Managing Director, North Kingdom US

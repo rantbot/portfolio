@@ -2,6 +2,7 @@
 title: Helping stabilize the organization behind the Ruby ecosystem
 description: As President of Ruby Central, I helped rebuild sponsor support and reshape governance and funding during a period of financial distress.
 date: 2026-10-05
+led: community
 case_study:
   organization: Ruby Central
   org_url: https://rubycentral.org

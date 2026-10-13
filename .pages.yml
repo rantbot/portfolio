@@ -57,6 +57,15 @@ content:
       - { name: description, label: Summary, type: text, required: true }
       - { name: date, label: Date, type: date }
       - { name: draft, label: Draft, type: boolean, default: true, description: "Turn off and save to publish" }
+      - name: led
+        label: How I led it
+        type: select
+        description: "Groups the piece on the Leading page"
+        options:
+          values:
+            - { value: inside, label: Inside companies }
+            - { value: founded, label: Founded }
+            - { value: community, label: In the community }
       - name: case_study
         label: Details
         type: object
