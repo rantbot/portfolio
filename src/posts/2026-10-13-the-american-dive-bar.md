@@ -1,6 +1,6 @@
 ---
 title: The American Dive Bar, a nature documentary about a fragile ecosystem
-description: A five-minute lightning talk about dive bars, told like a nature documentary, that became a twelve-minute interactive film and a presentation tool.
+description: A five-minute lightning talk about dive bars in the style of a nature documentary became a twelve-minute interactive film and a standalone presentation tool.
 date: 2026-10-13
 kind: making
 topics: [fun]
