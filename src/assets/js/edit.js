@@ -99,9 +99,9 @@ function apply(text, path, before, after, inFooter) {
   return fixYaml(text.replace(re, () => value), value, isYaml);
 }
 
-// ---- Markdown lines
-// On a page written in Markdown, a line opens as its Markdown source when clicked,
-// so links and formatting can be changed too. **bold**, *italic*, [words](https://address)
+// ---- Markdown blocks
+// On a page written in Markdown, a paragraph, heading, quote or whole list opens as its Markdown source when clicked,
+// so links, formatting and lists can be changed too. **bold**, *italic*, [words](https://address), "- " and "1. " lists
 const isMd = /\.md$/.test(page);
 const plainish = (s) => s.replace(/[’‘]/g, "'").replace(/[“”]/g, '"').replace(/…/g, "...").replace(/ /g, " ").replace(/\s+/g, " ").trim();
 const stripMd = (s) => plainish(s
@@ -115,58 +115,97 @@ const stripMd = (s) => plainish(s
   .replace(/`([^`]*)`/g, "$1")
   .replace(/\\([\\`*_{}[\]()#+\-.!>])/g, "$1")
   .replace(/&nbsp;/g, " ").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&"));
-// Each paragraph, heading, list item or quote line in the body, exactly as it's written in the file
-function mdLines(text) {
+const ITEM = /^(\s*)([-*+]|(\d+)([.)]))\s+/;
+// The body's blocks, each exactly as it's written in the file
+function mdBlocks(text) {
   const fm = text.match(/^---\n[\s\S]*?\n---\n/);
   const out = [];
-  let para = [], fence = false, comment = false;
-  const flush = () => { if (para.length) out.push(para.join("\n")); para = []; };
+  let cur = null, kind = "", fence = false, comment = false;
+  const flush = () => { if (cur) out.push({ kind, src: cur.join("\n") }); cur = null; kind = ""; };
+  const add = (k, line) => { if (kind !== k) { flush(); kind = k; cur = []; } cur.push(line); };
   for (const line of text.slice(fm ? fm[0].length : 0).split("\n")) {
     if (/^\s*(```|~~~)/.test(line)) { fence = !fence; flush(); continue; }
     if (fence) continue;
     if (comment) { if (line.includes("-->")) comment = false; continue; }
     if (/^\s*<!--/.test(line) && !line.includes("-->")) { flush(); comment = true; continue; }
-    const m = line.match(/^\s*(?:#{1,6}\s+|[-*+]\s+|\d+[.)]\s+|>\s?)(.*)$/);
     if (!line.trim() || /^\s*(<|\{[%{]|---\s*$)/.test(line)) flush();
-    else if (m) { flush(); if (m[1].trim()) out.push(m[1]); }
-    else para.push(line);
+    else if (/^#{1,6}\s/.test(line)) { flush(); add("h", line); flush(); }
+    else if (/^\s*>/.test(line)) add("quote", line);
+    else if (ITEM.test(line) || (kind === "list" && /^\s+\S/.test(line))) add("list", line);
+    else add("p", line);
   }
   flush();
   return out;
 }
+const blockText = (b) => stripMd(b.kind === "list" ? b.src.replace(new RegExp(ITEM.source, "gm"), "") : b.kind === "quote" ? b.src.replace(/^\s*>\s?/gm, "") : b.kind === "h" ? b.src.replace(/^#+\s+/, "") : b.src);
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const safeUrl = (u) => (/^(https?:|mailto:|\/|#)/i.test(u) ? u : "#");
-// A quick preview of the line. The site draws the real thing when it publishes.
+// A quick preview. The site draws the real thing when it publishes.
 const renderInline = (md) => esc(md)
   .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, t, u) => `<a href="${safeUrl(u)}">${t}</a>`)
   .replace(/(\*\*|__)(.+?)\1/g, "<strong>$2</strong>")
   .replace(/\*(?!\s)(.+?)\*/g, "<em>$1</em>")
   .replace(/(?<!\w)_(?!\s)(.+?)_(?!\w)/g, "<em>$1</em>")
   .replace(/`([^`]+)`/g, "<code>$1</code>");
+function renderBlocks(md) {
+  const html = mdBlocks(md).map(({ kind, src }) => {
+    if (kind === "h") { const n = src.match(/^#+/)[0].length; return `<h${n}>${renderInline(src.replace(/^#+\s+/, ""))}</h${n}>`; }
+    if (kind === "quote") return `<blockquote><p>${renderInline(src.replace(/^\s*>\s?/gm, " ").trim())}</p></blockquote>`;
+    if (kind === "list") {
+      const items = [];
+      src.split("\n").forEach((l) => (ITEM.test(l) ? items.push(l.replace(ITEM, "")) : items.length && (items[items.length - 1] += " " + l.trim())));
+      const tag = /^\s*\d/.test(src) ? "ol" : "ul";
+      return `<${tag}>${items.map((i) => `<li>${renderInline(i)}</li>`).join("")}</${tag}>`;
+    }
+    return `<p>${renderInline(src.replace(/\s*\n\s*/g, " "))}</p>`;
+  }).join("");
+  const t = document.createElement("template");
+  t.innerHTML = html;
+  return [...t.content.children];
+}
 const swap = (text, before, after) => {
   const i = text.indexOf(before);
-  if (i < 0 || text.indexOf(before, i + 1) >= 0) throw new Error("A line changed on GitHub since this page loaded. Reload the page and try again.");
+  if (i < 0 || text.indexOf(before, i + 1) >= 0) throw new Error("Part of this page changed on GitHub since it loaded. Reload the page and try again.");
   return text.slice(0, i) + after + text.slice(i + before.length);
 };
+let blocks = [];
 async function markMarkdown() {
+  blocks = [];
   if (!isMd) return;
-  let lines;
-  try { lines = mdLines((await readFile(page)).text); }
+  let found;
+  try { found = mdBlocks((await readFile(page)).text); }
   catch (e) { toast(`Couldn’t load this page’s Markdown, so lines with links stay locked. ${e.message}`, true); return; }
   const byText = new Map();
-  lines.forEach((src) => { const k = stripMd(src); if (k) byText.set(k, byText.has(k) ? null : src); }); // null means it's written twice
+  found.forEach((b) => { const k = blockText(b); if (k) byText.set(k, byText.has(k) ? null : b); }); // null means it's written twice
   const used = new Set();
-  main.querySelectorAll("p, li, h2, h3, h4, h5, h6, blockquote, dd, figcaption").forEach((el) => {
-    if (el.closest(".sr, svg, [aria-hidden='true'], .search-dialog") || el.querySelector("p, ul, ol, div, blockquote, img, figure")) return;
-    const src = byText.get(plainish(el.textContent));
-    if (!src || used.has(src)) return;
-    used.add(src);
-    el.dataset.edmd = ""; el.contentEditable = "true"; el.spellcheck = true;
-    el._src = src; el._html = el.innerHTML;
+  main.querySelectorAll("p, h2, h3, h4, h5, h6, ul, ol, blockquote").forEach((el) => {
+    if (el.closest("[data-edmd], li, .sr, svg, [aria-hidden='true'], .search-dialog") || el.querySelector("img, figure, div")) return;
+    const b = byText.get(plainish(el.textContent));
+    if (!b || used.has(b)) return;
+    used.add(b);
+    const block = { src: b.src, kind: b.kind, after: null, orig: [el], nodes: [] };
+    blocks.push(block);
+    show(block, [el]);
   });
 }
+// Put a block's nodes on the page in place of what's there now
+function show(block, nodes) {
+  const first = block.nodes[0];
+  if (first && first !== nodes[0]) { first.before(...nodes); block.nodes.forEach((n) => nodes.includes(n) || n.remove()); }
+  block.nodes = nodes;
+  nodes.forEach((n) => {
+    if (n.tagName === "TEXTAREA") return;
+    n.dataset.edmd = ""; n._block = block; n.tabIndex = 0;
+    if (block.after != null) n.dataset.edChanged = ""; else delete n.dataset.edChanged;
+  });
+}
+function setAfter(block, after) {
+  block.after = after;
+  show(block, after == null ? block.orig : renderBlocks(after));
+  if (after == null) pending.delete(block); else pending.set(block, { before: block.src, after, md: true });
+}
 
-// ---- Interface
+// ---- Interface// ---- Interface
 const css = `
   .ed-bar { position: fixed; left: 50%; bottom: 18px; z-index: 60; transform: translateX(-50%); display: flex; align-items: center; gap: 6px; padding: 5px; border-radius: 999px; background: #262624; color: #FAFAF7; font: 500 13px/1 "Instrument Sans", system-ui, sans-serif; box-shadow: 0 10px 30px -10px rgba(0,0,0,.45); white-space: nowrap; }
   .ed-bar button, .ed-bar a { padding: 9px 14px; border: 0; border-radius: 999px; background: none; color: inherit; font: inherit; cursor: pointer; }
@@ -199,6 +238,7 @@ const css = `
   .ed-fmt .ed-tip { padding: 0 8px; color: #B9B9B2; font-weight: 400; }
   .ed-fmt-link { display: flex; align-items: center; gap: 2px; margin-left: 4px; }
   .ed-fmt input { width: min(260px, 50vw); padding: 7px 9px; border: 0; border-radius: 6px; background: #FAFAF7; color: #262624; font: 13px ui-monospace, monospace; }
+  .ed-ta { display: block; width: 100%; box-sizing: border-box; padding: 6px 8px; margin-left: -8px; margin-right: -8px; width: calc(100% + 16px); border: 0; border-radius: 4px; outline: 1.5px solid #262624; background: rgba(239, 232, 204, .35); color: inherit; resize: none; overflow: hidden; }
   .ed-toast.is-error { background: #7A2A22; }
 `;
 document.head.append(Object.assign(document.createElement("style"), { textContent: css }));
@@ -244,7 +284,8 @@ function markEditable() {
   });
 }
 function unmark() {
-  main.querySelectorAll("[data-edmd]").forEach((el) => { el.removeAttribute("contenteditable"); el.classList.remove("ed-src"); delete el.dataset.edmd; });
+  blocks.forEach((b) => b.nodes.forEach((n) => { delete n.dataset.edmd; n.removeAttribute("tabindex"); }));
+  blocks = [];
   areas.forEach((a) => a.querySelectorAll("[data-ed]").forEach((el) => { el.removeAttribute("contenteditable"); delete el.dataset.ed; }));
   areas.forEach((a) => a.querySelectorAll("[data-ed-fixed]").forEach((el) => { delete el.dataset.edFixed; el.removeAttribute("title"); }));
 }
@@ -293,7 +334,8 @@ async function start() {
   render();
 }
 function stop(discard) {
-  if (discard) pending.forEach((v, el) => { if (v.md) el.innerHTML = el._html; else el.textContent = v.before; delete el.dataset.edChanged; });
+  if (discard) pending.forEach((v, el) => { if (v.md) setAfter(el, null); else { el.textContent = v.before; delete el.dataset.edChanged; } });
+  undos.length = redos.length = 0;
   pending.clear();
   unmark();
   root.classList.remove("ed-on");
@@ -309,7 +351,7 @@ async function publish() {
   const failed = [];
   for (const [el, { before, after, md }] of pending) {
     try {
-      const inFooter = !!el.closest(".site-footer");
+      const inFooter = !md && !!el.closest(".site-footer");
       const path = md ? page : inFooter ? await locateFooter(before) : await locate(before);
       if (!byFile.has(path)) byFile.set(path, []);
       byFile.get(path).push({ el, before, after, inFooter, md });
@@ -322,7 +364,11 @@ async function publish() {
       let text = f.text;
       for (const { before, after, inFooter, md } of edits) text = md ? swap(text, before, after) : apply(text, path, before, after, inFooter);
       await gh(`/contents/${encodeURI(path)}`, { method: "PUT", body: JSON.stringify({ message: `Edit copy in ${path.replace(/^src\//, "")}`, content: b64encode(text), sha: f.sha, branch: BRANCH }) });
-      edits.forEach(({ el, after, md }) => { pending.delete(el); delete el.dataset.edChanged; if (md) { el._src = after; el._html = el.innerHTML; } });
+      edits.forEach(({ el, after, md }) => {
+        pending.delete(el);
+        if (md) { el.src = after; el.after = null; el.orig = el.nodes; show(el, el.nodes); } else delete el.dataset.edChanged;
+      });
+      undos.length = redos.length = 0;
       saved += edits.length;
     } catch (e) { failed.push(e.message); }
   }
@@ -376,90 +422,108 @@ areas.forEach((a) => a.addEventListener("focusout", (e) => {
 document.addEventListener("click", (e) => { if (root.classList.contains("ed-on") && e.target.closest("[data-ed], [data-edmd], [data-ed-fixed]") && e.target.closest("a")) e.preventDefault(); }, true);
 window.addEventListener("beforeunload", (e) => { if (pending.size) { e.preventDefault(); e.returnValue = ""; } });
 
-// ---- Editing a Markdown line, with a small toolbar for bold, italic and links
+// ---- Editing a Markdown block, with a small toolbar for bold, italic, links and lists
 const fmt = document.createElement("div");
 fmt.className = "ed-fmt";
 fmt.hidden = true;
 fmt.innerHTML = `<button type="button" data-f="bold" title="Bold (⌘B)" aria-label="Bold"><b>B</b></button>` +
   `<button type="button" data-f="italic" title="Italic (⌘I)" aria-label="Italic"><i>I</i></button>` +
   `<button type="button" data-f="link" title="Link (⌘K)">Link</button>` +
+  `<button type="button" data-f="ul" title="Bulleted list (⌘⇧8)" aria-label="Bulleted list">• List</button>` +
+  `<button type="button" data-f="ol" title="Numbered list (⌘⇧7)" aria-label="Numbered list">1. List</button>` +
   `<span class="ed-fmt-link" hidden><input type="text" inputmode="url" placeholder="https://…" aria-label="Link address" spellcheck="false"><button type="button" data-f="apply">Save</button><button type="button" data-f="unlink" hidden>Remove</button></span>`;
 document.body.append(fmt);
 const linkBox = fmt.querySelector(".ed-fmt-link");
 const linkInput = linkBox.querySelector("input");
-let active = null; // the line being edited
+let active = null; // the block being edited
+let ta = null; // its text box
 let saved = [0, 0]; // the selection, kept while the link box has focus
-const flat = (s) => s.replace(/\s+/g, " ").trim();
+const undos = [], redos = []; // whole-block changes, for ⌘Z once you've clicked away
 
-function offsets(el) {
-  const s = getSelection();
-  const n = el.textContent.length;
-  if (!s.rangeCount || !el.contains(s.anchorNode)) return [n, n];
-  const r = s.getRangeAt(0), pre = document.createRange();
-  pre.selectNodeContents(el);
-  pre.setEnd(r.startContainer, r.startOffset);
-  const a = pre.toString().length;
-  return [a, Math.min(n, a + r.toString().length)];
-}
-function select(el, a, b = a) {
-  if (el.childNodes.length !== 1 || el.firstChild.nodeType !== 3) el.textContent = el.textContent;
-  const t = el.firstChild || el.appendChild(document.createTextNode(""));
-  const r = document.createRange();
-  r.setStart(t, Math.min(a, t.length)); r.setEnd(t, Math.min(b, t.length));
-  const s = getSelection(); s.removeAllRanges(); s.addRange(r);
-}
-function track(el) {
-  const after = flat(el.textContent);
-  if (after && after !== flat(el._src)) { pending.set(el, { before: el._src, after, md: true }); el.dataset.edChanged = ""; }
-  else { pending.delete(el); delete el.dataset.edChanged; }
-  render();
-}
-function setText(el, text, a, b) { el.textContent = text; el.focus(); select(el, a, b); track(el); place(); }
+const shown = (b) => (b.after ?? (b.kind === "p" ? b.src.replace(/\s*\n\s*/g, " ") : b.src));
+const grow = () => { if (ta) { ta.style.height = "auto"; ta.style.height = ta.scrollHeight + "px"; } };
 function place() {
-  if (!active) return;
+  if (!active || !ta) return;
   fmt.hidden = false;
-  const r = active.getBoundingClientRect();
+  const r = ta.getBoundingClientRect();
   const h = fmt.offsetHeight;
   const top = r.top > h + 70 ? r.top - h - 10 : r.bottom + 10;
   fmt.style.top = `${top + scrollY}px`;
   fmt.style.left = `${Math.max(8, Math.min(r.left, innerWidth - fmt.offsetWidth - 8)) + scrollX}px`;
 }
-function open(el) {
-  active = el;
-  el.textContent = flat(pending.get(el)?.after ?? el._src);
-  el.classList.add("ed-src");
+function remember(undo, redo) { undos.push({ undo, redo }); redos.length = 0; }
+
+function open(block) {
+  if (active) close();
+  const first = block.nodes[0];
+  const cs = getComputedStyle(first.tagName === "UL" || first.tagName === "OL" ? first.querySelector("li") || first : first);
+  ta = document.createElement("textarea");
+  ta.className = "ed-ta";
+  ta.spellcheck = true;
+  ["fontFamily", "fontSize", "fontWeight", "fontStyle", "lineHeight", "letterSpacing"].forEach((k) => (ta.style[k] = cs[k]));
+  ta.value = shown(block);
+  ta._start = ta.value;
+  ta._was = block.after;
+  active = block;
+  show(block, [ta]);
+  ta.addEventListener("input", () => { grow(); track(); place(); });
+  ta.addEventListener("keydown", keys);
+  ta.addEventListener("focusout", (e) => { if (!fmt.contains(e.relatedTarget)) close(); });
+  grow();
+  ta.focus();
   linkBox.hidden = true;
   place();
 }
-function close(el) {
-  const after = flat(el.textContent);
-  el.classList.remove("ed-src");
-  active = null;
-  fmt.hidden = true;
-  linkBox.hidden = true;
-  if (!after) { pending.delete(el); delete el.dataset.edChanged; el.innerHTML = el._html; toast("A line can’t be empty here. Ask Claude to remove it.", true); }
-  else if (after === flat(el._src)) { pending.delete(el); delete el.dataset.edChanged; el.innerHTML = el._html; }
-  else { pending.set(el, { before: el._src, after, md: true }); el.dataset.edChanged = ""; el.innerHTML = renderInline(after); }
+function track() {
+  if (!active) return;
+  const v = ta.value.replace(/\s+$/, "");
+  if (v.trim() && v !== shown({ ...active, after: null })) pending.set(active, { before: active.src, after: v, md: true });
+  else pending.delete(active);
   render();
 }
+function close() {
+  const block = active, box = ta;
+  if (!block) return;
+  active = ta = null;
+  fmt.hidden = true;
+  linkBox.hidden = true;
+  let v = box.value.replace(/\s+$/, "");
+  if (!v.trim()) { toast("A block can’t be empty here. Ask Claude to remove it.", true); v = box._start; }
+  const was = box._was;
+  const now = v === shown({ ...block, after: null }) ? null : v;
+  setAfter(block, now);
+  if (now !== was) remember(() => setAfter(block, was), () => setAfter(block, now));
+  render();
+}
+
+// Changes go through the browser's own typing, so ⌘Z and ⌘⇧Z undo and redo them
+function edit(a, b, text, selA, selB = selA) {
+  ta.focus();
+  ta.setSelectionRange(a, b);
+  const ok = text ? document.execCommand("insertText", false, text) : a === b || document.execCommand("delete");
+  if (!ok) ta.setRangeText(text, a, b, "end");
+  ta.setSelectionRange(selA, selB);
+  grow(); track(); place();
+}
+function trimmed() {
+  const v = ta.value;
+  let a = ta.selectionStart, b = ta.selectionEnd;
+  while (a < b && /\s/.test(v[a])) a++;
+  while (b > a && /\s/.test(v[b - 1])) b--;
+  return [a, b];
+}
 function wrap(mark) {
-  const el = active;
-  if (!el) return;
-  const t = el.textContent;
-  let [a, b] = offsets(el);
-  while (a < b && t[a] === " ") a++;
-  while (b > a && t[b - 1] === " ") b--;
+  if (!ta) return;
+  const v = ta.value, [a, b] = trimmed(), n = mark.length;
   if (a === b) return toast("Select some words first.");
-  const n = mark.length;
-  if (t.slice(a - n, a) === mark && t.slice(b, b + n) === mark) return setText(el, t.slice(0, a - n) + t.slice(a, b) + t.slice(b + n), a - n, b - n);
-  setText(el, t.slice(0, a) + mark + t.slice(a, b) + mark + t.slice(b), a + n, b + n);
+  if (v.slice(a - n, a) === mark && v.slice(b, b + n) === mark) return edit(a - n, b + n, v.slice(a, b), a - n, b - n);
+  edit(a, b, mark + v.slice(a, b) + mark, a + n, b + n);
 }
 const linkAt = (t, a, b = a) => { const re = /\[([^\]]*)\]\(([^)\s]*)\)/g; let m; while ((m = re.exec(t))) if (a >= m.index && b <= m.index + m[0].length) return m; return null; };
 function openLink() {
-  const el = active;
-  if (!el) return;
-  saved = offsets(el);
-  const m = linkAt(el.textContent, ...saved);
+  if (!ta) return;
+  saved = [ta.selectionStart, ta.selectionEnd];
+  const m = linkAt(ta.value, ...saved);
   if (!m && saved[0] === saved[1]) return toast("Select the words you want to link.");
   linkBox.hidden = false;
   fmt.querySelector('[data-f="unlink"]').hidden = !m;
@@ -469,26 +533,61 @@ function openLink() {
   linkInput.select();
 }
 function saveLink(remove) {
-  const el = active;
-  if (!el) return;
+  if (!ta) return;
   let url = linkInput.value.trim();
   if (url && !/^(https?:|mailto:|\/|#)/i.test(url)) url = (/^[^\s/]+@[^\s/]+\.\w+$/.test(url) ? "mailto:" : "https://") + url;
   linkBox.hidden = true;
-  const t = el.textContent;
-  const m = linkAt(t, ...saved);
+  const v = ta.value, m = linkAt(v, ...saved);
   if (m) {
     const out = remove || !url ? m[1] : `[${m[1]}](${url})`;
-    return setText(el, t.slice(0, m.index) + out + t.slice(m.index + m[0].length), m.index, m.index + out.length);
+    return edit(m.index, m.index + m[0].length, out, m.index, m.index + out.length);
   }
-  let [a, b] = saved;
-  while (a < b && t[a] === " ") a++;
-  while (b > a && t[b - 1] === " ") b--;
-  if (!url || a === b) { el.focus(); return select(el, ...saved); }
-  const out = `[${t.slice(a, b)}](${url})`;
-  setText(el, t.slice(0, a) + out + t.slice(b), a, a + out.length);
+  ta.setSelectionRange(...saved);
+  const [a, b] = trimmed();
+  if (!url || a === b) { ta.focus(); return; }
+  const out = `[${v.slice(a, b)}](${url})`;
+  edit(a, b, out, a, a + out.length);
+}
+// Turn the selected lines into a list, switch the kind of list, or take the list away
+function list(kind) {
+  if (!ta) return;
+  const v = ta.value, a = ta.selectionStart, b = ta.selectionEnd;
+  const s = v.lastIndexOf("\n", a - 1) + 1;
+  let e = v.indexOf("\n", b > a && v[b - 1] === "\n" ? b - 1 : b);
+  if (e < 0) e = v.length;
+  const lines = v.slice(s, e).split("\n").filter((l) => l.trim());
+  const isKind = (l) => (kind === "ul" ? /^\s*[-*+]\s+/ : /^\s*\d+[.)]\s+/).test(l);
+  const off = lines.length && lines.every(isKind);
+  let n = 0;
+  const out = off
+    ? lines.map((l) => l.replace(ITEM, "").trim()).join("\n\n") // separate paragraphs again
+    : lines.map((l) => { const ind = l.match(/^\s*/)[0]; return ind + (kind === "ul" ? "- " : `${++n}. `) + l.replace(ITEM, "").trim(); }).join("\n");
+  edit(s, e, out, s + out.length);
+}
+function keys(e) {
+  const mod = e.metaKey || e.ctrlKey;
+  if (e.key === "Escape") { e.preventDefault(); ta.value = ta._start; ta.blur(); return; }
+  if (e.key === "Enter" && mod) { e.preventDefault(); ta.blur(); return; }
+  if (mod && e.shiftKey && (e.code === "Digit8" || e.code === "Digit7")) { e.preventDefault(); return list(e.code === "Digit8" ? "ul" : "ol"); }
+  if (mod && !e.shiftKey && /^[bik]$/i.test(e.key)) {
+    e.preventDefault();
+    e.stopPropagation(); // ⌘K opens search everywhere else
+    return ({ b: () => wrap("**"), i: () => wrap("*"), k: openLink })[e.key.toLowerCase()]();
+  }
+  // Enter in a list starts the next item. Enter on an empty item ends the list.
+  if (e.key === "Enter" && !e.shiftKey && !mod && ta.selectionStart === ta.selectionEnd) {
+    const v = ta.value, a = ta.selectionStart, s = v.lastIndexOf("\n", a - 1) + 1;
+    const m = v.slice(s, a).match(ITEM);
+    if (!m) return;
+    e.preventDefault();
+    let end = v.indexOf("\n", a); if (end < 0) end = v.length;
+    if (!v.slice(s, end).replace(ITEM, "").trim()) return edit(s, end, "\n", s + 1);
+    const next = m[3] ? `${+m[3] + 1}${m[4]} ` : `${m[2]} `;
+    edit(a, a, "\n" + m[1] + next, a + 1 + m[1].length + next.length);
+  }
 }
 
-// Keep the cursor in the line when a toolbar button is pressed
+// Keep the cursor in the text when a toolbar button is pressed
 fmt.addEventListener("mousedown", (e) => { if (!e.target.closest("input")) e.preventDefault(); });
 fmt.addEventListener("click", (e) => {
   const f = e.target.closest("[data-f]")?.dataset.f;
@@ -497,31 +596,47 @@ fmt.addEventListener("click", (e) => {
   if (f === "link") linkBox.hidden ? openLink() : saveLink(false);
   if (f === "apply") saveLink(false);
   if (f === "unlink") saveLink(true);
+  if (f === "ul" || f === "ol") list(f);
 });
 linkInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") { e.preventDefault(); saveLink(false); }
-  if (e.key === "Escape") { e.preventDefault(); linkBox.hidden = true; active.focus(); select(active, ...saved); }
+  if (e.key === "Escape") { e.preventDefault(); linkBox.hidden = true; ta.focus(); ta.setSelectionRange(...saved); }
   e.stopPropagation();
 });
-linkInput.addEventListener("focusout", (e) => { if (active && e.relatedTarget !== active && !fmt.contains(e.relatedTarget)) close(active); });
-main.addEventListener("focusin", (e) => { const el = e.target.closest("[data-edmd]"); if (el && el !== active) { if (active) close(active); open(el); } });
-main.addEventListener("focusout", (e) => {
-  const el = e.target.closest("[data-edmd]");
-  if (el && el === active && !fmt.contains(e.relatedTarget)) close(el);
+linkInput.addEventListener("focusout", (e) => { if (active && e.relatedTarget !== ta && !fmt.contains(e.relatedTarget)) close(); });
+main.addEventListener("click", (e) => {
+  const n = root.classList.contains("ed-on") && e.target.closest("[data-edmd]");
+  if (n?._block) { e.preventDefault(); open(n._block); }
 });
-main.addEventListener("input", (e) => { const el = e.target.closest("[data-edmd]"); if (el) { track(el); place(); } });
 main.addEventListener("keydown", (e) => {
-  const el = e.target.closest("[data-edmd]");
-  if (!el) return;
-  const mod = e.metaKey || e.ctrlKey;
-  if (e.key === "Enter") { e.preventDefault(); el.blur(); }
-  else if (e.key === "Escape") { e.preventDefault(); el.textContent = flat(el._src); el.blur(); }
-  else if (mod && /^[bik]$/i.test(e.key)) {
-    e.preventDefault();
-    e.stopPropagation(); // ⌘K opens search everywhere else
-    ({ b: () => wrap("**"), i: () => wrap("*"), k: openLink })[e.key.toLowerCase()]();
-  }
+  const n = e.target.closest?.("[data-edmd]");
+  if (n?._block && e.key === "Enter") { e.preventDefault(); open(n._block); }
 });
 addEventListener("resize", place);
+
+// Plain lines keep their own history too, so ⌘Z after clicking away undoes the whole line
+areas.forEach((a) => a.addEventListener("focusin", (e) => { const el = e.target.closest("[data-ed]"); if (el) el._at = { text: el.textContent, pend: pending.get(el) }; }));
+const setPlain = (el, s) => { el.textContent = s.text; if (s.pend) { pending.set(el, s.pend); el.dataset.edChanged = ""; } else { pending.delete(el); delete el.dataset.edChanged; } };
+areas.forEach((a) => a.addEventListener("focusout", (e) => {
+  const el = e.target.closest("[data-ed]");
+  const at = el?._at;
+  if (!at) return;
+  el._at = null;
+  if (el.textContent === at.text) return;
+  const now = { text: el.textContent, pend: pending.get(el) };
+  remember(() => setPlain(el, at), () => setPlain(el, now));
+}));
+// ⌘Z and ⌘⇧Z outside a text box step back and forward through whole changes
+document.addEventListener("keydown", (e) => {
+  if (!root.classList.contains("ed-on") || !(e.metaKey || e.ctrlKey) || e.key.toLowerCase() !== "z") return;
+  const t = document.activeElement;
+  if (t && (t.isContentEditable || /^(INPUT|TEXTAREA)$/.test(t.tagName))) return; // the browser handles those
+  e.preventDefault();
+  const step = (e.shiftKey ? redos : undos).pop();
+  if (!step) return toast(e.shiftKey ? "Nothing to redo." : "Nothing to undo.");
+  (e.shiftKey ? step.redo : step.undo)();
+  (e.shiftKey ? undos : redos).push(step);
+  render();
+});
 
 render();
