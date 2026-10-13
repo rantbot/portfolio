@@ -169,12 +169,9 @@ const swap = (text, before, after) => {
   return text.slice(0, i) + after + text.slice(i + before.length);
 };
 let blocks = [];
-async function markMarkdown() {
-  blocks = [];
-  if (!isMd) return;
-  let found;
-  try { found = mdBlocks((await readFile(page)).text); }
-  catch (e) { toast(`Couldn’t load this page’s Markdown, so lines with links stay locked. ${e.message}`, true); return; }
+async function markMarkdown(pageText) {
+  if (!isMd || pageText == null) return;
+  const found = mdBlocks(pageText);
   const byText = new Map();
   found.forEach((b) => { const k = blockText(b); if (k) byText.set(k, byText.has(k) ? null : b); }); // null means it's written twice
   const used = new Set();
@@ -183,7 +180,7 @@ async function markMarkdown() {
     const b = byText.get(plainish(el.textContent));
     if (!b || used.has(b)) return;
     used.add(b);
-    const block = { src: b.src, kind: b.kind, after: null, orig: [el], nodes: [] };
+    const block = { mode: "md", path: page, src: b.src, kind: b.kind, start: b.kind === "p" ? b.src.replace(/\s*\n\s*/g, " ") : b.src, after: null, orig: [el], nodes: [] };
     blocks.push(block);
     show(block, [el]);
   });
@@ -201,8 +198,39 @@ function show(block, nodes) {
 }
 function setAfter(block, after) {
   block.after = after;
-  show(block, after == null ? block.orig : renderBlocks(after));
-  if (after == null) pending.delete(block); else pending.set(block, { before: block.src, after, md: true });
+  show(block, after == null ? block.orig : block.mode === "html" ? [preview(block, after)] : renderBlocks(after));
+  if (after == null) pending.delete(block); else pending.set(block, pend(block, after));
+}
+// What gets written to the file. Template lines are HTML, so the Markdown typed in the box becomes HTML again.
+const toHtml = (block, md) => renderInline(md).replace(/<a href="([^"]*)">/g, (_, u) => (block.linkClass ? `<a href="${u}" class="${block.linkClass}">` : `<a href="${u}">`));
+const pend = (block, text) => ({ before: block.src, after: block.mode === "html" ? toHtml(block, text) : text, md: true, text });
+function preview(block, md) { const n = block.orig[0].cloneNode(false); n.innerHTML = toHtml(block, md); return n; }
+
+// ---- Lines with links or formatting in a template (like the Work together page)
+// They open as Markdown too, then go back into the template as HTML when published.
+const INLINE = new Set(["A", "STRONG", "B", "EM", "I", "CODE", "BR"]);
+function inlineOnly(el) {
+  return [...el.querySelectorAll("*")].every((n) => INLINE.has(n.tagName) && [...n.attributes].every((a) => n.tagName === "A" ? a.name === "href" || a.name === "class" : false));
+}
+function htmlToMd(node) {
+  return [...node.childNodes].map((n) => {
+    if (n.nodeType === 3) return n.textContent;
+    if (n.nodeType !== 1) return "";
+    const inner = htmlToMd(n);
+    return ({ A: `[${inner}](${n.getAttribute("href")})`, STRONG: `**${inner}**`, B: `**${inner}**`, EM: `*${inner}*`, I: `*${inner}*`, CODE: "`" + inner + "`", BR: " " })[n.tagName] ?? inner;
+  }).join("").replace(/\s+/g, " ").trim();
+}
+function markHtml(el, pageText) {
+  if (!pageText || !inlineOnly(el)) return false;
+  const re = finder(el.innerHTML.replace(/&amp;/g, "&").replace(/&nbsp;/g, " "));
+  const hits = pageText.match(re);
+  if (!hits || hits.length !== 1) return false;
+  const start = htmlToMd(el);
+  const link = el.querySelector("a[class]");
+  const block = { mode: "html", path: page, src: hits[0], kind: "p", start, linkClass: link ? link.getAttribute("class") : "ul", after: null, orig: [el], nodes: [] };
+  blocks.push(block);
+  show(block, [el]);
+  return true;
 }
 
 // ---- Interface// ---- Interface
@@ -274,12 +302,13 @@ const SEL = "h1, h2, h3, h4, p, li, figcaption, blockquote, dt, dd, span, a.butt
 const autolink = (n) => n.nodeName === "A" && n.hasAttribute("data-autolink") && [...n.childNodes].every((c) => c.nodeType === 3);
 const leaf = (el) => [...el.childNodes].every((n) => n.nodeType === 3 || n.nodeName === "BR" || autolink(n)) && el.textContent.trim().length > 1;
 const ownText = (el) => [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
-function markEditable() {
+function markEditable(pageText) {
   const all = [...main.querySelectorAll(SEL), ...(footer ? footer.querySelectorAll(SEL + ", nav a") : [])];
   all.forEach((el) => {
     if (el.closest("[data-edmd]")) return;
     if (el.closest(".sr, .sr-label, svg, [aria-hidden='true'], .search-dialog, time, .carousel-count, .footer-name, .footer-year")) return;
     if (leaf(el)) { el.dataset.ed = ""; el.contentEditable = "true"; el.spellcheck = true; }
+    else if (ownText(el) && main.contains(el) && markHtml(el, pageText)) return;
     else if (ownText(el)) { el.dataset.edFixed = ""; el.title = "This line has links or formatting that can’t be edited here. Ask Claude to change it."; }
   });
 }
@@ -329,8 +358,11 @@ function askForKey() {
 async function start() {
   if (!getToken() && !(await askForKey())) return;
   root.classList.add("ed-on");
-  await markMarkdown();
-  markEditable();
+  blocks = [];
+  const pageText = page ? (await readFile(page).catch(() => null))?.text : null;
+  if (page && pageText == null) toast("Couldn’t load this page’s source, so lines with links stay locked.", true);
+  await markMarkdown(pageText);
+  markEditable(pageText);
   render();
 }
 function stop(discard) {
@@ -352,7 +384,7 @@ async function publish() {
   for (const [el, { before, after, md }] of pending) {
     try {
       const inFooter = !md && !!el.closest(".site-footer");
-      const path = md ? page : inFooter ? await locateFooter(before) : await locate(before);
+      const path = md ? el.path : inFooter ? await locateFooter(before) : await locate(before);
       if (!byFile.has(path)) byFile.set(path, []);
       byFile.get(path).push({ el, before, after, inFooter, md });
     } catch (e) { failed.push(e.message); }
@@ -366,7 +398,7 @@ async function publish() {
       await gh(`/contents/${encodeURI(path)}`, { method: "PUT", body: JSON.stringify({ message: `Edit copy in ${path.replace(/^src\//, "")}`, content: b64encode(text), sha: f.sha, branch: BRANCH }) });
       edits.forEach(({ el, after, md }) => {
         pending.delete(el);
-        if (md) { el.src = after; el.after = null; el.orig = el.nodes; show(el, el.nodes); } else delete el.dataset.edChanged;
+        if (md) { el.src = after; el.start = el.after; el.after = null; el.orig = el.nodes; show(el, el.nodes); } else delete el.dataset.edChanged;
       });
       undos.length = redos.length = 0;
       saved += edits.length;
@@ -440,7 +472,7 @@ let ta = null; // its text box
 let saved = [0, 0]; // the selection, kept while the link box has focus
 const undos = [], redos = []; // whole-block changes, for ⌘Z once you've clicked away
 
-const shown = (b) => (b.after ?? (b.kind === "p" ? b.src.replace(/\s*\n\s*/g, " ") : b.src));
+const shown = (b) => b.after ?? b.start;
 const grow = () => { if (ta) { ta.style.height = "auto"; ta.style.height = ta.scrollHeight + "px"; } };
 function place() {
   if (!active || !ta) return;
@@ -472,12 +504,13 @@ function open(block) {
   grow();
   ta.focus();
   linkBox.hidden = true;
+  fmt.querySelectorAll('[data-f="ul"], [data-f="ol"]').forEach((b) => (b.hidden = block.mode === "html")); // template lines can't hold lists
   place();
 }
 function track() {
   if (!active) return;
   const v = ta.value.replace(/\s+$/, "");
-  if (v.trim() && v !== shown({ ...active, after: null })) pending.set(active, { before: active.src, after: v, md: true });
+  if (v.trim() && v !== active.start) pending.set(active, pend(active, v));
   else pending.delete(active);
   render();
 }
@@ -490,7 +523,7 @@ function close() {
   let v = box.value.replace(/\s+$/, "");
   if (!v.trim()) { toast("A block can’t be empty here. Ask Claude to remove it.", true); v = box._start; }
   const was = box._was;
-  const now = v === shown({ ...block, after: null }) ? null : v;
+  const now = v === block.start ? null : v;
   setAfter(block, now);
   if (now !== was) remember(() => setAfter(block, was), () => setAfter(block, now));
   render();
@@ -550,7 +583,7 @@ function saveLink(remove) {
 }
 // Turn the selected lines into a list, switch the kind of list, or take the list away
 function list(kind) {
-  if (!ta) return;
+  if (!ta || active.mode === "html") return;
   const v = ta.value, a = ta.selectionStart, b = ta.selectionEnd;
   const s = v.lastIndexOf("\n", a - 1) + 1;
   let e = v.indexOf("\n", b > a && v[b - 1] === "\n" ? b - 1 : b);
@@ -567,7 +600,7 @@ function list(kind) {
 function keys(e) {
   const mod = e.metaKey || e.ctrlKey;
   if (e.key === "Escape") { e.preventDefault(); ta.value = ta._start; ta.blur(); return; }
-  if (e.key === "Enter" && mod) { e.preventDefault(); ta.blur(); return; }
+  if (e.key === "Enter" && (mod || active?.mode === "html")) { e.preventDefault(); ta.blur(); return; } // template lines are a single line
   if (mod && e.shiftKey && (e.code === "Digit8" || e.code === "Digit7")) { e.preventDefault(); return list(e.code === "Digit8" ? "ul" : "ol"); }
   if (mod && !e.shiftKey && /^[bik]$/i.test(e.key)) {
     e.preventDefault();
