@@ -31,9 +31,7 @@ read_next:
     why: My work at thoughtbot
 ---
 
-In July 2026, I stood up at RubyConf to talk about the year Ruby Central had just had.
-
-Everyone in the room knew it had been a hard one, and I didn’t want to pretend otherwise. I acknowledged the difficult year and the uncertainty that was still ahead. I thanked the community. And I tried to keep the focus where it belonged, on people. Ruby’s strength has always come from its developers, maintainers and contributors, and from the relationships between them, far more than from any institution, including the one I was there to represent.
+In July 2026, I stood up at RubyConf to talk about the year Ruby Central had just had. Everyone in the room knew it had been a hard one, and I didn’t want to pretend otherwise. I acknowledged the difficult year and the uncertainty that was still ahead. I thanked the community. And I tried to keep the focus where it belonged, on people. Ruby’s strength has always come from its developers, maintainers and contributors, and from the relationships between them, far more than from any institution, including the one I was there to represent.
 
 By the last day of the conference, I was asking people to do more than listen. Come by the Ruby Central booth. Learn about the steering committees. Volunteer. Turning goodwill into people who show up turned out to be harder than it sounds, and that lesson stayed with me.
 

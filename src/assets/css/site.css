@@ -319,6 +319,7 @@ a:hover .text-panel-title { transform: translateY(-3px); }
 .skill-links .arrow-link + .arrow-link { margin-left: 0; }
 
 /* Story pages, set for long reading */
+.case .prose > p:first-of-type::after { content: ""; display: block; clear: both; }
 .case .prose > p:first-of-type::first-letter { float: left; font-size: 3.4em; line-height: 0.82; padding: 0.06em 0.08em 0 0; font-weight: 340; }
 .case .prose hr { border: 0; margin: 2.6em 0; text-align: center; }
 .case .prose hr::after { content: "⁂"; color: var(--muted); font-size: 1.1em; letter-spacing: 0.2em; }

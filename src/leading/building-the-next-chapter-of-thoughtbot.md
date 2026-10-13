@@ -35,9 +35,7 @@ featured: 1
 highlight: "Since 2023, grew from one of five Managing Directors to the only one, and reshaped how the Americas business sells, staffs and delivers."
 ---
 
-The first project was small on purpose.
-
-A leading pharmaceutical company wanted help with a limited discovery engagement. They already had a long-term agency handling their important work, and we were a new name with a narrow brief.
+The first project was small on purpose. A leading pharmaceutical company wanted help with a limited discovery engagement. They already had a long-term agency handling their important work, and we were a new name with a narrow brief.
 
 Our team did excellent work. That performance earned us trust, and the trust gave me an opening. Over time, we expanded the relationship, took the place of the agency that had been there for years, and grew that small discovery project into $3.5 million in sold work.
 

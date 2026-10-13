@@ -28,9 +28,7 @@ read_next:
     why: The bigger picture at thoughtbot
 ---
 
-In Philadelphia, we met in an old bank vault.
-
-The conference had wrapped for the day. The talks were over, the hallways were emptying, and most people were heading to dinner or back to their hotels. A smaller group was heading somewhere else. They had an invitation, and an address almost nobody else had.
+In Philadelphia, we met in an old bank vault. The conference had wrapped for the day. The talks were over, the hallways were emptying, and most people were heading to dinner or back to their hotels. A smaller group was heading somewhere else. They had an invitation, and an address almost nobody else had.
 
 It’s hard to think of a better place for a secret than a room that was built to keep things safe.
 
