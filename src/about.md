@@ -37,52 +37,35 @@ education:
 
 I learned to make things from some of the best people in the business. Then I became a pretty good maker myself. Eventually, I discovered that I enjoyed helping other people make things just as much.
 
-Over the years, I’ve found my place helping founders and executives turn complicated challenges into a series of simpler decisions. I love bringing clarity to uncertainty, helping good people do ambitious work, and figuring out how to turn big ideas into real businesses.
+Today I help founders and executives turn complicated challenges into a series of simpler decisions, and turn big ideas into real businesses.
 
-I’ve always believed in increasing ambition rather than simply doing less. And I think we’re entering an extraordinary moment for people willing to think bigger.
-
-AI is making it easier than ever to turn ideas into reality. But just because we can build something doesn’t mean we should. As making becomes easier, judgment becomes more valuable. Knowing what not to build, where to focus, how to get to market quickly, and when to make the difficult decisions can make all the difference.
-
-That’s where I want to spend my time. Helping people make better bets, build stronger businesses, and prepare for whatever comes next.
+AI is making it easier than ever to build things. As making gets easier, judgment becomes more valuable. Knowing what not to build, where to focus, and when to make the difficult decisions can make all the difference. That’s where I want to spend my time.
 
 ## How I got here
 
 I started a window-washing company at sixteen and have been making things ever since.
 
-At NBC, I went from intern to editor, shooter, and producer, working across emerging technologies from virtual worlds and interactive television to early AI-powered closed captioning. It was also where I first learned the importance of business development and partnerships, and how bringing the right people and ideas together could create entirely new opportunities.
+At NBC, I went from intern to editor, shooter, and producer, working on emerging technology from virtual worlds to early AI-powered closed captioning. It’s also where I learned how much the right partnerships can open up.
 
-I founded Why Leave Astoria, a neighborhood social network that grew to more than 10,000 members. What started as a digital platform became a real community, creating friendships, bringing neighbors together, and raising tens of thousands of dollars annually for charity. I even officiated the wedding of two people who met through the platform.
+I founded Why Leave Astoria, a neighborhood social network that grew to more than 10,000 members and raised tens of thousands of dollars a year for charity. I even officiated the wedding of two people who met through it.
 
-At AOL, I went from Director of Product on one of the company’s smallest teams to leading product across the organization. I worked closely with the CEO and COO on the company’s future, including the strategy and acquisitions that would help shape its eventual exit. Along the way, I served as GM of AOL Entertainment, overseeing brands including Moviefone, AOL TV, Cambio, and AOL Music, with a $40M P&L and a 70-person team.
+At AOL, I went from Director of Product on one of the smallest teams to leading product across the company, working with the CEO and COO on strategy and acquisitions. As GM of AOL Entertainment, I ran Moviefone, AOL TV, Cambio, and AOL Music, with a $40M P&L and a 70-person team.
 
-At North Kingdom, I joined a legendary creative team and learned how much storytelling, craftsmanship, and design polish matter when creating experiences for the world’s biggest brands. That experience inspired me to co-found Wildebeest, a consultancy that brought the same creative ambition to building real products and platforms.
+North Kingdom taught me how much storytelling and craft matter. That inspired me to co-found Wildebeest, which over nine years worked with Google, YouTube, Disney, and GM and won a Webby, a Cannes Lions Grand Prix, and a D&AD Pencil.
 
-Over nine years, we grew Wildebeest from nothing into a company working with the people and brands we’d once dreamed of collaborating with, including Google, YouTube, Disney, and GM. Along the way, our work earned some of the industry’s highest honors, including a Webby, a Cannes Lions Grand Prix, and a D&AD Pencil.
-
-I joined [thoughtbot](https://thoughtbot.com/) as one of five Managing Directors and grew into leading the entire Americas business. Today, my work spans growth, organizational design, consulting, and helping teams and clients navigate the changing landscape of technology and product development. I also serve on thoughtbot’s board and as President of [Ruby Central](https://rubycentral.org/), supporting the people and organizations behind the Ruby ecosystem.
+I joined [thoughtbot](https://thoughtbot.com/) as one of five Managing Directors. Today I lead the Americas business and serve on the board. I’m also President of [Ruby Central](https://rubycentral.org/), supporting the people behind the Ruby ecosystem.
 
 ## Always making something
 
-Making things is my career, and it’s also how I spend most of my free time.
+On a weekend I might be building an app, working on a book, restoring my old Ford truck, or fixing something at the Old West saloon I built near Joshua Tree. I also own vacation rentals across Southern California and invest in founders bringing the physical and digital worlds together.
 
-On any given weekend, I might be building an app, working on a book, restoring my old Ford truck, or fixing something at my place in the desert. I built an authentic Old West saloon near Joshua Tree, which has given me a pretty good excuse to collect Western memorabilia.
-
-I also own vacation rental properties across Southern California, where creating memorable physical experiences has become another creative outlet.
-
-I’m an angel investor in innovative founders pursuing unconventional ideas, particularly those exploring what’s possible when the physical and digital worlds come together.
-
-Closer to home, I’ve helped organize neighborhood produce pickups, sixteen weeks of drive-in movies, and a monthly community cleanup in Ladera Heights that’s still going six years later.
-
-The projects are different, but the motivation is pretty much the same. I love seeing an idea become something real, especially when it brings people together or makes their lives a little better.
+Closer to home, I’ve helped organize produce pickups, sixteen weeks of drive-in movies, and a monthly Ladera Heights cleanup that’s still going six years later.
 
 ## What I believe
 
-- Technology should increase our ambition, not just make the things we already do more efficient.
-- The biggest opportunity with AI is attempting things that weren’t possible before. Doing the same work with fewer people is a much smaller prize.
+- The biggest opportunity with AI is attempting things that weren’t possible before.
 - Knowing what not to build is becoming as important as knowing how to build.
-- Most complicated problems can be broken into a series of simpler decisions.
 - Speed matters, but only when you’re heading in the right direction.
-- The best prototypes help people discover what matters before committing to building it.
 - Trust what people do over what they say.
 - Be honest when something isn’t working, especially when it was your idea.
 - You can’t know exactly what comes next, but you can build something that’s ready for it.
