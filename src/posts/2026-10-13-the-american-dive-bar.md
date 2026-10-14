@@ -5,17 +5,13 @@ date: 2026-10-13
 kind: making
 topics: [fun]
 meta: Lightning talk and film
-tone: "#23262E"
-ink: "#E9E4D8"
-cover_kicker: The American Dive Bar
-cover_lines:
-  - An exploration of
-  - a fragile ecosystem
+image: /assets/images/projects/the-american-dive-bar.jpg
+image_alt: "Dusty wishbones hanging from an old gas lamp over the bar at McSorley's Old Ale House in New York"
 try_url: https://rantbot.github.io/dive-bars/
 try_label: Watch the film
 ---
 
-Since 1999 I've been doing field research on the American dive bar. Mostly at night, and all of it involving beer. Sixty-eight sites so far, from Vancouver to Guayaquil, and the survey is still going.
+Since 1999 I've been doing field research on the American dive bar. Mostly at night, and all of it involving beer. Sixty-eight cities so far, from Vancouver to Guayaquil, with many dives in each, and the survey is still going.
 
 So when I had five minutes for a lightning talk, I knew what it would be about. I told it like a prestige nature documentary, with me as the field researcher studying a species science never recognized.
 
@@ -46,5 +42,4 @@ I built the talk and the film with Claude, as plain web pages hosted for free on
 <!-- TO ADD, if you like:
 1. Where you gave the lightning talk, and how the room took it.
 2. A favorite field note someone has left in the journal.
-3. A real photo from one of your research sites, to replace the typographic cover.
 -->

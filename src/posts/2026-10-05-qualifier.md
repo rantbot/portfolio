@@ -1,6 +1,6 @@
 ---
 title: Qualifier, moving a sales lead forward with one emoji
-description: A Slack app that turns a checkmark on an inbound opportunity into an enriched, qualified deal in our CRM, with a brief on the people involved.
+description: A Slack app that turns a checkmark on an inbound opportunity into a qualified deal in our CRM, and helps me prepare for the meetings that follow.
 date: 2026-10-05
 kind: making
 topics: [team]
@@ -15,6 +15,12 @@ New opportunities arrive in a Slack channel. Qualifying one can take three or fo
 React with a checkmark to an inbound opportunity and Qualifier finds the deal and shows you, privately, exactly what it would change. The stage, name, project types, value and description, along with the deal's fit score. Click Yes and it saves those changes, moves the deal to Qualification and replies in the thread with every change, before and after. Then it posts a short brief on each contact, so those first emails start from what we already know.
 
 Mention it in the thread to ask about the company or the people, and it answers with sources and saves the answer on the deal for whoever picks it up next.
+
+## It helps me prepare for meetings
+
+Qualifier does more than move a deal forward. It also helps me get ready for the meetings that come next. Between the brief on each contact and the answers saved on the deal, I walk into a first call knowing who I'm meeting and what we already know about their company.
+
+<!-- TO ADD: a sentence on how you use it before a meeting, or a meeting where it made a difference. -->
 
 ## Guardrails first
 
