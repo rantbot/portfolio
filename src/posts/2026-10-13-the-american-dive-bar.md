@@ -19,6 +19,11 @@ So when I had five minutes for a lightning talk, I knew what it would be about. 
 
 The American Dive Bar walks through the habitat, the anatomy of a healthy dive, the species still out there today, like the Neighborhood Dive and the Biker Bar, the false dives that imitate them, and what it takes to protect the ones that are left. Under it all is sound from my own field recordings, real bar rooms and a biker bar late at night, crossfading as the slides advance.
 
+<figure class="spread">
+  <img src="/assets/images/projects/anatomy-of-a-dive.jpg" alt="An engraving-style plate titled Anatomy of a Dive, a bar interior with eight parts labeled in mock Latin, from old neon and low light to the brewery clock, the unexplained artifact and the jukebox" width="1456" height="819" loading="lazy" decoding="async">
+  <figcaption>Plate III, the anatomy of a healthy dive.</figcaption>
+</figure>
+
 ## Stagehand came from it
 
 The talk needed things a slide app can't do well. Narration, room sound that changes with each scene, and a script only I could see. Once that was working, I wanted the same setup for every talk, so I pulled it out into its own tool, [Stagehand](/making/stagehand/).
