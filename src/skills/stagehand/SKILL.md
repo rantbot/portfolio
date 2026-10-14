@@ -17,10 +17,10 @@ choose the layouts. Stagehand handles the look.
 
 1. **A polished Markdown file**, named after the talk, like `onboarding-retro.md`.
    This is the source of truth. It follows the format below exactly, so
-   anyone can drop it on https://rantbot.github.io/stagehand
+   anyone can drop or paste it on https://rantbot.github.io/stagehand/
    to preview it, change the theme and present.
-2. **A one line link to present it.** Tell them to open the make page above and
-   drop the file in. If they asked for a file they can present directly, also
+2. **A one line link to present it.** Tell them to open the Stagehand page above and
+   drop the file in or paste it. If they asked for a file they can present directly, also
    write the HTML deck described at the end.
 
 Then say in two or three sentences what you changed and what they should check,
@@ -49,6 +49,12 @@ like placeholder figures or a picture they need to supply.
 
 ## The format
 
+**Read the current format first.** It lives at
+https://rantbot.github.io/stagehand/format.md and changes with every release.
+If you can fetch it, it wins over anything written below, which is a copy kept
+here for when you cannot.
+
+
 Slides are separated by a line with three dashes. Front matter goes first.
 
 ```markdown
@@ -76,6 +82,19 @@ Notes: What the speaker says while the title card is up.
 
 Notes: Here is the plan. (click) First... (click) Then... (click) And last...
 ```
+
+To walk through code, put steps after the language, like ` ```ruby {1|2-3|5} `.
+Each `(click)` in the notes lights up the next group of lines. Use it when the
+talk explains code a piece at a time.
+
+People may paste a list of notes from the start page, each naming a slide and
+line, with their deck below. Make exactly those changes, keep the rest as it
+is, and hand back the whole Markdown file.
+
+For a brand or a look of their own, add any of `accent`, `background` and
+`text` (hex colors like `#FF5A36`), `font` and `body-font` (names from Google
+Fonts) to the front matter. They work on top of any theme, so this is the way to
+restyle a deck while still handing back Markdown.
 
 `theme` is `classic` (dark and warm, documentary), `paper` (light and
 editorial, for retros, research and case studies) or `signal` (bold and bright,
@@ -111,8 +130,20 @@ script the speaker sees, so they are a good place for sources.
 Slides with too many words get smaller type automatically, but it is better to
 cut words than to rely on that.
 
+### Check it before you hand it back
+
+The start page checks every deck and points to the slide and line, so anything
+you leave wrong shows up as a warning for them. Before you finish, go through
+the same list: every code block closed, every setting valid, no slide over about
+70 words, no list over six items, no heading over twelve words, and no more
+`(click)` cues than things to reveal, and code steps only name lines the code has. If you can run code, `checkMarkdown` in
+https://rantbot.github.io/stagehand/markdown.js returns the same list.
+
 Pictures are paths relative to where the deck is hosted. Ask for the files if
 the talk needs real photos, and leave a clearly named placeholder otherwise.
+
+When they want to send the slides to someone, tell them Save as PDF on the
+start page gives one slide per page.
 
 ## The HTML deck, when they want one
 
@@ -126,8 +157,8 @@ the file works on its own, anywhere it is served from.
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rebuilding onboarding</title>
-<link rel="stylesheet" href="https://thoughtbot.github.io/experiments/content/stagehand/app/stagehand.css">
-<link rel="stylesheet" href="https://thoughtbot.github.io/experiments/content/stagehand/app/themes/paper.css">
+<link rel="stylesheet" href="https://rantbot.github.io/stagehand/stagehand.css">
+<link rel="stylesheet" href="https://rantbot.github.io/stagehand/themes/paper.css">
 </head>
 <body>
 <div class="deck" data-title="Rebuilding onboarding" data-length="8" data-grain="off">
@@ -148,7 +179,7 @@ the file works on its own, anywhere it is served from.
     <aside>The script. (click) Where the first item appears.</aside>
   </section>
 </div>
-<script type="module" src="https://thoughtbot.github.io/experiments/content/stagehand/app/stagehand.js"></script>
+<script type="module" src="https://rantbot.github.io/stagehand/stagehand.js"></script>
 </body>
 </html>
 ```
@@ -160,13 +191,10 @@ In HTML you may go past the Markdown layouts with the slide kit: `eyebrow`,
 Slides are a fixed 1920 by 1080 canvas with 128px padding, so sizes are in
 pixels. Never put inline `style` on elements to animate them, and keep any
 custom CSS in one `style` tag in the head. The full guide is at
-https://github.com/thoughtbot/experiments/blob/main/content/stagehand/app/README.md
+https://github.com/rantbot/stagehand/blob/main/README.md
 
 ## Presenting, for when they ask
 
 Open the deck and click it once. That turns on sound and opens the speaker
 window. Click again for full screen, then share that window. Arrow keys or a
 clicker drive both windows. The speaker window can edit the script on the fly.
-
----
-From Ran Craycraft, “Stagehand, a deck from a Markdown file.” Shared under the MIT License.
