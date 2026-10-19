@@ -3,7 +3,7 @@ title: Building the next chapter of thoughtbot
 description: An established consultancy needed new ways to grow. As Managing Director, I reshaped how the Americas business is organized, sells, delivers and makes money.
 tldr: "I joined thoughtbot in 2023 as one of five Managing Directors. Today I’m the only one, leading the Americas business and serving on the board. I made an inherited, high-overhead team profitable, grew revenue 10% and then 20%, turned a small discovery project into $3.5 million in sold work, and launched a subscription offering that passed $1 million in recurring revenue in its first year."
 date: 2026-10-07
-updated: 2026-10-12
+updated: 2026-10-19
 led: inside
 case_study:
   organization: thoughtbot
@@ -19,6 +19,7 @@ case_study:
     - Grew a discovery project into $3.5 million in sold work
     - Launched a subscription offering that passed $1 million in recurring revenue in its first year
     - Led three reorganizations and established the Delivery discipline
+    - Introduced project margin tracking and scorecards for each department
 tone: "#1E2B25"
 ink: "#EDE9DF"
 cover_kicker: thoughtbot
@@ -72,6 +73,14 @@ I worked with our CEO to reorganize into two geographic teams, one in the Americ
 
 That meant investing in discipline leaders and giving them real ownership. It also meant making hard structural decisions about cost. Together, those changes helped make the business I inherited profitable.
 
+## Knowing where we stand
+
+When I arrived, thoughtbot wasn’t tracking the margin or profitability of its projects. It’s hard to make a business profitable when you can’t see which work is paying for itself, so I introduced project margin tracking.
+
+I also introduced scorecards for each department. Every team now has a clear picture of how it’s doing, and we can talk about performance with the same numbers in front of us.
+
+<!-- TO ADD: what the scorecards measure, and a decision or two that the margin numbers changed (a project you rescoped, a rate you raised, a kind of work you stopped taking). -->
+
 ## Delivery as a discipline
 
 I believe great consulting is measured by whether the client gets the outcome they actually need. Building what was requested is only part of that.
@@ -118,7 +127,7 @@ Some of that comes from earlier in my career. [North Kingdom](/leading/bringing-
 
 I joined as one of five Managing Directors, and today I’m the only one. Revenue grew 10% in my first year and 20% in my second. The team I inherited became profitable. A small discovery project became $3.5 million in sold work with a leading pharmaceutical company. A new subscription offering reached more than $1 million in annual recurring revenue and 24 clients in its first year. And a stronger delivery practice has helped us both win and keep clients.
 
-Just as important to me are the systems that will keep paying off. How teams are structured, how we win work, how we deliver it, how we use time between projects, how we test ideas and how people build the tools that make them better.
+Just as important to me are the systems that will keep paying off. How teams are structured, how we measure the work, how we win work, how we deliver it, how we use time between projects, how we test ideas and how people build the tools that make them better.
 
 ## What I believe now
 
