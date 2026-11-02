@@ -1,9 +1,9 @@
 ---
 title: Building the next chapter of thoughtbot
 description: An established consultancy needed new ways to grow. As Managing Director, I reshaped how the Americas business is organized, sells, delivers and makes money.
-tldr: "I joined thoughtbot in 2023 as one of five Managing Directors. Today I’m the only one, leading the Americas business and serving on the board. I made an inherited, high-overhead team profitable, grew revenue 10% and then 20%, turned a small discovery project into $3.5 million in sold work, and launched a subscription offering that passed $1 million in recurring revenue in its first year."
+tldr: "I joined thoughtbot in 2023 as one of five Managing Directors. Today I’m the only one, leading the Americas business and serving on the board. I made an inherited, high-overhead team profitable and grew revenue 10%, then 20%, then 40%. I’ve closed about 70% of Americas deals since 2023, more than $40 million in sold work, and launched a subscription offering that passed $1 million in recurring revenue in its first year. Now I’m turning around the early stage team, which I inherited this year."
 date: 2026-10-07
-updated: 2026-10-19
+updated: 2026-11-02
 led: inside
 case_study:
   organization: thoughtbot
@@ -14,8 +14,9 @@ case_study:
   scope: The Americas business, from sales and staffing to delivery and financial performance
   team: Colleagues across delivery, consulting, sales, marketing, and operations
   outcomes:
-    - Grew revenue 10% in my first year and 20% in my second
+    - Grew revenue 10% in my first year, 20% in my second and 40% in my third
     - Made an inherited, high-overhead team profitable
+    - Closed about 70% of Americas deals since 2023, more than $40 million in sold work
     - Grew a discovery project into $3.5 million in sold work
     - Launched a subscription offering that passed $1 million in recurring revenue in its first year
     - Led three reorganizations and established the Delivery discipline
@@ -34,7 +35,7 @@ read_next:
   - story: wildebeest
     why: The consultancy I ran before
 featured: 1
-highlight: "Since 2023, grew from one of five Managing Directors to the only one, and reshaped how the Americas business sells, staffs and delivers."
+highlight: "Since 2023, grew revenue 10%, then 20%, then 40%, and closed more than $40 million in work as Managing Director."
 ---
 
 The first project was small on purpose. A leading pharmaceutical company wanted help with a limited discovery engagement. They already had a long-term agency handling their important work, and we were a new name with a narrow brief.
@@ -63,7 +64,7 @@ Start focused, show enormous value, and earn a deeper partnership. It lowers the
 
 It also helped the economics. A steady path from small engagements to larger ones was a big part of turning the team I inherited into a profitable one.
 
-I’ve closed over 90% of the Americas deals, some of them the largest in our twenty-three-year history. The pharmaceutical account is the clearest example of the model working at full scale.
+Since 2023, I’ve closed about 70% of the Americas deals, more than three quarters of their value and over $40 million in sold work. This year it’s more than 80% of the deals and 90% of the value. More than half of that work came from extending engagements with clients we already had, which is the model doing what it’s meant to do. Some of those deals are the largest in our twenty-three-year history, and the pharmaceutical account is the clearest example of the model working at full scale.
 
 ## Three reorganizations
 
@@ -78,8 +79,6 @@ That meant investing in discipline leaders and giving them real ownership. It al
 When I arrived, thoughtbot wasn’t tracking the margin or profitability of its projects. It’s hard to make a business profitable when you can’t see which work is paying for itself, so I introduced project margin tracking.
 
 I also introduced scorecards for each department. Every team now has a clear picture of how it’s doing, and we can talk about performance with the same numbers in front of us.
-
-<!-- TO ADD: what the scorecards measure, and a decision or two that the margin numbers changed (a project you rescoped, a rate you raised, a kind of work you stopped taking). -->
 
 ## Delivery as a discipline
 
@@ -123,9 +122,13 @@ It means clients feel deeply understood. The team anticipates what they need. Th
 
 Some of that comes from earlier in my career. [North Kingdom](/leading/bringing-north-kingdom-to-the-us/) taught me how much storytelling and craft matter. [Wildebeest](/leading/wildebeest/) taught me to bring creative ambition to building real products. At thoughtbot, I’m trying to bring those ideas together into a consulting experience people remember.
 
+## Doing it again
+
+This year, I inherited thoughtbot’s early stage team, which helps founders get to market quickly and builds greenfield products. It isn’t profitable. Making it healthy comes first, so my fourth year will be a down year for growth after three years of gains. I’ve done this once already at thoughtbot, and the work is the same. Look at how the team is organized, how it wins work, how it delivers and what it offers, all together.
+
 ## What changed
 
-I joined as one of five Managing Directors, and today I’m the only one. Revenue grew 10% in my first year and 20% in my second. The team I inherited became profitable. A small discovery project became $3.5 million in sold work with a leading pharmaceutical company. A new subscription offering reached more than $1 million in annual recurring revenue and 24 clients in its first year. And a stronger delivery practice has helped us both win and keep clients.
+I joined as one of five Managing Directors, and today I’m the only one. Revenue grew 10% in my first year, 20% in my second and 40% in my third. The team I inherited became profitable. I’ve closed about 70% of the Americas deals since 2023, more than $40 million in sold work. A small discovery project became $3.5 million in sold work with a leading pharmaceutical company. A new subscription offering reached more than $1 million in annual recurring revenue and 24 clients in its first year. And a stronger delivery practice has helped us both win and keep clients.
 
 Just as important to me are the systems that will keep paying off. How teams are structured, how we measure the work, how we win work, how we deliver it, how we use time between projects, how we test ideas and how people build the tools that make them better.
 
