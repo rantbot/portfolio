@@ -59,7 +59,7 @@ I joined [thoughtbot](/leading/building-the-next-chapter-of-thoughtbot/) as one 
 
 On a weekend, I might be building an app, working on a book, restoring my old Ford truck, taking a long motorcycle ride, or fixing something on my ranch near Joshua Tree. I also own vacation rentals across Southern California and invest in founders bringing the physical and digital worlds together.
 
-Over the years, I’ve helped organize fresh produce pickups for seniors, sixteen weeks of drive-in movies for my community during COVID, and founded a [monthly Ladera Heights cleanup](/leading/produce-movie-nights-and-a-cleanup/) that’s still going six years later.
+Over the years, I’ve helped organize fresh produce pickups for seniors, sixteen weeks of drive-in movies for my community during COVID, and founded a [monthly Ladera Heights cleanup](/leading/produce-movie-nights-and-a-cleanup/) that’s still going seven years later.
 
 ## What I believe
 

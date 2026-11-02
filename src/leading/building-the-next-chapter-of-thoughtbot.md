@@ -20,6 +20,7 @@ case_study:
     - Grew a discovery project into $3.5 million in sold work
     - Launched a subscription offering that passed $1 million in recurring revenue in its first year
     - Led three reorganizations and established the Delivery discipline
+    - Created Space Station, which turned unbooked time into prioritized work for the company
     - Introduced project margin tracking and scorecards for each department
 tone: "#1E2B25"
 ink: "#EDE9DF"
@@ -104,9 +105,9 @@ That focus separates thoughtbot from lower-cost development shops. It positions 
 
 ## Using every hour well
 
-In any consultancy, some people are between client projects at any given time. That capacity often drifts. I wanted it pointed at the work that matters most.
+In any consultancy, some people are between client projects at any given time. At thoughtbot, people used to spend that unbooked time working independently on whatever they wanted. I wanted it pointed at the work that matters most.
 
-I created Space Station to give consultants who aren’t on a client engagement meaningful internal work that moves the business forward. Instead of waiting for the next project, they improve how thoughtbot operates, build new capabilities, and make our client work better.
+Creating Space Station was one of the biggest changes I made at thoughtbot. It prioritizes impactful work for the team, so unbooked time benefits the whole company. Consultants between engagements take on that shared list together. They improve how thoughtbot operates, build new capabilities, and make our client work better.
 
 I also created the [Experiments framework](/making/experiments-a-home-for-what-thoughtbot-people-build/), a structured way for people to test ideas, challenge assumptions, and share what they learn. The goal is to make experimenting a normal part of how thoughtbot works. It’s early, and it’s already starting to spark the kinds of conversations I hoped it would.
 

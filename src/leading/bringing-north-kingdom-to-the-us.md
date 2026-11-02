@@ -1,6 +1,6 @@
 ---
 title: Bringing North Kingdom to the United States
-description: As Founding Managing Director, I helped the Swedish digital studio North Kingdom launch its operation in the United States.
+description: North Kingdom wanted to focus on products, entertainment, and the US market. I knew all three, so I joined the agency I admired most, before I’d ever consulted.
 date: 2026-10-06
 led: inside
 case_study:
@@ -13,8 +13,9 @@ tone: "#DDE3E6"
 ink: "#1D2A30"
 cover_kicker: North Kingdom
 cover_lines:
-  - A new office
-  - A new market
+  - Products
+  - Entertainment
+  - The US market
 read_next:
   - story: wildebeest
     why: What came next
@@ -24,12 +25,10 @@ read_next:
 
 ## The situation
 
-North Kingdom had built its reputation in Sweden and wanted a home in the United States.
+North Kingdom had built its reputation in Sweden, and it was the creative agency I admired most. It wanted to focus on products, entertainment, and the US market.
 
-<!-- TO ADD: why the US mattered to North Kingdom, and what you were asked to build. -->
+I was an expert in all three. I didn’t have any consulting experience yet, and I joined eagerly anyway.
 
 ## What I did
 
 As Founding Managing Director, I helped launch North Kingdom’s US operation.
-
-<!-- TO ADD: the first clients, the first hires, and the decisions that shaped the office. Then "## What changed" and "## What I learned", including how it led to Wildebeest. -->

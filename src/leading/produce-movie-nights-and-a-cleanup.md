@@ -1,30 +1,31 @@
 ---
-title: Produce pickups, movie nights, and a cleanup that’s still going
-description: What I’ve organized in Ladera Heights, from a driveway produce pickup during COVID to a monthly cleanup that’s six years old.
+title: Farm box pickups, movie nights, and a cleanup that’s still going
+description: What I’ve organized in Ladera Heights, from a driveway farm box pickup during COVID to a monthly cleanup that’s seven years old.
 date: 2026-10-04
 led: community
 case_study:
   organization: Ladera Heights
   role: Neighborhood organizer and civic association board member
-  years: 2020 to present
-  start: 2020
+  years: 2019 to present
+  start: 2019
   scope: Food access, community events, and neighborhood upkeep
   outcomes:
-    - A driveway produce pickup for neighbors, including seniors
+    - A driveway farm box pickup for neighbors, including seniors
     - Sixteen weeks of drive-in movie nights
-    - A monthly cleanup still running six years later
+    - A monthly cleanup still running seven years later
+    - Featured on KCRW’s Greater LA
 tone: "#E4E6D9"
 ink: "#2A3020"
 cover_kicker: Ladera Heights
 cover_lines:
-  - Produce
+  - Farm boxes
   - Movie nights
   - Cleanups
 read_next:
   - story: why-leave-astoria
     why: Another neighborhood, another community
   - story: diy-kits-and-who-does-the-work
-    why: Something else that started in 2020
+    why: Something else that started during COVID
 ---
 
 ## The situation
@@ -35,7 +36,7 @@ When the pandemic arrived, the things that held our neighborhood together stoppe
 
 ### Fresh produce, picked up from my driveway
 
-I organized a neighborhood produce pickup to help residents, including seniors, get farm-fresh food safely. They pulled up, opened the trunk, and I loaded a box of produce.
+I organized a neighborhood farm box pickup to help residents, including seniors, get farm-fresh food safely. They pulled up, opened the trunk, and I loaded a box of produce.
 
 ### Sixteen weeks of neighborhood movie nights
 
@@ -43,10 +44,10 @@ I produced a weekly drive-in movie series during the pandemic, giving neighbors 
 
 ### A monthly cleanup
 
-I started a monthly cleanup to fill the gaps in maintenance and to bring neighbors together around a shared responsibility.
+I started a monthly cleanup by myself in 2019, to fill the gaps in maintenance. During COVID, I invited neighbors to join, and it became a way to bring people together around a shared responsibility.
+
+In 2021, I talked about it with Steve Chiotakis on KCRW’s Greater LA. [Listen to the interview](https://www.kcrw.com/shows/greater-la/stories/tortoises-coronavirus-la-cleanup).
 
 ## What changed
 
-The cleanup is still going six years later. What started as a way to cover for three jurisdictions became a regular reason for neighbors to meet.
-
-<!-- TO ADD: how many people took part, and a moment that stayed with you. Then "## What I learned" in your own words. -->
+The cleanup is still going seven years later. What started as a way to cover for three jurisdictions became a regular reason for neighbors to meet.

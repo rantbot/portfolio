@@ -206,6 +206,7 @@ function setAfter(block, after) {
 }
 // A removed block leaves a small note in its place while editing, so it can be brought back
 function gone(block) {
+  if (block.joined) { const h = document.createElement("span"); h.hidden = true; h.className = "ed-joined"; return h; } // its words now live in the block it joined
   const n = document.createElement("div");
   n.className = "ed-gone";
   n.innerHTML = `<span>Removed</span><button type="button">Bring it back</button>`;
@@ -487,6 +488,7 @@ fmt.innerHTML = `<button type="button" data-f="bold" title="Bold (⌘B)" aria-la
   `<button type="button" data-f="ul" title="Bulleted list (⌘⇧8)" aria-label="Bulleted list">• List</button>` +
   `<button type="button" data-f="ol" title="Numbered list (⌘⇧7)" aria-label="Numbered list">1. List</button>` +
   `<button type="button" data-f="para" title="New paragraph (press Enter twice)">+ Paragraph</button>` +
+  `<button type="button" data-f="join" title="Join with the paragraph above (Backspace at the start)">Join above</button>` +
   `<button type="button" data-f="del" title="Remove this block">Remove</button>` +
   `<span class="ed-fmt-link" hidden><input type="text" inputmode="url" placeholder="https://…" aria-label="Link address" spellcheck="false"><button type="button" data-f="apply">Save</button><button type="button" data-f="unlink" hidden>Remove</button></span>`;
 document.body.append(fmt);
@@ -533,7 +535,7 @@ function open(block, addBelow) {
   if (addBelow) ta.setSelectionRange(ta.value.length, ta.value.length);
   linkBox.hidden = true;
   // Template lines are single lines, so they can't hold lists or new paragraphs, or be removed from here
-  fmt.querySelectorAll('[data-f="ul"], [data-f="ol"], [data-f="para"], [data-f="del"]').forEach((b) => (b.hidden = block.mode === "html"));
+  fmt.querySelectorAll('[data-f="ul"], [data-f="ol"], [data-f="para"], [data-f="join"], [data-f="del"]').forEach((b) => (b.hidden = block.mode === "html"));
   place();
 }
 function track() {
@@ -627,10 +629,41 @@ function list(kind) {
     : lines.map((l) => { const ind = l.match(/^\s*/)[0]; return ind + (kind === "ul" ? "- " : `${++n}. `) + l.replace(ITEM, "").trim(); }).join("\n");
   edit(s, e, out, s + out.length);
 }
+// Joining paragraphs. Backspace at the start of a paragraph joins it to the one above,
+// Delete at the end joins the one below. Both have to be plain paragraphs that sit next to each other.
+const textOf = (b) => (b === active ? ta.value : shown(b)).replace(/\s+$/, "");
+const plainPara = (b) => b && b.mode === "md" && b.kind === "p" && b.after !== "" && !/^\s*([-*+]\s|\d+[.)]\s|#|>)/.test(textOf(b));
+function neighbor(b, dir) {
+  let n = dir < 0 ? b.nodes[0].previousElementSibling : b.nodes[b.nodes.length - 1].nextElementSibling;
+  while (n && (n.classList.contains("ed-joined") || n.classList.contains("ed-gone"))) n = dir < 0 ? n.previousElementSibling : n.nextElementSibling;
+  const nb = n?._block;
+  return nb && nb !== b && nb.path === b.path && nb.nodes[dir < 0 ? nb.nodes.length - 1 : 0] === n ? nb : null;
+}
+function join(prev, cur) {
+  if (!plainPara(prev) || !plainPara(cur)) return toast("Only two paragraphs next to each other can be joined.");
+  const a = textOf(prev), c = textOf(cur).trim();
+  const was = (b) => (b === active ? ta._was : b.after);
+  const prevWas = was(prev), curWas = was(cur);
+  if (active) { active = ta = null; fmt.hidden = true; linkBox.hidden = true; }
+  const joined = c ? `${a} ${c}` : a;
+  const prevNow = joined === prev.start ? null : joined;
+  const doIt = () => { cur.joined = true; setAfter(cur, ""); setAfter(prev, prevNow); };
+  const undoIt = () => { cur.joined = false; setAfter(cur, curWas); setAfter(prev, prevWas); };
+  doIt();
+  remember(undoIt, doIt);
+  render();
+  open(prev);
+  const at = a.length + (c ? 1 : 0);
+  ta.setSelectionRange(at, at);
+}
 function keys(e) {
   const mod = e.metaKey || e.ctrlKey;
   if (e.key === "Escape") { e.preventDefault(); ta.value = ta._start; ta.blur(); return; }
   if (e.key === "Enter" && (mod || active?.mode === "html")) { e.preventDefault(); ta.blur(); return; } // template lines are a single line
+  if (!mod && !e.shiftKey && active?.mode === "md" && ta.selectionStart === ta.selectionEnd) {
+    if (e.key === "Backspace" && ta.selectionStart === 0) { const p = neighbor(active, -1); if (p) { e.preventDefault(); return join(p, active); } }
+    if (e.key === "Delete" && ta.selectionStart >= ta.value.replace(/\s+$/, "").length) { const n = neighbor(active, 1); if (n) { e.preventDefault(); return join(active, n); } }
+  }
   if (mod && e.shiftKey && (e.code === "Digit8" || e.code === "Digit7")) { e.preventDefault(); return list(e.code === "Digit8" ? "ul" : "ol"); }
   if (mod && !e.shiftKey && /^[bik]$/i.test(e.key)) {
     e.preventDefault();
@@ -661,6 +694,7 @@ fmt.addEventListener("click", (e) => {
   if (f === "unlink") saveLink(true);
   if (f === "ul" || f === "ol") list(f);
   if (f === "para" && ta) { const n = ta.value.replace(/\s+$/, "").length; edit(n, ta.value.length, "\n\n", n + 2); }
+  if (f === "join" && ta) { const p = neighbor(active, -1); p ? join(p, active) : toast("There’s no paragraph right above this one."); }
   if (f === "del" && ta) { ta.value = ""; ta.blur(); }
 });
 linkInput.addEventListener("keydown", (e) => {
