@@ -35,10 +35,22 @@ I’d lived in Astoria for three years when I realized I didn’t have many frie
 
 So in 2007, I started an online group for people in the area to meet at happy hours at local bars and restaurants. It began with a handful of people, and at first I organized and went to every event myself.
 
+<figure>
+  <img src="/assets/images/why-leave-astoria/happy-hour.jpg" alt="Members of Why Leave Astoria high-fiving across a table at a neighborhood bar" width="432" height="286" loading="lazy" decoding="async">
+  <figcaption>A Why Leave Astoria happy hour.</figcaption>
+</figure>
+
 Then we outgrew the places we met. It got to the point where you couldn’t meet everyone who showed up, and people had less in common with each other. In 2008, I turned the meetup into Why Leave Astoria, a social network for the neighborhood, with profiles, message boards, video chat, and polls.
 
 I built it so members could make it their own. They could plan their own events, find people from their hometown, and start groups around shared interests. We kept hosting events too, including Cocktails for the Cure, a benefit for the American Cancer Society. Eventually I left my TV production job to run it full time.
 
+Every Friday, the WLA?! Weekender went out by email with a full plan for the weekend, much of it free or discounted. The site listed what was happening around the neighborhood each day, from happy hours to bingo and open mic nights, and pointed people to other local groups. I kept organizing too, with Sunday wine tastings, a Halloween pub crawl, and the Great Astoria Water Balloon Fight in Astoria Park.
+
 ## Growing past 10,000
 
-By November 2009, when [the New York Daily News wrote about us](https://www.nydailynews.com/2009/11/16/ran-craycraft-gives-folks-a-reason-to-go-out-locally-and-have-a-blast/), more than 3,100 neighbors had joined. Why Leave Astoria went on to grow to more than 10,000 members. We brought people together through events and charitable activities, and worked with local businesses on deals and loyalty programs.
+In March 2009, [QNS reported](https://qns.com/2009/03/reasons-to-say-i-heart-astoria/) that the original meetup had more than 500 members and the site was gaining about five new members a day. By November 2009, when [the New York Daily News wrote about us](https://www.nydailynews.com/2009/11/16/ran-craycraft-gives-folks-a-reason-to-go-out-locally-and-have-a-blast/), more than 3,100 neighbors had joined. Why Leave Astoria went on to grow to more than 10,000 members. We brought people together through events and charitable activities, and worked with local businesses on deals and loyalty programs.
+
+<figure>
+  <img src="/assets/images/why-leave-astoria/stage.jpg" alt="Two men talking on a stage in front of a colorful geometric backdrop, with glasses of water on a small white table" width="1600" height="1067" loading="lazy" decoding="async">
+  <figcaption>On stage at a Why Leave Astoria event.</figcaption>
+</figure>

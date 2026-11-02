@@ -9,6 +9,7 @@ case_study:
   years: 2014 to 2023
   start: 2014
   scope: Running the studio, from new business to delivery
+  team: Co-founded with Kevin Ng
   outcomes:
     - An AI product studio many years before the rest of the industry
     - The studio big agencies called for cutting edge work at scale
@@ -36,10 +37,20 @@ After helping [North Kingdom launch in the US](/leading/bringing-north-kingdom-t
 
 ## What I did
 
-I co-founded Wildebeest and ran it as Managing Partner for nine years. We built products, platforms, and experimental experiences for clients including Google, YouTube, Disney, and GM.
+I co-founded Wildebeest with Kevin Ng and ran it as Managing Partner for nine years. We built products, platforms, and experimental experiences for clients including Google, YouTube, Disney, and GM.
+
+<figure>
+  <img src="/assets/images/wildebeest/founders.jpg" alt="Ran Craycraft and his cofounder Kevin Ng standing together by the water in a harbor" width="1600" height="1067" loading="lazy" decoding="async">
+  <figcaption>Kevin Ng and me.</figcaption>
+</figure>
 
 ## Years ahead on AI
 
 Wildebeest was an AI product studio long before most of the industry was thinking about AI. We were many years ahead of the rest.
 
 That made us the studio the big agencies called. When they had a cutting edge idea and didn’t know how to pull it off, especially when it had to run in production at a large scale, they came to us.
+
+<figure>
+  <img src="/assets/images/wildebeest/studio.jpg" alt="The Wildebeest team gathered around a table in a bright studio, talking over a laptop" width="700" height="400" loading="lazy" decoding="async">
+  <figcaption>The Wildebeest team in the studio.</figcaption>
+</figure>

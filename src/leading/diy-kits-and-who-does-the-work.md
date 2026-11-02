@@ -16,6 +16,8 @@ case_study:
     - Moved from a monthly subscription to on demand
     - Simplified the kits into projects that take under 30 minutes
     - Runs as a dropship lifestyle business, with merchandise through Printful
+image: /assets/images/relic/cover.jpg
+image_alt: "A finished RELIC Classic folding knife with a black handle and brass bolster, resting on a notebook beside a wristwatch"
 tone: "#E8E1D6"
 ink: "#33281E"
 cover_kicker: Made by hand
@@ -35,6 +37,11 @@ About a month into the pandemic, [John Gist](https://www.johngist.com/) and I no
 We had an itch to get outside and use our hands. I had a small garage, and it became the place where we tried things. RELIC started there, as experiments on a workbench.
 
 RELIC is a hands-on skill in a box. Each kit teaches a traditional skill, and when you finish, you have an heirloom quality piece you made yourself.
+
+<figure>
+  <img src="/assets/images/relic/box.jpg" alt="A RELIC box on a workbench with the parts of a folding knife laid out in front of it, handle scales, blade, liners, and screws" width="1600" height="1196" loading="lazy" decoding="async">
+  <figcaption>Everything for one knife comes in the box.</figcaption>
+</figure>
 
 John and I have been close collaborators for about twenty years, and even closer friends. Starting something together was never the hard part.
 
@@ -58,6 +65,11 @@ The cleavers taught us the hardest lesson. We sold many of them, and early on we
 
 So we focused on the two kits people wanted most. One is a classic knife assembly kit. The other is a classic wood handled knife kit, which isn’t as difficult as some of the others and makes a better gift.
 
+<figure>
+  <img src="/assets/images/relic/parts.jpg" alt="The parts of the Classic folding knife kit spread across a table, blade, handle scales, bolsters, liners, and small screws" width="1600" height="1600" loading="lazy" decoding="async">
+  <figcaption>The Classic kit, before it becomes a knife.</figcaption>
+</figure>
+
 ## Why we stopped being a subscription
 
 RELIC began as a monthly subscription box. The knife kits are why it didn't stay one. If nobody could finish the first box in three months, another box every month only made the pile bigger. We moved to on demand, so people buy a kit when they want one.
@@ -71,6 +83,11 @@ The bigger lesson took us years. About 99% of our sales are gifts. It's very rar
 We can see that because of a QR code. Every kit has one that opens the instructions, and the scans show us who is actually making the thing.
 
 That changed how we think about every kit. The buyer picks it, and the person who receives it decides whether it gets made. The people receiving them want a project they can finish in under 30 minutes. So over the years we've adjusted the complexity of the kits to fit.
+
+<figure>
+  <img src="/assets/images/relic/hands.jpg" alt="Hands fitting together a RELIC folding knife" width="1600" height="1600" loading="lazy" decoding="async">
+  <figcaption>Putting one together.</figcaption>
+</figure>
 
 ## The 85% who want to, and the 25% who do
 

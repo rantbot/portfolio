@@ -13,7 +13,7 @@ case_study:
     - A driveway farm box pickup for neighbors, including seniors
     - Sixteen weeks of drive-in movie nights
     - A monthly cleanup still running seven years later
-    - Featured on KCRW’s Greater LA
+    - Featured on KCRW’s Greater LA and in Wave Newspapers
 tone: "#E4E6D9"
 ink: "#2A3020"
 cover_kicker: Ladera Heights
@@ -41,6 +41,10 @@ I organized a neighborhood farm box pickup to help residents, including seniors,
 ### Sixteen weeks of neighborhood movie nights
 
 I produced a weekly drive-in movie series during the pandemic, giving neighbors a way to enjoy an evening together while keeping their distance.
+
+It started as Friday nights in a neighbor’s driveway, with movies projected onto a white garage door and everyone bringing their own chairs, food, and drinks. That summer, as marketing chair of the Ladera Heights Civic Association, I moved it to a church parking lot at Fairfax and Slauson, with room for 30 cars and the sound sent to each car’s radio. We didn’t sell tickets. Neighbors donated what they could, and the studios, partly because of the pandemic, offered us 20 films to show. We opened with *A Beautiful Day in the Neighborhood*.
+
+In July 2020, Wave Newspapers wrote about it. [Read the story](https://wavepublication.com/ladera-heights-offers-drive-in-movie-for-neighbors/).
 
 ### A monthly cleanup
 
