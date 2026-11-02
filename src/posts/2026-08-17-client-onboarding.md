@@ -22,7 +22,7 @@ So far it has delighted clients, mostly because it helps us get the right people
 - **A bias review on the wording.** Options run from neutral to permissive, delivery choices are symmetric, and the list of priorities shuffles for each person so the first option doesn't win by default.
 - **One submission at the end.** Saving every step would have meant messy partial rows and more cost for very little benefit.
 
-Answers land in a spreadsheet rather than a database, so the people doing the matching can read, sort and argue with them without logging into anything new. Each response gets a short AI-written summary of what a consultant should do to succeed with that client.
+Answers land in a spreadsheet rather than a database, so the people doing the matching can read, sort, and argue with them without logging into anything new. Each response gets a short AI-written summary of what a consultant should do to succeed with that client.
 
 ## A kindness to both sides
 

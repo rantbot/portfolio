@@ -14,7 +14,7 @@ skill: meeting-prep-brief
 
 Good sales calls start with ten minutes of homework. Who is this person, what does their company do, have we talked before, and is there an open deal. Most of us do that homework in a rush, or skip it.
 
-Meeting Prep does it for you. Connect your Google Calendar once, and before every one-off meeting with someone outside thoughtbot it books a private prep block with a brief inside. The brief opens with the links you'll want first and whether this is really a first call. Then it covers the people, their company, your history in the CRM, the engagement so far and a plan for the call.
+Meeting Prep does it for you. Connect your Google Calendar once, and before every one-off meeting with someone outside thoughtbot it books a private prep block with a brief inside. The brief opens with the links you'll want first and whether this is really a first call. Then it covers the people, their company, your history in the CRM, the engagement so far, and a plan for the call.
 
 ## Written for the moment you read it
 

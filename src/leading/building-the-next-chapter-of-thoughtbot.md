@@ -1,6 +1,6 @@
 ---
 title: Building the next chapter of thoughtbot
-description: An established consultancy needed new ways to grow. As Managing Director, I reshaped how the Americas business is organized, sells, delivers and makes money.
+description: An established consultancy needed new ways to grow. As Managing Director, I reshaped how the Americas business is organized, sells, delivers, and makes money.
 tldr: "I joined thoughtbot in 2023 as one of five Managing Directors. Today I’m the only one, leading the Americas business and serving on the board. I made an inherited, high-overhead team profitable and grew revenue 10%, then 20%, then 40%. I’ve closed about 70% of Americas deals since 2023, more than $40 million in sold work, and launched a subscription offering that passed $1 million in recurring revenue in its first year. Now I’m turning around the early stage team, which I inherited this year."
 date: 2026-10-07
 updated: 2026-11-02
@@ -14,7 +14,7 @@ case_study:
   scope: The Americas business, from sales and staffing to delivery and financial performance
   team: Colleagues across delivery, consulting, sales, marketing, and operations
   outcomes:
-    - Grew revenue 10% in my first year, 20% in my second and 40% in my third
+    - Grew revenue 10% in my first year, 20% in my second, and 40% in my third
     - Made an inherited, high-overhead team profitable
     - Closed about 70% of Americas deals since 2023, more than $40 million in sold work
     - Grew a discovery project into $3.5 million in sold work
@@ -52,19 +52,19 @@ thoughtbot has built software for clients for more than twenty years, and it has
 
 The team I inherited was capable, and it carried more overhead than the work could support. Making it healthy meant looking at everything together. How we were organized, how we won work, how we delivered it, and what we offered.
 
-Today I lead the Americas business and serve on thoughtbot’s board. My responsibilities run from strategy, revenue and profitability to client relationships, staffing, sales, delivery and how the organization is designed. I lead through directors and discipline leaders, and I stay close to the biggest commercial opportunities and the decisions that shape the team. I’ve also led thoughtbot’s Europe, West Asia and Africa region, which gave me a wider view of how consulting works in different markets.
+Today I lead the Americas business and serve on thoughtbot’s board. My responsibilities run from strategy, revenue, and profitability to client relationships, staffing, sales, delivery, and how the organization is designed. I lead through directors and discipline leaders, and I stay close to the biggest commercial opportunities and the decisions that shape the team. I’ve also led thoughtbot’s Europe, West Asia, and Africa region, which gave me a wider view of how consulting works in different markets.
 
 ## Earning the bigger work
 
 Asking a new client to commit to a large, expensive engagement before they’ve seen what you can do is a hard sell. So we made it easier to start.
 
-We created [Shaping Sprints](https://thoughtbot.com/services/shaping-sprint) to be short, fixed-price engagements, usually one or two weeks long. They give a client a real experience of how we think, how we collaborate, and how good our product judgment is, before they make a bigger commitment. For us, they’re a chance to understand the client’s business, build credibility and find the work that will matter most.
+We created [Shaping Sprints](https://thoughtbot.com/services/shaping-sprint) to be short, fixed-price engagements, usually one or two weeks long. They give a client a real experience of how we think, how we collaborate, and how good our product judgment is, before they make a bigger commitment. For us, they’re a chance to understand the client’s business, build credibility, and find the work that will matter most.
 
 Start focused, show enormous value, and earn a deeper partnership. It lowers the risk for clients, and it lets thoughtbot stand out through what we actually deliver instead of what we promise.
 
 It also helped the economics. A steady path from small engagements to larger ones was a big part of turning the team I inherited into a profitable one.
 
-Since 2023, I’ve closed about 70% of the Americas deals, more than three quarters of their value and over $40 million in sold work. This year it’s more than 80% of the deals and 90% of the value. More than half of that work came from extending engagements with clients we already had, which is the model doing what it’s meant to do. Some of those deals are the largest in our twenty-three-year history, and the pharmaceutical account is the clearest example of the model working at full scale.
+Since 2023, I’ve closed about 70% of the Americas deals, more than three quarters of their value, and over $40 million in sold work. This year it’s more than 80% of the deals and 90% of the value. More than half of that work came from extending engagements with clients we already had, which is the model doing what it’s meant to do. Some of those deals are the largest in our twenty-three-year history, and the pharmaceutical account is the clearest example of the model working at full scale.
 
 ## Three reorganizations
 
@@ -84,7 +84,7 @@ I also introduced scorecards for each department. Every team now has a clear pic
 
 I believe great consulting is measured by whether the client gets the outcome they actually need. Building what was requested is only part of that.
 
-So I established Delivery as its own discipline. Delivery keeps every engagement focused on the client’s goals, their expectations, the business results they care about and the health of the relationship. Delivery Leads carry that accountability, while senior consultants keep leading projects and making technical and product decisions.
+So I established Delivery as its own discipline. Delivery keeps every engagement focused on the client’s goals, their expectations, the business results they care about, and the health of the relationship. Delivery Leads carry that accountability, while senior consultants keep leading projects and making technical and product decisions.
 
 It connects what we sell with the value clients receive. And it has paid off commercially. A stronger focus on delivery has helped thoughtbot win new work and keep the clients we have.
 
@@ -98,7 +98,7 @@ Alongside that, I helped launch an AI and Product Innovation practice, for clien
 
 ## Choosing where to compete
 
-After feeling downward pressure on rates, I led a transition to focus on regulated industries in 2025, including healthcare, financial services, and insurance. These are places where technical quality, reliability, product judgment and trust matter as much as speed.
+After feeling downward pressure on rates, I led a transition to focus on regulated industries in 2025, including healthcare, financial services, and insurance. These are places where technical quality, reliability, product judgment, and trust matter as much as speed.
 
 That focus separates thoughtbot from lower-cost development shops. It positions us as a partner for difficult, consequential work, the kind where the cost of getting it wrong is high. The pharmaceutical account shows what that can look like when it comes together.
 
@@ -106,7 +106,7 @@ That focus separates thoughtbot from lower-cost development shops. It positions 
 
 In any consultancy, some people are between client projects at any given time. That capacity often drifts. I wanted it pointed at the work that matters most.
 
-I created Space Station to give consultants who aren’t on a client engagement meaningful internal work that moves the business forward. Instead of waiting for the next project, they improve how thoughtbot operates, build new capabilities and make our client work better.
+I created Space Station to give consultants who aren’t on a client engagement meaningful internal work that moves the business forward. Instead of waiting for the next project, they improve how thoughtbot operates, build new capabilities, and make our client work better.
 
 I also created the [Experiments framework](/making/experiments-a-home-for-what-thoughtbot-people-build/), a structured way for people to test ideas, challenge assumptions, and share what they learn. The goal is to make experimenting a normal part of how thoughtbot works. It’s early, and it’s already starting to spark the kinds of conversations I hoped it would.
 
@@ -124,19 +124,19 @@ Some of that comes from earlier in my career. [North Kingdom](/leading/bringing-
 
 ## Doing it again
 
-This year, I inherited thoughtbot’s early stage team, which helps founders get to market quickly and builds greenfield products. It isn’t profitable. Making it healthy comes first, so my fourth year will be a down year for growth after three years of gains. I’ve done this once already at thoughtbot, and the work is the same. Look at how the team is organized, how it wins work, how it delivers and what it offers, all together.
+This year, I inherited thoughtbot’s early stage team, which helps founders get to market quickly and builds greenfield products. It isn’t profitable. Making it healthy comes first, so my fourth year will be a down year for growth after three years of gains. I’ve done this once already at thoughtbot, and the work is the same. Look at how the team is organized, how it wins work, how it delivers, and what it offers, all together.
 
 ## What changed
 
-I joined as one of five Managing Directors, and today I’m the only one. Revenue grew 10% in my first year, 20% in my second and 40% in my third. The team I inherited became profitable. I’ve closed about 70% of the Americas deals since 2023, more than $40 million in sold work. A small discovery project became $3.5 million in sold work with a leading pharmaceutical company. A new subscription offering reached more than $1 million in annual recurring revenue and 24 clients in its first year. And a stronger delivery practice has helped us both win and keep clients.
+I joined as one of five Managing Directors, and today I’m the only one. Revenue grew 10% in my first year, 20% in my second, and 40% in my third. The team I inherited became profitable. I’ve closed about 70% of the Americas deals since 2023, more than $40 million in sold work. A small discovery project became $3.5 million in sold work with a leading pharmaceutical company. A new subscription offering reached more than $1 million in annual recurring revenue and 24 clients in its first year. And a stronger delivery practice has helped us both win and keep clients.
 
-Just as important to me are the systems that will keep paying off. How teams are structured, how we measure the work, how we win work, how we deliver it, how we use time between projects, how we test ideas and how people build the tools that make them better.
+Just as important to me are the systems that will keep paying off. How teams are structured, how we measure the work, how we win work, how we deliver it, how we use time between projects, how we test ideas, and how people build the tools that make them better.
 
 ## What I believe now
 
 Good delivery is the best sales strategy there is. Great work on a small engagement is how you earn the big one.
 
-Change the system, and performance follows. Working harder inside a structure that doesn’t fit only gets you so far. The biggest gains I’ve seen came from changing how teams are organized, how work is won and how spare capacity is used.
+Change the system, and performance follows. Working harder inside a structure that doesn’t fit only gets you so far. The biggest gains I’ve seen came from changing how teams are organized, how work is won, and how spare capacity is used.
 
 Exceptional people do their best work with strong systems and better tools around them. A big part of my job is building those.
 

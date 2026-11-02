@@ -13,7 +13,7 @@ image_alt: Illustration of Freshsales for thoughtbot in use
 
 Business development happens in email. Our CRM lives in another tab. Every time I wanted to know whether someone was already a contact, or what was happening on their deal, I had to leave the conversation to find out.
 
-This extension adds a CRM sidebar to Gmail. On a thread it shows who's already in Freshsales, the related deal, a recommended next step and recent activity, with a box to add a note. If there's no deal yet, creating one takes a couple of clicks.
+This extension adds a CRM sidebar to Gmail. On a thread it shows who's already in Freshsales, the related deal, a recommended next step, and recent activity, with a box to add a note. If there's no deal yet, creating one takes a couple of clicks.
 
 ## Five people a week
 

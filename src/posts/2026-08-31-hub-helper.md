@@ -1,6 +1,6 @@
 ---
 title: Hub Helper, small fixes for the reports we read every week
-description: Sorting, filters, color bands and a one-click weekly review for the utilization and delivery reports in our internal app.
+description: Sorting, filters, color bands, and a one-click weekly review for the utilization and delivery reports in our internal app.
 date: 2026-08-31
 kind: making
 topics: [team]

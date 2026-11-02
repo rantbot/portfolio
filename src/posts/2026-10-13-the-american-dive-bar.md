@@ -20,7 +20,7 @@ So when I had five minutes for a lightning talk, I knew what it would be about. 
 The American Dive Bar walks through the habitat, the anatomy of a healthy dive, the species still out there today, like the Neighborhood Dive and the Biker Bar, the false dives that imitate them, and what it takes to protect the ones that are left. Under it all is sound from my own field recordings, real bar rooms and a biker bar late at night, crossfading as the slides advance.
 
 <figure class="spread">
-  <img src="/assets/images/projects/anatomy-of-a-dive.jpg" alt="An engraving-style plate titled Anatomy of a Dive, a bar interior with eight parts labeled in mock Latin, from old neon and low light to the brewery clock, the unexplained artifact and the jukebox" width="1456" height="819" loading="lazy" decoding="async">
+  <img src="/assets/images/projects/anatomy-of-a-dive.jpg" alt="An engraving-style plate titled Anatomy of a Dive, a bar interior with eight parts labeled in mock Latin, from old neon and low light to the brewery clock, the unexplained artifact, and the jukebox" width="1456" height="819" loading="lazy" decoding="async">
   <figcaption>Plate III, the anatomy of a healthy dive.</figcaption>
 </figure>
 
@@ -32,7 +32,7 @@ The talk needed things a slide app can't do well. Narration, room sound that cha
 
 A lightning talk only lives in the room. I wanted something people could watch on their own, so I turned it into a twelve-minute film built from the same slides, with four scenes from the longer version added back in.
 
-[Watch The American Dive Bar](https://rantbot.github.io/dive-bars/). It's an AI-generated film, pulled from my own experiences in these bars. One AI narrator tells the whole story, the slides reveal on cue with the voice, and captions run underneath. You can pause, skip between its twenty chapters, turn captions off and go full screen. At the end there's a field journal that asks for your favorite dive bar and a protocol of your own, so the survey keeps growing.
+[Watch The American Dive Bar](https://rantbot.github.io/dive-bars/). It's an AI-generated film, pulled from my own experiences in these bars. One AI narrator tells the whole story, the slides reveal on cue with the voice, and captions run underneath. You can pause, skip between its twenty chapters, turn captions off, and go full screen. At the end there's a field journal that asks for your favorite dive bar and a protocol of your own, so the survey keeps growing.
 
 The [five-minute version](https://rantbot.github.io/dive-bars/lightning/) is still there for presenting.
 

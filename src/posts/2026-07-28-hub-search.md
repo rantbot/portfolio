@@ -15,7 +15,7 @@ Search is the front door to any internal tool. Ours, inside our operations app H
 
 I didn't want to rebuild search. I wanted to know whether a better front end alone could fix it, without touching anything underneath.
 
-Hub Search adds a Cmd+K palette anywhere in Hub. Results appear as you type across pages, projects, opportunities, teammates, clients, the handbook and the blog, re-ranked in the browser rather than shown in the order the server returns them.
+Hub Search adds a Cmd+K palette anywhere in Hub. Results appear as you type across pages, projects, opportunities, teammates, clients, the handbook, and the blog, re-ranked in the browser rather than shown in the order the server returns them.
 
 ## Ranking with context
 

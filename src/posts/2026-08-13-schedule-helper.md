@@ -13,7 +13,7 @@ image_alt: Illustration of Schedule Helper in use
 
 Staffing a consultancy comes down to one question asked many times a week. Who is free, and when? Our schedule page had the answer, spread across a layout that made it hard to see.
 
-Schedule Helper redraws it as a compact timeline with one row per person. Bars are colored by type of booking rather than by project, so client work, internal projects and investment time never look alike. A red line marks today, and zoom goes from one week to three months. The filters we use most, like department, team, region and skills, sit in a toolbar. Clicking any stretch of free time opens the booking form with the person and dates already filled in.
+Schedule Helper redraws it as a compact timeline with one row per person. Bars are colored by type of booking rather than by project, so client work, internal projects, and investment time never look alike. A red line marks today, and zoom goes from one week to three months. The filters we use most, like department, team, region, and skills, sit in a toolbar. Clicking any stretch of free time opens the booking form with the person and dates already filled in.
 
 Our director of development finds it incredibly useful now.
 

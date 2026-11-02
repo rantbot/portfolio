@@ -7,6 +7,7 @@ led: founded
 case_study:
   organization: Why Leave Astoria
   role: Founder
+  years: 2008 to 2012
   start: 2008
   scope: A hyperlocal social network, events, charitable activities, and local business partnerships
   outcomes:
@@ -24,10 +25,6 @@ read_next:
   - story: produce-movie-nights-and-a-cleanup
     why: Another neighborhood, years later
 ---
-
-<!-- TO ADD: the years you ran it, as case_study years, and the real start year. -->
-
-<!-- TO ADD as "## The situation": what Astoria was like then, and why you started a network for it. -->
 
 ## What I did
 

@@ -1,7 +1,7 @@
 ---
 title: Helping turn around the organization behind the Ruby ecosystem
-description: I joined Ruby Central’s board during a financial, legal and community crisis. As President, I helped return it to financial stability.
-tldr: "I joined Ruby Central’s board in January 2026, during a financial, legal and community crisis, and became its President. In less than a year, the Ruby Alliance and a leaner, volunteer working board returned it to financial stability. The legal threat was resolved, the organization came through a security attack on the Ruby gem ecosystem, and its governance is on firmer ground."
+description: I joined Ruby Central’s board during a financial, legal, and community crisis. As President, I helped return it to financial stability.
+tldr: "I joined Ruby Central’s board in January 2026, during a financial, legal, and community crisis, and became its President. In less than a year, the Ruby Alliance and a leaner, volunteer working board returned it to financial stability. The legal threat was resolved, the organization came through a security attack on the Ruby gem ecosystem, and its governance is on firmer ground."
 date: 2026-10-05
 updated: 2026-10-12
 led: community
@@ -32,7 +32,7 @@ read_next:
     why: My work at thoughtbot
 ---
 
-In July 2026, I stood up at RubyConf to talk about the year Ruby Central had just had. Everyone in the room knew it had been a hard one, and I didn’t want to pretend otherwise. I acknowledged the difficult year and the uncertainty that was still ahead. I thanked the community. And I tried to keep the focus where it belonged, on people. Ruby’s strength has always come from its developers, maintainers and contributors, and from the relationships between them, far more than from any institution, including the one I was there to represent.
+In July 2026, I stood up at RubyConf to talk about the year Ruby Central had just had. Everyone in the room knew it had been a hard one, and I didn’t want to pretend otherwise. I acknowledged the difficult year and the uncertainty that was still ahead. I thanked the community. And I tried to keep the focus where it belonged, on people. Ruby’s strength has always come from its developers, maintainers, and contributors, and from the relationships between them, far more than from any institution, including the one I was there to represent.
 
 By the last day of the conference, I was asking people to do more than listen. Come by the Ruby Central booth. Learn about the steering committees. Volunteer. Turning goodwill into people who show up turned out to be harder than it sounds, and that lesson stayed with me.
 
@@ -60,7 +60,7 @@ Cutting costs would help, but it wouldn’t be enough on its own. Ruby Central n
 
 A big part of the answer was the Ruby Alliance, a coalition of companies making financial and engineering commitments to the long-term health of Ruby.
 
-The idea goes further than a logo on a sponsor page. Members contribute money and technical participation. They get shared visibility into infrastructure priorities, and they take part in regular conversations about the ecosystem’s health, its risks and its roadmap.
+The idea goes further than a logo on a sponsor page. Members contribute money and technical participation. They get shared visibility into infrastructure priorities, and they take part in regular conversations about the ecosystem’s health, its risks, and its roadmap.
 
 We were careful about one thing in particular. The Alliance gives companies a real way to support Ruby without giving any single company control over Ruby Central or the infrastructure it runs. Sustainable support and good stewardship had to come together, or the whole thing would just trade one kind of risk for another.
 
@@ -76,7 +76,7 @@ Those efficiencies, together with the Alliance, are why Ruby Central is on stabl
 
 ## Facts and allegations
 
-Ruby Central also faced a legal threat, rooted in the disputes over RubyGems, Bundler and former maintainers. It raised hard questions about access, responsibilities, governance and authority, and it carried real financial risk for an organization that couldn’t afford much more.
+Ruby Central also faced a legal threat, rooted in the disputes over RubyGems, Bundler, and former maintainers. It raised hard questions about access, responsibilities, governance, and authority, and it carried real financial risk for an organization that couldn’t afford much more.
 
 I kept coming back to one principle. Separate what’s documented from what’s alleged. I didn’t want Ruby Central making admissions it couldn’t support, or accepting unreasonable demands just to make a public controversy go away.
 
@@ -100,7 +100,7 @@ Fixing the money and the legal exposure would only matter if the organization wa
 
 The work focuses on making fiduciary responsibility clear, strengthening financial oversight, and spelling out what officers and committees are responsible for. We’ve worked on staggered board terms so the board doesn’t turn over all at once, on safeguards against conflicts of interest, and on clearer relationships between Ruby Central and the technical communities it serves.
 
-One distinction mattered to me more than most. Community participation should be meaningful, without creating competing centers of legal authority. Steering committees can advise, organize and contribute a great deal. The board keeps responsibility for the nonprofit’s finances, its legal obligations and its decisions as an institution. When everyone knows where that line is, people can contribute without wondering who’s really in charge.
+One distinction mattered to me more than most. Community participation should be meaningful, without creating competing centers of legal authority. Steering committees can advise, organize, and contribute a great deal. The board keeps responsibility for the nonprofit’s finances, its legal obligations, and its decisions as an institution. When everyone knows where that line is, people can contribute without wondering who’s really in charge.
 
 ## Where things stand
 
@@ -110,7 +110,7 @@ There’s more to do. We’re still finding the best ways for the community to t
 
 ## What I believe now
 
-A crisis is rarely one problem. Ruby Central’s financial, legal, security and trust problems were all connected, and fixing any one of them meant working on the others at the same time. Trying to solve them in order would have taken longer than the organization had.
+A crisis is rarely one problem. Ruby Central’s financial, legal, security, and trust problems were all connected, and fixing any one of them meant working on the others at the same time. Trying to solve them in order would have taken longer than the organization had.
 
 Institutions are made of people. What’s worth protecting in an organization like Ruby Central is the community it serves, and the way to protect it is to talk to people directly, early, and honestly.
 

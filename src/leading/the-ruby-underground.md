@@ -6,14 +6,14 @@ led: inside
 case_study:
   organization: thoughtbot
   org_url: https://thoughtbot.com
-  role: Creator, host and producer
+  role: Creator, host, and producer
   years: 2024 to present
   start: 2024
   scope: An invite-only event series in the after hours of major Ruby and Rails conferences
   outcomes:
-    - Five cities, Detroit, Chicago, Philadelphia, Las Vegas and Austin
+    - Five cities, Detroit, Chicago, Philadelphia, Las Vegas, and Austin
     - 50 to 100 guests a night, all by invitation
-    - Deals, hires, new companies, books and podcasts that started in the room
+    - Deals, hires, new companies, books, and podcasts that started in the room
 tone: "#1C1B19"
 ink: "#E6DCC8"
 cover_kicker: The Ruby Underground
@@ -32,7 +32,7 @@ In Philadelphia, we met in an old bank vault. The conference had wrapped for the
 
 It’s hard to think of a better place for a secret than a room that was built to keep things safe.
 
-Inside were authors, keynote speakers, CTOs, open source and core contributors. The people who built much of what the Ruby and Rails community uses every day, and the people shaping what those tools become in the AI age. Between 50 and 100 of them in one room, with cocktails, hors d’oeuvres and nowhere else to be.
+Inside were authors, keynote speakers, CTOs, open source and core contributors. The people who built much of what the Ruby and Rails community uses every day, and the people shaping what those tools become in the AI age. Between 50 and 100 of them in one room, with cocktails, hors d’oeuvres, and nowhere else to be.
 
 That’s The Ruby Underground. I created it for [thoughtbot](/leading/building-the-next-chapter-of-thoughtbot/) in 2024, and I’ve hosted and produced every one since. It’s become the most sought-after ticket for some of the most influential people in our industry, and it happens after hours, in a place you’d never find on your own.
 
@@ -56,11 +56,11 @@ We keep it between 50 and 100 people. That’s on purpose. Everyone should get a
 
 The first one was in Detroit in 2024, during a Ruby conference there.
 
-Since then we’ve taken it to Chicago, Philadelphia, Las Vegas and Austin, always in the after hours of a major Ruby or Rails conference.
+Since then we’ve taken it to Chicago, Philadelphia, Las Vegas, and Austin, always in the after hours of a major Ruby or Rails conference.
 
 The room matters as much as the guest list. In Chicago, we met in an underground speakeasy in an old fire station. In Philadelphia, it was the bank vault. Each place has a history, and each one feels like somewhere you’re lucky to be.
 
-In Las Vegas and Austin, the goal was the same. Find a room with a story, somewhere most people in town would never think to look, and make it ours for one night.
+In Las Vegas, and Austin, the goal was the same. Find a room with a story, somewhere most people in town would never think to look, and make it ours for one night.
 
 ## How the night works
 
@@ -68,7 +68,7 @@ Once people are inside, the night is about conversation. There are hors d’oeuv
 
 There’s always a social game, created and curated by thoughtbot, with prizes for the winners. It gives people a reason to find each other, and a reason to talk to someone they might not have walked up to on their own.
 
-Everything about the evening is curated, from the agenda to the drinks. None of it is there to show off. It’s there so that people relax, open up and stay longer than they planned to.
+Everything about the evening is curated, from the agenda to the drinks. None of it is there to show off. It’s there so that people relax, open up, and stay longer than they planned to.
 
 ## What happens in the room
 
@@ -78,7 +78,7 @@ One year, a keynote speaker came. Nobody would have guessed they were open to a 
 
 Another night, two developers who had known of each other for years met in person for the first time. They left as business partners.
 
-Those are two stories. There are more. Deals have come out of these nights. People have been hired. Companies have been founded, books have been written and podcasts have been arranged, all from conversations that started in a vault or a speakeasy or a room most of the city doesn’t know exists.
+Those are two stories. There are more. Deals have come out of these nights. People have been hired. Companies have been founded, books have been written, and podcasts have been arranged, all from conversations that started in a vault or a speakeasy or a room most of the city doesn’t know exists.
 
 For thoughtbot, it means staying close to the people who are shaping our industry. That’s hard to do from a booth on an expo floor. It’s a lot easier over a good cocktail, with the right people, in the right room.
 
@@ -90,6 +90,6 @@ Taste in where we meet. Taste in the cocktails we come up with. Taste in who get
 
 Any one of those on its own is a small decision. Together they decide whether a night is forgettable or whether people are still talking about it at the next conference.
 
-AI is making it easier than ever to make things. As making gets easier, taste and judgment matter more, and that’s as true for a night like this as it is for software. Anyone can book a room and order drinks. Deciding which room, which drinks and which people is the work.
+AI is making it easier than ever to make things. As making gets easier, taste and judgment matter more, and that’s as true for a night like this as it is for software. Anyone can book a room and order drinks. Deciding which room, which drinks, and which people is the work.
 
 I think that’s why these nights keep working. The people on the guest list spend their days making choices that shape how thousands of developers work. They notice when someone has made careful choices for them. And when they feel that care, they bring their best ideas into the room.

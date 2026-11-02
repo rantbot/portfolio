@@ -8,6 +8,8 @@ series: "Home"
 meta: Printed book
 image: /assets/images/like-grandma-made/cover.jpg
 image_alt: "The cover of Like Grandma Made, a red gingham book with a cream title panel"
+try_url: https://www.amazon.com/dp/B0HN7DG5XG
+try_label: Buy the book on Amazon
 ---
 My grandmother, Ruth Lavon Craycraft, was happiest with plates to set and people to welcome. Her table was always beautiful. The placemats were straight, the napkins were folded just so, and the chairs sat exactly two inches from the table. When I was small I told her she was the best cook this side of the Mississippi. She would giggle and brush it off.
 
@@ -22,7 +24,7 @@ Look at the table of contents and you meet half of her world. Aunt Doris’s Cor
 So I kept the names. A recipe titled with a person tells you where it came from before you read a word of it.
 
 <figure class="spread">
-  <img src="/assets/images/like-grandma-made/contents.jpg" alt="The table of contents, with recipes named for family and friends, like Aunt Doris’s Cornbread, Uncle Teddy’s Spaghetti and Mrs. Milam’s Deviled Eggs" width="1600" height="1200" loading="lazy" decoding="async">
+  <img src="/assets/images/like-grandma-made/contents.jpg" alt="The table of contents, with recipes named for family and friends, like Aunt Doris’s Cornbread, Uncle Teddy’s Spaghetti, and Mrs. Milam’s Deviled Eggs" width="1600" height="1200" loading="lazy" decoding="async">
   <figcaption>The table of contents reads like a guest list.</figcaption>
 </figure>
 
@@ -73,8 +75,8 @@ The book opens with two short essays, one about her table and one about how she 
 
 After that come a few blank pages headed “It’s your turn.” Grandma found recipes she loved, made them her own, and shared them with the people she cared about. The book asks the next person to do the same.
 
-She didn’t let many people help in her kitchen, and we were the exceptions. She taught us to peel, dice, fry and bake, then to plate, serve, clear the table and make people feel welcome. As she got older, she let us cook for her. This book is how we keep cooking for each other.
+She didn’t let many people help in her kitchen, and we were the exceptions. She taught us to peel, dice, fry, and bake, then to plate, serve, clear the table, and make people feel welcome. As she got older, she let us cook for her. This book is how we keep cooking for each other.
 
 Most of the book came from my own memories. I did a lot of cooking with her, and my sister helped with one of them.
 
-<!-- TO ADD: how it was printed, and how the family received it. -->
+*Like Grandma Made* is out in hardcover, and you can [buy it on Amazon](https://www.amazon.com/dp/B0HN7DG5XG).

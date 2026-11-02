@@ -14,17 +14,17 @@ The first thing I built wasn't a tool. It was a place to put tools.
 
 People at thoughtbot were building useful things on their own, and almost none of it traveled. A great prompt stayed in one person's notes. An extension that saved someone an hour a week never reached the person sitting next to them in Slack.
 
-I'd already created [Space Station](/leading/building-the-next-chapter-of-thoughtbot/) to organize work between client engagements, along with an experiment framework to help people turn ideas into tangible work and shared learning. That work needed a home. So I built Experiments, an internal catalog where every experiment gets a card, a page, an install button and a few honest numbers.
+I'd already created [Space Station](/leading/building-the-next-chapter-of-thoughtbot/) to organize work between client engagements, along with an experiment framework to help people turn ideas into tangible work and shared learning. That work needed a home. So I built Experiments, an internal catalog where every experiment gets a card, a page, an install button, and a few honest numbers.
 
 Today it holds 29 experiments, and dozens of people at thoughtbot are using them.
 
 ## How it works
 
-It's a plain static site with no framework and no build step. Each experiment is a folder with a short description, a picture and a download. Adding one means adding a folder, and a GitHub Action does the rest. It lists the folders, publishes the downloads, and announces new versions in our #experiments channel.
+It's a plain static site with no framework and no build step. Each experiment is a folder with a short description, a picture, and a download. Adding one means adding a folder, and a GitHub Action does the rest. It lists the folders, publishes the downloads, and announces new versions in our #experiments channel.
 
 The only thing that needs a database is what a static file can't know. Visits, hearts, which version each person is running, and which features get used inside each tool.
 
-Later I added a lighter way in. Most people will never build a Chrome extension, and the catalog shouldn't need them to. Now anyone can share a prompt, a skill or a Loom through a short form, and it opens the pull request for them.
+Later I added a lighter way in. Most people will never build a Chrome extension, and the catalog shouldn't need them to. Now anyone can share a prompt, a skill, or a Loom through a short form, and it opens the pull request for them.
 
 ## What I learned
 

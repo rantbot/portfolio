@@ -16,7 +16,7 @@ Chromatic puts your tabs in rainbow order.
 
 Click the toolbar icon, or press Alt+Shift+R, and the tabs in that window line up red through violet by the color of each site's icon. Light icons gather at the start and dark ones at the end, so the whole strip reads as one gradient. Tab groups move as a block, placed by their group color, with the tabs inside sorted too.
 
-Click again to put everything back where it was. If you've opened, closed or moved a tab since, the next click sorts again instead.
+Click again to put everything back where it was. If you've opened, closed, or moved a tab since, the next click sorts again instead.
 
 ## A few details
 

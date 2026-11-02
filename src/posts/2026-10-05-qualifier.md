@@ -12,7 +12,7 @@ image_alt: Illustration of Qualifier in use
 
 New opportunities arrive in a Slack channel. Qualifying one can take three or four emails, sometimes a video call. What shouldn't take any work is the paperwork that comes after, where someone opens the CRM and types in the same details by hand. I wanted that part to take one emoji.
 
-React with a checkmark to an inbound opportunity and Qualifier finds the deal and shows you, privately, exactly what it would change. The stage, name, project types, value and description, along with the deal's fit score. Click Yes and it saves those changes, moves the deal to Qualification and replies in the thread with every change, before and after. Then it posts a short brief on each contact, so those first emails start from what we already know.
+React with a checkmark to an inbound opportunity and Qualifier finds the deal and shows you, privately, exactly what it would change. The stage, name, project types, value, and description, along with the deal's fit score. Click Yes and it saves those changes, moves the deal to Qualification, and replies in the thread with every change, before and after. Then it posts a short brief on each contact, so those first emails start from what we already know.
 
 Mention it in the thread to ask about the company or the people, and it answers with sources and saves the answer on the deal for whoever picks it up next.
 

@@ -16,13 +16,13 @@ try_label: Try Stagehand
 
 Stagehand turns a Markdown file into a presentation that looks designed. Drop the file on the [start page](https://rantbot.github.io/stagehand/), or paste it in, and each slide gets a layout from what's on it. A number becomes a big stat, a quote becomes a pull quote, and a picture fills the screen. Then present it, or save it as a PDF or one HTML file.
 
-There's no account, no build step and nothing to install. Your file never leaves your computer.
+There's no account, no build step, and nothing to install. Your file never leaves your computer.
 
 ## Why not Slides or PowerPoint?
 
-Slides and PowerPoint are good at what they do. They stop making sense when a talk needs something a slide app can't hold. Every slide in Stagehand is part of a web page, so anything I can imagine for a deck can be built, whether that's the look and feel, something working pulled in from across the web, or sound, video and the devices in the room.
+Slides and PowerPoint are good at what they do. They stop making sense when a talk needs something a slide app can't hold. Every slide in Stagehand is part of a web page, so anything I can imagine for a deck can be built, whether that's the look and feel, something working pulled in from across the web, or sound, video, and the devices in the room.
 
-A few things that are easy here and hard or impossible there. I can run the real prototype on a slide instead of a screenshot of it. I can show a live dashboard, a map, a pull request or a Figma frame as it is right now. Room sound can play under the narration, and a video can start on the click. A webcam can show the phone in my hand. A ring can circle part of a diagram while I talk about it. The type, color and motion can be whatever the talk calls for, with no template to fight.
+A few things that are easy here and hard or impossible there. I can run the real prototype on a slide instead of a screenshot of it. I can show a live dashboard, a map, a pull request, or a Figma frame as it is right now. Room sound can play under the narration, and a video can start on the click. A webcam can show the phone in my hand. A ring can circle part of a diagram while I talk about it. The type, color, and motion can be whatever the talk calls for, with no template to fight.
 
 It also fits the way we already work. A deck is one plain text file, so it can live in a repository, show its changes in a pull request and get reviewed like code. Claude can write and edit it directly, which is hard to do with a slide file. It opens in any browser. A theme is a few variables, so a client's brand carries across every deck. And my script stays in its own window, so it never shows on a shared screen.
 
@@ -32,7 +32,7 @@ I was getting ready for a five minute lightning talk about [the American dive ba
 
 ## Two windows
 
-The window you share shows only slides. A second window has your script in large type, the next slide, a timer and every control. You can even edit the script mid-talk. Reveals, rings that circle part of a diagram, crossfades, and optional sound and narration are built in.
+The window you share shows only slides. A second window has your script in large type, the next slide, a timer, and every control. You can even edit the script mid-talk. Reveals, rings that circle part of a diagram, crossfades, and optional sound and narration are built in.
 
 Two newer things make talks feel more designed. Code can light up a few lines at a time as you click, which is how I'd want to walk a room through it. And when two slides in a row share a heading or a picture, it glides to its new spot instead of fading out and back in.
 
@@ -40,9 +40,9 @@ Browsers only allow sound and full screen after a click on the page itself, and 
 
 ## Make it yours
 
-Pick Classic, Paper or Signal, or set your own accent, background, text color and fonts on top of any of them. The page gives you the lines to keep in your file, so a client's brand carries into every deck.
+Pick Classic, Paper, or Signal, or set your own accent, background, text color, and fonts on top of any of them. The page gives you the lines to keep in your file, so a client's brand carries into every deck.
 
-It also checks the deck as you type. A slide that runs off the bottom, a picture that won't load or a code block left open shows up above the preview with its slide and line, and clicking it takes you straight there.
+It also checks the deck as you type. A slide that runs off the bottom, a picture that won't load, or a code block left open shows up above the preview with its slide and line, and clicking it takes you straight there.
 
 ## Hand it to Claude
 
@@ -52,7 +52,7 @@ For smaller changes, click any slide in the preview and leave a note, like "turn
 
 ## Open source
 
-Stagehand is open source under the MIT license, on [GitHub](https://github.com/rantbot/stagehand). Anyone can report what broke, add a design, teach it a new layout or sharpen the Claude skill, and none of that needs a developer.
+Stagehand is open source under the MIT license, on [GitHub](https://github.com/rantbot/stagehand). Anyone can report what broke, add a design, teach it a new layout, or sharpen the Claude skill, and none of that needs a developer.
 
 ## What I'm watching
 

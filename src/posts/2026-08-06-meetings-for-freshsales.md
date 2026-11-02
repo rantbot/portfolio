@@ -13,9 +13,9 @@ image_alt: Illustration of Meeting Helper in use
 
 Before this, our client meetings were never logged in the CRM. Everyone agreed it mattered, and nobody did it. I wanted to see what would happen if nobody had to.
 
-Meeting Helper checks Google Calendar every ten minutes for meetings that have ended, matches the outside attendees to CRM contacts by email address, and logs the meeting on each one with the real title, time and description. If a contact has an open deal, the meeting goes on the deal's timeline too.
+Meeting Helper checks Google Calendar every ten minutes for meetings that have ended, matches the outside attendees to CRM contacts by email address, and logs the meeting on each one with the real title, time, and description. If a contact has an open deal, the meeting goes on the deal's timeline too.
 
-It skips what should be skipped. All-day events, canceled meetings, internal meetings and recurring ones, since a standing weekly is rarely a one-off sales call.
+It skips what should be skipped. All-day events, canceled meetings, internal meetings, and recurring ones, since a standing weekly is rarely a one-off sales call.
 
 ## Right after the call
 
@@ -23,7 +23,7 @@ Automatic logging was the reason I built it. The part that matters most to me no
 
 Inside a Google Meet call, the extension works out which opportunity the call belongs to. When I leave, a single card appears on Meet's own "You left the meeting" screen with the note already focused. I write the follow-up right there and save it to our CRM, to our internal platform Hub, or both. The AI meeting notes follow once they're ready, so the notes and the next steps end up in the same place.
 
-That card went through many versions. Chips, logos, a separate card and colored borders were all tried and dropped as too busy. One composer and two checkboxes won.
+That card went through many versions. Chips, logos, a separate card, and colored borders were all tried and dropped as too busy. One composer and two checkboxes won.
 
 ## What I learned
 

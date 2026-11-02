@@ -15,7 +15,7 @@ image_alt: Illustration of Pipeline Health in use
 
 Every sales leader has looked at a pipeline and had a feeling about it. I wanted a number that agreed with the feeling when the feeling was right, and argued with it when it wasn't.
 
-Pipeline Health puts a bar under the toolbar on any deals view in our CRM. It gives a letter grade, then shows how deal count, fit, value, stage spread, freshness and client signals compare with the team's own history. Click it and you get the reasons, the odds of reaching budget, and an Improve tab that lists specific deals to work on and how much each step would help.
+Pipeline Health puts a bar under the toolbar on any deals view in our CRM. It gives a letter grade, then shows how deal count, fit, value, stage spread, freshness, and client signals compare with the team's own history. Click it and you get the reasons, the odds of reaching budget, and an Improve tab that lists specific deals to work on and how much each step would help.
 
 ## Critical but helpful
 

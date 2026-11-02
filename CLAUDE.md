@@ -49,6 +49,8 @@ Notes for Ran to fill in go in `<!-- -->` comments. They don't show on the site.
 - Kind, personal, opinionated and inventive. It should sound like Ran talking, never like a copywriter. Plain words, specific details, first person, real opinions he has stated (his posts and thoughtbot essays are the best source). No polished marketing phrases like "exceptional experiences" or "turning ideas into reality".
 - Clean, direct, human, matter-of-fact. Kind, honest, smart, approachable.
 - No em dashes, semicolons, or colons in prose. Use commas for asides, not spaced hyphens.
+- Use the Oxford comma in lists of three or more ("red, white, and blue").
+- Never leave `<!-- -->` notes for Ran in pages. The repo is public. Ask in chat instead.
 - No slogans and no "not X, it's Y" constructions.
 - Present Ran as a leader who builds things, not a job seeker. Fun to read.
 - Invitations sound collaborative, about working together rather than about Ran ("Let’s work together", "Work together", "Let’s talk"), never "Work with me" or "More about me".

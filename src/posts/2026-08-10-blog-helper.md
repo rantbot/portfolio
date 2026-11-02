@@ -1,6 +1,6 @@
 ---
 title: Blog Helper, an editor that knows our style guide
-description: A panel beside our blog editor that reviews drafts against thoughtbot's editorial guidelines, suggests internal links and writes first drafts from notes.
+description: A panel beside our blog editor that reviews drafts against thoughtbot's editorial guidelines, suggests internal links, and writes first drafts from notes.
 date: 2026-08-10
 kind: making
 topics: [team]
@@ -13,7 +13,7 @@ image_alt: Illustration of Blog Helper in use
 
 thoughtbot has published on its blog for a long time, and we have editorial guidelines to match. The trouble with guidelines is that they live in a document, and the draft lives somewhere else.
 
-Blog Helper puts them side by side. Open a draft in our internal editor and a panel appears next to it. It scores the piece, works through the guidelines as a checklist, suggests links to older posts with the anchor text already picked, and can write a first draft from rough notes. Titles, teasers and tags each get their own pass.
+Blog Helper puts them side by side. Open a draft in our internal editor and a panel appears next to it. It scores the piece, works through the guidelines as a checklist, suggests links to older posts with the anchor text already picked, and can write a first draft from rough notes. Titles, teasers, and tags each get their own pass.
 
 I use it most for two things. It finds the right older posts to link to, and it helps me take a few snippets of an idea and turn them into a fully thought-out post much faster than I could on my own.
 
