@@ -23,7 +23,7 @@ section: leading
     <span class="card-desc">{{ p.data.description }}</span>
     {%- set led = p.data.led | ledLabel %}
     {%- set org = p.data.case_study.organization if p.data.case_study else "" %}
-    {%- if led or org %}<span class="card-meta">{{ led }}{% if led and org %} · {% endif %}{{ org }}</span>{% endif %}
+    {%- if led %}<span class="card-meta">{{ led }}</span>{% endif %}
   </a>
   {%- endfor %}
 </div>

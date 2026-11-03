@@ -37,7 +37,7 @@ seo_title: Ran Craycraft · Founder and executive who builds businesses
       <span class="card-title serif">{{ p.data.title }}</span>
       {%- if p.data.highlight %}<span class="card-highlight">{{ p.data.highlight }}</span>{% else %}<span class="card-desc">{{ p.data.description }}</span>{% endif %}
       {%- set led = p.data.led | ledLabel %}
-      {%- if led or (p.data.case_study and p.data.case_study.organization) %}<span class="card-meta">{{ led }}{% if led and p.data.case_study and p.data.case_study.organization %} · {% endif %}{{ p.data.case_study.organization if p.data.case_study }}</span>{% endif %}
+      {%- if led %}<span class="card-meta">{{ led }}</span>{% endif %}
     </a></li>
     {%- endfor %}
   </ul>

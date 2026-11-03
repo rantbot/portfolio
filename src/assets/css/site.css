@@ -137,6 +137,7 @@ a:hover .cover, a:hover .cover-img { transform: scale(1.02); }
 .cover-kicker { font-size: 12px; letter-spacing: 0.01em; opacity: 0.72; }
 .cover-lines { display: flex; flex-direction: column; font-family: var(--serif); font-size: clamp(20px, 2vw, 30px); line-height: 1.12; font-weight: 340; letter-spacing: -0.01em; }
 .cover-lines .i { font-style: italic; }
+.story-cover .cover-lines.cover-org { font-size: clamp(30px, 3vw, 46px); line-height: 1.02; letter-spacing: -0.02em; }
 .story-cover .cover-lines { font-size: clamp(24px, 2.3vw, 34px); line-height: 1.08; letter-spacing: -0.015em; }
 
 /* Cards */
