@@ -1,6 +1,6 @@
 ---
-title: Why do the best conversations at a conference happen after hours?
-description: I created The Ruby Underground for thoughtbot, an invite-only night in a secret location for the people shaping Ruby and Rails.
+title: An invite-only night to thank our clients and get to know new ones
+description: I created The Ruby Underground for thoughtbot, an elevated, invite-only night where we thank our clients and make personal connections with hand-picked prospective ones.
 date: 2026-10-12
 led: inside
 case_study:
@@ -9,7 +9,7 @@ case_study:
   role: Creator, host, and producer
   years: 2024 to present
   start: 2024
-  scope: An invite-only event series in the after hours of major Ruby and Rails conferences
+  scope: An invite-only event series for thoughtbot’s clients and hand-picked prospective clients, in the after hours of major Ruby and Rails conferences
   outcomes:
     - Five cities, Detroit, Chicago, Philadelphia, Las Vegas, and Austin
     - 50 to 100 guests a night, all by invitation
@@ -18,8 +18,8 @@ tone: "#1C1B19"
 ink: "#E6DCC8"
 cover_kicker: The Ruby Underground
 cover_lines:
-  - Invite only
-  - Secret location
+  - Our clients
+  - Hand-picked guests
   - After hours
 read_next:
   - story: helping-stabilize-ruby-central
@@ -34,7 +34,7 @@ It’s hard to think of a better place for a secret than a room that was built t
 
 Inside were authors, keynote speakers, CTOs, open source and core contributors. The people who built much of what the Ruby and Rails community uses every day, and the people shaping what those tools become in the AI age. Between 50 and 100 of them in one room, with cocktails, hors d’oeuvres, and nowhere else to be.
 
-That’s The Ruby Underground. I created it for [thoughtbot](/leading/building-the-next-chapter-of-thoughtbot/) in 2024, and I’ve hosted and produced every one since. It’s become the most sought-after ticket for some of the most influential people in our industry, and it happens after hours, in a place you’d never find on your own.
+That’s The Ruby Underground. I created it for [thoughtbot](/leading/building-the-next-chapter-of-thoughtbot/) in 2024, and I’ve hosted and produced every one since. It’s how we thank the clients we’ve worked with, past and present, and how we get to know, person to person, the prospective clients we’ve hand-picked to meet. It’s become the most sought-after ticket for some of the most influential people in our industry, and it happens after hours, in a place you’d never find on your own.
 
 ## What a conference can’t do
 
@@ -48,7 +48,7 @@ So I decided to make that room, and to make it part of the conference week, in t
 
 The Ruby Underground is invite only. There’s a waitlist, and the location stays a secret.
 
-How the guest list comes together is the part I keep to myself. What I’ll say is that in every city, I find the most influential people in technology there and make sure they come. And the list is always curated, so that everyone in the room has a unique story and ideas to share.
+How the guest list comes together is the part I keep to myself. What I’ll say is that every room brings together three kinds of guests. Our current and past clients, who we invite to say thank you. Prospective clients we’ve hand-picked and want to know personally. And the most influential people in technology in that city, who make the night worth coming to. And the list is always curated, so that everyone in the room has a unique story and ideas to share.
 
 We keep it between 50 and 100 people. That’s on purpose. Everyone should get a chance to meet everyone else, and past a certain size, that stops happening.
 
