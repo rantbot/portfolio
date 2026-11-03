@@ -12,7 +12,7 @@ layout: base.njk
   </header>
 
   <figure class="case-cover">
-    {%- set p = { data: { image: image, image_alt: image_alt, tone: tone, ink: ink, case_study: case_study, title: title, cover_lines: cover_lines } } %}
+    {%- set p = { data: { image: image, image_alt: image_alt, tone: tone, ink: ink, case_study: case_study, title: title, cover_lines: cover_lines, cover_name: cover_name } } %}
     {%- set ratio = "21 / 9" %}{% include "story-cover.njk" %}
     {%- if image_caption %}<figcaption class="meta">{{ image_caption }}</figcaption>{% endif %}
   </figure>

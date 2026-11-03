@@ -17,6 +17,7 @@ case_study:
 tone: "#1C1B19"
 ink: "#E6DCC8"
 cover_kicker: The Ruby Underground
+cover_name: The Ruby Underground
 cover_lines:
   - Our clients
   - Hand-picked guests

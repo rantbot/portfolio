@@ -6,7 +6,7 @@
 {%- else %}
 <div class="cover story-cover" style="aspect-ratio: {{ ratio }}; background: {{ d.tone or '#EFEFEC' }}; color: {{ d.ink or '#1F1F1C' }}" aria-hidden="true">
   <span class="cover-kicker"></span>
-  {%- set org = d.case_study.organization if d.case_study else "" %}
+  {%- set org = d.cover_name or (d.case_study.organization if d.case_study else "") %}
   <span class="cover-lines{% if org %} cover-org{% endif %}">
     {%- if org %}<span>{{ org }}</span>{% else %}{%- for line in (d.cover_lines or [d.title]) %}<span{% if loop.last and loop.length > 1 %} class="i"{% endif %}>{{ line }}</span>{% endfor %}{% endif -%}
   </span>

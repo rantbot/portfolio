@@ -102,7 +102,7 @@ The first is usually what happened next in Ran's career, the second a piece that
 
 ## Language
 
-The section for the longer pieces about the bigger work is called **Leading**, next to Writing and Making (Ran's call, October 2026, because Stories and Writing sounded too alike). Never call them stories, case studies or milestones on the site. Links to the whole section read "Everything I’ve led". A piece is about the work, not the company, and there can be several from one place. The organization's name is what the typographic cover shows (Ran's call, November 2026), so the Leading cards are easy to tell apart. The card's meta line shows only how he led (Inside companies, Founded, In the community), and the title is about the work, not the company.
+The section for the longer pieces about the bigger work is called **Leading**, next to Writing and Making (Ran's call, October 2026, because Stories and Writing sounded too alike). Never call them stories, case studies or milestones on the site. Links to the whole section read "Everything I’ve led". A piece is about the work, not the company, and there can be several from one place. The organization's name is what the typographic cover shows (Ran's call, November 2026), so the Leading cards are easy to tell apart. Set `cover_name` in front matter to show a different name on the cover, like The Ruby Underground instead of thoughtbot. The card's meta line shows only how he led (Inside companies, Founded, In the community), and the title is about the work, not the company.
 
 ## Agent skills
 
