@@ -1,6 +1,13 @@
 # Essays published on other sites. They link to the original.
 # Newest first. topics use the keys in writing_topics in site.yml.
 
+- title: Who’s reading the code your AI writes?
+  topics: [ai, consulting]
+  url: https://thoughtbot.com/blog/who-s-reading-the-code-your-ai-writes
+  date: 2026-10-23
+  publication: thoughtbot blog
+  summary: AI makes teams faster, and it makes it easier to ship bugs, security flaws, and data leaks. Keep experienced people reading what it writes.
+
 - title: When to vibe code an app and when to hire someone
   topics: [ai, product]
   url: https://thoughtbot.com/blog/when-to-vibe-code-an-app-and-when-to-hire-someone
