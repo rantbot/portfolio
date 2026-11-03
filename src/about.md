@@ -29,7 +29,7 @@ education:
   <div class="rail portrait">
     {%- if portrait %}<img src="{{ portrait }}" alt="Ran Craycraft, smiling, in a black t-shirt" width="960" height="1200">{% else %}<div class="portrait-empty" aria-hidden="true">RC</div>{% endif %}
   </div>
-  <h1 class="span-main page-title page-title-md serif">I help founders and executives turn big ideas into modern businesses.</h1>
+  <h1 class="span-main page-title page-title-md serif">I help teams turn big ideas into modern businesses.</h1>
 </header>
 
 <div class="grid">
