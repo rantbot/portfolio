@@ -49,7 +49,7 @@ At [NBC](/leading/new-digital-experiences-at-nbc/), I grew from intern to produc
 
 I founded [Why Leave Astoria](/leading/why-leave-astoria/) in 2008, a neighborhood social network that grew to more than 10,000 local members and raised tens of thousands of dollars a year for charity. I even officiated the wedding of two people who met through it.
 
-At [AOL](/leading/launching-new-ventures-at-aol/), I went from Director of Product on the company's smallest team to leading product across the company and eventually working with the CEO and COO as General Manager of AOL Entertainment, where I ran Moviefone, Cambio, and AOL Music, with a $40M P&L and a 70-person team.
+At [AOL](/leading/launching-new-ventures-at-aol/), I went from Director of Product on the company's smallest team to leading product across the company and eventually working with the CEO and CFO as General Manager of AOL Entertainment, where I ran Moviefone, Cambio, and AOL Music, with a $40M P&L and a 70-person team.
 
 [North Kingdom](/leading/bringing-north-kingdom-to-the-us/) taught me how much storytelling and craft matter. That inspired me to co-found [Wildebeest](/leading/wildebeest/), which over nine years, built from scratch to work with Google, YouTube, Microsoft, Disney, Toyota, and General Motors. Our team won a Webby, a Cannes Lions Grand Prix, and a D&AD Pencil.
 
