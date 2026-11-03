@@ -16,8 +16,6 @@ case_study:
     - Moved from a monthly subscription to on demand
     - Simplified the kits into projects that take under 30 minutes
     - Runs as a dropship lifestyle business, with merchandise through Printful
-image: /assets/images/relic/cover.jpg
-image_alt: "A finished RELIC Classic folding knife with a black handle and brass bolster, resting on a notebook beside a wristwatch"
 tone: "#E8E1D6"
 ink: "#33281E"
 cover_kicker: Made by hand
@@ -68,6 +66,11 @@ So we focused on the two kits people wanted most. One is a classic knife assembl
 <figure>
   <img src="/assets/images/relic/parts.jpg" alt="The parts of the Classic folding knife kit spread across a table, blade, handle scales, bolsters, liners, and small screws" width="1600" height="1600" loading="lazy" decoding="async">
   <figcaption>The Classic kit, before it becomes a knife.</figcaption>
+</figure>
+
+<figure>
+  <img src="/assets/images/relic/cover.jpg" alt="A finished RELIC Classic folding knife with a dark handle and brass bolster, resting on a notebook beside a wristwatch" width="1600" height="1067" loading="lazy" decoding="async">
+  <figcaption>And the finished knife.</figcaption>
 </figure>
 
 ## Why we stopped being a subscription

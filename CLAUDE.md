@@ -38,6 +38,7 @@ Front matter:
 - `series` same name on related posts links them together
 - `topics` one or more keys from `writing_topics` or `making_topics` in `src/_data/site.yml`, for the filters on Writing and Making. Essays in `elsewhere.yml` take `topics` too.
 - The homepage Leading carousel shows every piece, most recent first. `meta` is an optional card label.
+- Leading pieces always use the typographic cover (`tone`, `ink`, `cover_lines`). Their photos go inside the piece as figures, never as the cover, so the Leading cards stay consistent.
 - Cover, either `image` plus `image_alt` (and optional `image_caption`), or a typographic cover with `tone`, `ink`, `cover_kicker`, `cover_lines`
 - `updated` optional date for revised posts
 - `try_url` and optional `try_label` add a "Try it" link at the end, only for tools that are public
