@@ -11,7 +11,7 @@ try_url: https://rantbot.github.io/dive-bars/
 try_label: Watch the film
 ---
 
-Since 1999 I've been doing field research on the American dive bar. Mostly at night, and all of it involving beer. Sixty-eight cities so far, from Vancouver to Guayaquil, with many dives in each, and the survey is still going.
+Since the late 1900s I've been doing field research on the American dive bar. Mostly at night, and all of it involving beer. Sixty-eight cities so far, from Vancouver to Guayaquil, with many dives in each, and the survey is still going.
 
 So when I had five minutes for a lightning talk, I knew what it would be about. I told it like a prestige nature documentary, with me as the field researcher studying a species science never recognized.
 
