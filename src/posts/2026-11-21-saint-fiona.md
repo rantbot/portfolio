@@ -19,7 +19,7 @@ try_label: Get a candle
 
 Fiona the hippo was born at the Cincinnati Zoo on January 24, 2017, six weeks early. She died on November 19, 2026, and Cincinnati lit its bridges, stadiums, and buildings purple for her.
 
-I wanted to do something small for her and for the zoo. So I made Saint Fiona, a devotional candle with Fiona as a saint on the label. It's a calm memorial with a gentle wink, and it's a fundraiser. The candle is $20, and all proceeds go to the Cincinnati Zoo & Botanical Garden to help care for and protect more animals.
+I wanted to do something small for her and for the zoo. So I made Saint Fiona, a devotional candle with Fiona as a saint on the label. It's a peaceful memorial with a playful wink to send money to the zoo who cared for Fiona and her friends. The candle is $20, and all proceeds go to the Cincinnati Zoo & Botanical Garden to help care for and protect more animals.
 
 <figure class="spread">
   <img src="/assets/images/projects/saint-fiona.jpg" alt="The shop's illustration of Fiona the hippo as a saint with a crown of flowers and a golden halo, surrounded by haloed zoo animals, above a Saint Fiona banner" width="1600" height="1000" loading="lazy" decoding="async">
