@@ -26,6 +26,8 @@ I wanted to do something small for her and for the zoo. So I made Saint Fiona, a
   <figcaption>The illustration at the top of the shop, with Fiona as Patroness of Animals, Conservation, and Joy.</figcaption>
 </figure>
 
+The label is a clear, translucent decal I made so the candle's glow lights up her portrait from behind, a little like stained glass. A paper sticker would have looked cheap, blocked the light, and could have been a fire risk.
+
 ## A lightweight shop for one candle
 
 I could have listed the candle on Etsy or set up a Shopify store, but both take a cut or charge a monthly fee, and every dollar they keep is a dollar that doesn't go to the zoo. So I built a lightweight shop of my own. Payments go straight through Stripe, and the only fees are its card processing.
