@@ -32,6 +32,6 @@ I could have listed the candle on Etsy or set up a Shopify store, but both take 
 
 Building it myself also meant I could shape the experience around one product and the people buying it. The page tells Fiona's story, shows the candle, and goes right to checkout. Shipping is priced by distance, so buyers closer to me pay less. Buyers can add a gift note if the candle is for someone else, and they can pay with a card, Apple Pay, Google Pay, or PayPal.
 
-It runs on Cloudflare Pages. saintfionacandle.com is the main address, and saintfiona.com, stfiona.com, and stfionacandle.com all point to it.
+It runs on Cloudflare Pages. [saintfionacandle.com](https://saintfionacandle.com) is the main address, and saintfiona.com, stfiona.com, and stfionacandle.com all point to it.
 
 I'm an independent fan, not part of the zoo. If you'd rather give to the zoo directly, it takes memorial gifts on its Remembering Fiona page.
