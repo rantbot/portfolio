@@ -14,12 +14,38 @@ const pending = new Map(); // element -> { before, after }
 const files = new Map(); // path -> { text, sha }
 let tree = null;
 
+// ---- Show published edits right away
+// The live site takes a couple of minutes to rebuild. Until it catches up, this browser shows the
+// page as it looked right after publishing, then lets go once the rebuilt page has the new text.
+const KEY_RECENT = "edit-recent-publish";
+const RECENT_MS = 20 * 60 * 1000;
+const readRecent = () => { try { return JSON.parse(localStorage.getItem(KEY_RECENT) || "{}"); } catch { return {}; } };
+const writeRecent = (all) => { try { localStorage.setItem(KEY_RECENT, JSON.stringify(all)); } catch {} };
+const squash = (t) => (t || "").replace(/\s+/g, " ").trim();
+(function restoreRecent() {
+  const all = readRecent();
+  for (const k of Object.keys(all)) if (Date.now() - all[k].time > RECENT_MS) delete all[k];
+  const snap = all[location.pathname];
+  if (snap) {
+    const live = squash(areas.map((a) => a.textContent).join(" "));
+    const caughtUp = snap.after.length ? snap.after.every((t) => live.includes(t)) : snap.before.every((t) => !live.includes(t));
+    if (caughtUp) delete all[location.pathname];
+    else { if (main && snap.main != null) main.innerHTML = snap.main; if (footer && snap.footer != null) footer.innerHTML = snap.footer; }
+  }
+  writeRecent(all);
+})();
+function rememberPublish(afterTexts, beforeTexts) {
+  const all = readRecent();
+  all[location.pathname] = { time: Date.now(), main: main ? main.innerHTML : null, footer: footer ? footer.innerHTML : null, after: afterTexts.filter(Boolean), before: beforeTexts.filter(Boolean) };
+  writeRecent(all);
+}
+
 const getToken = () => { try { return localStorage.getItem(KEY_TOKEN) || ""; } catch { return ""; } };
 const setToken = (t) => { try { t ? localStorage.setItem(KEY_TOKEN, t) : localStorage.removeItem(KEY_TOKEN); } catch {} };
 
 // ---- GitHub
 async function gh(path, opts = {}) {
-  const r = await fetch(API + path, { ...opts, headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${getToken()}`, ...(opts.body ? { "Content-Type": "application/json" } : {}) } });
+  const r = await fetch(API + path, { cache: "no-store", ...opts, headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${getToken()}`, ...(opts.body ? { "Content-Type": "application/json" } : {}) } });
   if (r.status === 401) throw new Error("GitHub didn’t accept the key. Add it again from the edit bar.");
   if (!r.ok) throw new Error(`GitHub said ${r.status}. ${(await r.json().catch(() => ({}))).message || ""}`.trim());
   return r.json();
@@ -413,13 +439,16 @@ async function publish() {
     } catch (e) { failed.push(e.message); }
   }
   let saved = 0;
+  const afterTexts = [], beforeTexts = [];
   for (const [path, edits] of byFile) {
     try {
       const f = await readFile(path);
       let text = f.text;
       for (const { before, after, inFooter, md } of edits) text = md ? swap(text, before, after) : apply(text, path, before, after, inFooter);
       await gh(`/contents/${encodeURI(path)}`, { method: "PUT", body: JSON.stringify({ message: `Edit copy in ${path.replace(/^src\//, "")}`, content: b64encode(text), sha: f.sha, branch: BRANCH }) });
-      edits.forEach(({ el, after, md }) => {
+      edits.forEach(({ el, before, after, md }) => {
+        if (md) { if (after !== "") afterTexts.push(squash(el.nodes.map((n) => n.textContent).join(" "))); else beforeTexts.push(squash(el.nodes.map((n) => n.textContent).join(" "))); }
+        else { afterTexts.push(squash(after)); }
         pending.delete(el);
         if (md && after === "") { el.nodes.forEach((n) => n.remove()); blocks = blocks.filter((b) => b !== el); }
         else if (md) { el.src = after; el.start = el.after; el.after = null; el.orig = el.nodes; show(el, el.nodes); } else delete el.dataset.edChanged;
@@ -430,7 +459,7 @@ async function publish() {
   }
   render();
   if (failed.length) toast(`${saved ? `Published ${saved}. ` : ""}${failed[0]}`, true);
-  else { toast(`Published ${saved} change${saved === 1 ? "" : "s"}. The live site updates in about two minutes.`); stop(false); }
+  else { stop(false); rememberPublish(afterTexts, beforeTexts); toast(`Published ${saved} change${saved === 1 ? "" : "s"}. You'll see it here right away, and visitors in about two minutes.`); }
 }
 
 bar.addEventListener("click", (e) => {
