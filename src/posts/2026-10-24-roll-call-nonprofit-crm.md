@@ -1,5 +1,5 @@
 ---
-title: "Roll Call, a free CRM for small nonprofits built on Google Sheets"
+title: "Roll Call, a free CRM for small nonprofits powered by Google Sheets"
 description: "A free CRM I created on Google Sheets so a small nonprofit run by senior volunteers can track members, dues, and donations from any phone, even offline."
 tldr: "Roll Call is a free CRM I designed and built for the Camp Oyo Staff and Alumni Association, a volunteer-run nonprofit that had outgrown offline spreadsheets passed from person to person and stacks of paper applications. It runs on Google Sheets and Apps Script. Volunteers add new members directly, record dues and donations, sign in with an emailed code instead of a password, and can still look people up with no signal."
 date: 2026-10-24
