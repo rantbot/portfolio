@@ -1,5 +1,5 @@
 ---
-title: "Saint Fiona, a candle fundraiser for The Cincinnati Zoo &"
+title: "Saint Fiona, a candle fundraiser for The Cincinnati Zoo"
 description: "A one-product shop selling a $20 devotional candle in Fiona's memory, with all proceeds going to the Cincinnati Zoo."
 date: 2026-11-21
 kind: making
