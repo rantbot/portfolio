@@ -5,8 +5,8 @@ date: 2026-11-21
 kind: making
 topics: [fun]
 meta: One-page shop on Cloudflare Pages
-image: /assets/images/projects/saint-fiona.jpg
-image_alt: "Fiona the hippo painted as a saint with a crown of flowers and a golden halo, surrounded by haloed zoo animals, above a Saint Fiona banner"
+image: /assets/images/projects/saint-fiona-lifestyle.jpg
+image_alt: "The Saint Fiona candle lit on a table beside a pink lotus, its label showing Fiona the hippo as a saint with a crown of flowers and the words A candle in her memory"
 tone: "#E4DCEB"
 ink: "#2B2433"
 cover_kicker: Saint Fiona
@@ -22,12 +22,16 @@ Fiona the hippo was born at the Cincinnati Zoo on January 24, 2017, six weeks ea
 I wanted to do something small for her and for the zoo. So I made Saint Fiona, a devotional candle with Fiona as a saint on the label. It's a calm memorial with a gentle wink, and it's a fundraiser. The candle is $20, and all proceeds go to the Cincinnati Zoo & Botanical Garden to help care for and protect more animals.
 
 <figure class="spread">
-  <img src="/assets/images/projects/saint-fiona-candle.jpg" alt="Two views of the Saint Fiona candle, one lit on a coffee table and one unlit, with a label of Fiona as Patroness of Animals, Conservation, and Joy" width="1600" height="1200" loading="lazy" decoding="async">
-  <figcaption>The candle, with Fiona as Patroness of Animals, Conservation, and Joy.</figcaption>
+  <img src="/assets/images/projects/saint-fiona.jpg" alt="The shop's illustration of Fiona the hippo as a saint with a crown of flowers and a golden halo, surrounded by haloed zoo animals, above a Saint Fiona banner" width="1600" height="1000" loading="lazy" decoding="async">
+  <figcaption>The illustration at the top of the shop, with Fiona as Patroness of Animals, Conservation, and Joy.</figcaption>
 </figure>
 
-## One product, one page
+## A lightweight shop for one candle
 
-The shop sells one thing, so the site is one page. It tells Fiona's story, shows the candle, and takes the order. I built it as a custom page and host it on Cloudflare Pages. saintfionacandle.com is the main address, and saintfiona.com, stfiona.com, and stfionacandle.com all point to it.
+I could have listed the candle on Etsy or set up a Shopify store, but both take a cut or charge a monthly fee, and every dollar they keep is a dollar that doesn't go to the zoo. So I built a lightweight shop of my own. Payments go straight through Stripe, and the only fees are its card processing.
+
+Building it myself also meant I could shape the experience around one product and the people buying it. The page tells Fiona's story, shows the candle, and goes right to checkout. Shipping is priced by distance, so buyers closer to me pay less. Buyers can add a gift note if the candle is for someone else, and they can pay with a card, Apple Pay, Google Pay, or PayPal.
+
+It runs on Cloudflare Pages. saintfionacandle.com is the main address, and saintfiona.com, stfiona.com, and stfionacandle.com all point to it.
 
 I'm an independent fan, not part of the zoo. If you'd rather give to the zoo directly, it takes memorial gifts on its Remembering Fiona page.
