@@ -1,21 +1,34 @@
 ---
-title: "Building a members app for a nonprofit run by seniors"
-description: "A simple app on a Google Sheet that helps a family member and fellow volunteers at the Camp Oyo Staff and Alumni Association track members and dues."
+title: "Roll Call, a free CRM for small nonprofits built on Google Sheets"
+description: "A free CRM I created on Google Sheets so a small nonprofit run by senior volunteers can track members, dues, and donations from any phone, even offline."
+tldr: "Roll Call is a free CRM I designed and built for the Camp Oyo Staff and Alumni Association, a volunteer-run nonprofit that had outgrown offline spreadsheets passed from person to person and stacks of paper applications. It runs on Google Sheets and Apps Script. Volunteers add new members directly, record dues and donations, sign in with an emailed code instead of a password, and can still look people up with no signal."
 date: 2026-11-22
 kind: making
 topics: [community]
-meta: Web app on Google Sheets
+meta: Nonprofit CRM on Google Sheets
 tone: "#2F5D46"
 ink: "#F2F5F2"
-cover_kicker: Camp Oyo
+cover_kicker: Roll Call
 cover_lines:
   - Built for family
   - and any phone
 ---
 
-A family member of mine keeps track of members and dues for the Camp Oyo Staff and Alumni Association. For years that meant a Google Sheet, paper forms, and checks in the mail. The people who run the association are seniors with very different comfort levels with technology, and they use whatever is in front of them, a phone one day and a desktop computer the next.
+Roll Call is a CRM I created for the Camp Oyo Staff and Alumni Association, a small nonprofit run by volunteers. A family member of mine keeps track of its members and dues, and I built Roll Call to make that job a lot easier for them and everyone they work with.
 
-So I built them a small members app. It runs on Google Apps Script on top of the same Google Sheet, so none of their records had to move, and it costs nothing to run. I built it with Claude, and my test the whole way through was simple. Could they use it on their phone, the first time, without me there?
+## Why a small nonprofit needed a CRM
+
+For years, the member list didn't live in one place. It lived in several offline spreadsheets that got passed from person to person, and every copy could be a little different from the last.
+
+New members signed up on paper at events, and there were lots and lots of those forms. Many were close to illegible, which left someone squinting at a name or an email address before it could go anywhere.
+
+Money came in by check, cash, and Zelle, for dues, donations, and the odd T-shirt or patch. And the people keeping up with all of it are seniors with very different comfort levels with technology, using whatever is in front of them, a phone one day and a desktop computer the next. Sometimes they're somewhere remote with no cell coverage at all, and they still need to look someone up.
+
+## What Roll Call does
+
+Roll Call replaces all of that with one shared list. It runs on Google Apps Script on top of a single Google Sheet, so there are no more copies to pass around, and it costs nothing to run. New people go straight into the app instead of onto a paper form, so there's nothing to decipher later. And when there's no signal, the same icon on their phone opens a saved copy of the roster, so they can still find anyone.
+
+I built it with Claude, and my test the whole way through was simple. Could they use it on their phone, the first time, without me there?
 
 ## Plain words and big buttons
 
@@ -25,7 +38,7 @@ The Save button only appears once something has changed, and it goes away again 
 
 ## Payments the way they actually come in
 
-Dues, donations, and the odd T-shirt or patch come in by check, cash, or Zelle. Recording one means finding the person, tapping what it was for, and typing the amount. A donation can be in memory of or in honor of someone, and that shows on the member's history and on a record you can print or save as a PDF.
+Recording a payment means finding the person, tapping what it was for, and typing the amount. A donation can be in memory of or in honor of someone, and that shows on the member's history and on a record you can print or save as a PDF.
 
 Every member has a short ID like K7PX, with no letters or numbers that look alike, so it's easy to read over the phone.
 
