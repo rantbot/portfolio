@@ -46,6 +46,7 @@ content:
             - { value: public, label: "Making: Public tools" }
             - { value: fun, label: "Making: For fun" }
             - { value: home, label: "Making: At home" }
+            - { value: community, label: "Making: In my community" }
       - { name: image, label: Cover photo, type: image }
       - { name: image_alt, label: Cover photo description, type: string }
       - { name: image_caption, label: Cover photo caption, type: string }

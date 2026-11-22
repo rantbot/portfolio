@@ -55,6 +55,8 @@ making_topics:
     label: For fun
   - key: home
     label: At home
+  - key: community
+    label: In my community
 
 # Closing invitation on the homepage
 invitation: Let’s discuss what's next.
